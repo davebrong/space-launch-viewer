@@ -1,0 +1,95 @@
+ Container launch-visibility-dev-postgres-1 Running 
+ Container launch-visibility-dev-postgres-1 Waiting 
+ Container launch-visibility-dev-postgres-1 Healthy 
+Open http://127.0.0.1:3007 . Ctrl+C stops the owned app processes; PostgreSQL data persists.
+
+> launch-visibility-web@0.1.0 dev
+> next dev --webpack -H 127.0.0.1 --port 3007
+
+▲ Next.js 16.4.0 (webpack)
+- Local:         http://127.0.0.1:3007
+- Network:       http://127.0.0.1:3007
+✓ Ready in 602ms
+INFO:     Started server process [295072]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+✓ Running next.config.ts took 49ms
+
+ GET / 200 in 853ms (next.js: 689ms, application-code: 164ms)
+ GET /favicon.ico 200 in 72ms (next.js: 17ms, application-code: 55ms)
+ GET / 200 in 85ms (next.js: 18ms, application-code: 67ms)
+ GET /launches 200 in 56ms (next.js: 21ms, application-code: 34ms)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+ GET /launches/bf2c3027-a314-403e-a416-2bfd5d165ad1 200 in 38ms (next.js: 16ms, application-code: 22ms)
+ GET /subscriptions 200 in 34ms (next.js: 14ms, application-code: 20ms)
+ GET / 200 in 59ms (next.js: 16ms, application-code: 43ms)
+ GET /launches 200 in 44ms (next.js: 19ms, application-code: 24ms)
+ GET /privacy 200 in 32ms (next.js: 1.7ms, application-code: 30ms)
+ GET / 200 in 54ms (next.js: 15ms, application-code: 39ms)
+ GET / 200 in 67ms (next.js: 17ms, application-code: 50ms)
+ GET /launches 200 in 38ms (next.js: 16ms, application-code: 22ms)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+ GET /launches/bf2c3027-a314-403e-a416-2bfd5d165ad1 200 in 36ms (next.js: 14ms, application-code: 21ms)
+ GET /subscriptions 200 in 24ms (next.js: 1.6ms, application-code: 23ms)
+ GET / 200 in 39ms (next.js: 16ms, application-code: 22ms)
+ GET /launches 200 in 39ms (next.js: 17ms, application-code: 22ms)
+ GET /privacy 200 in 28ms (next.js: 1.5ms, application-code: 26ms)
+ GET / 200 in 57ms (next.js: 16ms, application-code: 41ms)
+ GET / 200 in 79ms (next.js: 18ms, application-code: 62ms)
+ GET /favicon.ico 200 in 106ms (next.js: 1.5ms, application-code: 104ms)
+ GET / 200 in 64ms (next.js: 14ms, application-code: 50ms)
+ GET /launches 200 in 43ms (next.js: 16ms, application-code: 27ms)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+ GET /launches/bf2c3027-a314-403e-a416-2bfd5d165ad1 200 in 44ms (next.js: 18ms, application-code: 25ms)
+ GET /subscriptions 200 in 29ms (next.js: 1.5ms, application-code: 28ms)
+ GET / 200 in 53ms (next.js: 24ms, application-code: 29ms)
+ GET /launches 200 in 43ms (next.js: 21ms, application-code: 23ms)
+ GET /privacy 200 in 29ms (next.js: 3ms, application-code: 26ms)
+ GET / 200 in 50ms (next.js: 1.1ms, application-code: 49ms)
+ GET / 200 in 56ms (next.js: 15ms, application-code: 41ms)
+ GET /launches 200 in 52ms (next.js: 22ms, application-code: 30ms)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+ GET /launches/bf2c3027-a314-403e-a416-2bfd5d165ad1 200 in 36ms (next.js: 16ms, application-code: 20ms)
+ GET /subscriptions 200 in 31ms (next.js: 1.4ms, application-code: 29ms)
+ GET / 200 in 53ms (next.js: 21ms, application-code: 32ms)
+ GET /launches 200 in 50ms (next.js: 22ms, application-code: 27ms)
+ GET /privacy 200 in 28ms (next.js: 2.0ms, application-code: 26ms)
+ GET / 200 in 76ms (next.js: 19ms, application-code: 57ms)
+ GET /launches 200 in 39ms (next.js: 16ms, application-code: 23ms)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+ GET /favicon.ico 200 in 49ms (next.js: 1.3ms, application-code: 48ms)
+ GET /launches/bf2c3027-a314-403e-a416-2bfd5d165ad1 200 in 31ms (next.js: 13ms, application-code: 19ms)
+ GET /favicon.ico 200 in 49ms (next.js: 0.9ms, application-code: 48ms)
+ GET /favicon.ico 200 in 66ms (next.js: 18ms, application-code: 48ms)
+ GET /launches/bf2c3027-a314-403e-a416-2bfd5d165ad1 200 in 61ms (next.js: 17ms, application-code: 44ms)
+ GET /favicon.ico 200 in 82ms (next.js: 18ms, application-code: 64ms)
+ GET /launches/bf2c3027-a314-403e-a416-2bfd5d165ad1 200 in 333ms (next.js: 212ms, application-code: 121ms)
+ GET / 200 in 57ms (next.js: 2ms, application-code: 54ms)
+[browser] The final argument passed to useEffect changed size between renders. The order and size of this array must remain constant.
+
+Previous: [/launches/bf2c3027-a314-403e-a416-2bfd5d165ad1, bf2c3027-a314-403e-a416-2bfd5d165ad1, [object Object], true, async (action)=>{
+            setError('');
+            setMessage('');
+            setBusy(true);
+            try {
+                await action();
+            } catch (e) {
+                setError(e instanceof Error ? e.message : 'Something went wrong.');
+            } finally{
+                setBusy(false);
+            }
+        }]
+Incoming: [/launches/bf2c3027-a314-403e-a416-2bfd5d165ad1, bf2c3027-a314-403e-a416-2bfd5d165ad1, [object Object], true] 
+    at Viewer (components\Viewer.tsx:43:12)
+  41 |     return()=>{window.removeEventListener('online',update);window.removeEventListener('offline',update);};
+  42 |   },[perform,loadLaunches]);
+> 43 |   useEffect(()=>{
+     |            ^
+  44 |     if(!ready||!(['/subscriptions','/notifications'].includes(path)||(selectedId&&location?.confirmed)))return;
+  45 |     let active=true;
+  46 |     setBusy(true);setError('');setMessage(''); (components\Viewer.tsx:43:12)
+ GET /launches/bf2c3027-a314-403e-a416-2bfd5d165ad1 200 in 314ms (next.js: 108ms, application-code: 207ms)
+ GET / 200 in 162ms (next.js: 16ms, application-code: 146ms)
+ GET /favicon.ico 200 in 89ms (next.js: 1.9ms, application-code: 87ms)
+ GET /favicon.ico 200 in 53ms (next.js: 15ms, application-code: 39ms)

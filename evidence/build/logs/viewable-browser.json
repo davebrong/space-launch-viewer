@@ -1,0 +1,13 @@
+{
+  "run_at": "2026-10-13T19:12:25.559761+00:00",
+  "command": [
+    "node",
+    "node_modules/@playwright/test/cli.js",
+    "test"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/viewable-browser-2026-10-13T191225_559761_0000.txt",
+  "sha256": "5a4a72d8e4a3082fa55d4cfab11b270bb19e6508b7c0acc81d879903a2607095",
+  "software_sha256": "521c686105f7f7ad87c9268364e6ee02183e348c1614ab5be3e32ea44722f283"
+}

@@ -1,0 +1,15 @@
+{
+  "run_at": "2026-10-13T19:48:47.159302+00:00",
+  "command": [
+    "npm.cmd",
+    "run",
+    "test:browser",
+    "--",
+    "tests/browser/states.spec.ts"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/nearby-browser-states-2026-10-13T194847_159302_0000.txt",
+  "sha256": "4e9235b338e9a6b23681fd8dc500c713f60fe93d0b3c47a5b42a8799009ef7e0",
+  "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+}

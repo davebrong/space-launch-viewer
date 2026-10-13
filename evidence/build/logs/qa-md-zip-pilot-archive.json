@@ -1,0 +1,14 @@
+{
+  "run_at": "2026-10-13T16:24:04.295304+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "tests/acceptance/run.py",
+    "--suite",
+    "pilot-archive"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/qa-md-zip-pilot-archive-2026-10-13T162404_295304_0000.txt",
+  "sha256": "7d9f7ed8a357bc29ae702e045a0c38ea521c3dda53af1a0c4823fdc8659bd428",
+  "software_sha256": "cf9a8e4e0016b786ec6271ada84541e5971acb88989615bb62fe904d9356724b"
+}

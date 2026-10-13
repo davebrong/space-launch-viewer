@@ -1,0 +1,634 @@
+[
+  {
+    "id": "T01",
+    "title": "Bootstrap locked application and acceptance adapter",
+    "plan": "plans/01-vertical-slice.md",
+    "requirements": [
+      "R001",
+      "R005",
+      "R016",
+      "R018"
+    ],
+    "files": [
+      "apps/web/",
+      "services/api/",
+      "services/worker/",
+      "packages/visibility/",
+      "pyproject.toml",
+      "package.json",
+      "compose.yaml",
+      "Makefile",
+      "implementation/acceptance_adapter.py"
+    ],
+    "prerequisites": [],
+    "acceptance": "Inspect maintained dependency source/licenses; pin supported Python/Node/images and package lockfiles. Implement real dev/lint/test/migrate commands and JSON adapter protocol; missing code must fail. No app component performs paid calls.",
+    "commands": [
+      "python tools/check_spec.py",
+      "python tests/acceptance/run.py --suite R001",
+      "make lint"
+    ],
+    "evidence": [
+      "dependency-locks",
+      "license-inventory",
+      "bootstrap-test-log"
+    ]
+  },
+  {
+    "id": "T02",
+    "title": "Demonstrate real historical Cape-to-Maryland case",
+    "plan": "plans/01-vertical-slice.md",
+    "requirements": [
+      "R002",
+      "R004",
+      "R005",
+      "R006",
+      "R018",
+      "R019"
+    ],
+    "files": [
+      "data/registry/",
+      "data/profiles/",
+      "packages/visibility/",
+      "tests/fixtures/real-cape/"
+    ],
+    "prerequisites": [
+      "T01"
+    ],
+    "acceptance": "Within three-day investigation parse pinned index/series/events/licenses; choose supported Cape historical mission and independently supported route. Document variant/stage/datum/emission compatibility, separate held-out mission from template creation; calculate Maryland and near-pad windows with independent geometry <=0.1deg. Publish uncertainty and data gate result. Synthetic positive/archived telemetry alone cannot pass.",
+    "commands": [
+      "python tests/acceptance/run.py --suite R019",
+      "python -m implementation.gates historical-cape"
+    ],
+    "evidence": [
+      "historical-association-manifest",
+      "profile-compatibility",
+      "heldout-report",
+      "geometry-comparison",
+      "G-REAL"
+    ]
+  },
+  {
+    "id": "T03",
+    "title": "Attempt upcoming Cape mission and re-estimate remaining build",
+    "plan": "plans/01-vertical-slice.md",
+    "requirements": [
+      "R003",
+      "R004",
+      "R009",
+      "R011",
+      "R019"
+    ],
+    "files": [
+      "services/api/adapters/",
+      "data/registry/",
+      "evidence/upcoming-attempt.json"
+    ],
+    "prerequisites": [
+      "T02"
+    ],
+    "acceptance": "After historical demonstration (or explicit blocked historical gate), fetch one upcoming Cape launch within free budgets; exact route/profile association or honest unsupported report. Overlay NWS atfixture-zip and record uncertain source coverage. Record approach viability; continue T04-T21 even when route gate blocks release. No schedule-only completion.",
+    "commands": [
+      "python tests/acceptance/live.py",
+      "python -m implementation.gates upcoming-cape"
+    ],
+    "evidence": [
+      "upcoming-attempt",
+      "coverage-matrix",
+      "reestimate",
+      "G-UPCOMING"
+    ]
+  },
+  {
+    "id": "T04",
+    "title": "Schedule adapter, versioning and budgets",
+    "plan": "plans/02-ingestion.md",
+    "requirements": [
+      "R003",
+      "R011",
+      "R015"
+    ],
+    "files": [
+      "services/api/adapters/ll2.py",
+      "services/worker/ingestion.py",
+      "data/supported-pads.json"
+    ],
+    "prerequisites": [
+      "T01"
+    ],
+    "acceptance": "Normalize actual external2.3 fields and precision/status enums; post-filter Cape pads; completed result from upcoming endpoint never treated as future. Cache central30m/5m, requests<=12 rolling/hour including pages/retries. Unknown status,403/429/timeouts and source changes tested.",
+    "commands": [
+      "python tests/acceptance/run.py --suite R015",
+      "python -m implementation.checks ingestion"
+    ],
+    "evidence": [
+      "ll2-adapter-regression",
+      "rolling-budget-log"
+    ]
+  },
+  {
+    "id": "T05",
+    "title": "Route registry and historical compatibility",
+    "plan": "plans/02-ingestion.md",
+    "requirements": [
+      "R004",
+      "R005",
+      "R018"
+    ],
+    "files": [
+      "data/registry/",
+      "data/profiles/",
+      "services/api/adapters/routes.py",
+      "services/api/adapters/telemetry.py"
+    ],
+    "prerequisites": [
+      "T01",
+      "T02"
+    ],
+    "acceptance": "Approve only tested source formats; exact mission/pad/attempt+validity, distinguish hazards/path/guidance/observations; block ambiguous branches/doglegs/unknown datum/variant. Pin immutable assets/licenses; retain raw failures. Do not copy conflicted NOTAM parser. Stage switches and absent burns tested.",
+    "commands": [
+      "python tests/acceptance/run.py --suite R004",
+      "python tests/acceptance/run.py --suite parse_historical_archive",
+      "python -m implementation.checks route-registry"
+    ],
+    "evidence": [
+      "registry-admission-report",
+      "source-hashes",
+      "license-record"
+    ]
+  },
+  {
+    "id": "T06",
+    "title": "NWS and location normalization",
+    "plan": "plans/02-ingestion.md",
+    "requirements": [
+      "R002",
+      "R009",
+      "R015"
+    ],
+    "files": [
+      "services/api/adapters/nws.py",
+      "services/api/adapters/census.py",
+      "data/gazetteer/",
+      "data/timezones/"
+    ],
+    "prerequisites": [
+      "T01"
+    ],
+    "acceptance": "Use actual pipe-delimited Census headers, preserve ZIP string, manual/GPS confirm and timezone. NWS points returned grid, ISO durations/units/fetch+issue/valid coverage, daily point and per-cell cache; missing total unsupported, missing visibility disclosed.100-location quota defined.",
+    "commands": [
+      "python tests/acceptance/run.py --suite R002",
+      "python tests/acceptance/run.py --suite R009",
+      "python -m implementation.checks normalization"
+    ],
+    "evidence": [
+      "provider-normalization-report",
+      "gazetteer-license-hash"
+    ]
+  },
+  {
+    "id": "T07",
+    "title": "Geometry and correlated envelopes",
+    "plan": "plans/03-visibility-astronomy.md",
+    "requirements": [
+      "R006",
+      "R007",
+      "R018"
+    ],
+    "files": [
+      "packages/visibility/geometry.py",
+      "packages/visibility/ensemble.py"
+    ],
+    "prerequisites": [
+      "T05"
+    ],
+    "acceptance": "WGS84 ECEF/ENU/occultation independently checked;5s samples with<=15s gaps; >=20s luminous duration and first burns only. Circular sectors/rounding/zenith/movement and complete-negative limits; no simulators/return burn/TLE.",
+    "commands": [
+      "python tests/acceptance/run.py --suite geometry",
+      "python tests/acceptance/run.py --suite R006",
+      "python tests/acceptance/run.py --suite R007"
+    ],
+    "evidence": [
+      "PROJ-comparison",
+      "candidate-envelope-report"
+    ]
+  },
+  {
+    "id": "T08",
+    "title": "Astronomy, clocks and window alternatives",
+    "plan": "plans/03-visibility-astronomy.md",
+    "requirements": [
+      "R008",
+      "R011",
+      "R018"
+    ],
+    "files": [
+      "packages/visibility/astronomy.py",
+      "packages/visibility/time.py",
+      "data/ephemeris/"
+    ],
+    "prerequisites": [
+      "T06",
+      "T07"
+    ],
+    "acceptance": "Pin DE421 asset/hash/coverage, zone data and solar conventions; USNO within120s. Shadow/active emission, twilight, polar nulls, DST/folds/gaps, observer-local dates. Enumerate alternative times and one-minute transitions; slipped launch recomputes.",
+    "commands": [
+      "python tests/acceptance/run.py --suite R008",
+      "python tests/acceptance/run.py --suite R011",
+      "python -m implementation.checks launch-windows"
+    ],
+    "evidence": [
+      "kernel-manifest",
+      "USNO-comparison",
+      "window-transition-report"
+    ]
+  },
+  {
+    "id": "T09",
+    "title": "Combine weather and advice with provenance",
+    "plan": "plans/03-visibility-astronomy.md",
+    "requirements": [
+      "R009",
+      "R010",
+      "R011",
+      "R018"
+    ],
+    "files": [
+      "packages/visibility/rules.py",
+      "packages/visibility/weather.py",
+      "services/api/assessment.py"
+    ],
+    "prerequisites": [
+      "T04",
+      "T06",
+      "T07",
+      "T08"
+    ],
+    "acceptance": "Implement ordered rules and exact thresholds, qualifying subintervals, freshness; recon<=Possible, official inclusion+time+clear/fresh required for Worth. Incomplete data cannot prove negative. Every input revision invalidates cache/jobs and archives old result.",
+    "commands": [
+      "python tests/acceptance/run.py --suite R010",
+      "python tests/acceptance/run.py --suite R009",
+      "python -m implementation.checks assessment-provenance"
+    ],
+    "evidence": [
+      "decision-table-report",
+      "input-digest-reproduction"
+    ]
+  },
+  {
+    "id": "T10",
+    "title": "Database and API ownership contracts",
+    "plan": "plans/04-backend-persistence.md",
+    "requirements": [
+      "R014",
+      "R016",
+      "R018"
+    ],
+    "files": [
+      "services/api/db/",
+      "services/api/routes/",
+      "migrations/"
+    ],
+    "prerequisites": [
+      "T01",
+      "T04",
+      "T06"
+    ],
+    "acceptance": "Schema migrations/constraints, immutable snapshots/revisions, read/private DTO split; implement every OpenAPI endpoint and error, pagination/cursors/ETag/If-Match/idempotency. Session capability+CSRF, authorization, quota and malformed inputs tested.",
+    "commands": [
+      "python -m implementation.checks api-contract",
+      "python -m implementation.checks migrations",
+      "python tests/acceptance/run.py --suite R014"
+    ],
+    "evidence": [
+      "OpenAPI-response-validation",
+      "migration-upgrade-restore-report"
+    ]
+  },
+  {
+    "id": "T11",
+    "title": "Durable jobs, cache and computation orchestration",
+    "plan": "plans/04-backend-persistence.md",
+    "requirements": [
+      "R011",
+      "R015",
+      "R016"
+    ],
+    "files": [
+      "services/worker/jobs.py",
+      "services/api/cache.py",
+      "services/worker/scheduler.py"
+    ],
+    "prerequisites": [
+      "T09",
+      "T10"
+    ],
+    "acceptance": "Leader/budget locks, jobs unique/leased/restart-safe, cache includes all hashes and runtime freshness; no per-user polling; crash/retry/disk-full paths preserve old snapshots, clock injection. Schedule changes invalidate before notice claim.",
+    "commands": [
+      "python -m implementation.checks worker-recovery",
+      "python tests/acceptance/run.py --suite revision_race"
+    ],
+    "evidence": [
+      "worker-crash-report",
+      "cache-invalidation-report"
+    ]
+  },
+  {
+    "id": "T12",
+    "title": "Security, admin and privacy lifecycle",
+    "plan": "plans/04-backend-persistence.md",
+    "requirements": [
+      "R014",
+      "R016",
+      "R018"
+    ],
+    "files": [
+      "services/api/security/",
+      "services/api/admin/",
+      "services/worker/privacy.py"
+    ],
+    "prerequisites": [
+      "T10",
+      "T11"
+    ],
+    "acceptance": "Protected authenticated admin disable/retry/audit; no direct production row edits. SSRF/input/CSRF/ownership tests; secrets/log redaction. Immediate unsubscribe and <=24h erasure with backup tombstones,30d logs.",
+    "commands": [
+      "python -m implementation.checks security",
+      "python tests/acceptance/run.py --suite privacy_delete",
+      "python tests/acceptance/run.py --suite admin_disable"
+    ],
+    "evidence": [
+      "security-test-report",
+      "erasure-audit"
+    ]
+  },
+  {
+    "id": "T13",
+    "title": "Location and launch browsing",
+    "plan": "plans/05-frontend.md",
+    "requirements": [
+      "R002",
+      "R003",
+      "R008",
+      "R017"
+    ],
+    "files": [
+      "apps/web/app/",
+      "apps/web/components/LocationChooser.tsx",
+      "apps/web/components/LaunchList.tsx"
+    ],
+    "prerequisites": [
+      "T10"
+    ],
+    "acceptance": "Responsive location confirm/GPS/manual and local-date launch grouping; browser travel zone ignored, DST offsets explicit; exact/window/date/unknown and terminal states; all loading/empty/error/stale/unsupported states accessible.",
+    "commands": [
+      "python -m implementation.checks browser-location",
+      "python -m implementation.checks accessibility"
+    ],
+    "evidence": [
+      "Playwright-location-report",
+      "mobile-screenshots",
+      "axe-report"
+    ]
+  },
+  {
+    "id": "T14",
+    "title": "Viewing guidance, sources and conditions",
+    "plan": "plans/05-frontend.md",
+    "requirements": [
+      "R004",
+      "R007",
+      "R009",
+      "R010",
+      "R017"
+    ],
+    "files": [
+      "apps/web/app/launches/[id]/",
+      "apps/web/components/SkyBand.tsx"
+    ],
+    "prerequisites": [
+      "T09",
+      "T13"
+    ],
+    "acceptance": "SVG approximate union sky band+table; direction/movement/max elevation/source uncertainty; official-only fields source supported; hazard mode no timed path. Sunrise/transitions/weather bins/subintervals, missing/stale explanations and provenance visible.",
+    "commands": [
+      "python -m implementation.checks browser-guidance",
+      "python -m implementation.gates official-guidance"
+    ],
+    "evidence": [
+      "responsive-detail-screenshots",
+      "G-GUIDANCE",
+      "browser-guidance-report"
+    ]
+  },
+  {
+    "id": "T15",
+    "title": "Subscriptions, history, privacy and observations UI",
+    "plan": "plans/05-frontend.md",
+    "requirements": [
+      "R012",
+      "R013",
+      "R014",
+      "R017",
+      "R021"
+    ],
+    "files": [
+      "apps/web/app/subscriptions/",
+      "apps/web/app/notifications/",
+      "apps/web/app/privacy/",
+      "apps/web/app/observations/",
+      "apps/web/app/admin/"
+    ],
+    "prerequisites": [
+      "T12",
+      "T13",
+      "T16",
+      "T17"
+    ],
+    "acceptance": "Preview local send times/suppression; opt-ins default off, calendar snapshot warning, corrections history, immediate unsubscribe/deletion and admin errors. Observation links archived forecast and allows inconclusive/not_attempted.",
+    "commands": [
+      "python -m implementation.checks browser-subscriptions",
+      "python -m implementation.checks accessibility"
+    ],
+    "evidence": [
+      "consent-journey-report",
+      "observation-journey-report"
+    ]
+  },
+  {
+    "id": "T16",
+    "title": "Notification state machine and race safety",
+    "plan": "plans/06-notifications-operations.md",
+    "requirements": [
+      "R012",
+      "R013"
+    ],
+    "files": [
+      "services/worker/notifications.py",
+      "services/api/notifications.py"
+    ],
+    "prerequisites": [
+      "T09",
+      "T11",
+      "T12"
+    ],
+    "acceptance": "Implement exact milestone/expiry/quiet/threshold/opt-in/revision rules; no past milestones; >=5m accumulated shift/local-date/scrub corrections;10min debounce except immediate window. PostgreSQL two-worker, revision/unsubscribe race and restart tests.",
+    "commands": [
+      "python tests/acceptance/run.py --suite R012",
+      "python tests/acceptance/run.py --suite R013",
+      "python -m implementation.checks postgres-races"
+    ],
+    "evidence": [
+      "outbox-state-traces",
+      "concurrent-transaction-log"
+    ]
+  },
+  {
+    "id": "T17",
+    "title": "ICS, operational metrics and optional delivery boundary",
+    "plan": "plans/06-notifications-operations.md",
+    "requirements": [
+      "R012",
+      "R016",
+      "R022"
+    ],
+    "files": [
+      "services/api/calendar.py",
+      "services/worker/metrics.py",
+      "services/worker/delivery/"
+    ],
+    "prerequisites": [
+      "T16"
+    ],
+    "acceptance": "RFC5545 snapshot UID/SEQUENCE/time escaping tested; no automatic correction claim. Metrics/health/admin queue. Email remains disabled by default; if enabled require actual free existing provider, verified address/consent, idempotency/reconcile/timeout tests. No paid fallback.",
+    "commands": [
+      "python -m implementation.checks calendar",
+      "python -m implementation.checks health",
+      "python -m implementation.checks optional-email-policy"
+    ],
+    "evidence": [
+      "ICS-parser-report",
+      "health-report",
+      "email-disabled-or-tested"
+    ]
+  },
+  {
+    "id": "T18",
+    "title": "Existing hardware deployment, backup and recovery",
+    "plan": "plans/06-notifications-operations.md",
+    "requirements": [
+      "R001",
+      "R014",
+      "R016"
+    ],
+    "files": [
+      "compose.yaml",
+      "ops/",
+      "docs/runbook.md"
+    ],
+    "prerequisites": [
+      "T12",
+      "T17"
+    ],
+    "acceptance": "Pinned nonroot containers, migrations, proxy HTTPS on existing reachable infrastructure or local-only documented. Daily encrypted off-host backup to existing storage; isolation restore <=4h objective and RPO24h, purge tombstones before serves/sends. Disk-full/crash recovery verified.",
+    "commands": [
+      "python -m implementation.checks deployment",
+      "python -m implementation.checks backup-restore"
+    ],
+    "evidence": [
+      "host-inventory",
+      "restore-drill-log",
+      "HTTPS-or-local-only-report"
+    ]
+  },
+  {
+    "id": "T19",
+    "title": "Complete application release regression",
+    "plan": "plans/07-integration-deployment.md",
+    "requirements": [
+      "R001",
+      "R018",
+      "R019",
+      "R020"
+    ],
+    "files": [
+      "tests/integration/",
+      "tests/browser/",
+      "evidence/"
+    ],
+    "prerequisites": [
+      "T03",
+      "T05",
+      "T09",
+      "T15",
+      "T18"
+    ],
+    "acceptance": "Run every112+fixture,16 stories, real independent geometry and sunrise, real historical Cape/profile/route gate and official guidance. Live unavailable =>blocked, not pass; no fake/mock transport release. Trace requirements and missing proof; preserve raw logs.",
+    "commands": [
+      "python tools/check_spec.py",
+      "python tests/acceptance/run.py --suite all",
+      "python tests/acceptance/live.py",
+      "python -m implementation.checks full-release"
+    ],
+    "evidence": [
+      "G-SOFTWARE",
+      "full-regression-report",
+      "live-provider-report"
+    ]
+  },
+  {
+    "id": "T20",
+    "title": "Full ensemble load and release recovery exercise",
+    "plan": "plans/07-integration-deployment.md",
+    "requirements": [
+      "R015",
+      "R016",
+      "R020"
+    ],
+    "files": [
+      "tests/load/",
+      "ops/",
+      "evidence/load.json"
+    ],
+    "prerequisites": [
+      "T19"
+    ],
+    "acceptance": "Benchmark100 confirmed points, two-stage15min profiles at5s including all admitted correlated candidates. Measure cached p95<2s after warmup, uncached cost/memory, source budgets and queue lag. Report ensemble size/hardware/data; synthetic load cannot satisfy G-REAL. Re-run restore on deployment artifact.",
+    "commands": [
+      "python -m implementation.checks load-100",
+      "python -m implementation.checks release-recovery",
+      "python tools/release_gate.py"
+    ],
+    "evidence": [
+      "ensemble-load-report",
+      "release-recovery-report",
+      "release-manifest"
+    ]
+  },
+  {
+    "id": "T21",
+    "title": "Prospective pilot and coverage evaluation",
+    "plan": "plans/07-integration-deployment.md",
+    "requirements": [
+      "R021",
+      "R023",
+      "R024"
+    ],
+    "files": [
+      "services/api/observations.py",
+      "evidence/pilot/",
+      "docs/coverage.md"
+    ],
+    "prerequisites": [
+      "T19"
+    ],
+    "acceptance": "Archive actual issued forecasts before launch and forecast-time weather; collect5 launches/30 labeled attempts including misses/inconclusive; publish supported/all-Cape denominators, false positives and missed sightings with evidence limitations. No feedback is not negative; Possible cap remains until separately justified rules change. Optional OCR/multiple profiles only after rights/validation.",
+    "commands": [
+      "python -m implementation.checks pilot-archive",
+      "python -m implementation.gates pilot"
+    ],
+    "evidence": [
+      "G-PILOT",
+      "coverage-and-observation-report"
+    ]
+  }
+]

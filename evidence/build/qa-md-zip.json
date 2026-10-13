@@ -1,0 +1,204 @@
+{
+  "reviewed_at": "2026-10-13T16:37:17.090660+00:00",
+  "launch_id": "bf2c3027-a314-403e-a416-2bfd5d165ad1",
+  "zip": "md-zip",
+  "scope": "Same-day completed launch review, date grouping, errors, retrospective observations and shared weather-cache ownership",
+  "results": {
+    "application_tests": 16,
+    "browser_tests": 10,
+    "spec_checks": 9,
+    "affected_acceptance_scenarios": 3
+  },
+  "checks": [
+    {
+      "run_at": "2026-10-13T16:26:27.742019+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/application",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-unit-2026-10-13T162627_742019_0000.txt",
+      "sha256": "b0e1d8ad28e9298fe5503eb3f4091e49c260a588659d9233c957f116abf21fee",
+      "software_sha256": "05be9b8899be1ff4e7271ea033860cda98f7b6bce740617b22d58ee06d6e1207"
+    },
+    {
+      "run_at": "2026-10-13T16:33:03.033663+00:00",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-browser-2026-10-13T163303_033663_0000.txt",
+      "sha256": "e8b44413f7874f2b11528f48d5a52940fe6030aa5b11541ede7f6d5dcc21b88e",
+      "software_sha256": "d102aa300f2328a0c9d3cb0e163b509fbfad02a711af61b4d4db81edd6e82d50"
+    },
+    {
+      "run_at": "2026-10-13T16:29:34.397835+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tests/acceptance/run.py",
+        "--suite",
+        "api-contract"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-api-contract-2026-10-13T162934_397835_0000.txt",
+      "sha256": "7d9f7ed8a357bc29ae702e045a0c38ea521c3dda53af1a0c4823fdc8659bd428",
+      "software_sha256": "d102aa300f2328a0c9d3cb0e163b509fbfad02a711af61b4d4db81edd6e82d50"
+    },
+    {
+      "run_at": "2026-10-13T16:24:04.295304+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tests/acceptance/run.py",
+        "--suite",
+        "pilot-archive"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-pilot-archive-2026-10-13T162404_295304_0000.txt",
+      "sha256": "7d9f7ed8a357bc29ae702e045a0c38ea521c3dda53af1a0c4823fdc8659bd428",
+      "software_sha256": "cf9a8e4e0016b786ec6271ada84541e5971acb88989615bb62fe904d9356724b"
+    },
+    {
+      "run_at": "2026-10-13T16:29:38.522611+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tests/acceptance/run.py",
+        "--suite",
+        "privacy-security"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-privacy-security-2026-10-13T162938_522611_0000.txt",
+      "sha256": "7d9f7ed8a357bc29ae702e045a0c38ea521c3dda53af1a0c4823fdc8659bd428",
+      "software_sha256": "d102aa300f2328a0c9d3cb0e163b509fbfad02a711af61b4d4db81edd6e82d50"
+    },
+    {
+      "run_at": "2026-10-13T16:24:15.371305+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "lint"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-types-2026-10-13T162415_371305_0000.txt",
+      "sha256": "e7d7e1cf04dd29ae07238717e25773c0433128f5ceba1069dcd50a9ea6af1f05",
+      "software_sha256": "cf9a8e4e0016b786ec6271ada84541e5971acb88989615bb62fe904d9356724b"
+    },
+    {
+      "run_at": "2026-10-13T16:29:41.462448+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "services/api/main.py",
+        "services/api/pilot.py",
+        "tests/application/test_retrospective.py",
+        "tests/browser_server.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-lint-2026-10-13T162941_462448_0000.txt",
+      "sha256": "881513cd027e0334026cfcbad052e34fecb3f2c1fef5ab000c86973bc0196cd7",
+      "software_sha256": "d102aa300f2328a0c9d3cb0e163b509fbfad02a711af61b4d4db81edd6e82d50"
+    },
+    {
+      "run_at": "2026-10-13T16:34:18.065497+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/check_spec.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-spec-2026-10-13T163418_065497_0000.txt",
+      "sha256": "3d25561fbb27d89d67a9c11b37b0feea842233ebf78509ef65683ca30834b854",
+      "software_sha256": "d102aa300f2328a0c9d3cb0e163b509fbfad02a711af61b4d4db81edd6e82d50"
+    },
+    {
+      "run_at": "2026-10-13T16:27:41.323766+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "web",
+        "api",
+        "worker"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-linux-build-2026-10-13T162741_323766_0000.txt",
+      "sha256": "603f6cd1d00038c7df51557df2ee24ef4c7b4ba2dbc8d5dd96cf1f1dbb9df25d",
+      "software_sha256": "d102aa300f2328a0c9d3cb0e163b509fbfad02a711af61b4d4db81edd6e82d50"
+    },
+    {
+      "run_at": "2026-10-13T16:28:59.147283+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "up",
+        "-d",
+        "--no-deps",
+        "api",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-linux-start-2026-10-13T162859_147283_0000.txt",
+      "sha256": "7dc156bfac7c7fbfaaaf734fd37fcd9cdadc06db9d8ca44af0b6a15cf38af03d",
+      "software_sha256": "d102aa300f2328a0c9d3cb0e163b509fbfad02a711af61b4d4db81edd6e82d50"
+    },
+    {
+      "run_at": "2026-10-13T16:34:39.301551+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-c",
+        "import runpy; runpy.run_path('.runtime/qa_weather_state.py')"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-weather-cache-2026-10-13T163439_301551_0000.txt",
+      "sha256": "b430db90a49e8a89a0407a1719ad8ae666c1a23d30213cafbebdb9cd8be0157f",
+      "software_sha256": "d102aa300f2328a0c9d3cb0e163b509fbfad02a711af61b4d4db81edd6e82d50"
+    }
+  ],
+  "browser_stats": {
+    "startTime": "2026-10-13T16:33:03.526Z",
+    "duration": 232252.51700000002,
+    "expected": 10,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "baseline_full_acceptance": "evidence/build/acceptance-final.json",
+  "full_acceptance_rerun_for_this_qa": false,
+  "release_audit": {
+    "record": "evidence/build/logs/qa-md-zip-release.json",
+    "expected_exit_code": 2,
+    "meaning": "Required external gates remain blocked; no release pass claimed."
+  },
+  "prior_browser_runs": [
+    "evidence/build/qa-md-zip-browser-first-run.json",
+    "evidence/build/qa-md-zip-browser-second-run.json"
+  ],
+  "screenshots": [
+    "evidence/build/qa-md-zip-desktop-viewport.png",
+    "evidence/build/qa-md-zip-mobile.png"
+  ],
+  "remaining_limitations": [
+    "No admitted mission path or compatible ascent profile for SpX-35; no direction, elevation or viewing window can be reconstructed.",
+    "Real-data, off-host recovery and prospective pilot release gates remain blocked."
+  ],
+  "user_sighting_entered_into_archive": false,
+  "weather_cache": "Real shared ZIP md-zip NWS point/grid cache survives deletion of independent test sessions; read-only check linked above."
+}

@@ -1,0 +1,13 @@
+{
+  "run_at": "2026-10-13T19:42:22.769387+00:00",
+  "command": [
+    "npm.cmd",
+    "run",
+    "types"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/nearby-types-2026-10-13T194222_769387_0000.txt",
+  "sha256": "acca0cb208f88358b10f15cd5f8ca658471a0eb50870b7f4e8985063d1e47130",
+  "software_sha256": "9518dd090e4d826df5663a0dcb787f7ebbe23d7e7153da2569f8cdad89c4f17f"
+}

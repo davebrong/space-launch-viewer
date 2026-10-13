@@ -1,0 +1,39 @@
+EASTERN RANGE AIRSPACE 
+ 
+Falcon 9  
+Valid Days & Times: 
+10-Oct-25 0124Z – 0441Z 
+11-Oct-25 0102Z – 0420Z 
+12-Oct-25 0041Z – 0358Z 
+13-Oct-25 0019Z – 0337Z 
+17-Oct-25 2232Z - 0150Z 
+18-Oct-25 2211Z - 0128Z 
+19-Oct-25 2150Z - 0107Z 
+ 
+For detailed information on Space Launch Hazardous Airspace 
+location and activation times, check your local NOTAMs or locate 
+under KZMA.  Airspace activation normally begins 1 hour prior to 
+launch. Contact Orlando Approach on 132.65 or 281.425 for Eastern 
+Range Special Use activated airspace status.  
+ 
+ 
+ 
+ 
+ 
+ 
+ LAUNCH HAZARD AREA 
+Latitude (dms) Longitude (dms) 
+ 28° 39' 0.00" N  80° 41' 0.00" W 
+ 28° 41' 0.00" N  80° 35' 0.00" W 
+ 29° 28' 0.00" N  79° 57' 0.00" W 
+ 29° 14' 0.00" N  79° 38' 0.00" W 
+ 28° 50' 0.00" N  79° 45' 0.00" W 
+ 28° 26' 0.00" N  80° 30' 0.00" W 
+CFR 91.143  
+R2932 
+R2933 
+R2934 
+W497A 
+ 
+W497B 
+ 

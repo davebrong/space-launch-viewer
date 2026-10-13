@@ -1,0 +1,12 @@
+{
+  "run_at": "2026-10-13T19:13:33.206024+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "tools/check_spec.py"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/viewable-spec-2026-10-13T191333_206024_0000.txt",
+  "sha256": "3d25561fbb27d89d67a9c11b37b0feea842233ebf78509ef65683ca30834b854",
+  "software_sha256": "521c686105f7f7ad87c9268364e6ee02183e348c1614ab5be3e32ea44722f283"
+}

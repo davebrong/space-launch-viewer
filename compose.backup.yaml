@@ -1,0 +1,12 @@
+# Optional override. Existing off-host mount must be verified by the operator.
+services:
+  worker:
+    environment:
+      BACKUP_DESTINATION: /backup
+      BACKUP_KEY: ${BACKUP_KEY:?Set a privately stored encryption key}
+    volumes:
+      - type: bind
+        source: ${BACKUP_DESTINATION:?Set an existing off-host mount}
+        target: /backup
+        bind:
+          create_host_path: false

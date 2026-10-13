@@ -1,0 +1,6 @@
+# Research evidence
+Direct source acquisition was performed2026-10-13. See retrievals.json for exact UTC timestamps, statuses, immutable source URLs and hashes; paths are workspace-relative. Initial restricted-network attempt failed at proxy; authorized public read-only retries succeeded. No paid API keys used. Source code was inspected, not executed/certified as a whole.
+
+Official documentation opened: LL2 free-access page and downloaded2.3 schema; NWS services documentation/OpenAPI; Census2025 Gazetteer; Skyfield almanac; USNO conventions/API; FAA hazard NOTAM documentation; NASA TOMEX+ page; SpaceX payload guide and ISSC export documentation. Candidate pages do not establish programmatic production support. Current direct KF-3 PDF fetch200 supersedes earlier PRD homepage403 for this ONE URL; it does not imply all SLD45 sources accessible.
+
+Corrected findings: Gazetteer is pipe-delimited,fixture-zip centroid differs from downtown Maryland; NOTAM-Mapper MIT root vs GPL parser conflict; LL2 upcoming sample is completed Vandenberg and cannot be accepted unfiltered; quota diagnostic is identity-dependent so application uses documented public15/hour and internal12 cap regardless of returned higher quota. USNO is a test oracle only, not a mandatory runtime provider.

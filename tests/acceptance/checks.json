@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "dispatcher": "python -m implementation.checks NAME",
+  "must_fail_unknown_or_missing_suite": true,
+  "mapping": {
+    "api-contract": [
+      "api-contract"
+    ],
+    "migrations": [
+      "api-contract",
+      "backup-restore"
+    ],
+    "ingestion": [
+      "worker-recovery",
+      "R003"
+    ],
+    "route-registry": [
+      "route-registry",
+      "R004",
+      "parse_historical_archive"
+    ],
+    "normalization": [
+      "R002",
+      "R009"
+    ],
+    "launch-windows": [
+      "launch-windows"
+    ],
+    "assessment-provenance": [
+      "reproducibility",
+      "R010"
+    ],
+    "worker-recovery": [
+      "worker-recovery"
+    ],
+    "security": [
+      "privacy-security"
+    ],
+    "browser-location": [
+      "browser-journeys"
+    ],
+    "accessibility": [
+      "browser-journeys"
+    ],
+    "browser-guidance": [
+      "browser-journeys",
+      "R007",
+      "R010"
+    ],
+    "browser-subscriptions": [
+      "browser-journeys",
+      "R012",
+      "R013"
+    ],
+    "postgres-races": [
+      "postgres-races"
+    ],
+    "calendar": [
+      "calendar"
+    ],
+    "health": [
+      "worker-recovery",
+      "api-contract"
+    ],
+    "optional-email-policy": [
+      "scope-cost"
+    ],
+    "deployment": [
+      "backup-restore",
+      "privacy-security"
+    ],
+    "backup-restore": [
+      "backup-restore"
+    ],
+    "full-release": [
+      "all"
+    ],
+    "load-100": [
+      "load-100"
+    ],
+    "release-recovery": [
+      "backup-restore",
+      "worker-recovery"
+    ],
+    "pilot-archive": [
+      "pilot-archive"
+    ]
+  },
+  "notes": "Alias dispatcher runs every listed real acceptance suite and writes command/exit/hash evidence. Browser subjourneys and actual deployment add task-specific assertions; broad aliases never waive plan acceptance criteria."
+}

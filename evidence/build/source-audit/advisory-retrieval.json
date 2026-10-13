@@ -1,0 +1,10 @@
+{
+  "url": "https://compass.atfm.aero/public_svcdynamic/getfile?download=false&fileuuid=a2992fae-e80b-4e71-8514-ee22809cb062",
+  "at": "2026-10-13T19:20:08.164912+00:00",
+  "status": 200,
+  "content_type": "application/octet-stream",
+  "location": null,
+  "sha256": "04a3ab3f9c84e062d0ec855970fc1901f61e024a60ff59ea24955108acac510d",
+  "path": "evidence\\build\\source-audit\\bandwagon-advisory-response",
+  "bytes": 4675271
+}

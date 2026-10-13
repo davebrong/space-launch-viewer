@@ -1,0 +1,13 @@
+{
+  "run_at": "2026-10-13T20:26:46.595870+00:00",
+  "command": [
+    "npm.cmd",
+    "run",
+    "lint"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/history-lint-2026-10-13T202646_595870_0000.txt",
+  "sha256": "e7d7e1cf04dd29ae07238717e25773c0433128f5ceba1069dcd50a9ea6af1f05",
+  "software_sha256": "2b78787ae144ff60562fd332b228d50958b570fcaddfa762057d36d463303b33"
+}

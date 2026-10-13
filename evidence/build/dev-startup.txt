@@ -1,0 +1,33 @@
+ Container launch-visibility-dev-postgres-1 Running 
+ Container launch-visibility-dev-postgres-1 Waiting 
+ Container launch-visibility-dev-postgres-1 Healthy 
+Open http://127.0.0.1:3007 . Ctrl+C stops the owned app processes; PostgreSQL data persists.
+
+> launch-visibility-web@0.1.0 dev
+> next dev --webpack -H 127.0.0.1 --port 3007
+
+▲ Next.js 16.4.0 (webpack)
+- Local:         http://127.0.0.1:3007
+- Network:       http://127.0.0.1:3007
+✓ Ready in 615ms
+INFO:     Started server process [266052]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+✓ Running next.config.ts took 56ms
+
+ GET / 200 in 1088ms (next.js: 834ms, application-code: 254ms)
+ GET /favicon.ico 200 in 84ms (next.js: 19ms, application-code: 65ms)
+HTTP Request: GET https://ll.thespacedevs.com/2.3.0/launches/upcoming/?limit=100&location__ids=12,27 "HTTP/1.1 200 OK"
+HTTP Request: GET https://api.weather.gov/points/[redacted] "HTTP/1.1 200 OK"
+HTTP Request: GET https://api.weather.gov/gridpoints/LWX/0,0 "HTTP/1.1 200 OK"
+ GET / 200 in 57ms (next.js: 14ms, application-code: 43ms)
+ GET /launches 200 in 40ms (next.js: 18ms, application-code: 21ms)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+ GET /launches/bf2c3027-a314-403e-a416-2bfd5d165ad1 200 in 31ms (next.js: 12ms, application-code: 18ms)
+ GET /subscriptions 200 in 30ms (next.js: 13ms, application-code: 17ms)
+ GET / 200 in 37ms (next.js: 15ms, application-code: 23ms)
+ GET /launches 200 in 38ms (next.js: 17ms, application-code: 21ms)
+ GET /privacy 200 in 28ms (next.js: 3ms, application-code: 25ms)
+ GET / 200 in 57ms (next.js: 14ms, application-code: 43ms)
+HTTP Request: GET https://api.weather.gov/points/[redacted] "HTTP/1.1 200 OK"

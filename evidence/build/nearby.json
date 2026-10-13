@@ -1,0 +1,226 @@
+{
+  "status": "verified",
+  "product_complete": false,
+  "scope": "Location-based nearby viewing and observer-local 30-day default",
+  "live_comparison": "evidence/build/nearby-live.json",
+  "root_cause": "Mission-family eligibility was checked before observer proximity; the only nominal family was Dragon/ISS and its samples began at T+3 minutes.",
+  "fix": "Nearby pad-relative early-ascent guidance for all mission families with known Cape pads, observer-local today through 30 days, date-only time TBA, removed Upcoming.",
+  "bounds": {
+    "maximum_distance_m": 100000,
+    "reference_height_m": 2000,
+    "watch_before_s": 120,
+    "watch_after_s": 300,
+    "basis": "explicit model assumptions; not a published or measured flight path"
+  },
+  "remaining": "Distant mission trajectory/source coverage and empirical validation remain incomplete.",
+  "test_initial_failure": "Chromium datetime-local fill at zero seconds normalized :00, causing desktop failure; missing failure cleanup left synthetic launches for the next viewport, which timed out on preview. Formatting and cleanup fixed; isolated state cases rerun.",
+  "reviewed_at": "2026-10-13T19:51:26.757432+00:00",
+  "checks": [
+    {
+      "run_at": "2026-10-13T19:46:48.124340+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "api",
+        "worker"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-api-build-2026-10-13T194648_124340_0000.txt",
+      "sha256": "58903223228cbb62bd16037df3b7bcce33ea7547dae88a53ba5fd45fdfc795a6",
+      "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+    },
+    {
+      "run_at": "2026-10-13T19:49:12.340193+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "up",
+        "-d",
+        "--wait",
+        "api"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-api-start-2026-10-13T194912_340193_0000.txt",
+      "sha256": "6bac8a1342d021dc5b5b7387d69670d493835ef4858f376d81902f1ffdabe25d",
+      "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+    },
+    {
+      "run_at": "2026-10-13T19:48:47.159302+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "test:browser",
+        "--",
+        "tests/browser/states.spec.ts"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-browser-states-2026-10-13T194847_159302_0000.txt",
+      "sha256": "4e9235b338e9a6b23681fd8dc500c713f60fe93d0b3c47a5b42a8799009ef7e0",
+      "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+    },
+    {
+      "run_at": "2026-10-13T19:44:32.705766+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "test:browser"
+      ],
+      "exit_code": 1,
+      "status": "failed",
+      "artifact_path": "evidence/build/logs/nearby-browser-2026-10-13T194432_705766_0000.txt",
+      "sha256": "aaba9cd933e49ea4ef09c21059c9a4bbe89f8e35c4448878b182be582e1b3b01",
+      "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+    },
+    {
+      "run_at": "2026-10-13T19:43:16.844683+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "api",
+        "worker",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-compose-build-2026-10-13T194316_844683_0000.txt",
+      "sha256": "5fcde7bc6294bc7a29b04fcfdfbd93631d800239d98214f32475bc73c0a8e0a2",
+      "software_sha256": "9518dd090e4d826df5663a0dcb787f7ebbe23d7e7153da2569f8cdad89c4f17f"
+    },
+    {
+      "run_at": "2026-10-13T19:44:18.059268+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "up",
+        "-d",
+        "--wait",
+        "api",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-compose-start-2026-10-13T194418_059268_0000.txt",
+      "sha256": "e19b3b669c54041c2c9115c9d93a549d03908039ac13bf322cedb316d282c750",
+      "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+    },
+    {
+      "run_at": "2026-10-13T19:42:24.178299+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "lint"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-lint-2026-10-13T194224_178299_0000.txt",
+      "sha256": "e7d7e1cf04dd29ae07238717e25773c0433128f5ceba1069dcd50a9ea6af1f05",
+      "software_sha256": "9518dd090e4d826df5663a0dcb787f7ebbe23d7e7153da2569f8cdad89c4f17f"
+    },
+    {
+      "run_at": "2026-10-13T19:49:57.953163+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/audit_nearby.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-live-2026-10-13T194957_953163_0000.txt",
+      "sha256": "2df381c6c2f8a239860c5735e4be184215e8913e2fbc9dbb798d1ae2404f8162",
+      "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+    },
+    {
+      "run_at": "2026-10-13T19:50:28.559679+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "packages/visibility/nearby.py",
+        "packages/visibility/planning.py",
+        "services/api/opportunities.py",
+        "tests/application/test_nearby.py",
+        "tests/application/test_opportunities.py",
+        "tools/audit_nearby.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-python-lint-2026-10-13T195028_559679_0000.txt",
+      "sha256": "881513cd027e0334026cfcbad052e34fecb3f2c1fef5ab000c86973bc0196cd7",
+      "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+    },
+    {
+      "run_at": "2026-10-13T19:47:24.668206+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/check_spec.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-spec-2026-10-13T194724_668206_0000.txt",
+      "sha256": "3d25561fbb27d89d67a9c11b37b0feea842233ebf78509ef65683ca30834b854",
+      "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+    },
+    {
+      "run_at": "2026-10-13T19:42:22.769387+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "types"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-types-2026-10-13T194222_769387_0000.txt",
+      "sha256": "acca0cb208f88358b10f15cd5f8ca658471a0eb50870b7f4e8985063d1e47130",
+      "software_sha256": "9518dd090e4d826df5663a0dcb787f7ebbe23d7e7153da2569f8cdad89c4f17f"
+    },
+    {
+      "run_at": "2026-10-13T19:46:35.936365+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/application",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-unit-2026-10-13T194635_936365_0000.txt",
+      "sha256": "955fb38f833264839deb31a29cb7bc372620fb330cfd5e7f6d029136bed4322a",
+      "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+    }
+  ],
+  "results": {
+    "application_tests": 29,
+    "spec_checks": 9,
+    "browser_cases_passed": 12,
+    "browser_initial": {
+      "startTime": "2026-10-13T19:44:33.680Z",
+      "duration": 224485.413,
+      "expected": 10,
+      "skipped": 0,
+      "unexpected": 2,
+      "flaky": 0
+    },
+    "browser_failed_cases_rerun": {
+      "startTime": "2026-10-13T19:48:48.365Z",
+      "duration": 133378.712,
+      "expected": 2,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "screenshots": [
+    "evidence/build/nearby-desktop.png",
+    "evidence/build/nearby-mobile.png",
+    "evidence/build/nearby-detail-desktop.png",
+    "evidence/build/nearby-detail-mobile.png"
+  ]
+}

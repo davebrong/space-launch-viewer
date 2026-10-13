@@ -1,0 +1,17 @@
+{
+  "run_at": "2026-10-13T17:02:48.029333+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "ruff",
+    "check",
+    "packages",
+    "services",
+    "tests/application"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/planning-lint-2026-10-13T170248_029333_0000.txt",
+  "sha256": "881513cd027e0334026cfcbad052e34fecb3f2c1fef5ab000c86973bc0196cd7",
+  "software_sha256": "f1d2589f1d297e0006c07eeb7fba938befcf7033b816604c40fb55746f34eb98"
+}

@@ -1,0 +1,581 @@
+{
+  "resolve_zip": {
+    "input_fields": [
+      "gazetteer",
+      "zip"
+    ],
+    "output_assertions": [
+      "confirmed",
+      "error",
+      "fallback",
+      "latitude_deg",
+      "longitude_deg",
+      "status",
+      "zip"
+    ],
+    "cases": [
+      "zip-fixture-zip",
+      "zip-00601",
+      "zip-missing",
+      "zip-numeric"
+    ]
+  },
+  "location_change": {
+    "input_fields": [
+      "new_point",
+      "old_confirmed",
+      "old_revision"
+    ],
+    "output_assertions": [
+      "confirmed",
+      "invalidate_assessment",
+      "revision"
+    ],
+    "cases": [
+      "location-change"
+    ]
+  },
+  "local_time": {
+    "input_fields": [
+      "device_timezone",
+      "timezone",
+      "utc"
+    ],
+    "output_assertions": [
+      "abbreviation",
+      "fold",
+      "local"
+    ],
+    "cases": [
+      "rollover",
+      "dst-fold-edt",
+      "dst-fold-est",
+      "dst-spring-before",
+      "dst-spring-after"
+    ]
+  },
+  "parse_local": {
+    "input_fields": [
+      "local",
+      "offset",
+      "timezone"
+    ],
+    "output_assertions": [
+      "error"
+    ],
+    "cases": [
+      "dst-nonexistent",
+      "dst-ambiguous"
+    ]
+  },
+  "geometry": {
+    "input_fields": [
+      "observer_lat_lon_alt_m",
+      "target_lat_lon_alt_m"
+    ],
+    "output_assertions": [
+      "azimuth_deg",
+      "elevation_deg",
+      "range_m"
+    ],
+    "cases": [
+      "cape-md-pad",
+      "cape-md-high",
+      "near-pad",
+      "equator-east"
+    ]
+  },
+  "solar_events": {
+    "input_fields": [
+      "altitude_m",
+      "latitude_deg",
+      "local_date",
+      "longitude_deg",
+      "sunrise_center_deg",
+      "timezone"
+    ],
+    "output_assertions": [
+      "rise_set_state",
+      "sunrise",
+      "sunset"
+    ],
+    "cases": [
+      "sunrise-maryland",
+      "polar-no-rise"
+    ]
+  },
+  "twilight_label": {
+    "input_fields": [
+      "sun_deg"
+    ],
+    "output_assertions": [
+      "label"
+    ],
+    "cases": [
+      "twilight--18",
+      "twilight--12",
+      "twilight--6",
+      "twilight--0.833",
+      "twilight--18.001"
+    ]
+  },
+  "slip": {
+    "input_fields": [
+      "launch_local",
+      "slip_s",
+      "synthetic_sunrise",
+      "view_offset_s"
+    ],
+    "output_assertions": [
+      "after_view",
+      "automatic_daylight_rejection",
+      "before_view",
+      "recompute"
+    ],
+    "cases": [
+      "sunrise-slip"
+    ]
+  },
+  "earth_shadow": {
+    "input_fields": [
+      "earth_a_m",
+      "earth_b_m",
+      "sun_direction_ecef_unit",
+      "target_ecef_m"
+    ],
+    "output_assertions": [
+      "in_shadow"
+    ],
+    "cases": [
+      "shadow-night",
+      "shadow-day",
+      "shadow-offset"
+    ]
+  },
+  "emission": {
+    "input_fields": [
+      "active_engine",
+      "active_plume",
+      "sunlit"
+    ],
+    "output_assertions": [
+      "eligible"
+    ],
+    "cases": [
+      "engine-in-shadow",
+      "sunlit-inactive",
+      "active-sunlit-plume"
+    ]
+  },
+  "duration": {
+    "input_fields": [
+      "active_engine",
+      "continuous_s",
+      "elevation_deg"
+    ],
+    "output_assertions": [
+      "eligible"
+    ],
+    "cases": [
+      "duration-19.999",
+      "duration-20",
+      "duration-20.001",
+      "zero-horizon"
+    ]
+  },
+  "gap": {
+    "input_fields": [
+      "same_stage",
+      "sample_gap_s"
+    ],
+    "output_assertions": [
+      "interpolate"
+    ],
+    "cases": [
+      "gap-15",
+      "gap-15.001",
+      "stage-switch"
+    ]
+  },
+  "bearing_sector": {
+    "input_fields": [
+      "bearings_deg"
+    ],
+    "output_assertions": [
+      "end_deg",
+      "start_deg",
+      "wraps_north"
+    ],
+    "cases": [
+      "north-wrap"
+    ]
+  },
+  "round_window": {
+    "input_fields": [
+      "end",
+      "start"
+    ],
+    "output_assertions": [
+      "end",
+      "start"
+    ],
+    "cases": [
+      "round-outward"
+    ]
+  },
+  "lighting_flag": {
+    "input_fields": [
+      "continuous_s",
+      "elevation_deg",
+      "emission",
+      "observer_sun_deg"
+    ],
+    "output_assertions": [
+      "flag"
+    ],
+    "cases": [
+      "lighting-39",
+      "lighting-40",
+      "lighting-41",
+      "lighting-42"
+    ]
+  },
+  "weather_tier": {
+    "input_fields": [
+      "fog",
+      "high",
+      "low",
+      "mid",
+      "total",
+      "visibility_m"
+    ],
+    "output_assertions": [
+      "tier",
+      "visibility_unknown"
+    ],
+    "cases": [
+      "cloud25",
+      "cloud25plus",
+      "cloud75",
+      "vis5000",
+      "vis4999",
+      "vis9999",
+      "vis10000",
+      "visibility-missing",
+      "layers-clear",
+      "layers-low60",
+      "layers-mid41",
+      "fog",
+      "total-missing"
+    ]
+  },
+  "weather_overlap": {
+    "input_fields": [
+      "bins",
+      "view"
+    ],
+    "output_assertions": [
+      "tier"
+    ],
+    "cases": [
+      "bin-boundary",
+      "bin-poor-overlap"
+    ]
+  },
+  "weather_subinterval": {
+    "input_fields": [
+      "bins",
+      "view"
+    ],
+    "output_assertions": [
+      "selected",
+      "tier"
+    ],
+    "cases": [
+      "better-subinterval"
+    ]
+  },
+  "weather_fresh": {
+    "input_fields": [
+      "covered",
+      "fetch_age_s",
+      "issue_age_s"
+    ],
+    "output_assertions": [
+      "fresh"
+    ],
+    "cases": [
+      "fresh-boundary",
+      "fetch-stale",
+      "issue-stale",
+      "issue-unknown",
+      "coverage-gap"
+    ]
+  },
+  "advice": {
+    "input_fields": [
+      "all_below_horizon",
+      "complete",
+      "fresh",
+      "luminous_seconds",
+      "mode",
+      "official_member",
+      "profile",
+      "route",
+      "status",
+      "weather"
+    ],
+    "output_assertions": [
+      "advice"
+    ],
+    "cases": [
+      "reconstruction-cap",
+      "missing-route",
+      "hazard-only",
+      "dogleg",
+      "ambiguous-mission",
+      "variant-mismatch",
+      "missing-emission",
+      "incomplete-negative",
+      "complete-negative",
+      "poor-clouds",
+      "stale-feed",
+      "missing-weather",
+      "official-clear",
+      "official-mixed",
+      "outside-map",
+      "scrub",
+      "hold",
+      "completed",
+      "cancelled"
+    ]
+  },
+  "time_presentation": {
+    "input_fields": [
+      "actual_liftoff",
+      "date",
+      "end",
+      "net",
+      "now",
+      "precision",
+      "start"
+    ],
+    "output_assertions": [
+      "conditional",
+      "countdown",
+      "display_status",
+      "precise_reminder"
+    ],
+    "cases": [
+      "date-only",
+      "window-only",
+      "awaiting-confirmation"
+    ]
+  },
+  "quiet_hours": {
+    "input_fields": [
+      "local_time",
+      "overnight_opt_in"
+    ],
+    "output_assertions": [
+      "suppressed"
+    ],
+    "cases": [
+      "quiet-215959",
+      "quiet-220000",
+      "quiet-065959",
+      "quiet-070000",
+      "overnight-opt-in"
+    ]
+  },
+  "correction": {
+    "input_fields": [
+      "local_date_changed",
+      "previously_notified",
+      "shift_from_last_delivered_s"
+    ],
+    "output_assertions": [
+      "notify"
+    ],
+    "cases": [
+      "correction-299",
+      "correction-300",
+      "date-correction"
+    ]
+  },
+  "downgrade": {
+    "input_fields": [
+      "inside_30m",
+      "persistent_s",
+      "scrub"
+    ],
+    "output_assertions": [
+      "notify"
+    ],
+    "cases": [
+      "debounce-94",
+      "debounce-95",
+      "debounce-96",
+      "debounce-97"
+    ]
+  },
+  "enqueue": {
+    "input_fields": [
+      "created_at",
+      "due_at"
+    ],
+    "output_assertions": [
+      "enqueue"
+    ],
+    "cases": [
+      "no-past-milestone"
+    ]
+  },
+  "delivery": {
+    "input_fields": [
+      "consent",
+      "expires_at",
+      "now"
+    ],
+    "output_assertions": [
+      "deliver",
+      "state"
+    ],
+    "cases": [
+      "expired-notice"
+    ]
+  },
+  "notification_race": {
+    "input_fields": [
+      "attempt",
+      "barrier",
+      "revision",
+      "subscription",
+      "type",
+      "workers"
+    ],
+    "output_assertions": [
+      "logical_notices",
+      "outbox_rows"
+    ],
+    "cases": [
+      "notification-race"
+    ]
+  },
+  "unsubscribe_race": {
+    "input_fields": [
+      "pending",
+      "unsubscribe_commits_before_claim"
+    ],
+    "output_assertions": [
+      "delivered",
+      "enabled",
+      "pending"
+    ],
+    "cases": [
+      "unsubscribe-race"
+    ]
+  },
+  "revision_race": {
+    "input_fields": [
+      "new_revision",
+      "old_revision",
+      "revision_commits_before_claim"
+    ],
+    "output_assertions": [
+      "current_revision",
+      "old_deliveries"
+    ],
+    "cases": [
+      "revision-race"
+    ]
+  },
+  "privacy_delete": {
+    "input_fields": [
+      "elapsed_s",
+      "subscription_deleted"
+    ],
+    "output_assertions": [
+      "pending",
+      "subscription_exists"
+    ],
+    "cases": [
+      "delete-24h"
+    ]
+  },
+  "provider_failure": {
+    "input_fields": [
+      "has_cache",
+      "status"
+    ],
+    "output_assertions": [
+      "cached_data_retained",
+      "paid_fallback",
+      "positive_notices"
+    ],
+    "cases": [
+      "provider-403",
+      "provider-429",
+      "provider-503",
+      "provider-timeout"
+    ]
+  },
+  "provider_budget": {
+    "input_fields": [
+      "next_request_kind",
+      "requests_in_last_3600s"
+    ],
+    "output_assertions": [
+      "allowed"
+    ],
+    "cases": [
+      "ll2-budget"
+    ]
+  },
+  "assessment_key": {
+    "input_fields": [
+      "baseline_hash",
+      "changed_hash",
+      "changed_input"
+    ],
+    "output_assertions": [
+      "archive_original",
+      "same_key"
+    ],
+    "cases": [
+      "reproducibility"
+    ]
+  },
+  "admin_disable": {
+    "input_fields": [
+      "authenticated",
+      "mission_enabled"
+    ],
+    "output_assertions": [
+      "audit_created",
+      "mission_enabled",
+      "positive_notices"
+    ],
+    "cases": [
+      "mission-disable"
+    ]
+  },
+  "parse_historical_archive": {
+    "input_fields": [
+      "events_path",
+      "series_path"
+    ],
+    "output_assertions": [
+      "last_altitude_m",
+      "last_downrange_m",
+      "last_t_s",
+      "production_admitted",
+      "sample_count",
+      "seco1_s",
+      "ses1_s"
+    ],
+    "cases": [
+      "orbcomm-archive"
+    ]
+  }
+}

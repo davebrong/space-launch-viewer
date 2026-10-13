@@ -1,0 +1,61 @@
+ Container launch-visibility-dev-postgres-1 Running 
+ Container launch-visibility-dev-postgres-1 Waiting 
+ Container launch-visibility-dev-postgres-1 Healthy 
+Open http://127.0.0.1:3007 . Ctrl+C stops the owned app processes; PostgreSQL data persists.
+
+> launch-visibility-web@0.1.0 dev
+> next dev --webpack -H 127.0.0.1 --port 3007
+
+▲ Next.js 16.4.0 (webpack)
+- Local:         http://127.0.0.1:3007
+- Network:       http://127.0.0.1:3007
+✓ Ready in 591ms
+INFO:     Started server process [309856]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+✓ Running next.config.ts took 50ms
+
+ GET /launches/bf2c3027-a314-403e-a416-2bfd5d165ad1 200 in 891ms (next.js: 707ms, application-code: 185ms)
+ GET /favicon.ico 200 in 64ms (next.js: 12ms, application-code: 52ms)
+ GET /launches 200 in 53ms (next.js: 21ms, application-code: 32ms)
+ GET /favicon.ico 200 in 94ms (next.js: 2.0ms, application-code: 92ms)
+ GET / 200 in 45ms (next.js: 11ms, application-code: 34ms)
+ GET /launches 200 in 33ms (next.js: 15ms, application-code: 17ms)
+ GET /launches/bf2c3027-a314-403e-a416-2bfd5d165ad1 200 in 17ms (next.js: 1.3ms, application-code: 16ms)
+ GET /privacy 200 in 45ms (next.js: 12ms, application-code: 33ms)
+ GET / 200 in 46ms (next.js: 12ms, application-code: 34ms)
+ GET /launches 200 in 34ms (next.js: 14ms, application-code: 19ms)
+ GET /launches/bf2c3027-a314-403e-a416-2bfd5d165ad1 200 in 19ms (next.js: 1.5ms, application-code: 18ms)
+ GET /subscriptions 200 in 30ms (next.js: 11ms, application-code: 19ms)
+ GET / 200 in 35ms (next.js: 15ms, application-code: 20ms)
+ GET /launches 200 in 45ms (next.js: 22ms, application-code: 23ms)
+ GET /privacy 200 in 39ms (next.js: 1.5ms, application-code: 37ms)
+ GET / 200 in 42ms (next.js: 12ms, application-code: 30ms)
+ GET / 200 in 47ms (next.js: 12ms, application-code: 35ms)
+ GET /launches 200 in 46ms (next.js: 18ms, application-code: 28ms)
+ GET /launches 200 in 54ms (next.js: 15ms, application-code: 39ms)
+ GET /launches/3b430f81-0ff1-4d85-8a1a-cef0de326198 200 in 32ms (next.js: 12ms, application-code: 20ms)
+ GET /launches 200 in 16ms (next.js: 3ms, application-code: 13ms)
+ GET / 200 in 29ms (next.js: 12ms, application-code: 17ms)
+ GET /launches 200 in 21ms (next.js: 1.6ms, application-code: 19ms)
+ GET /privacy 200 in 31ms (next.js: 0.9ms, application-code: 30ms)
+ GET / 200 in 47ms (next.js: 12ms, application-code: 35ms)
+ GET /launches 200 in 31ms (next.js: 14ms, application-code: 17ms)
+ GET /launches/bf2c3027-a314-403e-a416-2bfd5d165ad1 200 in 21ms (next.js: 0.9ms, application-code: 20ms)
+ GET /privacy 200 in 42ms (next.js: 12ms, application-code: 30ms)
+ GET / 200 in 37ms (next.js: 10ms, application-code: 27ms)
+ GET /launches 200 in 27ms (next.js: 13ms, application-code: 14ms)
+ GET /subscriptions 200 in 14ms (next.js: 1.0ms, application-code: 13ms)
+ GET / 200 in 27ms (next.js: 12ms, application-code: 14ms)
+ GET /launches 200 in 27ms (next.js: 12ms, application-code: 15ms)
+ GET /privacy 200 in 40ms (next.js: 1.3ms, application-code: 38ms)
+ GET / 200 in 37ms (next.js: 10ms, application-code: 28ms)
+ GET / 200 in 45ms (next.js: 12ms, application-code: 33ms)
+ GET /launches 200 in 43ms (next.js: 18ms, application-code: 25ms)
+ GET /launches 200 in 77ms (next.js: 15ms, application-code: 62ms)
+ GET /launches/3b430f81-0ff1-4d85-8a1a-cef0de326198 200 in 38ms (next.js: 14ms, application-code: 24ms)
+ GET /launches 200 in 17ms (next.js: 1.4ms, application-code: 16ms)
+ GET / 200 in 31ms (next.js: 13ms, application-code: 19ms)
+ GET /launches 200 in 21ms (next.js: 1.3ms, application-code: 20ms)
+ GET /privacy 200 in 60ms (next.js: 16ms, application-code: 44ms)

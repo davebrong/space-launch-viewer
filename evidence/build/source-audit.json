@@ -1,0 +1,194 @@
+{
+  "reviewed_at": "2026-10-13T19:29:00.473988+00:00",
+  "product_complete": false,
+  "finding": "The live schedule and weather integrations exist, but the automatic per-mission route/profile integration is missing. The Dragon planning fallback is authored assumptions, not a trajectory API.",
+  "scope": "All provider-returned Cape Canaveral/Kennedy records, per original PRD; not worldwide launch coverage.",
+  "catalog": "evidence/build/source-audit/catalog.json",
+  "code_fix": "Paginate all schedule pages, share the 12/hour budget, preserve imminent refresh slot, respect Retry-After, resume partial fetches without deleting records, reject changed source URLs and overlapping pages.",
+  "retrievals": [
+    {
+      "url": "https://issc.space/robots.txt",
+      "at": "2026-10-13T19:17:31.010903+00:00",
+      "status": 200,
+      "sha256": "f74a79fe7d022ecfa0b3899d521e884b598084cd6ef753e9ad829682bfd45369",
+      "path": "evidence\\build\\source-audit\\response-0.txt",
+      "bytes": 799
+    },
+    {
+      "url": "https://issc.space/api/launches",
+      "at": "2026-10-13T19:17:31.459449+00:00",
+      "status": 403,
+      "sha256": "7867ea53dc3fdaa1d3cb4c80c53823508935d854edbfd5da00b924898c3cd30d",
+      "path": "evidence\\build\\source-audit\\response-1.txt",
+      "bytes": 5383
+    },
+    {
+      "url": "https://issc.space/launch-simulator?science=1",
+      "at": "2026-10-13T19:17:31.769849+00:00",
+      "status": 403,
+      "sha256": "62dd8e9bd6f7eafc2dcde2d6b4dadf44818f96854e05f4ed268be04c365b2b86",
+      "path": "evidence\\build\\source-audit\\response-2.txt",
+      "bytes": 5461
+    },
+    {
+      "url": "https://lldev.thespacedevs.com/2.3.0/json",
+      "at": "2026-10-13T19:17:32.092172+00:00",
+      "status": 200,
+      "sha256": "5d84073e36f109d89f4fca89063cdf935ecf0468c4871c1ba45fddbd6984038b",
+      "path": "evidence\\build\\source-audit\\response-3.txt",
+      "bytes": 972975
+    }
+  ],
+  "advisory": {
+    "url": "https://compass.atfm.aero/public_svcdynamic/getfile?download=false&fileuuid=a2992fae-e80b-4e71-8514-ee22809cb062",
+    "at": "2026-10-13T19:20:08.164912+00:00",
+    "status": 200,
+    "content_type": "application/octet-stream",
+    "location": null,
+    "sha256": "04a3ab3f9c84e062d0ec855970fc1901f61e024a60ff59ea24955108acac510d",
+    "path": "evidence\\build\\source-audit\\bandwagon-advisory-response",
+    "bytes": 4675271,
+    "format": "DOCX (not PDF)",
+    "finding": "Bandwagon-5 (X4107) SpaceX Falcon 9 Launch, Cape Canaveral. Published text describes southeast aircraft hazard areas. Embedded images depict airspace hazards. No time/altitude profile. Not admitted as a trajectory or proof of nonvisibility.",
+    "automatic_parser_implemented": false
+  },
+  "remaining_implementation": [
+    "Discover mission-specific operator/advisory sources automatically (current worker only revalidates manually admitted entries).",
+    "Implement and fixture-test source parsers, exact mission/attempt association, and integrate sourced reusable ascent profiles.",
+    "Evaluate each supported mission using the confirmed location, horizon geometry, sunlight and forecast-time NWS data."
+  ],
+  "external_limitations": [
+    "ISSC documented public API and simulator returned HTTP 403; no bypass attempted.",
+    "LL2 schema supplies orbit category and mission metadata, not a timed 3D trajectory. Bandwagon advisory supplies coarse hazards only."
+  ],
+  "tests": {
+    "application": 25,
+    "browser_prior_ui": 12,
+    "specification": 9,
+    "ingestion_scenarios": 4
+  },
+  "test_evidence": [
+    "evidence/build/logs/source-unit.json",
+    "evidence/build/logs/source-lint.json",
+    "evidence/build/logs/source-spec.json",
+    "evidence/build/logs/source-ingestion.json",
+    "evidence/build/viewable.json"
+  ],
+  "checks": [
+    {
+      "run_at": "2026-10-13T19:29:22.607425+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/application",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/source-unit-2026-10-13T192922_607425_0000.txt",
+      "sha256": "183ac6e2837c1de568cb37b38d7cabb4d3a43ec6147c4704cd4e1c4e21c81da7",
+      "software_sha256": "e5e17b82bd13d163f3d81af0b43642fe2fc0b34b79ad07e89e53f93769109d63"
+    },
+    {
+      "run_at": "2026-10-13T19:29:32.186609+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "packages",
+        "services",
+        "tests/application",
+        "tools/audit_catalog.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/source-lint-2026-10-13T192932_186609_0000.txt",
+      "sha256": "881513cd027e0334026cfcbad052e34fecb3f2c1fef5ab000c86973bc0196cd7",
+      "software_sha256": "e5e17b82bd13d163f3d81af0b43642fe2fc0b34b79ad07e89e53f93769109d63"
+    },
+    {
+      "run_at": "2026-10-13T19:31:21.343119+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/check_spec.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/source-spec-2026-10-13T193121_343119_0000.txt",
+      "sha256": "3d25561fbb27d89d67a9c11b37b0feea842233ebf78509ef65683ca30834b854",
+      "software_sha256": "e5e17b82bd13d163f3d81af0b43642fe2fc0b34b79ad07e89e53f93769109d63"
+    },
+    {
+      "run_at": "2026-10-13T19:22:05.737948+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "implementation.checks",
+        "ingestion"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/source-ingestion-2026-10-13T192205_737948_0000.txt",
+      "sha256": "e859ff0b07dfaa52c00eabd89aada9bd5bb90f99ccc583bc83e8ac37d57bdc57",
+      "software_sha256": "79f8127ec1372a61f47929cd136449d6ccca49e01d68a510d30ee533612497c2"
+    },
+    {
+      "run_at": "2026-10-13T19:21:56.344353+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/audit_catalog.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/source-catalog-2026-10-13T192156_344353_0000.txt",
+      "sha256": "e747aa396929827a7149aaf5aa9e09a48bdb2b5183782e5c6bcfb1ff0541c818",
+      "software_sha256": "79f8127ec1372a61f47929cd136449d6ccca49e01d68a510d30ee533612497c2"
+    },
+    {
+      "run_at": "2026-10-13T19:29:40.497750+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "api",
+        "worker"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/source-build-2026-10-13T192940_497750_0000.txt",
+      "sha256": "7a6aaf99e598073aafe85aa83b5fa3424cee2e947669a041aae01ebfeed7a82e",
+      "software_sha256": "e5e17b82bd13d163f3d81af0b43642fe2fc0b34b79ad07e89e53f93769109d63"
+    },
+    {
+      "run_at": "2026-10-13T19:29:42.580947+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "up",
+        "-d",
+        "--no-deps",
+        "api"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/source-start-2026-10-13T192942_580947_0000.txt",
+      "sha256": "e5f8a2f26951d4d03a3d3098a4b7943f7966416e29915a64d5fcbd28adfe3478",
+      "software_sha256": "e5e17b82bd13d163f3d81af0b43642fe2fc0b34b79ad07e89e53f93769109d63"
+    }
+  ],
+  "browser_verification": {
+    "all_launch_cards": 205,
+    "zip": "md-zip",
+    "default_filter": "viewable",
+    "bandwagon_label": "No viewing estimate",
+    "observations_privacy_links_visible": false,
+    "screenshot": "evidence/build/source-viewable-browser.png",
+    "method": "Live in-app browser DOM and screenshot after worker restart"
+  },
+  "release_audit": "evidence/build/logs/viewable-release.json",
+  "finalized_at": "2026-10-13T19:32:19.319865+00:00"
+}

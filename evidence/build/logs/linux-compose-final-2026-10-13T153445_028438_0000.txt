@@ -1,0 +1,320 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.43kB done
+#1 DONE 0.0s
+
+#2 [web internal] load build definition from web.Dockerfile
+#2 transferring dockerfile: 758B done
+#2 DONE 0.0s
+
+#3 [worker internal] load build definition from api.Dockerfile
+#3 transferring dockerfile: 999B done
+#3 DONE 0.0s
+
+#4 [web internal] load metadata for docker.io/library/node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20
+#4 DONE 0.0s
+
+#5 [worker internal] load metadata for docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#5 DONE 0.0s
+
+#6 [worker internal] load .dockerignore
+#6 transferring context: 179B done
+#6 DONE 0.0s
+
+#7 [api  1/16] FROM docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#7 DONE 0.0s
+
+#8 [web build 1/7] FROM docker.io/library/node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20
+#8 DONE 0.0s
+
+#9 [web internal] load build context
+#9 transferring context: 125.14kB 0.0s done
+#9 DONE 0.0s
+
+#10 [api internal] load build context
+#10 transferring context: 77.47kB 0.0s done
+#10 DONE 0.0s
+
+#11 [web build 2/7] WORKDIR /app
+#11 CACHED
+
+#12 [web build 3/7] COPY package.json package-lock.json ./
+#12 CACHED
+
+#13 [web build 4/7] COPY apps/web/package.json apps/web/package.json
+#13 CACHED
+
+#14 [web build 5/7] RUN npm ci
+#14 CACHED
+
+#15 [worker  2/16] WORKDIR /app
+#15 CACHED
+
+#16 [worker  3/16] COPY requirements-app.lock.txt .
+#16 DONE 0.0s
+
+#17 [web build 6/7] COPY apps/web apps/web
+#17 DONE 0.0s
+
+#18 [api  4/16] RUN pip install --no-cache-dir --require-hashes -r requirements-app.lock.txt
+#18 1.707 Collecting alembic==1.20.0 (from -r requirements-app.lock.txt (line 3))
+#18 1.795   Downloading alembic-1.20.0-py3-none-any.whl (268 kB)
+#18 1.859 Collecting annotated-doc==0.0.5 (from -r requirements-app.lock.txt (line 6))
+#18 1.876   Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+#18 1.892 Collecting annotated-types==0.8.0 (from -r requirements-app.lock.txt (line 9))
+#18 1.913   Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+#18 1.939 Collecting anyio==4.15.1 (from -r requirements-app.lock.txt (line 12))
+#18 1.955   Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+#18 1.986 Collecting attrs==26.1.0 (from -r requirements-app.lock.txt (line 15))
+#18 2.003   Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+#18 2.038 Collecting certifi==2026.7.22 (from -r requirements-app.lock.txt (line 18))
+#18 2.051   Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+#18 2.189 Collecting cffi==2.1.1 (from -r requirements-app.lock.txt (line 21))
+#18 2.204   Downloading cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (221 kB)
+#18 2.381 Collecting charset-normalizer==3.5.2 (from -r requirements-app.lock.txt (line 35))
+#18 2.447   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+#18 2.492 Collecting click==8.5.0 (from -r requirements-app.lock.txt (line 70))
+#18 2.507   Downloading click-8.5.0-py3-none-any.whl (125 kB)
+#18 2.753 Collecting cryptography==50.0.2 (from -r requirements-app.lock.txt (line 73))
+#18 2.772   Downloading cryptography-50.0.2-cp311-abi3-manylinux_2_34_x86_64.whl (4.8 MB)
+#18 3.175      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.8/4.8 MB 11.9 MB/s eta 0:00:00
+#18 3.242 Collecting fastapi==0.143.0 (from -r requirements-app.lock.txt (line 114))
+#18 3.259   Downloading fastapi-0.143.0-py3-none-any.whl (144 kB)
+#18 3.293 Collecting flatbuffers==25.12.19 (from -r requirements-app.lock.txt (line 117))
+#18 3.318   Downloading flatbuffers-25.12.19-py2.py3-none-any.whl (26 kB)
+#18 3.355 Collecting geographiclib==2.1 (from -r requirements-app.lock.txt (line 119))
+#18 3.377   Downloading geographiclib-2.1-py3-none-any.whl (40 kB)
+#18 3.400 Collecting h11==0.16.0 (from -r requirements-app.lock.txt (line 122))
+#18 3.413   Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#18 3.478 Collecting h3==4.5.0 (from -r requirements-app.lock.txt (line 125))
+#18 3.498   Downloading h3-4.5.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (1.1 MB)
+#18 3.586      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 12.6 MB/s eta 0:00:00
+#18 3.611 Collecting httpcore==1.0.9 (from -r requirements-app.lock.txt (line 133))
+#18 3.625   Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+#18 3.658 Collecting httpx==0.28.1 (from -r requirements-app.lock.txt (line 136))
+#18 3.678   Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+#18 3.705 Collecting idna==3.20 (from -r requirements-app.lock.txt (line 139))
+#18 3.723   Downloading idna-3.20-py3-none-any.whl (69 kB)
+#18 3.748 Collecting jplephem==2.24 (from -r requirements-app.lock.txt (line 142))
+#18 3.768   Downloading jplephem-2.24-py3-none-any.whl (49 kB)
+#18 3.805 Collecting jsonschema==4.26.0 (from -r requirements-app.lock.txt (line 145))
+#18 3.826   Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+#18 3.852 Collecting jsonschema-specifications==2025.9.1 (from -r requirements-app.lock.txt (line 148))
+#18 3.872   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+#18 3.897 Collecting mako==1.4.3 (from -r requirements-app.lock.txt (line 151))
+#18 3.913   Downloading mako-1.4.3-py3-none-any.whl (80 kB)
+#18 3.979 Collecting markupsafe==3.0.4 (from -r requirements-app.lock.txt (line 154))
+#18 4.000   Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+#18 4.241 Collecting numpy==2.5.4 (from -r requirements-app.lock.txt (line 171))
+#18 4.257   Downloading numpy-2.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.7 MB)
+#18 5.671      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.7/16.7 MB 11.9 MB/s eta 0:00:00
+#18 5.730 Collecting opentelemetry-api==1.45.1 (from -r requirements-app.lock.txt (line 184))
+#18 5.746   Downloading opentelemetry_api-1.45.1-py3-none-any.whl (60 kB)
+#18 5.776 Collecting psycopg==3.3.6 (from -r requirements-app.lock.txt (line 187))
+#18 5.791   Downloading psycopg-3.3.6-py3-none-any.whl (215 kB)
+#18 5.999 Collecting psycopg-binary==3.3.6 (from -r requirements-app.lock.txt (line 190))
+#18 6.018   Downloading psycopg_binary-3.3.6-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.2 MB)
+#18 6.460      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 11.9 MB/s eta 0:00:00
+#18 6.481 Collecting pycparser==3.11 (from -r requirements-app.lock.txt (line 202))
+#18 6.501   Downloading pycparser-3.11-py3-none-any.whl (51 kB)
+#18 6.634 Collecting pydantic==2.14.1 (from -r requirements-app.lock.txt (line 205))
+#18 6.658   Downloading pydantic-2.14.1-py3-none-any.whl (488 kB)
+#18 7.476 Collecting pydantic-core==2.50.1 (from -r requirements-app.lock.txt (line 208))
+#18 7.492   Downloading pydantic_core-2.50.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.2 MB)
+#18 7.680      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.2/2.2 MB 11.7 MB/s eta 0:00:00
+#18 7.738 Collecting referencing==0.36.2 (from -r requirements-app.lock.txt (line 225))
+#18 7.756   Downloading referencing-0.36.2-py3-none-any.whl (26 kB)
+#18 7.790 Collecting requests==2.34.2 (from -r requirements-app.lock.txt (line 228))
+#18 7.805   Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+#18 8.086 Collecting rpds-py==2026.9.1 (from -r requirements-app.lock.txt (line 231))
+#18 8.109   Downloading rpds_py-2026.9.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (371 kB)
+#18 8.262 Collecting sgp4==2.27 (from -r requirements-app.lock.txt (line 260))
+#18 8.283   Downloading sgp4-2.27-cp311-abi3-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (218 kB)
+#18 8.321 Collecting skyfield==1.55 (from -r requirements-app.lock.txt (line 271))
+#18 8.342   Downloading skyfield-1.55-py3-none-any.whl (371 kB)
+#18 8.399 Collecting skyfield-data==7.0.0 (from -r requirements-app.lock.txt (line 274))
+#18 8.417   Downloading skyfield_data-7.0.0-py2.py3-none-any.whl (17.0 MB)
+#18 9.863      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 17.0/17.0 MB 11.8 MB/s eta 0:00:00
+#18 ...
+
+#19 [web build 7/7] RUN npm run build
+#19 0.436 
+#19 0.436 > launch-visibility-workspace@0.1.0 build
+#19 0.436 > npm run build --workspace apps/web
+#19 0.436 
+#19 0.563 
+#19 0.563 > launch-visibility-web@0.1.0 build
+#19 0.563 > next build --webpack
+#19 0.563 
+#19 0.983 ▲ Next.js 16.4.0 (webpack)
+#19 1.017 ✓ Running next.config.ts took 33ms
+#19 1.033 
+#19 1.054   Creating an optimized production build ...
+#19 8.598 ✓ Compiled successfully in 4.9s
+#19 8.600   Running TypeScript ...
+#19 ...
+
+#18 [api  4/16] RUN pip install --no-cache-dir --require-hashes -r requirements-app.lock.txt
+#18 10.28 Collecting sqlalchemy==2.1.4 (from -r requirements-app.lock.txt (line 277))
+#18 10.29   Downloading sqlalchemy-2.1.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.7 MB)
+#18 10.69      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.7/4.7 MB 11.9 MB/s eta 0:00:00
+#18 10.75 Collecting starlette==1.8.0 (from -r requirements-app.lock.txt (line 290))
+#18 10.76   Downloading starlette-1.8.0-py3-none-any.whl (79 kB)
+#18 10.81 Collecting timezonefinder==9.0.0 (from -r requirements-app.lock.txt (line 293))
+#18 10.83   Downloading timezonefinder-9.0.0-cp311-abi3-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (148 kB)
+#18 10.86 Collecting timezonefinder-data==3.2026.4 (from -r requirements-app.lock.txt (line 298))
+#18 10.88   Downloading timezonefinder_data-3.2026.4-py3-none-any.whl (32.7 MB)
+#18 13.65      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 32.7/32.7 MB 11.8 MB/s eta 0:00:00
+#18 13.70 Collecting typing-extensions==4.16.0 (from -r requirements-app.lock.txt (line 300))
+#18 13.72   Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#18 13.75 Collecting typing-inspection==0.4.4 (from -r requirements-app.lock.txt (line 303))
+#18 13.76   Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+#18 13.78 Collecting tzdata==2026.5 (from -r requirements-app.lock.txt (line 306))
+#18 13.80   Downloading tzdata-2026.5-py2.py3-none-any.whl (347 kB)
+#18 13.86 Collecting urllib3==2.8.0 (from -r requirements-app.lock.txt (line 309))
+#18 13.88   Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+#18 13.93 Collecting uvicorn==0.54.0 (from -r requirements-app.lock.txt (line 312))
+#18 13.95   Downloading uvicorn-0.54.0-py3-none-any.whl (87 kB)
+#18 14.27 Installing collected packages: flatbuffers, urllib3, tzdata, typing-extensions, timezonefinder-data, skyfield-data, sgp4, rpds-py, pycparser, psycopg-binary, numpy, markupsafe, idna, h3, h11, geographiclib, click, charset-normalizer, certifi, attrs, annotated-types, annotated-doc, uvicorn, typing-inspection, sqlalchemy, requests, referencing, pydantic-core, psycopg, opentelemetry-api, mako, jplephem, httpcore, cffi, anyio, timezonefinder, starlette, skyfield, pydantic, jsonschema-specifications, httpx, cryptography, alembic, jsonschema, fastapi
+#18 21.55 Successfully installed alembic-1.20.0 annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 attrs-26.1.0 certifi-2026.7.22 cffi-2.1.1 charset-normalizer-3.5.2 click-8.5.0 cryptography-50.0.2 fastapi-0.143.0 flatbuffers-25.12.19 geographiclib-2.1 h11-0.16.0 h3-4.5.0 httpcore-1.0.9 httpx-0.28.1 idna-3.20 jplephem-2.24 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 mako-1.4.3 markupsafe-3.0.4 numpy-2.5.4 opentelemetry-api-1.45.1 psycopg-3.3.6 psycopg-binary-3.3.6 pycparser-3.11 pydantic-2.14.1 pydantic-core-2.50.1 referencing-0.36.2 requests-2.34.2 rpds-py-2026.9.1 sgp4-2.27 skyfield-1.55 skyfield-data-7.0.0 sqlalchemy-2.1.4 starlette-1.8.0 timezonefinder-9.0.0 timezonefinder-data-3.2026.4 typing-extensions-4.16.0 typing-inspection-0.4.4 tzdata-2026.5 urllib3-2.8.0 uvicorn-0.54.0
+#18 21.55 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#18 21.70 
+#18 21.70 [notice] A new release of pip is available: 25.0.1 -> 26.2.1
+#18 21.70 [notice] To update, run: pip install --upgrade pip
+#18 ...
+
+#19 [web build 7/7] RUN npm run build
+#19 12.05   Finished TypeScript in 3.4s ...
+#19 12.05   Collecting page data using 4 workers ...
+#19 12.90   Generating static pages using 4 workers (0/2) ...
+#19 13.71 ✓ Generating static pages using 4 workers (2/2) in 811ms
+#19 14.01   Finalizing page optimization ...
+#19 14.01   Collecting build traces ...
+#19 ...
+
+#18 [api  4/16] RUN pip install --no-cache-dir --require-hashes -r requirements-app.lock.txt
+#18 DONE 22.2s
+
+#20 [api  5/16] RUN useradd --uid 1000 --create-home launch && mkdir /data && chown launch:launch /data
+#20 DONE 0.3s
+
+#21 [worker  6/16] COPY --chown=launch:launch packages packages
+#21 DONE 0.0s
+
+#22 [api  7/16] COPY --chown=launch:launch services services
+#22 DONE 0.1s
+
+#23 [api  8/16] COPY --chown=launch:launch implementation implementation
+#23 DONE 0.0s
+
+#24 [api  9/16] COPY --chown=launch:launch ops ops
+#24 DONE 0.0s
+
+#25 [api 10/16] COPY --chown=launch:launch migrations migrations
+#25 DONE 0.0s
+
+#26 [worker 11/16] COPY --chown=launch:launch spec/contracts spec/contracts
+#26 DONE 0.0s
+
+#27 [worker 12/16] COPY --chown=launch:launch data/gazetteer data/gazetteer
+#27 DONE 0.0s
+
+#28 [worker 13/16] COPY --chown=launch:launch data/registry data/registry
+#28 DONE 0.0s
+
+#29 [worker 14/16] COPY --chown=launch:launch data/profiles data/profiles
+#29 DONE 0.0s
+
+#30 [worker 15/16] COPY --chown=launch:launch evidence/build/dependency-manifest.json evidence/build/dependency-manifest.json
+#30 DONE 0.0s
+
+#31 [worker 16/16] COPY alembic.ini .
+#31 DONE 0.0s
+
+#32 [worker] exporting to image
+#32 exporting layers
+#32 exporting layers 1.0s done
+#32 writing image sha256:5b153753ea88b92c3173d7df2fe0a810d0a62741cddfc5ad2ed70324eadf15c2 done
+#32 naming to docker.io/library/launch-visibility-worker done
+#32 DONE 1.0s
+
+#33 [api] exporting to image
+#33 exporting layers 1.0s done
+#33 writing image sha256:1a5d370e411c966c06faefde5ede8ba2cd2989f39f5382260a7d05c870f33b29 done
+#33 naming to docker.io/library/launch-visibility-api done
+#33 DONE 1.0s
+
+#34 [api] resolving provenance for metadata file
+#34 DONE 0.0s
+
+#35 [worker] resolving provenance for metadata file
+#35 DONE 0.0s
+
+#19 [web build 7/7] RUN npm run build
+#19 29.09 
+#19 29.09 Route (app)
+#19 29.09 ┌ ○ /_not-found
+#19 29.09 └ ƒ /[[...slug]]
+#19 29.09 
+#19 29.09 
+#19 29.09 ○  (Static)   prerendered as static content
+#19 29.09 ƒ  (Dynamic)  server-rendered on demand
+#19 29.09 
+#19 DONE 29.3s
+
+#11 [web build 2/7] WORKDIR /app
+#11 CACHED
+
+#36 [web stage-1 3/4] COPY --from=build --chown=node:node /app/apps/web/.next/standalone ./
+#36 DONE 0.8s
+
+#37 [web stage-1 4/4] COPY --from=build --chown=node:node /app/apps/web/.next/static ./apps/web/.next/static
+#37 DONE 0.0s
+
+#38 [web] exporting to image
+#38 exporting layers
+#38 exporting layers 0.4s done
+#38 writing image sha256:52deba426855924ccccfa5b88afc759352f4c239883e337ba8978d7a4876a8ca done
+#38 naming to docker.io/library/launch-visibility-web done
+#38 DONE 0.4s
+
+#39 [web] resolving provenance for metadata file
+#39 DONE 0.0s
+
+ Image launch-visibility-api Building 
+ Image launch-visibility-worker Building 
+ Image launch-visibility-web Building 
+ Image launch-visibility-api Built 
+ Image launch-visibility-web Built 
+ Image launch-visibility-worker Built 
+ Container launch-visibility-proxy-1 Running 
+ Container launch-visibility-postgres-1 Running 
+ Container launch-visibility-api-1 Recreate 
+ Container launch-visibility-api-1 Recreated 
+ Container launch-visibility-worker-1 Recreate 
+ Container launch-visibility-web-1 Recreate 
+ Container launch-visibility-web-1 Recreated 
+ Container launch-visibility-worker-1 Recreated 
+ Container launch-visibility-postgres-1 Waiting 
+ Container launch-visibility-postgres-1 Healthy 
+ Container launch-visibility-api-1 Starting 
+ Container launch-visibility-api-1 Started 
+ Container launch-visibility-api-1 Waiting 
+ Container launch-visibility-api-1 Waiting 
+ Container launch-visibility-api-1 Healthy 
+ Container launch-visibility-web-1 Starting 
+ Container launch-visibility-api-1 Healthy 
+ Container launch-visibility-worker-1 Starting 
+ Container launch-visibility-web-1 Started 
+ Container launch-visibility-web-1 Waiting 
+ Container launch-visibility-worker-1 Started 
+ Container launch-visibility-web-1 Healthy 
+ Container launch-visibility-proxy-1 Waiting 
+ Container launch-visibility-postgres-1 Waiting 
+ Container launch-visibility-api-1 Waiting 
+ Container launch-visibility-worker-1 Waiting 
+ Container launch-visibility-web-1 Waiting 
+ Container launch-visibility-proxy-1 Healthy 
+ Container launch-visibility-worker-1 Healthy 
+ Container launch-visibility-postgres-1 Healthy 
+ Container launch-visibility-web-1 Healthy 
+ Container launch-visibility-api-1 Healthy 

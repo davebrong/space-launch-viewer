@@ -1,0 +1,21 @@
+{
+  "reviewed_input_manifest": "evidence/build/release-input-manifest.json",
+  "checks": [
+    {
+      "run_at": "2026-10-13T15:49:03.758386+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "implementation.gates",
+        "upcoming-cape"
+      ],
+      "exit_code": 2,
+      "status": "blocked",
+      "artifact_path": "evidence/build/logs/gate-upcoming-cape-2026-10-13T154903_758386_0000.txt",
+      "sha256": "6b0e9c3c3f4174c27552072f61f66d75499fc047d41a93b99ba4b9d69bc25cd6",
+      "software_sha256": "d515cc89651f95a830e384f6c8fdcf81c16a1b5c06c31e4e0f1d987298905d22"
+    }
+  ],
+  "reason": "All 205 Cape/Kennedy schedule records retrieved. Bandwagon-5 advisory retrieved (HTTP 200), but supplies aircraft hazards, not timed altitude/profile data; automatic parser/discovery is not implemented. ISSC API returned 403. No real mission route/profile admitted.",
+  "source_audit": "evidence/build/source-audit.json"
+}

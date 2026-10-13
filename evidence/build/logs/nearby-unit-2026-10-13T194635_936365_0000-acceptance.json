@@ -1,0 +1,16 @@
+{
+  "suite": "R003",
+  "passed": [
+    "date-only",
+    "window-only",
+    "awaiting-confirmation"
+  ],
+  "failed": [],
+  "blocked": [],
+  "adapter_command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "implementation.acceptance_adapter"
+  ],
+  "run_at": "2026-10-13T19:22:11.415852+00:00"
+}

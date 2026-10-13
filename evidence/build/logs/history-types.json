@@ -1,0 +1,13 @@
+{
+  "run_at": "2026-10-13T20:26:44.411255+00:00",
+  "command": [
+    "npm.cmd",
+    "run",
+    "types"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/history-types-2026-10-13T202644_411255_0000.txt",
+  "sha256": "bd3633a945b46607513097e2653af7d5ae279752e3d8fe382e165c15f3b6ada8",
+  "software_sha256": "2b78787ae144ff60562fd332b228d50958b570fcaddfa762057d36d463303b33"
+}

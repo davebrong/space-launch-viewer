@@ -1,0 +1,68 @@
+{
+  "at": "2026-10-13T19:21:57.006360+00:00",
+  "catalog": {
+    "checked_at": "2026-10-13T19:21:57Z",
+    "scope": "Cape/Kennedy",
+    "provider_count": 205,
+    "received": 205,
+    "ingested": 205,
+    "pages": 3,
+    "complete": true,
+    "error": null
+  },
+  "stored_counts": {
+    "launches": 205,
+    "route_evidence": 0,
+    "profile_versions": 0
+  },
+  "sources": [
+    {
+      "key": "ll2:page:100",
+      "error": null,
+      "provenance": {
+        "kind": "provider",
+        "notes": [],
+        "sha256": "c8996bcae9e7c6b52f7bc7f88ba169f75d5f8e866b4754b6fc1aee2b4afa6b0f",
+        "license": "The Space Devs LL2 attribution; no linked imagery redistributed",
+        "issued_at": null,
+        "fetched_at": "2026-10-13T19:21:57Z",
+        "source_url": "https://ll.thespacedevs.com/2.3.0/launches/upcoming/?limit=100&location__ids=12,27&offset=100",
+        "parser_version": "ll2-v1",
+        "source_revision": null
+      }
+    },
+    {
+      "key": "ll2:page:200",
+      "error": null,
+      "provenance": {
+        "kind": "provider",
+        "notes": [],
+        "sha256": "d8ab8126c2a1b16de5426f4a699229de78f0940f4d6d3bfc2ad822fbfc0834b4",
+        "license": "The Space Devs LL2 attribution; no linked imagery redistributed",
+        "issued_at": null,
+        "fetched_at": "2026-10-13T19:21:57Z",
+        "source_url": "https://ll.thespacedevs.com/2.3.0/launches/upcoming/?limit=100&location__ids=12,27&offset=200",
+        "parser_version": "ll2-v1",
+        "source_revision": null
+      }
+    },
+    {
+      "key": "ll2",
+      "error": null,
+      "provenance": {
+        "kind": "provider",
+        "notes": [],
+        "sha256": "6d03c1dc44947ef48d7f8805901a2728f3298d0d8bee94f13d1a2f69b5cffc21",
+        "license": "The Space Devs LL2 attribution; no linked imagery redistributed",
+        "issued_at": null,
+        "fetched_at": "2026-10-13T19:11:20Z",
+        "source_url": "https://ll.thespacedevs.com/2.3.0/launches/upcoming/?limit=100&location__ids=12,27",
+        "parser_version": "ll2-v1",
+        "source_revision": null
+      }
+    }
+  ],
+  "visibility_integration_complete": false,
+  "missing_implementation": "Automatic per-mission route discovery and qualified ascent profiles",
+  "simulation_scope": "Authored Dragon/station family scenario only; not an API trajectory"
+}

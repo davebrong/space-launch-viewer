@@ -1,0 +1,7 @@
+
+> launch-visibility-workspace@0.1.0 types
+> openapi-typescript spec/contracts/openapi.json -o apps/web/lib/api.generated.ts
+
+✨ openapi-typescript 7.13.0
+🚀 spec/contracts/openapi.json → apps/web/lib/api.generated.ts [209.4ms]
+

@@ -1,0 +1,872 @@
+{
+  "reviewed_input_manifest": "evidence/build/release-input-manifest.json",
+  "checks": [
+    {
+      "run_at": "2026-10-13T15:51:03.254552+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/application",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/application-unit-final-2026-10-13T155103_254552_0000.txt",
+      "sha256": "a5ea9df5de71c639efeeb1b047f5af93b83e72ecb7e7000991dd55eb7cda90bd",
+      "software_sha256": "201a4f9e7394dec8307bf7ef6d5f8e02f5bf87acb44c44fe1f1b4b71456f1672"
+    },
+    {
+      "run_at": "2026-10-13T15:51:07.406015+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "packages",
+        "services",
+        "implementation",
+        "ops",
+        "tests/application",
+        "tests/browser_server.py",
+        "tools/dev.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/python-lint-final-2026-10-13T155107_406015_0000.txt",
+      "sha256": "881513cd027e0334026cfcbad052e34fecb3f2c1fef5ab000c86973bc0196cd7",
+      "software_sha256": "201a4f9e7394dec8307bf7ef6d5f8e02f5bf87acb44c44fe1f1b4b71456f1672"
+    },
+    {
+      "run_at": "2026-10-13T15:51:07.747315+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "lint"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/typescript-final-2026-10-13T155107_747315_0000.txt",
+      "sha256": "e7d7e1cf04dd29ae07238717e25773c0433128f5ceba1069dcd50a9ea6af1f05",
+      "software_sha256": "201a4f9e7394dec8307bf7ef6d5f8e02f5bf87acb44c44fe1f1b4b71456f1672"
+    },
+    {
+      "run_at": "2026-10-13T15:36:53.965953+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "up",
+        "--build",
+        "-d",
+        "--wait"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/linux-compose-final-2026-10-13T153653_965953_0000.txt",
+      "sha256": "b8a6707b1398576bdd42eafe61b60a2e29d28aba63b0d7aa0e44a19fa6075304",
+      "software_sha256": "3c263ebda111a3746d36931fd2fac008ae4768d8213800a90477588c21014752"
+    },
+    {
+      "run_at": "2026-10-13T15:51:04.846373+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "api",
+        "worker"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/linux-final-python-images-2026-10-13T155104_846373_0000.txt",
+      "sha256": "6d2ac08e10bcf0d4f97caa1f1bf7a3f8dd6730f341f64a8bf799ada9ee3e74a4",
+      "software_sha256": "201a4f9e7394dec8307bf7ef6d5f8e02f5bf87acb44c44fe1f1b4b71456f1672"
+    },
+    {
+      "run_at": "2026-10-13T16:04:44.750029+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "up",
+        "-d",
+        "--no-deps",
+        "api"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/linux-final-api-start-2026-10-13T160444_750029_0000.txt",
+      "sha256": "e5f8a2f26951d4d03a3d3098a4b7943f7966416e29915a64d5fcbd28adfe3478",
+      "software_sha256": "201a4f9e7394dec8307bf7ef6d5f8e02f5bf87acb44c44fe1f1b4b71456f1672"
+    },
+    {
+      "run_at": "2026-10-13T16:05:05.520026+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        ".runtime/check_final_health.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/final-running-health-2026-10-13T160505_520026_0000.txt",
+      "sha256": "a4e6399662bea9f398a23541598e12ae461a3e698b517c207107215828860526",
+      "software_sha256": "201a4f9e7394dec8307bf7ef6d5f8e02f5bf87acb44c44fe1f1b4b71456f1672"
+    },
+    {
+      "run_at": "2026-10-13T15:52:14.412541+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "run",
+        "--rm",
+        "--no-deps",
+        "--entrypoint",
+        "python",
+        "--volume",
+        "<repo>\\tests:/app/tests:ro",
+        "--volume",
+        "<repo>\\evidence\\build:/app/evidence/build",
+        "--volume",
+        "<repo>\\.runtime:/app/.runtime",
+        "api",
+        "-c",
+        "import json; from implementation.operational_checks import backup_restore; print(json.dumps(backup_restore(False), indent=2))"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/deployment-artifact-restore-2026-10-13T155214_412541_0000.txt",
+      "sha256": "7e9b3c28efc6fbff7c9628e9a1618951c018618842ec7d7768b69f99957d3e8d",
+      "software_sha256": "201a4f9e7394dec8307bf7ef6d5f8e02f5bf87acb44c44fe1f1b4b71456f1672"
+    },
+    {
+      "run_at": "2026-10-13T15:39:25.203451+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tests/acceptance/live.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/provider-live-final-2026-10-13T153925_203451_0000.txt",
+      "sha256": "24696957e40c1feff9506ea9380ea18e8f5e1c6bc0f5c89c5e0c914c484a4270",
+      "software_sha256": "3c263ebda111a3746d36931fd2fac008ae4768d8213800a90477588c21014752"
+    },
+    {
+      "run_at": "2026-10-13T16:00:01.805595+00:00",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/browser-admin-observation-final-2026-10-13T160001_805595_0000.txt",
+      "sha256": "00bf01492fc359224fef7f12118ae8833d686f711bf6f2154e220a4215677834",
+      "software_sha256": "201a4f9e7394dec8307bf7ef6d5f8e02f5bf87acb44c44fe1f1b4b71456f1672"
+    },
+    {
+      "run_at": "2026-10-13T16:03:07.777954+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "<repo>\\tests\\acceptance\\run.py",
+        "--suite",
+        "all"
+      ],
+      "exit_code": 1,
+      "status": "blocked",
+      "artifact_path": "evidence/build/logs/full-release-all-2026-10-13T160307_777954_0000.txt",
+      "sha256": "0f6e1114e75e9bf9533d21d265f9d60c1b08670020e1384cee2785d81ff2eef8",
+      "software_sha256": "201a4f9e7394dec8307bf7ef6d5f8e02f5bf87acb44c44fe1f1b4b71456f1672",
+      "reason": "Only backup-restore fails: existing off-host destination is unavailable; all other 123 checks passed."
+    },
+    {
+      "run_at": "2026-10-13T16:26:27.742019+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/application",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-unit-2026-10-13T162627_742019_0000.txt",
+      "sha256": "b0e1d8ad28e9298fe5503eb3f4091e49c260a588659d9233c957f116abf21fee",
+      "software_sha256": "05be9b8899be1ff4e7271ea033860cda98f7b6bce740617b22d58ee06d6e1207"
+    },
+    {
+      "run_at": "2026-10-13T16:33:03.033663+00:00",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-browser-2026-10-13T163303_033663_0000.txt",
+      "sha256": "e8b44413f7874f2b11528f48d5a52940fe6030aa5b11541ede7f6d5dcc21b88e",
+      "software_sha256": "d102aa300f2328a0c9d3cb0e163b509fbfad02a711af61b4d4db81edd6e82d50"
+    },
+    {
+      "run_at": "2026-10-13T16:29:34.397835+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tests/acceptance/run.py",
+        "--suite",
+        "api-contract"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-api-contract-2026-10-13T162934_397835_0000.txt",
+      "sha256": "7d9f7ed8a357bc29ae702e045a0c38ea521c3dda53af1a0c4823fdc8659bd428",
+      "software_sha256": "d102aa300f2328a0c9d3cb0e163b509fbfad02a711af61b4d4db81edd6e82d50"
+    },
+    {
+      "run_at": "2026-10-13T16:24:04.295304+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tests/acceptance/run.py",
+        "--suite",
+        "pilot-archive"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-pilot-archive-2026-10-13T162404_295304_0000.txt",
+      "sha256": "7d9f7ed8a357bc29ae702e045a0c38ea521c3dda53af1a0c4823fdc8659bd428",
+      "software_sha256": "cf9a8e4e0016b786ec6271ada84541e5971acb88989615bb62fe904d9356724b"
+    },
+    {
+      "run_at": "2026-10-13T16:29:38.522611+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tests/acceptance/run.py",
+        "--suite",
+        "privacy-security"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-privacy-security-2026-10-13T162938_522611_0000.txt",
+      "sha256": "7d9f7ed8a357bc29ae702e045a0c38ea521c3dda53af1a0c4823fdc8659bd428",
+      "software_sha256": "d102aa300f2328a0c9d3cb0e163b509fbfad02a711af61b4d4db81edd6e82d50"
+    },
+    {
+      "run_at": "2026-10-13T16:24:15.371305+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "lint"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-types-2026-10-13T162415_371305_0000.txt",
+      "sha256": "e7d7e1cf04dd29ae07238717e25773c0433128f5ceba1069dcd50a9ea6af1f05",
+      "software_sha256": "cf9a8e4e0016b786ec6271ada84541e5971acb88989615bb62fe904d9356724b"
+    },
+    {
+      "run_at": "2026-10-13T16:29:41.462448+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "services/api/main.py",
+        "services/api/pilot.py",
+        "tests/application/test_retrospective.py",
+        "tests/browser_server.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-lint-2026-10-13T162941_462448_0000.txt",
+      "sha256": "881513cd027e0334026cfcbad052e34fecb3f2c1fef5ab000c86973bc0196cd7",
+      "software_sha256": "d102aa300f2328a0c9d3cb0e163b509fbfad02a711af61b4d4db81edd6e82d50"
+    },
+    {
+      "run_at": "2026-10-13T16:34:18.065497+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/check_spec.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-spec-2026-10-13T163418_065497_0000.txt",
+      "sha256": "3d25561fbb27d89d67a9c11b37b0feea842233ebf78509ef65683ca30834b854",
+      "software_sha256": "d102aa300f2328a0c9d3cb0e163b509fbfad02a711af61b4d4db81edd6e82d50"
+    },
+    {
+      "run_at": "2026-10-13T16:27:41.323766+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "web",
+        "api",
+        "worker"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-linux-build-2026-10-13T162741_323766_0000.txt",
+      "sha256": "603f6cd1d00038c7df51557df2ee24ef4c7b4ba2dbc8d5dd96cf1f1dbb9df25d",
+      "software_sha256": "d102aa300f2328a0c9d3cb0e163b509fbfad02a711af61b4d4db81edd6e82d50"
+    },
+    {
+      "run_at": "2026-10-13T16:28:59.147283+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "up",
+        "-d",
+        "--no-deps",
+        "api",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-linux-start-2026-10-13T162859_147283_0000.txt",
+      "sha256": "7dc156bfac7c7fbfaaaf734fd37fcd9cdadc06db9d8ca44af0b6a15cf38af03d",
+      "software_sha256": "d102aa300f2328a0c9d3cb0e163b509fbfad02a711af61b4d4db81edd6e82d50"
+    },
+    {
+      "run_at": "2026-10-13T16:34:39.301551+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-c",
+        "import runpy; runpy.run_path('.runtime/qa_weather_state.py')"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/qa-md-zip-weather-cache-2026-10-13T163439_301551_0000.txt",
+      "sha256": "b430db90a49e8a89a0407a1719ad8ae666c1a23d30213cafbebdb9cd8be0157f",
+      "software_sha256": "d102aa300f2328a0c9d3cb0e163b509fbfad02a711af61b4d4db81edd6e82d50"
+    },
+    {
+      "run_at": "2026-10-13T17:02:39.406623+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/application",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/planning-unit-2026-10-13T170239_406623_0000.txt",
+      "sha256": "34fc35ae27790e5a6f05bb666ec3884a8327f607dbf9df77dfedae7b15801bf7",
+      "software_sha256": "f1d2589f1d297e0006c07eeb7fba938befcf7033b816604c40fb55746f34eb98"
+    },
+    {
+      "run_at": "2026-10-13T17:07:25.418639+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/check_spec.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/planning-spec-2026-10-13T170725_418639_0000.txt",
+      "sha256": "3d25561fbb27d89d67a9c11b37b0feea842233ebf78509ef65683ca30834b854",
+      "software_sha256": "f1d2589f1d297e0006c07eeb7fba938befcf7033b816604c40fb55746f34eb98"
+    },
+    {
+      "run_at": "2026-10-13T17:02:45.758690+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "lint"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/planning-types-2026-10-13T170245_758690_0000.txt",
+      "sha256": "e7d7e1cf04dd29ae07238717e25773c0433128f5ceba1069dcd50a9ea6af1f05",
+      "software_sha256": "f1d2589f1d297e0006c07eeb7fba938befcf7033b816604c40fb55746f34eb98"
+    },
+    {
+      "run_at": "2026-10-13T17:02:48.029333+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "packages",
+        "services",
+        "tests/application"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/planning-lint-2026-10-13T170248_029333_0000.txt",
+      "sha256": "881513cd027e0334026cfcbad052e34fecb3f2c1fef5ab000c86973bc0196cd7",
+      "software_sha256": "f1d2589f1d297e0006c07eeb7fba938befcf7033b816604c40fb55746f34eb98"
+    },
+    {
+      "run_at": "2026-10-13T17:02:48.292812+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tests/acceptance/run.py",
+        "--suite",
+        "api-contract"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/planning-api-contract-2026-10-13T170248_292812_0000.txt",
+      "sha256": "7d9f7ed8a357bc29ae702e045a0c38ea521c3dda53af1a0c4823fdc8659bd428",
+      "software_sha256": "f1d2589f1d297e0006c07eeb7fba938befcf7033b816604c40fb55746f34eb98"
+    },
+    {
+      "run_at": "2026-10-13T17:02:51.465066+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "web",
+        "api",
+        "worker"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/planning-linux-build-2026-10-13T170251_465066_0000.txt",
+      "sha256": "38b0a73d9ef80fd6c15ff1a5261df237dba37bb473a7b304a01ab6750e5af9f4",
+      "software_sha256": "f1d2589f1d297e0006c07eeb7fba938befcf7033b816604c40fb55746f34eb98"
+    },
+    {
+      "run_at": "2026-10-13T17:03:39.793341+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "up",
+        "-d",
+        "--no-deps",
+        "api",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/planning-linux-start-2026-10-13T170339_793341_0000.txt",
+      "sha256": "7dc156bfac7c7fbfaaaf734fd37fcd9cdadc06db9d8ca44af0b6a15cf38af03d",
+      "software_sha256": "f1d2589f1d297e0006c07eeb7fba938befcf7033b816604c40fb55746f34eb98"
+    },
+    {
+      "run_at": "2026-10-13T17:04:32.373400+00:00",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/planning-browser-2026-10-13T170432_373400_0000.txt",
+      "sha256": "8242fe4b3c2d24421fe5b76417a4444d7e5f156c76d23468d09cabb7257dca36",
+      "software_sha256": "f1d2589f1d297e0006c07eeb7fba938befcf7033b816604c40fb55746f34eb98"
+    },
+    {
+      "run_at": "2026-10-13T19:10:09.121429+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/application",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/viewable-unit-2026-10-13T191009_121429_0000.txt",
+      "sha256": "de9ff198f5b575aa965713ddfb3cedb7bb3347a75c186c01c7333db224f0b011",
+      "software_sha256": "07a4c0032e61094e59e6fdd952e908d935bf610e1674b8daf734ade128367d05"
+    },
+    {
+      "run_at": "2026-10-13T19:13:33.206024+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/check_spec.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/viewable-spec-2026-10-13T191333_206024_0000.txt",
+      "sha256": "3d25561fbb27d89d67a9c11b37b0feea842233ebf78509ef65683ca30834b854",
+      "software_sha256": "521c686105f7f7ad87c9268364e6ee02183e348c1614ab5be3e32ea44722f283"
+    },
+    {
+      "run_at": "2026-10-13T19:10:17.921898+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "lint"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/viewable-types-2026-10-13T191017_921898_0000.txt",
+      "sha256": "e7d7e1cf04dd29ae07238717e25773c0433128f5ceba1069dcd50a9ea6af1f05",
+      "software_sha256": "07a4c0032e61094e59e6fdd952e908d935bf610e1674b8daf734ade128367d05"
+    },
+    {
+      "run_at": "2026-10-13T19:10:20.959651+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "packages",
+        "services",
+        "tests/application"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/viewable-lint-2026-10-13T191020_959651_0000.txt",
+      "sha256": "881513cd027e0334026cfcbad052e34fecb3f2c1fef5ab000c86973bc0196cd7",
+      "software_sha256": "07a4c0032e61094e59e6fdd952e908d935bf610e1674b8daf734ade128367d05"
+    },
+    {
+      "run_at": "2026-10-13T19:11:26.002121+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tests/acceptance/run.py",
+        "--suite",
+        "api-contract"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/viewable-contract-2026-10-13T191126_002121_0000.txt",
+      "sha256": "7d9f7ed8a357bc29ae702e045a0c38ea521c3dda53af1a0c4823fdc8659bd428",
+      "software_sha256": "521c686105f7f7ad87c9268364e6ee02183e348c1614ab5be3e32ea44722f283"
+    },
+    {
+      "run_at": "2026-10-13T19:10:10.395076+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "web",
+        "api",
+        "worker"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/viewable-build-2026-10-13T191010_395076_0000.txt",
+      "sha256": "e5185874963480497ddd82900df766e8ed107bbc40424628c3cced0b5311355b",
+      "software_sha256": "07a4c0032e61094e59e6fdd952e908d935bf610e1674b8daf734ade128367d05"
+    },
+    {
+      "run_at": "2026-10-13T19:11:28.907604+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "api",
+        "worker"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/viewable-api-build-2026-10-13T191128_907604_0000.txt",
+      "sha256": "c12a79f540fb9668a284e716d3138eafc23e3020e2a5e20bac868423e86268cd",
+      "software_sha256": "521c686105f7f7ad87c9268364e6ee02183e348c1614ab5be3e32ea44722f283"
+    },
+    {
+      "run_at": "2026-10-13T19:11:55.025018+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "up",
+        "-d",
+        "--no-deps",
+        "api",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/viewable-start-2026-10-13T191155_025018_0000.txt",
+      "sha256": "7dc156bfac7c7fbfaaaf734fd37fcd9cdadc06db9d8ca44af0b6a15cf38af03d",
+      "software_sha256": "521c686105f7f7ad87c9268364e6ee02183e348c1614ab5be3e32ea44722f283"
+    },
+    {
+      "run_at": "2026-10-13T19:12:25.559761+00:00",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/viewable-browser-2026-10-13T191225_559761_0000.txt",
+      "sha256": "5a4a72d8e4a3082fa55d4cfab11b270bb19e6508b7c0acc81d879903a2607095",
+      "software_sha256": "521c686105f7f7ad87c9268364e6ee02183e348c1614ab5be3e32ea44722f283"
+    },
+    {
+      "run_at": "2026-10-13T19:29:22.607425+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/application",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/source-unit-2026-10-13T192922_607425_0000.txt",
+      "sha256": "183ac6e2837c1de568cb37b38d7cabb4d3a43ec6147c4704cd4e1c4e21c81da7",
+      "software_sha256": "e5e17b82bd13d163f3d81af0b43642fe2fc0b34b79ad07e89e53f93769109d63"
+    },
+    {
+      "run_at": "2026-10-13T19:29:32.186609+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "packages",
+        "services",
+        "tests/application",
+        "tools/audit_catalog.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/source-lint-2026-10-13T192932_186609_0000.txt",
+      "sha256": "881513cd027e0334026cfcbad052e34fecb3f2c1fef5ab000c86973bc0196cd7",
+      "software_sha256": "e5e17b82bd13d163f3d81af0b43642fe2fc0b34b79ad07e89e53f93769109d63"
+    },
+    {
+      "run_at": "2026-10-13T19:31:21.343119+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/check_spec.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/source-spec-2026-10-13T193121_343119_0000.txt",
+      "sha256": "3d25561fbb27d89d67a9c11b37b0feea842233ebf78509ef65683ca30834b854",
+      "software_sha256": "e5e17b82bd13d163f3d81af0b43642fe2fc0b34b79ad07e89e53f93769109d63"
+    },
+    {
+      "run_at": "2026-10-13T19:22:05.737948+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "implementation.checks",
+        "ingestion"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/source-ingestion-2026-10-13T192205_737948_0000.txt",
+      "sha256": "e859ff0b07dfaa52c00eabd89aada9bd5bb90f99ccc583bc83e8ac37d57bdc57",
+      "software_sha256": "79f8127ec1372a61f47929cd136449d6ccca49e01d68a510d30ee533612497c2"
+    },
+    {
+      "run_at": "2026-10-13T19:21:56.344353+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/audit_catalog.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/source-catalog-2026-10-13T192156_344353_0000.txt",
+      "sha256": "e747aa396929827a7149aaf5aa9e09a48bdb2b5183782e5c6bcfb1ff0541c818",
+      "software_sha256": "79f8127ec1372a61f47929cd136449d6ccca49e01d68a510d30ee533612497c2"
+    },
+    {
+      "run_at": "2026-10-13T19:29:40.497750+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "api",
+        "worker"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/source-build-2026-10-13T192940_497750_0000.txt",
+      "sha256": "7a6aaf99e598073aafe85aa83b5fa3424cee2e947669a041aae01ebfeed7a82e",
+      "software_sha256": "e5e17b82bd13d163f3d81af0b43642fe2fc0b34b79ad07e89e53f93769109d63"
+    },
+    {
+      "run_at": "2026-10-13T19:29:42.580947+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "up",
+        "-d",
+        "--no-deps",
+        "api"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/source-start-2026-10-13T192942_580947_0000.txt",
+      "sha256": "e5f8a2f26951d4d03a3d3098a4b7943f7966416e29915a64d5fcbd28adfe3478",
+      "software_sha256": "e5e17b82bd13d163f3d81af0b43642fe2fc0b34b79ad07e89e53f93769109d63"
+    },
+    {
+      "run_at": "2026-10-13T19:46:48.124340+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "api",
+        "worker"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-api-build-2026-10-13T194648_124340_0000.txt",
+      "sha256": "58903223228cbb62bd16037df3b7bcce33ea7547dae88a53ba5fd45fdfc795a6",
+      "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+    },
+    {
+      "run_at": "2026-10-13T19:49:12.340193+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "up",
+        "-d",
+        "--wait",
+        "api"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-api-start-2026-10-13T194912_340193_0000.txt",
+      "sha256": "6bac8a1342d021dc5b5b7387d69670d493835ef4858f376d81902f1ffdabe25d",
+      "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+    },
+    {
+      "run_at": "2026-10-13T19:48:47.159302+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "test:browser",
+        "--",
+        "tests/browser/states.spec.ts"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-browser-states-2026-10-13T194847_159302_0000.txt",
+      "sha256": "4e9235b338e9a6b23681fd8dc500c713f60fe93d0b3c47a5b42a8799009ef7e0",
+      "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+    },
+    {
+      "run_at": "2026-10-13T19:43:16.844683+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "api",
+        "worker",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-compose-build-2026-10-13T194316_844683_0000.txt",
+      "sha256": "5fcde7bc6294bc7a29b04fcfdfbd93631d800239d98214f32475bc73c0a8e0a2",
+      "software_sha256": "9518dd090e4d826df5663a0dcb787f7ebbe23d7e7153da2569f8cdad89c4f17f"
+    },
+    {
+      "run_at": "2026-10-13T19:44:18.059268+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "up",
+        "-d",
+        "--wait",
+        "api",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-compose-start-2026-10-13T194418_059268_0000.txt",
+      "sha256": "e19b3b669c54041c2c9115c9d93a549d03908039ac13bf322cedb316d282c750",
+      "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+    },
+    {
+      "run_at": "2026-10-13T19:42:24.178299+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "lint"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-lint-2026-10-13T194224_178299_0000.txt",
+      "sha256": "e7d7e1cf04dd29ae07238717e25773c0433128f5ceba1069dcd50a9ea6af1f05",
+      "software_sha256": "9518dd090e4d826df5663a0dcb787f7ebbe23d7e7153da2569f8cdad89c4f17f"
+    },
+    {
+      "run_at": "2026-10-13T19:49:57.953163+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/audit_nearby.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-live-2026-10-13T194957_953163_0000.txt",
+      "sha256": "2df381c6c2f8a239860c5735e4be184215e8913e2fbc9dbb798d1ae2404f8162",
+      "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+    },
+    {
+      "run_at": "2026-10-13T19:50:28.559679+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "packages/visibility/nearby.py",
+        "packages/visibility/planning.py",
+        "services/api/opportunities.py",
+        "tests/application/test_nearby.py",
+        "tests/application/test_opportunities.py",
+        "tools/audit_nearby.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-python-lint-2026-10-13T195028_559679_0000.txt",
+      "sha256": "881513cd027e0334026cfcbad052e34fecb3f2c1fef5ab000c86973bc0196cd7",
+      "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+    },
+    {
+      "run_at": "2026-10-13T19:47:24.668206+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/check_spec.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-spec-2026-10-13T194724_668206_0000.txt",
+      "sha256": "3d25561fbb27d89d67a9c11b37b0feea842233ebf78509ef65683ca30834b854",
+      "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+    },
+    {
+      "run_at": "2026-10-13T19:42:22.769387+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "types"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-types-2026-10-13T194222_769387_0000.txt",
+      "sha256": "acca0cb208f88358b10f15cd5f8ca658471a0eb50870b7f4e8985063d1e47130",
+      "software_sha256": "9518dd090e4d826df5663a0dcb787f7ebbe23d7e7153da2569f8cdad89c4f17f"
+    },
+    {
+      "run_at": "2026-10-13T19:46:35.936365+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/application",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/nearby-unit-2026-10-13T194635_936365_0000.txt",
+      "sha256": "955fb38f833264839deb31a29cb7bc372620fb330cfd5e7f6d029136bed4322a",
+      "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+    }
+  ],
+  "acceptance_report": "evidence/build/acceptance-final.json",
+  "qa_followup": "evidence/build/qa-md-zip.json",
+  "planning_followup": "evidence/build/planning.json",
+  "viewable_followup": "evidence/build/viewable.json",
+  "reason": "Core automatic per-mission route discovery and profile integration is incomplete, in addition to off-host recovery. Passing component tests do not satisfy the ZIP visibility product.",
+  "source_audit": "evidence/build/source-audit.json",
+  "nearby_followup": "evidence/build/nearby.json"
+}

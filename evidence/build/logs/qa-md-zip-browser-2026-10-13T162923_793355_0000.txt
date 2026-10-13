@@ -1,0 +1,110 @@
+
+Running 10 tests using 1 worker
+
+  ok  1 [desktop] › tests\browser\completed-review.spec.ts:5:5 › ZIP md-zip can review the reported same-day completed launch (6.8s)
+  x   2 [desktop] › tests\browser\completed-review.spec.ts:38:5 › unknown provider placeholders never create exact date groups (14.9s)
+  ok  3 [desktop] › tests\browser\journeys.spec.ts:5:5 › live location, schedule, uncertainty, reminders, privacy and keyboard journeys (6.9s)
+  ok  4 [desktop] › tests\browser\journeys.spec.ts:52:5 › observer clock is independent of browser timezone and preserves DST fold (1.5s)
+  ok  5 [desktop] › tests\browser\states.spec.ts:6:5 › synthetic edge cases through actual API, database and UI (1.1m)
+  ok  6 [mobile] › tests\browser\completed-review.spec.ts:5:5 › ZIP md-zip can review the reported same-day completed launch (3.4s)
+  x   7 [mobile] › tests\browser\completed-review.spec.ts:38:5 › unknown provider placeholders never create exact date groups (12.5s)
+  ok  8 [mobile] › tests\browser\journeys.spec.ts:5:5 › live location, schedule, uncertainty, reminders, privacy and keyboard journeys (5.0s)
+  ok  9 [mobile] › tests\browser\journeys.spec.ts:52:5 › observer clock is independent of browser timezone and preserves DST fold (1.3s)
+  ok 10 [mobile] › tests\browser\states.spec.ts:6:5 › synthetic edge cases through actual API, database and UI (1.2m)
+
+
+  1) [desktop] › tests\browser\completed-review.spec.ts:38:5 › unknown provider placeholders never create exact date groups 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('alert')
+    Expected substring: "Synthetic assessment outage"
+    Error: strict mode violation: getByRole('alert') resolved to 2 elements:
+        1) <div role="alert" class="alert error">…</div> aka getByText('Synthetic assessment outage')
+        2) <div role="alert" aria-live="assertive" id="__next-route-announcer__"></div> aka locator('[id="__next-route-announcer__"]')
+
+    Call log:
+      - Expect "toContainText" getByRole('alert') with timeout 15000ms
+      - waiting for getByRole('alert')
+
+
+      54 |   await page.goto('http://127.0.0.1:3091/launches/'+id);
+      55 |   await expect(page.getByRole('heading',{name:'Viewing details unavailable',exact:true})).toBeVisible();
+    > 56 |   await expect(page.getByRole('alert')).toContainText('Synthetic assessment outage');
+         |                                         ^
+      57 |   await expect(page.getByRole('heading',{name:'Loading viewing details…'})).toHaveCount(0);
+      58 |   await page.unroute('**/api/v1/assessments');
+      59 |   await page.goto('http://127.0.0.1:3091/launches/nonexistent-qa-mission');
+        at <repo>\tests\browser\completed-review.spec.ts:56:41
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\completed-review-unknown-p-bed28-er-create-exact-date-groups-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\completed-review-unknown-p-bed28-er-create-exact-date-groups-desktop\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\completed-review-unknown-p-bed28-er-create-exact-date-groups-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\completed-review-unknown-p-bed28-er-create-exact-date-groups-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [mobile] › tests\browser\completed-review.spec.ts:38:5 › unknown provider placeholders never create exact date groups 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('alert')
+    Expected substring: "Synthetic assessment outage"
+    Error: strict mode violation: getByRole('alert') resolved to 2 elements:
+        1) <div role="alert" class="alert error">…</div> aka getByText('Synthetic assessment outage')
+        2) <div role="alert" aria-live="assertive" id="__next-route-announcer__"></div> aka locator('[id="__next-route-announcer__"]')
+
+    Call log:
+      - Expect "toContainText" getByRole('alert') with timeout 15000ms
+      - waiting for getByRole('alert')
+
+
+      54 |   await page.goto('http://127.0.0.1:3091/launches/'+id);
+      55 |   await expect(page.getByRole('heading',{name:'Viewing details unavailable',exact:true})).toBeVisible();
+    > 56 |   await expect(page.getByRole('alert')).toContainText('Synthetic assessment outage');
+         |                                         ^
+      57 |   await expect(page.getByRole('heading',{name:'Loading viewing details…'})).toHaveCount(0);
+      58 |   await page.unroute('**/api/v1/assessments');
+      59 |   await page.goto('http://127.0.0.1:3091/launches/nonexistent-qa-mission');
+        at <repo>\tests\browser\completed-review.spec.ts:56:41
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\completed-review-unknown-p-bed28-er-create-exact-date-groups-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\completed-review-unknown-p-bed28-er-create-exact-date-groups-mobile\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\completed-review-unknown-p-bed28-er-create-exact-date-groups-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\completed-review-unknown-p-bed28-er-create-exact-date-groups-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [desktop] › tests\browser\completed-review.spec.ts:38:5 › unknown provider placeholders never create exact date groups 
+    [mobile] › tests\browser\completed-review.spec.ts:38:5 › unknown provider placeholders never create exact date groups 
+  8 passed (3.3m)
+
+[WebServer] <repo>\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+[WebServer]   from starlette.testclient import TestClient as TestClient  # noqa
+[WebServer] INFO:     Started server process [358848]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:3091 (Press CTRL+C to quit)
+(node:338132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:287172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:329144) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:307348) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

@@ -1,0 +1,14 @@
+{
+  "run_at": "2026-10-13T15:58:47.282476+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "<repo>\\tests\\acceptance\\run.py",
+    "--suite",
+    "R010"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/browser-guidance-R010-2026-10-13T155847_282476_0000.txt",
+  "sha256": "76e939003a17a8d0e3cfffb1ed0ace38d78e03b1247a664618f418f4982244d4",
+  "software_sha256": "201a4f9e7394dec8307bf7ef6d5f8e02f5bf87acb44c44fe1f1b4b71456f1672"
+}

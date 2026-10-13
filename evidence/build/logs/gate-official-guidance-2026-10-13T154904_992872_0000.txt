@@ -1,0 +1,9 @@
+{
+  "run_at": "2026-10-13T15:49:05Z",
+  "status": "blocked",
+  "reason": "NASA TOMEX+ guidance retrieved for review. No verified coordinate membership and observer-specific usable interval fixture is yet admitted; launch window alone is insufficient.",
+  "url": "https://www.nasa.gov/blogs/wallops/2025/08/26/nasa-sounding-rocket-mission-targeting-aug-26-launch-attempt/",
+  "http_status": 200,
+  "sha256": "fe9b9d283abfd3f2c12ddafd860c814a158db0396b58a1f784777bee67ceaa8a"
+}
+

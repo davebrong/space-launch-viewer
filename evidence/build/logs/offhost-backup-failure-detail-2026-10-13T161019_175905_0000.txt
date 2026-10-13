@@ -1,0 +1,8 @@
+
+<repo>\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+  from starlette.testclient import TestClient as TestClient  # noqa
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "<repo>\implementation\operational_checks.py", line 84, in backup_restore
+    raise RuntimeError(
+RuntimeError: BLOCKED backup-restore: no accessible existing off-host destination configured; local encrypted restore passed, but does not establish off-host RPO

@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "required": [
+    "time",
+    "altitude",
+    "velocity",
+    "downrange_distance"
+  ],
+  "properties": {
+    "time": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    },
+    "altitude": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    },
+    "velocity": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    },
+    "downrange_distance": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

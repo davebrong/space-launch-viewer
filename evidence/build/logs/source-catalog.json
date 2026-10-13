@@ -1,0 +1,12 @@
+{
+  "run_at": "2026-10-13T19:21:56.344353+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "tools/audit_catalog.py"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/source-catalog-2026-10-13T192156_344353_0000.txt",
+  "sha256": "e747aa396929827a7149aaf5aa9e09a48bdb2b5183782e5c6bcfb1ff0541c818",
+  "software_sha256": "79f8127ec1372a61f47929cd136449d6ccca49e01d68a510d30ee533612497c2"
+}

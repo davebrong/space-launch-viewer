@@ -1,0 +1,13 @@
+{
+  "run_at": "2026-10-13T19:42:24.178299+00:00",
+  "command": [
+    "npm.cmd",
+    "run",
+    "lint"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/nearby-lint-2026-10-13T194224_178299_0000.txt",
+  "sha256": "e7d7e1cf04dd29ae07238717e25773c0433128f5ceba1069dcd50a9ea6af1f05",
+  "software_sha256": "9518dd090e4d826df5663a0dcb787f7ebbe23d7e7153da2569f8cdad89c4f17f"
+}

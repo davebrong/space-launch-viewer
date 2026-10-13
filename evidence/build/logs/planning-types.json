@@ -1,0 +1,13 @@
+{
+  "run_at": "2026-10-13T17:02:45.758690+00:00",
+  "command": [
+    "npm.cmd",
+    "run",
+    "lint"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/planning-types-2026-10-13T170245_758690_0000.txt",
+  "sha256": "e7d7e1cf04dd29ae07238717e25773c0433128f5ceba1069dcd50a9ea6af1f05",
+  "software_sha256": "f1d2589f1d297e0006c07eeb7fba938befcf7033b816604c40fb55746f34eb98"
+}

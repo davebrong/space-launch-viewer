@@ -1,0 +1,30 @@
+ Container launch-visibility-dev-postgres-1 Running 
+ Container launch-visibility-dev-postgres-1 Waiting 
+ Container launch-visibility-dev-postgres-1 Healthy 
+Open http://127.0.0.1:3007 . Ctrl+C stops the owned app processes; PostgreSQL data persists.
+
+> launch-visibility-web@0.1.0 dev
+> next dev --webpack -H 127.0.0.1 --port 3007
+
+▲ Next.js 16.4.0 (webpack)
+- Local:         http://127.0.0.1:3007
+- Network:       http://127.0.0.1:3007
+✓ Ready in 649ms
+✓ Running next.config.ts took 66ms
+INFO:     Started server process [301632]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+
+ GET /launches 200 in 1028ms (next.js: 834ms, application-code: 194ms)
+ GET /favicon.ico 200 in 72ms (next.js: 15ms, application-code: 56ms)
+ GET /launches/3b430f81-0ff1-4d85-8a1a-cef0de326198 200 in 45ms (next.js: 14ms, application-code: 32ms)
+ GET /favicon.ico 200 in 54ms (next.js: 2ms, application-code: 52ms)
+ GET /launches 200 in 32ms (next.js: 12ms, application-code: 19ms)
+ GET /favicon.ico 200 in 45ms (next.js: 1.2ms, application-code: 43ms)
+ GET /launches 200 in 50ms (next.js: 14ms, application-code: 36ms)
+ GET /favicon.ico 200 in 53ms (next.js: 9ms, application-code: 43ms)
+ GET / 200 in 37ms (next.js: 15ms, application-code: 22ms)
+ GET /favicon.ico 200 in 45ms (next.js: 1.3ms, application-code: 44ms)
+ GET /launches 200 in 29ms (next.js: 11ms, application-code: 17ms)
+ GET /favicon.ico 200 in 36ms (next.js: 1.1ms, application-code: 35ms)

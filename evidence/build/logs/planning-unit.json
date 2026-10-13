@@ -1,0 +1,17 @@
+{
+  "run_at": "2026-10-13T17:02:39.406623+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/application",
+    "-q",
+    "-p",
+    "no:cacheprovider"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/planning-unit-2026-10-13T170239_406623_0000.txt",
+  "sha256": "34fc35ae27790e5a6f05bb666ec3884a8327f607dbf9df77dfedae7b15801bf7",
+  "software_sha256": "f1d2589f1d297e0006c07eeb7fba938befcf7033b816604c40fb55746f34eb98"
+}

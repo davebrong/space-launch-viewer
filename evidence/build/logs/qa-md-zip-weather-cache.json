@@ -1,0 +1,13 @@
+{
+  "run_at": "2026-10-13T16:34:39.301551+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-c",
+    "import runpy; runpy.run_path('.runtime/qa_weather_state.py')"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/qa-md-zip-weather-cache-2026-10-13T163439_301551_0000.txt",
+  "sha256": "b430db90a49e8a89a0407a1719ad8ae666c1a23d30213cafbebdb9cd8be0157f",
+  "software_sha256": "d102aa300f2328a0c9d3cb0e163b509fbfad02a711af61b4d4db81edd6e82d50"
+}

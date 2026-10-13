@@ -1,0 +1,34 @@
+[
+  {
+    "url": "https://issc.space/robots.txt",
+    "at": "2026-10-13T19:17:31.010903+00:00",
+    "status": 200,
+    "sha256": "f74a79fe7d022ecfa0b3899d521e884b598084cd6ef753e9ad829682bfd45369",
+    "path": "evidence\\build\\source-audit\\response-0.txt",
+    "bytes": 799
+  },
+  {
+    "url": "https://issc.space/api/launches",
+    "at": "2026-10-13T19:17:31.459449+00:00",
+    "status": 403,
+    "sha256": "7867ea53dc3fdaa1d3cb4c80c53823508935d854edbfd5da00b924898c3cd30d",
+    "path": "evidence\\build\\source-audit\\response-1.txt",
+    "bytes": 5383
+  },
+  {
+    "url": "https://issc.space/launch-simulator?science=1",
+    "at": "2026-10-13T19:17:31.769849+00:00",
+    "status": 403,
+    "sha256": "62dd8e9bd6f7eafc2dcde2d6b4dadf44818f96854e05f4ed268be04c365b2b86",
+    "path": "evidence\\build\\source-audit\\response-2.txt",
+    "bytes": 5461
+  },
+  {
+    "url": "https://lldev.thespacedevs.com/2.3.0/json",
+    "at": "2026-10-13T19:17:32.092172+00:00",
+    "status": 200,
+    "sha256": "5d84073e36f109d89f4fca89063cdf935ecf0468c4871c1ba45fddbd6984038b",
+    "path": "evidence\\build\\source-audit\\response-3.txt",
+    "bytes": 972975
+  }
+]

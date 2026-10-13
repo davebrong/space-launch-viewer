@@ -1,0 +1,14 @@
+{
+  "suite": "browser-journeys",
+  "passed": [
+    "browser-journeys"
+  ],
+  "failed": [],
+  "blocked": [],
+  "adapter_command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "implementation.acceptance_adapter"
+  ],
+  "run_at": "2026-10-13T15:28:18.835527+00:00"
+}

@@ -1,0 +1,20 @@
+ Container launch-visibility-dev-postgres-1 Running 
+ Container launch-visibility-dev-postgres-1 Waiting 
+ Container launch-visibility-dev-postgres-1 Healthy 
+Open http://127.0.0.1:3007 . Ctrl+C stops the owned app processes; PostgreSQL data persists.
+
+> launch-visibility-web@0.1.0 dev
+> next dev --webpack -H 127.0.0.1 --port 3007
+
+▲ Next.js 16.4.0 (webpack)
+- Local:         http://127.0.0.1:3007
+- Network:       http://127.0.0.1:3007
+✓ Ready in 537ms
+INFO:     Started server process [389752]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+✓ Running next.config.ts took 40ms
+
+ GET / 200 in 827ms (next.js: 675ms, application-code: 152ms)
+ GET /favicon.ico 200 in 70ms (next.js: 15ms, application-code: 55ms)

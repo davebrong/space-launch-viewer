@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "generator": "tools/derive_references.py",
+  "pyproj_version": "3.7.2",
+  "generated_for": "specification, not application validation",
+  "cases_sha256": "177523d094529b5f8ab3568d86edb29b75d6a4353fa296dfbbce0ae3b3846759",
+  "independence": "PROJ pipeline/USNO/Census/raw JSON/direct rule tables; no application imports"
+}

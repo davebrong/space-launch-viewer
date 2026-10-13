@@ -1,0 +1,30 @@
+[
+  {
+    "run_at": "2026-10-13T19:22:05.880495+00:00",
+    "command": [
+      "<repo>\\.venv\\Scripts\\python.exe",
+      "<repo>\\tests\\acceptance\\run.py",
+      "--suite",
+      "worker-recovery"
+    ],
+    "exit_code": 0,
+    "status": "passed",
+    "artifact_path": "evidence/build/logs/ingestion-worker-recovery-2026-10-13T192205_880495_0000.txt",
+    "sha256": "7d9f7ed8a357bc29ae702e045a0c38ea521c3dda53af1a0c4823fdc8659bd428",
+    "software_sha256": "79f8127ec1372a61f47929cd136449d6ccca49e01d68a510d30ee533612497c2"
+  },
+  {
+    "run_at": "2026-10-13T19:22:08.910033+00:00",
+    "command": [
+      "<repo>\\.venv\\Scripts\\python.exe",
+      "<repo>\\tests\\acceptance\\run.py",
+      "--suite",
+      "R003"
+    ],
+    "exit_code": 0,
+    "status": "passed",
+    "artifact_path": "evidence/build/logs/ingestion-R003-2026-10-13T192208_910033_0000.txt",
+    "sha256": "a131999fa690d3eb7de892883c321218f8d6296b5d0fec22cb4cee4d42d1c4aa",
+    "software_sha256": "79f8127ec1372a61f47929cd136449d6ccca49e01d68a510d30ee533612497c2"
+  }
+]

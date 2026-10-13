@@ -1,0 +1,17 @@
+{
+  "run_at": "2026-10-13T19:10:20.959651+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "ruff",
+    "check",
+    "packages",
+    "services",
+    "tests/application"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/viewable-lint-2026-10-13T191020_959651_0000.txt",
+  "sha256": "881513cd027e0334026cfcbad052e34fecb3f2c1fef5ab000c86973bc0196cd7",
+  "software_sha256": "07a4c0032e61094e59e6fdd952e908d935bf610e1674b8daf734ade128367d05"
+}

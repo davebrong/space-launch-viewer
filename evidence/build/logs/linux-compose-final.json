@@ -1,0 +1,16 @@
+{
+  "run_at": "2026-10-13T15:36:53.965953+00:00",
+  "command": [
+    "docker",
+    "compose",
+    "up",
+    "--build",
+    "-d",
+    "--wait"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/linux-compose-final-2026-10-13T153653_965953_0000.txt",
+  "sha256": "b8a6707b1398576bdd42eafe61b60a2e29d28aba63b0d7aa0e44a19fa6075304",
+  "software_sha256": "3c263ebda111a3746d36931fd2fac008ae4768d8213800a90477588c21014752"
+}

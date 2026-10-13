@@ -1,0 +1,26 @@
+{
+  "run_at": "2026-10-13T15:52:14.412541+00:00",
+  "command": [
+    "docker",
+    "compose",
+    "run",
+    "--rm",
+    "--no-deps",
+    "--entrypoint",
+    "python",
+    "--volume",
+    "<repo>\\tests:/app/tests:ro",
+    "--volume",
+    "<repo>\\evidence\\build:/app/evidence/build",
+    "--volume",
+    "<repo>\\.runtime:/app/.runtime",
+    "api",
+    "-c",
+    "import json; from implementation.operational_checks import backup_restore; print(json.dumps(backup_restore(False), indent=2))"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/deployment-artifact-restore-2026-10-13T155214_412541_0000.txt",
+  "sha256": "7e9b3c28efc6fbff7c9628e9a1618951c018618842ec7d7768b69f99957d3e8d",
+  "software_sha256": "201a4f9e7394dec8307bf7ef6d5f8e02f5bf87acb44c44fe1f1b4b71456f1672"
+}

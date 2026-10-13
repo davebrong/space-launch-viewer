@@ -1,0 +1,114 @@
+PASSED json-schemas 
+PASSED openapi-3.1 
+PASSED positive-negative-schema-examples 
+PASSED fixture-shape-and-oracle-hash 
+PASSED raw-provenance-hashes 
+PASSED real-provider-snapshot-contracts 
+PASSED requirements-stories-task-graph-traceability 
+PASSED local-document-links 
+FAILED harness-fail-closed-self-tests ......E.E.
+======================================================================
+ERROR: test_provider_schema_drift_fails (__main__.HarnessTests.test_provider_schema_drift_fails)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<repo>\tests\acceptance\test_harness.py", line 41, in test_provider_schema_drift_fails
+    self.assertEqual(live.main(),1)
+                     ^^^^^^^^^^^
+  File "<repo>\tests\acceptance\live.py", line 21, in main
+    ledger=ROOT/'evidence/live-ll2-budget.json'; ledger.parent.mkdir(exist_ok=True); now=time.time()
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: '<home>\\AppData\\Local\\Temp\\tmpp1dpk4pr\\evidence'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 366, in walk
+PermissionError: [WinError 5] Access is denied: '<home>\\AppData\\Local\\Temp\\tmpp1dpk4pr'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<repo>\tests\acceptance\test_harness.py", line 40, in test_provider_schema_drift_fails
+    with tempfile.TemporaryDirectory() as d, patch.object(live,'ROOT',pathlib.Path(d)), patch.object(live.requests,'get',return_value=Response()), contextlib.redirect_stdout(io.StringIO()):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\tempfile.py", line 946, in __exit__
+    self.cleanup()
+  File "<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\tempfile.py", line 950, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\tempfile.py", line 930, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\shutil.py", line 623, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 369, in walk
+  File "<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\shutil.py", line 621, in onerror
+    onexc(os.scandir, err.filename, err)
+  File "<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\tempfile.py", line 902, in onexc
+    _resetperms(path)
+  File "<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] Access is denied: '<home>\\AppData\\Local\\Temp\\tmpp1dpk4pr'
+
+======================================================================
+ERROR: test_unavailable_provider_is_blocked (__main__.HarnessTests.test_unavailable_provider_is_blocked)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<repo>\tests\acceptance\test_harness.py", line 33, in test_unavailable_provider_is_blocked
+    self.assertEqual(live.main(),2)
+                     ^^^^^^^^^^^
+  File "<repo>\tests\acceptance\live.py", line 21, in main
+    ledger=ROOT/'evidence/live-ll2-budget.json'; ledger.parent.mkdir(exist_ok=True); now=time.time()
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+PermissionError: [WinError 5] Access is denied: '<home>\\AppData\\Local\\Temp\\tmporh7f2fc\\evidence'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen os>", line 366, in walk
+PermissionError: [WinError 5] Access is denied: '<home>\\AppData\\Local\\Temp\\tmporh7f2fc'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<repo>\tests\acceptance\test_harness.py", line 32, in test_unavailable_provider_is_blocked
+    with tempfile.TemporaryDirectory() as d, patch.object(live,'ROOT',pathlib.Path(d)), patch.object(live.requests,'get',side_effect=live.requests.ConnectionError('synthetic unavailable')), contextlib.redirect_stdout(io.StringIO()):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\tempfile.py", line 946, in __exit__
+    self.cleanup()
+  File "<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\tempfile.py", line 950, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\tempfile.py", line 930, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\shutil.py", line 623, in _rmtree_unsafe
+    for dirpath, dirnames, filenames in results:
+                                        ^^^^^^^
+  File "<frozen os>", line 369, in walk
+  File "<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\shutil.py", line 621, in onerror
+    onexc(os.scandir, err.filename, err)
+  File "<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\tempfile.py", line 902, in onexc
+    _resetperms(path)
+  File "<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\tempfile.py", line 286, in _resetperms
+    _dont_follow_symlinks(_os.chmod, path, 0o700)
+  File "<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\tempfile.py", line 277, in _dont_follow_symlinks
+    func(path, *args)
+PermissionError: [WinError 5] Access is denied: '<home>\\AppData\\Local\\Temp\\tmporh7f2fc'
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.235s
+
+FAILED (errors=2)
+
+Specification: 8 passed, 1 failed
+

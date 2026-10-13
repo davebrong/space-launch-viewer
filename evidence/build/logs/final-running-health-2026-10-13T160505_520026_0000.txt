@@ -1,0 +1,3 @@
+http://127.0.0.1:3007/api/v1/health/ready 200 {"status":"ok","checked_at":"2026-10-13T16:05:07Z","components":[{"name":"database","status":"ok","last_success_at":"2026-10-13T16:05:07Z","reason":null},{"name":"astronomy","status":"ok","last_success_at":"2026-10-13T16:05:07Z","reason":null},{"name":"worker","status":"ok","last_success_at":"2026-10-13T16:04:52Z","reason":null}]}
+http://127.0.0.1:3080/api/v1/health/ready 200 {"status":"degraded","checked_at":"2026-10-13T16:05:08Z","components":[{"name":"database","status":"ok","last_success_at":"2026-10-13T16:05:08Z","reason":null},{"name":"astronomy","status":"ok","last_success_at":"2026-10-13T16:05:08Z","reason":null},{"name":"worker","status":"degraded","last_success_at":"2026-10-13T15:38:23Z","reason":null}]}
+

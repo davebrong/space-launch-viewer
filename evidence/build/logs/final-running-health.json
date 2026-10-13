@@ -1,0 +1,12 @@
+{
+  "run_at": "2026-10-13T16:05:05.520026+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    ".runtime/check_final_health.py"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/final-running-health-2026-10-13T160505_520026_0000.txt",
+  "sha256": "a4e6399662bea9f398a23541598e12ae461a3e698b517c207107215828860526",
+  "software_sha256": "201a4f9e7394dec8307bf7ef6d5f8e02f5bf87acb44c44fe1f1b4b71456f1672"
+}

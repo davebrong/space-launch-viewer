@@ -1,0 +1,128 @@
+{
+  "checked_at": "2026-10-13T20:06:45.625607+00:00",
+  "scope": "Cape Canaveral and Kennedy (LL2 location IDs 12 and 27)",
+  "raw_count": 205,
+  "unique_raw_count": 205,
+  "stored_count": 205,
+  "missing_from_app": [],
+  "precision_counts": {
+    "Decade": 80,
+    "Unspecified": 2,
+    "Second": 1,
+    "Minute": 1,
+    "Day": 3,
+    "Month": 24,
+    "Quarter 4": 6,
+    "Year Half 2": 8,
+    "Year": 58,
+    "Quarter 1": 8,
+    "Quarter 2": 4,
+    "Year Half 1": 2,
+    "Fiscal Year": 6,
+    "Quarter 3": 2
+  },
+  "dated_launches": [
+    {
+      "id": "bf2c3027-a314-403e-a416-2bfd5d165ad1",
+      "name": "Falcon 9 Block 5 | Dragon CRS-2 SpX-35",
+      "net": "2026-10-13T10:33:44Z",
+      "precision": "Second",
+      "status": "Launch Successful"
+    },
+    {
+      "id": "3b430f81-0ff1-4d85-8a1a-cef0de326198",
+      "name": "Falcon 9 Block 5 | Bandwagon 5 (Dedicated Mid-Inclination Rideshare)",
+      "net": "2026-10-19T10:30:00Z",
+      "precision": "Minute",
+      "status": "Go for Launch"
+    },
+    {
+      "id": "ef9850ad-1096-425b-9d27-f7bbd186e61a",
+      "name": "Vulcan VC6L | Amazon Leo (LV-01)",
+      "net": "2026-10-29T00:00:00Z",
+      "precision": "Day",
+      "status": "To Be Determined"
+    },
+    {
+      "id": "07e945c1-2ec6-4d29-a500-1afbe920440f",
+      "name": "Atlas V N22 | Starliner-1",
+      "net": "2027-01-14T00:00:00Z",
+      "precision": "Day",
+      "status": "To Be Determined"
+    },
+    {
+      "id": "c6e0ad16-8a78-46bc-a693-fbbf5ea4db6f",
+      "name": "Falcon Heavy | Dragonfly",
+      "net": "2028-07-05T00:00:00Z",
+      "precision": "Day",
+      "status": "To Be Determined"
+    }
+  ],
+  "global_crosscheck": {
+    "total": 474,
+    "examined": 100,
+    "cape_or_geographic_matches": 30,
+    "missing_from_scoped_feed": [],
+    "provenance": {
+      "kind": "provider",
+      "notes": [],
+      "sha256": "aafe1a0be2ca57a0f57372e6ed5e40fd87edb806ce7809827a9651ea12ced2c5",
+      "license": "The Space Devs LL2 attribution; no linked imagery redistributed",
+      "issued_at": null,
+      "fetched_at": "2026-10-13T20:06:13Z",
+      "source_url": "https://ll.thespacedevs.com/2.3.0/launches/upcoming/?limit=100",
+      "parser_version": "ll2-v1",
+      "source_revision": null
+    },
+    "error": null
+  },
+  "scoped_sources": [
+    {
+      "key": "ll2:page:200",
+      "provenance": {
+        "kind": "provider",
+        "notes": [],
+        "sha256": "d8ab8126c2a1b16de5426f4a699229de78f0940f4d6d3bfc2ad822fbfc0834b4",
+        "license": "The Space Devs LL2 attribution; no linked imagery redistributed",
+        "issued_at": null,
+        "fetched_at": "2026-10-13T19:52:01Z",
+        "source_url": "https://ll.thespacedevs.com/2.3.0/launches/upcoming/?limit=100&location__ids=12,27&offset=200",
+        "parser_version": "ll2-v1",
+        "source_revision": null
+      },
+      "error": null
+    },
+    {
+      "key": "ll2",
+      "provenance": {
+        "kind": "provider",
+        "notes": [],
+        "sha256": "6d03c1dc44947ef48d7f8805901a2728f3298d0d8bee94f13d1a2f69b5cffc21",
+        "license": "The Space Devs LL2 attribution; no linked imagery redistributed",
+        "issued_at": null,
+        "fetched_at": "2026-10-13T19:41:43Z",
+        "source_url": "https://ll.thespacedevs.com/2.3.0/launches/upcoming/?limit=100&location__ids=12,27",
+        "parser_version": "ll2-v1",
+        "source_revision": null
+      },
+      "error": null
+    },
+    {
+      "key": "ll2:page:100",
+      "provenance": {
+        "kind": "provider",
+        "notes": [],
+        "sha256": "c8996bcae9e7c6b52f7bc7f88ba169f75d5f8e866b4754b6fc1aee2b4afa6b0f",
+        "license": "The Space Devs LL2 attribution; no linked imagery redistributed",
+        "issued_at": null,
+        "fetched_at": "2026-10-13T19:52:01Z",
+        "source_url": "https://ll.thespacedevs.com/2.3.0/launches/upcoming/?limit=100&location__ids=12,27&offset=100",
+        "parser_version": "ll2-v1",
+        "source_revision": null
+      },
+      "error": null
+    }
+  ],
+  "ui_finding": "Month, quarter, half-year, year, fiscal-year and decade precision is collapsed to unknown; coarse schedule information is not displayed. The app does not omit additional day/time-precision launches from this scoped feed.",
+  "coverage_limit": "This verifies the provider response, not completeness of real-world future launch plans. The global crosscheck covers its first 100 chronological rows, not all 474."
+}

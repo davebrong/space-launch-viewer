@@ -1,0 +1,10 @@
+{
+  "hashes_match": true,
+  "created_at": "2026-10-13T15:52:16Z",
+  "deleted_rows_reapplied": 1,
+  "external_sends_during_drill": 0,
+  "rpo_seconds_max": 0,
+  "rto_seconds_max": 0.6495079860033002,
+  "offhost_verified": false,
+  "scope": "isolated local encrypted logical restore drill"
+}

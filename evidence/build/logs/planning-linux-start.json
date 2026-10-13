@@ -1,0 +1,17 @@
+{
+  "run_at": "2026-10-13T17:03:39.793341+00:00",
+  "command": [
+    "docker",
+    "compose",
+    "up",
+    "-d",
+    "--no-deps",
+    "api",
+    "web"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/planning-linux-start-2026-10-13T170339_793341_0000.txt",
+  "sha256": "7dc156bfac7c7fbfaaaf734fd37fcd9cdadc06db9d8ca44af0b6a15cf38af03d",
+  "software_sha256": "f1d2589f1d297e0006c07eeb7fba938befcf7033b816604c40fb55746f34eb98"
+}

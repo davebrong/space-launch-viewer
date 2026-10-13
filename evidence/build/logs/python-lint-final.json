@@ -1,0 +1,21 @@
+{
+  "run_at": "2026-10-13T15:51:07.406015+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "ruff",
+    "check",
+    "packages",
+    "services",
+    "implementation",
+    "ops",
+    "tests/application",
+    "tests/browser_server.py",
+    "tools/dev.py"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/python-lint-final-2026-10-13T155107_406015_0000.txt",
+  "sha256": "881513cd027e0334026cfcbad052e34fecb3f2c1fef5ab000c86973bc0196cd7",
+  "software_sha256": "201a4f9e7394dec8307bf7ef6d5f8e02f5bf87acb44c44fe1f1b4b71456f1672"
+}

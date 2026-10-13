@@ -1,0 +1,394 @@
+{
+  "config": {
+    "argv": [
+      "C:\\nvm4w\\nodejs\\node.exe",
+      "<repo>\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/browser/history.spec.ts",
+      "tests/browser/viewable.spec.ts"
+    ],
+    "configFile": "<repo>\\playwright.config.ts",
+    "rootDir": "<repo>/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "<repo>/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "<repo>/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "<repo>/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "<repo>/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "<repo>\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "desktop",
+        "testDir": "<repo>\\tests\\browser",
+        "snapshotDir": "<repo>\\tests\\browser",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 60000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3007",
+          "browserName": "chromium",
+          "timezoneId": "America/Los_Angeles",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "desktop"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "<repo>\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "mobile",
+        "testDir": "<repo>\\tests\\browser",
+        "snapshotDir": "<repo>\\tests\\browser",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 60000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3007",
+          "browserName": "chromium",
+          "timezoneId": "America/Los_Angeles",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "viewport": {
+            "width": 360,
+            "height": 800
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "mobile"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "evidence/build/playwright.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.0",
+    "workers": 1,
+    "webServer": {
+      "command": ".venv\\Scripts\\python.exe -m tests.browser_server",
+      "url": "http://127.0.0.1:3091/api/v1/health/live",
+      "reuseExistingServer": false,
+      "timeout": 60000
+    }
+  },
+  "suites": [
+    {
+      "title": "history.spec.ts",
+      "file": "history.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "past launches browse real provider records independently of viewing estimates",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 4750,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 58\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"description\": \"Ensure touch targets have sufficient size and space\",\u001b[39m\n\u001b[31m+     \"help\": \"All touch targets must be 24px large, or leave sufficient space\",\u001b[39m\n\u001b[31m+     \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.13/target-size?application=playwright\",\u001b[39m\n\u001b[31m+     \"id\": \"target-size\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"height\": 14,\u001b[39m\n\u001b[31m+               \"minSize\": 24,\u001b[39m\n\u001b[31m+               \"width\": 288.7,\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"target-size\",\u001b[39m\n\u001b[31m+             \"impact\": \"serious\",\u001b[39m\n\u001b[31m+             \"message\": \"Target has insufficient size (288.7px by 14px, should be at least 24px by 24px)\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"closestOffset\": 18,\u001b[39m\n\u001b[31m+               \"minOffset\": 24,\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"target-offset\",\u001b[39m\n\u001b[31m+             \"impact\": \"serious\",\u001b[39m\n\u001b[31m+             \"message\": \"Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px.\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [\u001b[39m\n\u001b[31m+               Object {\u001b[39m\n\u001b[31m+                 \"html\": \"<button>Load older launches</button>\",\u001b[39m\n\u001b[31m+                 \"target\": Array [\u001b[39m\n\u001b[31m+                   \"button:nth-child(7)\",\u001b[39m\n\u001b[31m+                 ],\u001b[39m\n\u001b[31m+               },\u001b[39m\n\u001b[31m+             ],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Target has insufficient size (288.7px by 14px, should be at least 24px by 24px)\u001b[39m\n\u001b[31m+   Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px.\",\u001b[39m\n\u001b[31m+         \"html\": \"<a href=\\\"https://ll.thespacedevs.com/2.3.0/launches/previous/?limit=100&amp;location__ids=12,27&amp;ordering=-net\\\" target=\\\"_blank\\\" rel=\\\"noreferrer\\\">Historical source: The Space Devs Launch Library 2 ↗</a>\",\u001b[39m\n\u001b[31m+         \"impact\": \"serious\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \".small:nth-child(8) > a[target=\\\"_blank\\\"][rel=\\\"noreferrer\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"tags\": Array [\u001b[39m\n\u001b[31m+       \"cat.sensory-and-visual-cues\",\u001b[39m\n\u001b[31m+       \"wcag22aa\",\u001b[39m\n\u001b[31m+       \"wcag258\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 58\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"description\": \"Ensure touch targets have sufficient size and space\",\u001b[39m\n\u001b[31m+     \"help\": \"All touch targets must be 24px large, or leave sufficient space\",\u001b[39m\n\u001b[31m+     \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.13/target-size?application=playwright\",\u001b[39m\n\u001b[31m+     \"id\": \"target-size\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"height\": 14,\u001b[39m\n\u001b[31m+               \"minSize\": 24,\u001b[39m\n\u001b[31m+               \"width\": 288.7,\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"target-size\",\u001b[39m\n\u001b[31m+             \"impact\": \"serious\",\u001b[39m\n\u001b[31m+             \"message\": \"Target has insufficient size (288.7px by 14px, should be at least 24px by 24px)\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"closestOffset\": 18,\u001b[39m\n\u001b[31m+               \"minOffset\": 24,\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"target-offset\",\u001b[39m\n\u001b[31m+             \"impact\": \"serious\",\u001b[39m\n\u001b[31m+             \"message\": \"Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px.\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [\u001b[39m\n\u001b[31m+               Object {\u001b[39m\n\u001b[31m+                 \"html\": \"<button>Load older launches</button>\",\u001b[39m\n\u001b[31m+                 \"target\": Array [\u001b[39m\n\u001b[31m+                   \"button:nth-child(7)\",\u001b[39m\n\u001b[31m+                 ],\u001b[39m\n\u001b[31m+               },\u001b[39m\n\u001b[31m+             ],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Target has insufficient size (288.7px by 14px, should be at least 24px by 24px)\u001b[39m\n\u001b[31m+   Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px.\",\u001b[39m\n\u001b[31m+         \"html\": \"<a href=\\\"https://ll.thespacedevs.com/2.3.0/launches/previous/?limit=100&amp;location__ids=12,27&amp;ordering=-net\\\" target=\\\"_blank\\\" rel=\\\"noreferrer\\\">Historical source: The Space Devs Launch Library 2 ↗</a>\",\u001b[39m\n\u001b[31m+         \"impact\": \"serious\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \".small:nth-child(8) > a[target=\\\"_blank\\\"][rel=\\\"noreferrer\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"tags\": Array [\u001b[39m\n\u001b[31m+       \"cat.sensory-and-visual-cues\",\u001b[39m\n\u001b[31m+       \"wcag22aa\",\u001b[39m\n\u001b[31m+       \"wcag258\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at <repo>\\tests\\browser\\history.spec.ts:22:83",
+                    "location": {
+                      "file": "<repo>\\tests\\browser\\history.spec.ts",
+                      "column": 83,
+                      "line": 22
+                    },
+                    "snippet": "  20 |   await page.screenshot({path:`evidence/build/history-${info.project.name}.png`,fullPage:false});\n  21 |   const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();\n> 22 |   expect(axe.violations.filter(v=>['critical','serious'].includes(v.impact||''))).toEqual([]);\n     |                                                                                   ^\n  23 |   const width=await page.evaluate(()=>({client:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth}));\n  24 |   expect(width.scroll).toBeLessThanOrEqual(width.client);\n  25 |   await page.getByRole('button',{name:'Load older launches'}).click();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "<repo>\\tests\\browser\\history.spec.ts",
+                        "column": 83,
+                        "line": 22
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 58\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"description\": \"Ensure touch targets have sufficient size and space\",\u001b[39m\n\u001b[31m+     \"help\": \"All touch targets must be 24px large, or leave sufficient space\",\u001b[39m\n\u001b[31m+     \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.13/target-size?application=playwright\",\u001b[39m\n\u001b[31m+     \"id\": \"target-size\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"height\": 14,\u001b[39m\n\u001b[31m+               \"minSize\": 24,\u001b[39m\n\u001b[31m+               \"width\": 288.7,\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"target-size\",\u001b[39m\n\u001b[31m+             \"impact\": \"serious\",\u001b[39m\n\u001b[31m+             \"message\": \"Target has insufficient size (288.7px by 14px, should be at least 24px by 24px)\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"closestOffset\": 18,\u001b[39m\n\u001b[31m+               \"minOffset\": 24,\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"target-offset\",\u001b[39m\n\u001b[31m+             \"impact\": \"serious\",\u001b[39m\n\u001b[31m+             \"message\": \"Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px.\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [\u001b[39m\n\u001b[31m+               Object {\u001b[39m\n\u001b[31m+                 \"html\": \"<button>Load older launches</button>\",\u001b[39m\n\u001b[31m+                 \"target\": Array [\u001b[39m\n\u001b[31m+                   \"button:nth-child(7)\",\u001b[39m\n\u001b[31m+                 ],\u001b[39m\n\u001b[31m+               },\u001b[39m\n\u001b[31m+             ],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Target has insufficient size (288.7px by 14px, should be at least 24px by 24px)\u001b[39m\n\u001b[31m+   Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px.\",\u001b[39m\n\u001b[31m+         \"html\": \"<a href=\\\"https://ll.thespacedevs.com/2.3.0/launches/previous/?limit=100&amp;location__ids=12,27&amp;ordering=-net\\\" target=\\\"_blank\\\" rel=\\\"noreferrer\\\">Historical source: The Space Devs Launch Library 2 ↗</a>\",\u001b[39m\n\u001b[31m+         \"impact\": \"serious\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \".small:nth-child(8) > a[target=\\\"_blank\\\"][rel=\\\"noreferrer\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"tags\": Array [\u001b[39m\n\u001b[31m+       \"cat.sensory-and-visual-cues\",\u001b[39m\n\u001b[31m+       \"wcag22aa\",\u001b[39m\n\u001b[31m+       \"wcag258\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  20 |   await page.screenshot({path:`evidence/build/history-${info.project.name}.png`,fullPage:false});\n  21 |   const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();\n> 22 |   expect(axe.violations.filter(v=>['critical','serious'].includes(v.impact||''))).toEqual([]);\n     |                                                                                   ^\n  23 |   const width=await page.evaluate(()=>({client:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth}));\n  24 |   expect(width.scroll).toBeLessThanOrEqual(width.client);\n  25 |   await page.getByRole('button',{name:'Load older launches'}).click();\n    at <repo>\\tests\\browser\\history.spec.ts:22:83"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T20:24:50.639Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "<repo>\\test-results\\history-past-launches-brow-23a29-dently-of-viewing-estimates-desktop\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "<repo>\\test-results\\history-past-launches-brow-23a29-dently-of-viewing-estimates-desktop\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "<repo>\\test-results\\history-past-launches-brow-23a29-dently-of-viewing-estimates-desktop\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "<repo>\\tests\\browser\\history.spec.ts",
+                    "column": 83,
+                    "line": 22
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "61dfc145f2d790550676-5753538c0938e6880991",
+          "file": "history.spec.ts",
+          "line": 4,
+          "column": 5
+        },
+        {
+          "title": "past launches browse real provider records independently of viewing estimates",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5782,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 58\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"description\": \"Ensure touch targets have sufficient size and space\",\u001b[39m\n\u001b[31m+     \"help\": \"All touch targets must be 24px large, or leave sufficient space\",\u001b[39m\n\u001b[31m+     \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.13/target-size?application=playwright\",\u001b[39m\n\u001b[31m+     \"id\": \"target-size\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"height\": 14,\u001b[39m\n\u001b[31m+               \"minSize\": 24,\u001b[39m\n\u001b[31m+               \"width\": 288.7,\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"target-size\",\u001b[39m\n\u001b[31m+             \"impact\": \"serious\",\u001b[39m\n\u001b[31m+             \"message\": \"Target has insufficient size (288.7px by 14px, should be at least 24px by 24px)\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"closestOffset\": 18,\u001b[39m\n\u001b[31m+               \"minOffset\": 24,\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"target-offset\",\u001b[39m\n\u001b[31m+             \"impact\": \"serious\",\u001b[39m\n\u001b[31m+             \"message\": \"Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px.\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [\u001b[39m\n\u001b[31m+               Object {\u001b[39m\n\u001b[31m+                 \"html\": \"<button>Load older launches</button>\",\u001b[39m\n\u001b[31m+                 \"target\": Array [\u001b[39m\n\u001b[31m+                   \"button:nth-child(7)\",\u001b[39m\n\u001b[31m+                 ],\u001b[39m\n\u001b[31m+               },\u001b[39m\n\u001b[31m+             ],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Target has insufficient size (288.7px by 14px, should be at least 24px by 24px)\u001b[39m\n\u001b[31m+   Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px.\",\u001b[39m\n\u001b[31m+         \"html\": \"<a href=\\\"https://ll.thespacedevs.com/2.3.0/launches/previous/?limit=100&amp;location__ids=12,27&amp;ordering=-net\\\" target=\\\"_blank\\\" rel=\\\"noreferrer\\\">Historical source: The Space Devs Launch Library 2 ↗</a>\",\u001b[39m\n\u001b[31m+         \"impact\": \"serious\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \".small:nth-child(8) > a[target=\\\"_blank\\\"][rel=\\\"noreferrer\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"tags\": Array [\u001b[39m\n\u001b[31m+       \"cat.sensory-and-visual-cues\",\u001b[39m\n\u001b[31m+       \"wcag22aa\",\u001b[39m\n\u001b[31m+       \"wcag258\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 58\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"description\": \"Ensure touch targets have sufficient size and space\",\u001b[39m\n\u001b[31m+     \"help\": \"All touch targets must be 24px large, or leave sufficient space\",\u001b[39m\n\u001b[31m+     \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.13/target-size?application=playwright\",\u001b[39m\n\u001b[31m+     \"id\": \"target-size\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"height\": 14,\u001b[39m\n\u001b[31m+               \"minSize\": 24,\u001b[39m\n\u001b[31m+               \"width\": 288.7,\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"target-size\",\u001b[39m\n\u001b[31m+             \"impact\": \"serious\",\u001b[39m\n\u001b[31m+             \"message\": \"Target has insufficient size (288.7px by 14px, should be at least 24px by 24px)\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"closestOffset\": 18,\u001b[39m\n\u001b[31m+               \"minOffset\": 24,\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"target-offset\",\u001b[39m\n\u001b[31m+             \"impact\": \"serious\",\u001b[39m\n\u001b[31m+             \"message\": \"Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px.\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [\u001b[39m\n\u001b[31m+               Object {\u001b[39m\n\u001b[31m+                 \"html\": \"<button>Load older launches</button>\",\u001b[39m\n\u001b[31m+                 \"target\": Array [\u001b[39m\n\u001b[31m+                   \"button:nth-child(7)\",\u001b[39m\n\u001b[31m+                 ],\u001b[39m\n\u001b[31m+               },\u001b[39m\n\u001b[31m+             ],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Target has insufficient size (288.7px by 14px, should be at least 24px by 24px)\u001b[39m\n\u001b[31m+   Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px.\",\u001b[39m\n\u001b[31m+         \"html\": \"<a href=\\\"https://ll.thespacedevs.com/2.3.0/launches/previous/?limit=100&amp;location__ids=12,27&amp;ordering=-net\\\" target=\\\"_blank\\\" rel=\\\"noreferrer\\\">Historical source: The Space Devs Launch Library 2 ↗</a>\",\u001b[39m\n\u001b[31m+         \"impact\": \"serious\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \".small:nth-child(8) > a[target=\\\"_blank\\\"][rel=\\\"noreferrer\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"tags\": Array [\u001b[39m\n\u001b[31m+       \"cat.sensory-and-visual-cues\",\u001b[39m\n\u001b[31m+       \"wcag22aa\",\u001b[39m\n\u001b[31m+       \"wcag258\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at <repo>\\tests\\browser\\history.spec.ts:22:83",
+                    "location": {
+                      "file": "<repo>\\tests\\browser\\history.spec.ts",
+                      "column": 83,
+                      "line": 22
+                    },
+                    "snippet": "  20 |   await page.screenshot({path:`evidence/build/history-${info.project.name}.png`,fullPage:false});\n  21 |   const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();\n> 22 |   expect(axe.violations.filter(v=>['critical','serious'].includes(v.impact||''))).toEqual([]);\n     |                                                                                   ^\n  23 |   const width=await page.evaluate(()=>({client:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth}));\n  24 |   expect(width.scroll).toBeLessThanOrEqual(width.client);\n  25 |   await page.getByRole('button',{name:'Load older launches'}).click();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "<repo>\\tests\\browser\\history.spec.ts",
+                        "column": 83,
+                        "line": 22
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 58\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"description\": \"Ensure touch targets have sufficient size and space\",\u001b[39m\n\u001b[31m+     \"help\": \"All touch targets must be 24px large, or leave sufficient space\",\u001b[39m\n\u001b[31m+     \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.13/target-size?application=playwright\",\u001b[39m\n\u001b[31m+     \"id\": \"target-size\",\u001b[39m\n\u001b[31m+     \"impact\": \"serious\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"height\": 14,\u001b[39m\n\u001b[31m+               \"minSize\": 24,\u001b[39m\n\u001b[31m+               \"width\": 288.7,\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"target-size\",\u001b[39m\n\u001b[31m+             \"impact\": \"serious\",\u001b[39m\n\u001b[31m+             \"message\": \"Target has insufficient size (288.7px by 14px, should be at least 24px by 24px)\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"closestOffset\": 18,\u001b[39m\n\u001b[31m+               \"minOffset\": 24,\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"target-offset\",\u001b[39m\n\u001b[31m+             \"impact\": \"serious\",\u001b[39m\n\u001b[31m+             \"message\": \"Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px.\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [\u001b[39m\n\u001b[31m+               Object {\u001b[39m\n\u001b[31m+                 \"html\": \"<button>Load older launches</button>\",\u001b[39m\n\u001b[31m+                 \"target\": Array [\u001b[39m\n\u001b[31m+                   \"button:nth-child(7)\",\u001b[39m\n\u001b[31m+                 ],\u001b[39m\n\u001b[31m+               },\u001b[39m\n\u001b[31m+             ],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Target has insufficient size (288.7px by 14px, should be at least 24px by 24px)\u001b[39m\n\u001b[31m+   Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px.\",\u001b[39m\n\u001b[31m+         \"html\": \"<a href=\\\"https://ll.thespacedevs.com/2.3.0/launches/previous/?limit=100&amp;location__ids=12,27&amp;ordering=-net\\\" target=\\\"_blank\\\" rel=\\\"noreferrer\\\">Historical source: The Space Devs Launch Library 2 ↗</a>\",\u001b[39m\n\u001b[31m+         \"impact\": \"serious\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \".small:nth-child(8) > a[target=\\\"_blank\\\"][rel=\\\"noreferrer\\\"]\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"tags\": Array [\u001b[39m\n\u001b[31m+       \"cat.sensory-and-visual-cues\",\u001b[39m\n\u001b[31m+       \"wcag22aa\",\u001b[39m\n\u001b[31m+       \"wcag258\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  20 |   await page.screenshot({path:`evidence/build/history-${info.project.name}.png`,fullPage:false});\n  21 |   const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();\n> 22 |   expect(axe.violations.filter(v=>['critical','serious'].includes(v.impact||''))).toEqual([]);\n     |                                                                                   ^\n  23 |   const width=await page.evaluate(()=>({client:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth}));\n  24 |   expect(width.scroll).toBeLessThanOrEqual(width.client);\n  25 |   await page.getByRole('button',{name:'Load older launches'}).click();\n    at <repo>\\tests\\browser\\history.spec.ts:22:83"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T20:25:14.467Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "<repo>\\test-results\\history-past-launches-brow-23a29-dently-of-viewing-estimates-mobile\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "<repo>\\test-results\\history-past-launches-brow-23a29-dently-of-viewing-estimates-mobile\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "<repo>\\test-results\\history-past-launches-brow-23a29-dently-of-viewing-estimates-mobile\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "<repo>\\tests\\browser\\history.spec.ts",
+                    "column": 83,
+                    "line": 22
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "61dfc145f2d790550676-b591f117cfab127ceb70",
+          "file": "history.spec.ts",
+          "line": 4,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "viewable.spec.ts",
+      "file": "viewable.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "viewable defaults to ZIP plans; all distinguishes unsupported launches and hides secondary features",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 17018,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T20:24:56.540Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ad9198dad842d06e93dc-4c13b72eb7bd42476eec",
+          "file": "viewable.spec.ts",
+          "line": 4,
+          "column": 5
+        },
+        {
+          "title": "viewable defaults to ZIP plans; all distinguishes unsupported launches and hides secondary features",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14634,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T20:25:21.420Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ad9198dad842d06e93dc-d568326c462d099b3d3e",
+          "file": "viewable.spec.ts",
+          "line": 4,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-13T20:24:48.034Z",
+    "duration": 50504.424,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

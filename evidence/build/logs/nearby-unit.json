@@ -1,0 +1,17 @@
+{
+  "run_at": "2026-10-13T19:46:35.936365+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/application",
+    "-q",
+    "-p",
+    "no:cacheprovider"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/nearby-unit-2026-10-13T194635_936365_0000.txt",
+  "sha256": "955fb38f833264839deb31a29cb7bc372620fb330cfd5e7f6d029136bed4322a",
+  "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+}

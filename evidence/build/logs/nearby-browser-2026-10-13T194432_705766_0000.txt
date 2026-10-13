@@ -1,0 +1,111 @@
+
+> launch-visibility-workspace@0.1.0 test:browser
+> playwright test
+
+
+Running 12 tests using 1 worker
+
+  ok  1 [desktop] › tests\browser\completed-review.spec.ts:5:5 › ZIP md-zip can review the reported same-day completed launch (6.0s)
+  ok  2 [desktop] › tests\browser\completed-review.spec.ts:46:5 › unknown provider placeholders never create exact date groups (16.8s)
+  ok  3 [desktop] › tests\browser\journeys.spec.ts:5:5 › live location, schedule, uncertainty, reminders, privacy and keyboard journeys (4.6s)
+  ok  4 [desktop] › tests\browser\journeys.spec.ts:51:5 › observer clock is independent of browser timezone and preserves DST fold (1.5s)
+  x   5 [desktop] › tests\browser\states.spec.ts:6:5 › synthetic edge cases through actual API, database and UI (55.4s)
+  ok  6 [desktop] › tests\browser\viewable.spec.ts:4:5 › viewable defaults to ZIP plans; all distinguishes unsupported launches and hides secondary features (12.3s)
+  ok  7 [mobile] › tests\browser\completed-review.spec.ts:5:5 › ZIP md-zip can review the reported same-day completed launch (5.5s)
+  ok  8 [mobile] › tests\browser\completed-review.spec.ts:46:5 › unknown provider placeholders never create exact date groups (22.1s)
+  ok  9 [mobile] › tests\browser\journeys.spec.ts:5:5 › live location, schedule, uncertainty, reminders, privacy and keyboard journeys (5.9s)
+  ok 10 [mobile] › tests\browser\journeys.spec.ts:51:5 › observer clock is independent of browser timezone and preserves DST fold (1.5s)
+  x  11 [mobile] › tests\browser\states.spec.ts:6:5 › synthetic edge cases through actual API, database and UI (1.2m)
+  ok 12 [mobile] › tests\browser\viewable.spec.ts:4:5 › viewable defaults to ZIP plans; all distinguishes unsupported launches and hides secondary features (10.8s)
+
+
+  1) [desktop] › tests\browser\states.spec.ts:6:5 › synthetic edge cases through actual API, database and UI 
+
+    Error: locator.fill: Error: Malformed value
+    Call log:
+      - waiting for getByLabel('Viewing time (UTC)', { exact: true })
+        - locator resolved to <input step="1" value="" required="" type="datetime-local"/>
+        - fill("2026-10-13T19:46:00")
+      - attempting fill action
+        - waiting for element to be visible, enabled and editable
+
+
+      54 |   await expect(page.locator('.subscription-row')).toContainText('Possible and Worth a look');
+      55 |   await page.goto('/observations/new');
+    > 56 |   await page.getByLabel('Viewing time (UTC)',{exact:true}).fill(new Date().toISOString().slice(0,19));
+         |                                                            ^
+      57 |   await page.getByLabel('Record as a retrospective report',{exact:false}).check();
+      58 |   await page.getByRole('combobox',{name:/^Outcome/}).selectOption('inconclusive');
+      59 |   await page.getByLabel('Actual cloud conditions').fill('Synthetic browser test clouds');
+        at <repo>\tests\browser\states.spec.ts:56:60
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\states-synthetic-edge-case-f2dbf--actual-API-database-and-UI-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\states-synthetic-edge-case-f2dbf--actual-API-database-and-UI-desktop\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\states-synthetic-edge-case-f2dbf--actual-API-database-and-UI-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\states-synthetic-edge-case-f2dbf--actual-API-database-and-UI-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [mobile] › tests\browser\states.spec.ts:6:5 › synthetic edge cases through actual API, database and UI 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Preview at your viewing location' })
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Preview at your viewing location' }) with timeout 15000ms
+      - waiting for getByRole('heading', { name: 'Preview at your viewing location' })
+
+
+      47 |   await page.getByRole('link',{name:'Reminders',exact:true}).click();
+      48 |   await page.getByRole('button',{name:'Preview local reminder times'}).click();
+    > 49 |   await expect(page.getByRole('heading',{name:'Preview at your viewing location'})).toBeVisible();
+         |                                                                                     ^
+      50 |   await page.getByRole('button',{name:'Save preferences for all supported launches'}).click();
+      51 |   await page.getByRole('button',{name:'Edit preferences'}).click();
+      52 |   await page.getByLabel('Include Possible opportunities',{exact:false}).check();
+        at <repo>\tests\browser\states.spec.ts:49:85
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\states-synthetic-edge-case-f2dbf--actual-API-database-and-UI-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\states-synthetic-edge-case-f2dbf--actual-API-database-and-UI-mobile\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\states-synthetic-edge-case-f2dbf--actual-API-database-and-UI-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\states-synthetic-edge-case-f2dbf--actual-API-database-and-UI-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [desktop] › tests\browser\states.spec.ts:6:5 › synthetic edge cases through actual API, database and UI 
+    [mobile] › tests\browser\states.spec.ts:6:5 › synthetic edge cases through actual API, database and UI 
+  10 passed (3.7m)
+
+[WebServer] <repo>\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+[WebServer]   from starlette.testclient import TestClient as TestClient  # noqa
+[WebServer] INFO:     Started server process [312296]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:3091 (Press CTRL+C to quit)
+(node:264176) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:342108) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:262616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:362020) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

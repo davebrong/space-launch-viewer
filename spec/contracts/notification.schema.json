@@ -1,0 +1,144 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "subscription_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "launch_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "attempt_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "notice_type": {
+      "enum": [
+        "planning_24h",
+        "viewing_30m",
+        "correction",
+        "scrub",
+        "downgrade"
+      ]
+    },
+    "material_revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "assessment_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "due_at": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "Z$",
+      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "Z$",
+      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+    },
+    "state": {
+      "enum": [
+        "pending",
+        "claimed",
+        "delivered",
+        "suppressed_quiet",
+        "cancelled",
+        "expired",
+        "retry",
+        "failed",
+        "delivery_unknown"
+      ]
+    },
+    "channel": {
+      "enum": [
+        "in_app",
+        "email"
+      ]
+    },
+    "dedupe_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "delivery_attempts": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "delivered_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$",
+          "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "provider_message_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reason_codes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "content": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "revision",
+    "subscription_id",
+    "launch_id",
+    "attempt_id",
+    "notice_type",
+    "material_revision",
+    "assessment_id",
+    "due_at",
+    "expires_at",
+    "state",
+    "channel",
+    "dedupe_key",
+    "delivery_attempts",
+    "delivered_at",
+    "provider_message_id",
+    "reason_codes",
+    "content"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "notification.schema.json",
+  "title": "notification"
+}

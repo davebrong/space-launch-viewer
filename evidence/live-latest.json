@@ -1,0 +1,21 @@
+{
+  "run_at": "2026-10-13T15:39:27.367480+00:00",
+  "scope": "Live transport/schema smoke only",
+  "checks": [
+    {
+      "id": "LL2",
+      "status": "passed",
+      "url": "https://ll.thespacedevs.com/2.3.0/launches/upcoming/?limit=1"
+    },
+    {
+      "id": "NWS-point",
+      "status": "passed",
+      "url": "https://api.weather.gov/points/39.0,-77.0"
+    },
+    {
+      "id": "NWS-grid",
+      "status": "passed",
+      "url": "https://api.weather.gov/gridpoints/LWX/0,0"
+    }
+  ]
+}

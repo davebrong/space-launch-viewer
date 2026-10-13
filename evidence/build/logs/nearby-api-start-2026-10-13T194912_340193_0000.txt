@@ -1,0 +1,12 @@
+
+ Container launch-visibility-postgres-1 Running 
+ Container launch-visibility-api-1 Recreate 
+ Container launch-visibility-api-1 Recreated 
+ Container launch-visibility-postgres-1 Waiting 
+ Container launch-visibility-postgres-1 Healthy 
+ Container launch-visibility-api-1 Starting 
+ Container launch-visibility-api-1 Started 
+ Container launch-visibility-api-1 Waiting 
+ Container launch-visibility-postgres-1 Waiting 
+ Container launch-visibility-postgres-1 Healthy 
+ Container launch-visibility-api-1 Healthy 

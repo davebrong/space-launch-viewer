@@ -1,0 +1,75 @@
+{
+  "checked_at": "2026-10-13T19:46:11.452132+00:00",
+  "catalog_count": 205,
+  "results": {
+    "fl-zip": [
+      {
+        "launch_id": "3b430f81-0ff1-4d85-8a1a-cef0de326198",
+        "viewable": true,
+        "label": "Nearby launch estimate",
+        "basis": "near_launch_site",
+        "directions": [
+          "southeast"
+        ],
+        "watch_interval": {
+          "start": "2026-10-19T10:28:00Z",
+          "end": "2026-10-19T10:35:00Z"
+        },
+        "name": "Falcon 9 Block 5 | Bandwagon 5 (Dedicated Mid-Inclination Rideshare)",
+        "net": "2026-10-19T10:30:00Z",
+        "time_precision": "exact"
+      },
+      {
+        "launch_id": "bf2c3027-a314-403e-a416-2bfd5d165ad1",
+        "viewable": true,
+        "label": "Nearby launch estimate",
+        "basis": "near_launch_site",
+        "directions": [
+          "southeast"
+        ],
+        "watch_interval": {
+          "start": "2026-10-13T10:31:44Z",
+          "end": "2026-10-13T10:38:44Z"
+        },
+        "name": "Falcon 9 Block 5 | Dragon CRS-2 SpX-35",
+        "net": "2026-10-13T10:33:44Z",
+        "time_precision": "exact"
+      },
+      {
+        "launch_id": "ef9850ad-1096-425b-9d27-f7bbd186e61a",
+        "viewable": true,
+        "label": "Nearby launch estimate",
+        "basis": "near_launch_site",
+        "directions": [
+          "southeast"
+        ],
+        "watch_interval": null,
+        "name": "Vulcan VC6L | Amazon Leo (LV-01)",
+        "net": "2026-10-29T00:00:00Z",
+        "time_precision": "date"
+      }
+    ],
+    "md-zip": [
+      {
+        "launch_id": "bf2c3027-a314-403e-a416-2bfd5d165ad1",
+        "viewable": true,
+        "label": "Simulated viewing plan",
+        "basis": "simulation",
+        "directions": [
+          "south",
+          "southeast",
+          "east"
+        ],
+        "watch_interval": {
+          "start": "2026-10-13T10:34:00Z",
+          "end": "2026-10-13T10:45:00Z"
+        },
+        "name": "Falcon 9 Block 5 | Dragon CRS-2 SpX-35",
+        "net": "2026-10-13T10:33:44Z",
+        "time_precision": "exact"
+      }
+    ]
+  },
+  "test_session_deleted": true
+}
+

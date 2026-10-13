@@ -1,0 +1,1 @@
+FAIL MISSING_IMPLEMENTATION: set LV_ACCEPTANCE_COMMAND to a JSON argv array for the real application adapter.

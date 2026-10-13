@@ -1,0 +1,14 @@
+{
+  "suite": "api-contract",
+  "passed": [
+    "api-contract"
+  ],
+  "failed": [],
+  "blocked": [],
+  "adapter_command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "implementation.acceptance_adapter"
+  ],
+  "run_at": "2026-10-13T16:29:38.258297+00:00"
+}

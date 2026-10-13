@@ -1,0 +1,12 @@
+{
+  "run_at": "2026-10-13T19:49:57.953163+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "tools/audit_nearby.py"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/nearby-live-2026-10-13T194957_953163_0000.txt",
+  "sha256": "2df381c6c2f8a239860c5735e4be184215e8913e2fbc9dbb798d1ae2404f8162",
+  "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+}

@@ -1,0 +1,681 @@
+[
+  {
+    "id": "schema-ascent-profile",
+    "schema": "ascent-profile.schema.json",
+    "valid": true,
+    "value": {
+      "schema_version": "1.0",
+      "id": "synthetic-ascent-profile",
+      "revision": 1,
+      "historical_mission": "synthetic-example",
+      "vehicle_variant": "synthetic-example",
+      "mission_class": "synthetic-example",
+      "compatible_pad_ids": [],
+      "launch_latitude_deg": -90,
+      "recovery_configuration": "synthetic-example",
+      "time_origin": "seconds_since_actual_liftoff",
+      "altitude_datum": "unknown",
+      "datum_conversion": null,
+      "downrange_definition": "synthetic-example",
+      "stage_identity_notes": "synthetic-example",
+      "compatibility": "research_only",
+      "compatibility_rationale": "synthetic-example",
+      "training_mission_ids": [],
+      "held_out_mission_ids": [],
+      "samples": [
+        {
+          "t_s": 0,
+          "stage": 2,
+          "altitude_m": 0,
+          "downrange_m": 0,
+          "speed_m_s": null
+        },
+        {
+          "t_s": 5,
+          "stage": 2,
+          "altitude_m": 100,
+          "downrange_m": 100,
+          "speed_m_s": null
+        }
+      ],
+      "powered_intervals": [],
+      "provenance": [
+        {
+          "source_url": "https://example.invalid/synthetic",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "fetched_at": "2026-10-13T12:00:00Z",
+          "issued_at": null,
+          "source_revision": null,
+          "license": "synthetic test input",
+          "parser_version": "synthetic-example",
+          "kind": "synthetic",
+          "notes": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "schema-assessment",
+    "schema": "assessment.schema.json",
+    "valid": true,
+    "value": {
+      "schema_version": "1.0",
+      "id": "synthetic-assessment",
+      "revision": 1,
+      "launch_id": "synthetic-example",
+      "launch_revision": 1,
+      "attempt_id": "synthetic-example",
+      "location_id": "synthetic-example",
+      "location_revision": 1,
+      "computed_at": "2026-10-13T12:00:00Z",
+      "as_of": "2026-10-13T12:00:00Z",
+      "ruleset": "visibility_rules_v1_1",
+      "astronomy_version": "synthetic-example",
+      "ephemeris_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "input_hashes": [],
+      "evidence_ids": [],
+      "profile_ids": [],
+      "mode": "unavailable",
+      "advice": "Not enough data",
+      "display_status": "forecast",
+      "weather_state": "clear",
+      "fresh": false,
+      "conditional": false,
+      "all_tracks_agree": null,
+      "lighting_flag": false,
+      "windows": [],
+      "solar_events": [],
+      "missing_flags": [],
+      "reason_codes": [
+        "no_route"
+      ],
+      "limitations": [],
+      "provenance": []
+    }
+  },
+  {
+    "id": "schema-error",
+    "schema": "error.schema.json",
+    "valid": true,
+    "value": {
+      "schema_version": "1.0",
+      "id": "synthetic-error",
+      "revision": 1,
+      "code": "INVALID_INPUT",
+      "message": "synthetic-example",
+      "request_id": "synthetic-example",
+      "retryable": false,
+      "retry_after_s": null,
+      "details": []
+    }
+  },
+  {
+    "id": "schema-launch",
+    "schema": "launch.schema.json",
+    "valid": true,
+    "value": {
+      "schema_version": "1.0",
+      "id": "synthetic-launch",
+      "revision": 1,
+      "provider_id": "synthetic-example",
+      "mission_id": null,
+      "name": "synthetic-example",
+      "pad_id": "synthetic-example",
+      "pad_name": "synthetic-example",
+      "pad_point": {
+        "latitude_deg": -90,
+        "longitude_deg": -180,
+        "altitude_m": 0,
+        "frame": "WGS84_GEODETIC",
+        "altitude_datum": "WGS84_ELLIPSOID"
+      },
+      "vehicle_variant": null,
+      "mission_class": null,
+      "recovery_configuration": null,
+      "attempt_id": "synthetic-example",
+      "time_precision": "exact",
+      "net": "2026-10-14T12:00:00Z",
+      "window": null,
+      "date_label": null,
+      "date_basis_timezone": null,
+      "actual_liftoff": null,
+      "status": "scheduled",
+      "disabled": false,
+      "source_updated_at": null,
+      "provenance": []
+    }
+  },
+  {
+    "id": "schema-location",
+    "schema": "location.schema.json",
+    "valid": true,
+    "value": {
+      "schema_version": "1.0",
+      "id": "synthetic-location",
+      "revision": 1,
+      "zip": "fixture-zip",
+      "point": {
+        "latitude_deg": 39.0,
+        "longitude_deg": -77.0,
+        "altitude_m": 0,
+        "frame": "WGS84_GEODETIC",
+        "altitude_datum": "WGS84_ELLIPSOID"
+      },
+      "origin": "zcta",
+      "confirmed": true,
+      "timezone": "America/New_York",
+      "timezone_data_version": "2026.2",
+      "representative_point": true,
+      "altitude_assumed": true,
+      "provenance": []
+    }
+  },
+  {
+    "id": "schema-notification",
+    "schema": "notification.schema.json",
+    "valid": true,
+    "value": {
+      "schema_version": "1.0",
+      "id": "synthetic-notification",
+      "revision": 1,
+      "subscription_id": "synthetic-example",
+      "launch_id": "synthetic-example",
+      "attempt_id": "synthetic-example",
+      "notice_type": "planning_24h",
+      "material_revision": 1,
+      "assessment_id": "synthetic-example",
+      "due_at": "2026-10-13T12:00:00Z",
+      "expires_at": "2026-10-13T13:00:00Z",
+      "state": "pending",
+      "channel": "in_app",
+      "dedupe_key": "synthetic-example",
+      "delivery_attempts": 0,
+      "delivered_at": null,
+      "provider_message_id": null,
+      "reason_codes": [
+        "synthetic"
+      ],
+      "content": "synthetic-example"
+    }
+  },
+  {
+    "id": "schema-observation",
+    "schema": "observation.schema.json",
+    "valid": true,
+    "value": {
+      "schema_version": "1.0",
+      "id": "synthetic-observation",
+      "revision": 1,
+      "launch_id": "synthetic-example",
+      "assessment_id": "synthetic-example",
+      "location_id": "synthetic-example",
+      "observed_at": "2026-10-13T12:00:00Z",
+      "outcome": "seen",
+      "actual_cloud_notes": "synthetic-example",
+      "notes": "synthetic-example",
+      "consent_to_archive": false,
+      "provenance": []
+    }
+  },
+  {
+    "id": "schema-route-evidence",
+    "schema": "route-evidence.schema.json",
+    "valid": true,
+    "value": {
+      "schema_version": "1.0",
+      "id": "synthetic-route-evidence",
+      "revision": 1,
+      "launch_id": "synthetic-example",
+      "attempt_id": "synthetic-example",
+      "pad_id": "synthetic-example",
+      "mission_aliases": [],
+      "evidence_type": "published_path",
+      "admission": "candidate",
+      "association": "ambiguous",
+      "valid_interval": null,
+      "reviewed_schedule_revision": null,
+      "source_format": "synthetic-example",
+      "parser_version": "synthetic-example",
+      "dogleg": "unknown",
+      "path_vertices": [],
+      "hazard_polygons": [],
+      "heading_range_deg": null,
+      "guidance": null,
+      "uncertainty_notes": [],
+      "provenance": [
+        {
+          "source_url": "https://example.invalid/synthetic",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "fetched_at": "2026-10-13T12:00:00Z",
+          "issued_at": null,
+          "source_revision": null,
+          "license": "synthetic test input",
+          "parser_version": "synthetic-example",
+          "kind": "synthetic",
+          "notes": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "schema-subscription",
+    "schema": "subscription.schema.json",
+    "valid": true,
+    "value": {
+      "schema_version": "1.0",
+      "id": "synthetic-subscription",
+      "revision": 1,
+      "location_id": "synthetic-example",
+      "launch_ids": [],
+      "all_supported_launches": false,
+      "channel": "in_app",
+      "enabled": false,
+      "allow_possible": false,
+      "overnight_opt_in": false,
+      "quiet_start": "22:00",
+      "quiet_end": "07:00",
+      "milestones": [],
+      "created_at": "2026-10-13T12:00:00Z",
+      "consented_at": "2026-10-13T12:00:00Z",
+      "email_verified": false,
+      "deleted_at": null
+    }
+  },
+  {
+    "id": "schema-weather-interval",
+    "schema": "weather-interval.schema.json",
+    "valid": true,
+    "value": {
+      "schema_version": "1.0",
+      "id": "synthetic-weather-interval",
+      "revision": 1,
+      "location_id": "synthetic-example",
+      "grid_id": "synthetic-example",
+      "interval": {
+        "start": "2026-10-13T12:00:00Z",
+        "end": "2026-10-13T13:00:00Z"
+      },
+      "total_cloud_percent": null,
+      "low_cloud_percent": null,
+      "mid_cloud_percent": null,
+      "high_cloud_percent": null,
+      "surface_visibility_m": null,
+      "fog": null,
+      "mode": "total_only",
+      "missing_flags": [
+        "total_cloud_missing"
+      ],
+      "provenance": [
+        {
+          "source_url": "https://example.invalid/synthetic",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "fetched_at": "2026-10-13T12:00:00Z",
+          "issued_at": null,
+          "source_revision": null,
+          "license": "synthetic test input",
+          "parser_version": "synthetic-example",
+          "kind": "synthetic",
+          "notes": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "invalid-location-zip",
+    "schema": "location.schema.json",
+    "valid": false,
+    "value": {
+      "schema_version": "1.0",
+      "id": "synthetic-location",
+      "revision": 1,
+      "zip": fixture-zip,
+      "point": {
+        "latitude_deg": 39.0,
+        "longitude_deg": -77.0,
+        "altitude_m": 0,
+        "frame": "WGS84_GEODETIC",
+        "altitude_datum": "WGS84_ELLIPSOID"
+      },
+      "origin": "zcta",
+      "confirmed": true,
+      "timezone": "America/New_York",
+      "timezone_data_version": "2026.2",
+      "representative_point": true,
+      "altitude_assumed": true,
+      "provenance": []
+    }
+  },
+  {
+    "id": "invalid-location-timezone",
+    "schema": "location.schema.json",
+    "valid": false,
+    "value": {
+      "schema_version": "1.0",
+      "id": "synthetic-location",
+      "revision": 1,
+      "zip": "fixture-zip",
+      "point": {
+        "latitude_deg": 39.0,
+        "longitude_deg": -77.0,
+        "altitude_m": 0,
+        "frame": "WGS84_GEODETIC",
+        "altitude_datum": "WGS84_ELLIPSOID"
+      },
+      "origin": "zcta",
+      "confirmed": true,
+      "timezone": 5,
+      "timezone_data_version": "2026.2",
+      "representative_point": true,
+      "altitude_assumed": true,
+      "provenance": []
+    }
+  },
+  {
+    "id": "invalid-launch-net",
+    "schema": "launch.schema.json",
+    "valid": false,
+    "value": {
+      "schema_version": "1.0",
+      "id": "synthetic-launch",
+      "revision": 1,
+      "provider_id": "synthetic-example",
+      "mission_id": null,
+      "name": "synthetic-example",
+      "pad_id": "synthetic-example",
+      "pad_name": "synthetic-example",
+      "pad_point": {
+        "latitude_deg": -90,
+        "longitude_deg": -180,
+        "altitude_m": 0,
+        "frame": "WGS84_GEODETIC",
+        "altitude_datum": "WGS84_ELLIPSOID"
+      },
+      "vehicle_variant": null,
+      "mission_class": null,
+      "recovery_configuration": null,
+      "attempt_id": "synthetic-example",
+      "time_precision": "exact",
+      "net": "2026-10-13T12:00:00-04:00",
+      "window": null,
+      "date_label": null,
+      "date_basis_timezone": null,
+      "actual_liftoff": null,
+      "status": "scheduled",
+      "disabled": false,
+      "source_updated_at": null,
+      "provenance": []
+    }
+  },
+  {
+    "id": "invalid-weather-interval-total_cloud_percent",
+    "schema": "weather-interval.schema.json",
+    "valid": false,
+    "value": {
+      "schema_version": "1.0",
+      "id": "synthetic-weather-interval",
+      "revision": 1,
+      "location_id": "synthetic-example",
+      "grid_id": "synthetic-example",
+      "interval": {
+        "start": "2026-10-13T12:00:00Z",
+        "end": "2026-10-13T13:00:00Z"
+      },
+      "total_cloud_percent": 101,
+      "low_cloud_percent": null,
+      "mid_cloud_percent": null,
+      "high_cloud_percent": null,
+      "surface_visibility_m": null,
+      "fog": null,
+      "mode": "total_only",
+      "missing_flags": [
+        "total_cloud_missing"
+      ],
+      "provenance": [
+        {
+          "source_url": "https://example.invalid/synthetic",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "fetched_at": "2026-10-13T12:00:00Z",
+          "issued_at": null,
+          "source_revision": null,
+          "license": "synthetic test input",
+          "parser_version": "synthetic-example",
+          "kind": "synthetic",
+          "notes": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "invalid-ascent-profile-revision",
+    "schema": "ascent-profile.schema.json",
+    "valid": false,
+    "value": {
+      "schema_version": "1.0",
+      "id": "synthetic-ascent-profile",
+      "revision": 0,
+      "historical_mission": "synthetic-example",
+      "vehicle_variant": "synthetic-example",
+      "mission_class": "synthetic-example",
+      "compatible_pad_ids": [],
+      "launch_latitude_deg": -90,
+      "recovery_configuration": "synthetic-example",
+      "time_origin": "seconds_since_actual_liftoff",
+      "altitude_datum": "unknown",
+      "datum_conversion": null,
+      "downrange_definition": "synthetic-example",
+      "stage_identity_notes": "synthetic-example",
+      "compatibility": "research_only",
+      "compatibility_rationale": "synthetic-example",
+      "training_mission_ids": [],
+      "held_out_mission_ids": [],
+      "samples": [
+        {
+          "t_s": 0,
+          "stage": 2,
+          "altitude_m": 0,
+          "downrange_m": 0,
+          "speed_m_s": null
+        },
+        {
+          "t_s": 5,
+          "stage": 2,
+          "altitude_m": 100,
+          "downrange_m": 100,
+          "speed_m_s": null
+        }
+      ],
+      "powered_intervals": [],
+      "provenance": [
+        {
+          "source_url": "https://example.invalid/synthetic",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "fetched_at": "2026-10-13T12:00:00Z",
+          "issued_at": null,
+          "source_revision": null,
+          "license": "synthetic test input",
+          "parser_version": "synthetic-example",
+          "kind": "synthetic",
+          "notes": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "invalid-assessment-advice",
+    "schema": "assessment.schema.json",
+    "valid": false,
+    "value": {
+      "schema_version": "1.0",
+      "id": "synthetic-assessment",
+      "revision": 1,
+      "launch_id": "synthetic-example",
+      "launch_revision": 1,
+      "attempt_id": "synthetic-example",
+      "location_id": "synthetic-example",
+      "location_revision": 1,
+      "computed_at": "2026-10-13T12:00:00Z",
+      "as_of": "2026-10-13T12:00:00Z",
+      "ruleset": "visibility_rules_v1_1",
+      "astronomy_version": "synthetic-example",
+      "ephemeris_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "input_hashes": [],
+      "evidence_ids": [],
+      "profile_ids": [],
+      "mode": "unavailable",
+      "advice": "Favorable",
+      "display_status": "forecast",
+      "weather_state": "clear",
+      "fresh": false,
+      "conditional": false,
+      "all_tracks_agree": null,
+      "lighting_flag": false,
+      "windows": [],
+      "solar_events": [],
+      "missing_flags": [],
+      "reason_codes": [
+        "no_route"
+      ],
+      "limitations": [],
+      "provenance": []
+    }
+  },
+  {
+    "id": "invalid-subscription-overnight_opt_in",
+    "schema": "subscription.schema.json",
+    "valid": false,
+    "value": {
+      "schema_version": "1.0",
+      "id": "synthetic-subscription",
+      "revision": 1,
+      "location_id": "synthetic-example",
+      "launch_ids": [],
+      "all_supported_launches": false,
+      "channel": "in_app",
+      "enabled": false,
+      "allow_possible": false,
+      "overnight_opt_in": "yes",
+      "quiet_start": "22:00",
+      "quiet_end": "07:00",
+      "milestones": [],
+      "created_at": "2026-10-13T12:00:00Z",
+      "consented_at": "2026-10-13T12:00:00Z",
+      "email_verified": false,
+      "deleted_at": null
+    }
+  },
+  {
+    "id": "invalid-notification-state",
+    "schema": "notification.schema.json",
+    "valid": false,
+    "value": {
+      "schema_version": "1.0",
+      "id": "synthetic-notification",
+      "revision": 1,
+      "subscription_id": "synthetic-example",
+      "launch_id": "synthetic-example",
+      "attempt_id": "synthetic-example",
+      "notice_type": "planning_24h",
+      "material_revision": 1,
+      "assessment_id": "synthetic-example",
+      "due_at": "2026-10-13T12:00:00Z",
+      "expires_at": "2026-10-13T13:00:00Z",
+      "state": "sent_twice",
+      "channel": "in_app",
+      "dedupe_key": "synthetic-example",
+      "delivery_attempts": 0,
+      "delivered_at": null,
+      "provider_message_id": null,
+      "reason_codes": [
+        "synthetic"
+      ],
+      "content": "synthetic-example"
+    }
+  },
+  {
+    "id": "invalid-reconstruction-worth",
+    "schema": "assessment.schema.json",
+    "valid": false,
+    "value": {
+      "schema_version": "1.0",
+      "id": "synthetic-assessment",
+      "revision": 1,
+      "launch_id": "synthetic-example",
+      "launch_revision": 1,
+      "attempt_id": "synthetic-example",
+      "location_id": "synthetic-example",
+      "location_revision": 1,
+      "computed_at": "2026-10-13T12:00:00Z",
+      "as_of": "2026-10-13T12:00:00Z",
+      "ruleset": "visibility_rules_v1_1",
+      "astronomy_version": "synthetic-example",
+      "ephemeris_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "input_hashes": [],
+      "evidence_ids": [],
+      "profile_ids": [],
+      "mode": "reconstructed",
+      "advice": "Worth a look",
+      "display_status": "forecast",
+      "weather_state": "clear",
+      "fresh": false,
+      "conditional": false,
+      "all_tracks_agree": null,
+      "lighting_flag": false,
+      "windows": [],
+      "solar_events": [],
+      "missing_flags": [],
+      "reason_codes": [
+        "no_route"
+      ],
+      "limitations": [],
+      "provenance": []
+    }
+  },
+  {
+    "id": "schema-candidate-track",
+    "schema": "candidate-track.schema.json",
+    "valid": true,
+    "value": {
+      "schema_version": "1.0",
+      "id": "synthetic-track",
+      "revision": 1,
+      "launch_id": "synthetic",
+      "attempt_id": "synthetic-attempt",
+      "route_evidence_ids": [
+        "synthetic-path"
+      ],
+      "profile_ids": [
+        "synthetic-profile"
+      ],
+      "frame": "WGS84_GEODETIC_ELLIPSOID",
+      "time_origin": "seconds_since_hypothesized_liftoff",
+      "source_hashes": [
+        "0000000000000000000000000000000000000000000000000000000000000000"
+      ],
+      "assumptions": [
+        "Synthetic test only; no real mission"
+      ],
+      "samples": [
+        {
+          "t_s": 0,
+          "stage": 2,
+          "latitude_deg": 33,
+          "longitude_deg": -76,
+          "altitude_m": 200000,
+          "active_engine": true,
+          "active_plume": true,
+          "segment_id": "s1"
+        },
+        {
+          "t_s": 5,
+          "stage": 2,
+          "latitude_deg": 33,
+          "longitude_deg": -76,
+          "altitude_m": 200000,
+          "active_engine": true,
+          "active_plume": true,
+          "segment_id": "s1"
+        }
+      ]
+    }
+  }
+]

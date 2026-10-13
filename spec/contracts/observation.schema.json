@@ -1,0 +1,160 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "launch_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "assessment_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "location_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "Z$",
+      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+    },
+    "outcome": {
+      "enum": [
+        "seen",
+        "not_seen",
+        "inconclusive",
+        "not_attempted"
+      ]
+    },
+    "actual_cloud_notes": {
+      "type": "string",
+      "minLength": 1
+    },
+    "notes": {
+      "type": "string",
+      "minLength": 1
+    },
+    "consent_to_archive": {
+      "type": "boolean"
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "fetched_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$",
+            "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+          },
+          "issued_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$",
+                "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "license": {
+            "type": "string",
+            "minLength": 1
+          },
+          "parser_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "provider",
+              "published_path",
+              "hazard_corridor",
+              "historical_telemetry",
+              "reconstructed_estimate",
+              "official_guidance",
+              "observed_sighting",
+              "synthetic"
+            ]
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "source_url",
+          "sha256",
+          "fetched_at",
+          "issued_at",
+          "source_revision",
+          "license",
+          "parser_version",
+          "kind",
+          "notes"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "retrospective": {
+      "type": "boolean",
+      "description": "Self-reported retrospective context. Excluded from prospective forecast validation. The server also classifies post-launch assessments as retrospective."
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "revision",
+    "launch_id",
+    "assessment_id",
+    "location_id",
+    "observed_at",
+    "outcome",
+    "actual_cloud_notes",
+    "notes",
+    "consent_to_archive",
+    "provenance"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "observation.schema.json",
+  "title": "observation"
+}

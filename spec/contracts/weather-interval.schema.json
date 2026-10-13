@@ -1,0 +1,235 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "location_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "grid_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "interval": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$",
+          "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+        },
+        "end": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$",
+          "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "additionalProperties": false
+    },
+    "total_cloud_percent": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "low_cloud_percent": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "mid_cloud_percent": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "high_cloud_percent": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "surface_visibility_m": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "fog": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "mode": {
+      "enum": [
+        "total_only",
+        "layers"
+      ]
+    },
+    "missing_flags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "fetched_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$",
+            "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+          },
+          "issued_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$",
+                "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "license": {
+            "type": "string",
+            "minLength": 1
+          },
+          "parser_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "provider",
+              "published_path",
+              "hazard_corridor",
+              "historical_telemetry",
+              "reconstructed_estimate",
+              "official_guidance",
+              "observed_sighting",
+              "synthetic"
+            ]
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "source_url",
+          "sha256",
+          "fetched_at",
+          "issued_at",
+          "source_revision",
+          "license",
+          "parser_version",
+          "kind",
+          "notes"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "revision",
+    "location_id",
+    "grid_id",
+    "interval",
+    "total_cloud_percent",
+    "low_cloud_percent",
+    "mid_cloud_percent",
+    "high_cloud_percent",
+    "surface_visibility_m",
+    "fog",
+    "mode",
+    "missing_flags",
+    "provenance"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "weather-interval.schema.json",
+  "title": "weather-interval"
+}

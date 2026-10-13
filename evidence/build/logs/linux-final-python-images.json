@@ -1,0 +1,15 @@
+{
+  "run_at": "2026-10-13T15:51:04.846373+00:00",
+  "command": [
+    "docker",
+    "compose",
+    "build",
+    "api",
+    "worker"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/linux-final-python-images-2026-10-13T155104_846373_0000.txt",
+  "sha256": "6d2ac08e10bcf0d4f97caa1f1bf7a3f8dd6730f341f64a8bf799ada9ee3e74a4",
+  "software_sha256": "201a4f9e7394dec8307bf7ef6d5f8e02f5bf87acb44c44fe1f1b4b71456f1672"
+}

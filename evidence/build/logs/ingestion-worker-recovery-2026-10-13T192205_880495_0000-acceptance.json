@@ -1,0 +1,14 @@
+{
+  "suite": "worker-recovery",
+  "passed": [
+    "worker-recovery"
+  ],
+  "failed": [],
+  "blocked": [],
+  "adapter_command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "implementation.acceptance_adapter"
+  ],
+  "run_at": "2026-10-13T19:22:08.744607+00:00"
+}

@@ -1,0 +1,75 @@
+{
+  "verified_at": "2026-10-13T14:15:26.338395+00:00",
+  "commands": [
+    {
+      "id": "spec-check",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/check_spec.py"
+      ],
+      "exit_code": 0,
+      "log": "evidence/logs/spec-check.txt",
+      "sha256": "e919ff6ce3470b6dd895219d842c54a6bd7a264b5064ba6285312dee2ae1f19c"
+    },
+    {
+      "id": "harness-self-tests",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tests/acceptance/test_harness.py"
+      ],
+      "exit_code": 0,
+      "log": "evidence/logs/harness-self-tests.txt",
+      "sha256": "dce3b2ba86cdfb76a1f08d8321a640664d8b5eb66f1559bf1615884c6393f9fa"
+    },
+    {
+      "id": "application-acceptance",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tests/acceptance/run.py",
+        "--suite",
+        "all"
+      ],
+      "exit_code": 1,
+      "log": "evidence/logs/application-acceptance.txt",
+      "sha256": "1ea5a5eecb4d6f9f5daa21b41e35249d54f371481e72150d0b4f858c0f56201a"
+    },
+    {
+      "id": "software-release",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/release_gate.py",
+        "--stage",
+        "software"
+      ],
+      "exit_code": 1,
+      "log": "evidence/logs/software-release.txt",
+      "sha256": "6a519f59d65ec3874157bc86b09e90651ccaca4f71f6644ca3f63dbbab88d132"
+    },
+    {
+      "id": "pilot-release",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/release_gate.py",
+        "--stage",
+        "pilot"
+      ],
+      "exit_code": 1,
+      "log": "evidence/logs/pilot-release.txt",
+      "sha256": "5537657098a26e4efc46c83b5649e2838179441e6d1d918aca9110f376ef51bb"
+    },
+    {
+      "id": "implementation-start",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/start_implementation.py"
+      ],
+      "exit_code": 0,
+      "log": "evidence/logs/implementation-start.txt",
+      "sha256": "cc56a0d776820396ccda4f35ca57a76a79e3ac4c2183b84780aba431761ce679"
+    }
+  ],
+  "live_report": "evidence/live-latest.json",
+  "source_report": "spec/research/retrievals.json",
+  "prd_sha256": "408250aa49e7556558b4b84e26f02e37f567b5da32f26ad6d31f67f4e9f2f89b",
+  "interpretation": "Specification passed; application deliberately absent so acceptance/release fail; empirical/evidence gates blocked independently."
+}

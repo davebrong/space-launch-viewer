@@ -1,0 +1,64 @@
+
+Running 6 tests using 1 worker
+
+  ok 1 [desktop] › tests\browser\journeys.spec.ts:5:5 › live location, schedule, uncertainty, reminders, privacy and keyboard journeys (6.8s)
+  ok 2 [desktop] › tests\browser\journeys.spec.ts:52:5 › observer clock is independent of browser timezone and preserves DST fold (1.4s)
+  x  3 [desktop] › tests\browser\states.spec.ts:6:5 › synthetic edge cases through actual API, database and UI (10.0s)
+  ok 4 [mobile] › tests\browser\journeys.spec.ts:5:5 › live location, schedule, uncertainty, reminders, privacy and keyboard journeys (5.7s)
+  ok 5 [mobile] › tests\browser\journeys.spec.ts:52:5 › observer clock is independent of browser timezone and preserves DST fold (1.6s)
+  ok 6 [mobile] › tests\browser\states.spec.ts:6:5 › synthetic edge cases through actual API, database and UI (1.1m)
+
+
+  1) [desktop] › tests\browser\states.spec.ts:6:5 › synthetic edge cases through actual API, database and UI 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Launches & your sky' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Launches & your sky' }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'Launches & your sky' })
+        - waiting for "http://127.0.0.1:3091/launches" navigation to finish...
+        - navigated to "http://127.0.0.1:3091/launches"
+
+
+      10 |   await page.getByRole('button',{name:'Find location'}).click();
+      11 |   await page.getByRole('button',{name:'Confirm this location'}).click();
+    > 12 |   await expect(page.getByRole('heading',{name:'Launches & your sky'})).toBeVisible();
+         |                                                                        ^
+      13 |   const locationId=await page.evaluate(()=>localStorage.getItem('lv_location'));
+      14 |   const csrf=()=>page.evaluate(()=>document.cookie.split('; ').find(x=>x.startsWith('lv_csrf='))!.split('=')[1]);
+      15 |   const reports:{mode:string;advice:string;band:boolean}[]=[];
+        at <repo>\tests\browser\states.spec.ts:12:72
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\states-synthetic-edge-case-f2dbf--actual-API-database-and-UI-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\states-synthetic-edge-case-f2dbf--actual-API-database-and-UI-desktop\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\states-synthetic-edge-case-f2dbf--actual-API-database-and-UI-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\states-synthetic-edge-case-f2dbf--actual-API-database-and-UI-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [desktop] › tests\browser\states.spec.ts:6:5 › synthetic edge cases through actual API, database and UI 
+  5 passed (1.6m)
+
+[WebServer] <repo>\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+[WebServer]   from starlette.testclient import TestClient as TestClient  # noqa
+[WebServer] INFO:     Started server process [380200]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:3091 (Press CTRL+C to quit)
+(node:252408) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:286100) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

@@ -1,0 +1,77 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "code": {
+      "enum": [
+        "INVALID_INPUT",
+        "UNCONFIRMED_LOCATION",
+        "UNSUPPORTED_LOCATION",
+        "UNSUPPORTED_TIME",
+        "NOT_FOUND",
+        "REVISION_CONFLICT",
+        "CONSENT_REQUIRED",
+        "LIMIT_REACHED",
+        "UPSTREAM_UNAVAILABLE",
+        "RATE_LIMITED",
+        "UNAUTHORIZED",
+        "FORBIDDEN",
+        "INTERNAL"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "retryable": {
+      "type": "boolean"
+    },
+    "retry_after_s": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "details": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "revision",
+    "code",
+    "message",
+    "request_id",
+    "retryable",
+    "retry_after_s",
+    "details"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "error.schema.json",
+  "title": "error"
+}

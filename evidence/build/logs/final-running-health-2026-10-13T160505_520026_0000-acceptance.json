@@ -1,0 +1,36 @@
+{
+  "suite": "R010",
+  "passed": [
+    "lighting-39",
+    "lighting-40",
+    "lighting-41",
+    "lighting-42",
+    "reconstruction-cap",
+    "missing-route",
+    "hazard-only",
+    "dogleg",
+    "ambiguous-mission",
+    "variant-mismatch",
+    "missing-emission",
+    "incomplete-negative",
+    "complete-negative",
+    "poor-clouds",
+    "stale-feed",
+    "missing-weather",
+    "official-clear",
+    "official-mixed",
+    "outside-map",
+    "scrub",
+    "hold",
+    "completed",
+    "cancelled"
+  ],
+  "failed": [],
+  "blocked": [],
+  "adapter_command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "implementation.acceptance_adapter"
+  ],
+  "run_at": "2026-10-13T15:59:05.223425+00:00"
+}

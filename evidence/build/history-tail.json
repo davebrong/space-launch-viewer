@@ -1,0 +1,166 @@
+{
+  "rows": [
+    {
+      "id": "a58b6abf-6b0e-492c-8bf3-1fa586f8d4da",
+      "name": "Thor Able I | Pioneer 1",
+      "net": "1958-10-11T08:42:13Z",
+      "date_only": false,
+      "time_known": false,
+      "pad_name": "Space Launch Complex 17A",
+      "status": "Launch Successful",
+      "updated_at": "2023-06-14T17:40:19Z",
+      "source_url": "https://ll.thespacedevs.com/2.3.0/launches/a58b6abf-6b0e-492c-8bf3-1fa586f8d4da/"
+    },
+    {
+      "id": "3aec8a7e-0884-4709-bdf6-c5f6444314a4",
+      "name": "Vanguard | Vanguard",
+      "net": "1958-09-26T15:38:00Z",
+      "date_only": false,
+      "time_known": false,
+      "pad_name": "Launch Complex 18A",
+      "status": "Launch Failure",
+      "updated_at": "2023-06-14T17:42:59Z",
+      "source_url": "https://ll.thespacedevs.com/2.3.0/launches/3aec8a7e-0884-4709-bdf6-c5f6444314a4/"
+    },
+    {
+      "id": "a17719ee-5a39-452d-afc6-770d3c6deb1b",
+      "name": "Juno-I | Explorer 5",
+      "net": "1958-08-24T06:17:22Z",
+      "date_only": false,
+      "time_known": false,
+      "pad_name": "Launch Complex 5",
+      "status": "Launch Failure",
+      "updated_at": "2023-06-14T17:42:44Z",
+      "source_url": "https://ll.thespacedevs.com/2.3.0/launches/a17719ee-5a39-452d-afc6-770d3c6deb1b/"
+    },
+    {
+      "id": "5408eda7-a3cc-48d2-9a62-e77a3cf86bc1",
+      "name": "Thor Able I | Able I (Pioneer)",
+      "net": "1958-08-17T12:18:00Z",
+      "date_only": false,
+      "time_known": false,
+      "pad_name": "Space Launch Complex 17A",
+      "status": "Launch Failure",
+      "updated_at": "2023-06-14T17:40:20Z",
+      "source_url": "https://ll.thespacedevs.com/2.3.0/launches/5408eda7-a3cc-48d2-9a62-e77a3cf86bc1/"
+    },
+    {
+      "id": "e0975cef-e8c6-4f35-bbf7-1b55963e06a5",
+      "name": "Juno-I | Explorer 4",
+      "net": "1958-07-26T15:00:57Z",
+      "date_only": false,
+      "time_known": false,
+      "pad_name": "Launch Complex 5",
+      "status": "Launch Successful",
+      "updated_at": "2023-06-14T17:42:44Z",
+      "source_url": "https://ll.thespacedevs.com/2.3.0/launches/e0975cef-e8c6-4f35-bbf7-1b55963e06a5/"
+    },
+    {
+      "id": "57e64adf-5c20-4c81-b17a-587b44d574b0",
+      "name": "Vanguard | Vanguard",
+      "net": "1958-06-26T05:00:52Z",
+      "date_only": false,
+      "time_known": false,
+      "pad_name": "Launch Complex 18A",
+      "status": "Launch Failure",
+      "updated_at": "2023-06-14T17:42:58Z",
+      "source_url": "https://ll.thespacedevs.com/2.3.0/launches/57e64adf-5c20-4c81-b17a-587b44d574b0/"
+    },
+    {
+      "id": "a861fb4d-8988-468b-abd1-a6e8abe5f2c7",
+      "name": "Vanguard | Vanguard",
+      "net": "1958-05-28T03:46:20Z",
+      "date_only": false,
+      "time_known": false,
+      "pad_name": "Launch Complex 18A",
+      "status": "Launch Failure",
+      "updated_at": "2023-06-14T17:43:00Z",
+      "source_url": "https://ll.thespacedevs.com/2.3.0/launches/a861fb4d-8988-468b-abd1-a6e8abe5f2c7/"
+    },
+    {
+      "id": "de282e74-e03b-411e-9633-2d1497629893",
+      "name": "Vanguard | Vanguard",
+      "net": "1958-04-29T02:53:00Z",
+      "date_only": false,
+      "time_known": false,
+      "pad_name": "Launch Complex 18A",
+      "status": "Launch Failure",
+      "updated_at": "2023-06-14T17:42:59Z",
+      "source_url": "https://ll.thespacedevs.com/2.3.0/launches/de282e74-e03b-411e-9633-2d1497629893/"
+    },
+    {
+      "id": "b4e501ff-083c-47d6-9ff0-63ec1bf035c3",
+      "name": "Juno-I | Explorer 3",
+      "net": "1958-03-26T17:38:01Z",
+      "date_only": false,
+      "time_known": false,
+      "pad_name": "Launch Complex 26A",
+      "status": "Launch Successful",
+      "updated_at": "2023-06-14T17:40:21Z",
+      "source_url": "https://ll.thespacedevs.com/2.3.0/launches/b4e501ff-083c-47d6-9ff0-63ec1bf035c3/"
+    },
+    {
+      "id": "74d39bb8-34a6-4a8b-8554-d2d3ec22aee6",
+      "name": "Vanguard | Vanguard",
+      "net": "1958-03-17T12:15:41Z",
+      "date_only": false,
+      "time_known": false,
+      "pad_name": "Launch Complex 18A",
+      "status": "Launch Successful",
+      "updated_at": "2023-06-14T17:42:59Z",
+      "source_url": "https://ll.thespacedevs.com/2.3.0/launches/74d39bb8-34a6-4a8b-8554-d2d3ec22aee6/"
+    },
+    {
+      "id": "896e8af6-d256-4a5b-ab15-2f25c84e90e3",
+      "name": "Juno-I | Explorer 2",
+      "net": "1958-03-05T18:27:57Z",
+      "date_only": false,
+      "time_known": false,
+      "pad_name": "Launch Complex 26A",
+      "status": "Launch Failure",
+      "updated_at": "2023-06-14T17:40:22Z",
+      "source_url": "https://ll.thespacedevs.com/2.3.0/launches/896e8af6-d256-4a5b-ab15-2f25c84e90e3/"
+    },
+    {
+      "id": "48bc7deb-b2e1-46c2-ab63-0ce00fbd192b",
+      "name": "Vanguard | Vanguard",
+      "net": "1958-02-05T07:33:00Z",
+      "date_only": false,
+      "time_known": false,
+      "pad_name": "Launch Complex 18A",
+      "status": "Launch Failure",
+      "updated_at": "2023-06-14T17:42:59Z",
+      "source_url": "https://ll.thespacedevs.com/2.3.0/launches/48bc7deb-b2e1-46c2-ab63-0ce00fbd192b/"
+    },
+    {
+      "id": "1b9e28d0-c531-44b0-9b37-244e62a6d3f4",
+      "name": "Juno-I | Explorer 1",
+      "net": "1958-02-01T03:47:56Z",
+      "date_only": false,
+      "time_known": false,
+      "pad_name": "Launch Complex 26A",
+      "status": "Launch Successful",
+      "updated_at": "2023-06-14T17:40:22Z",
+      "source_url": "https://ll.thespacedevs.com/2.3.0/launches/1b9e28d0-c531-44b0-9b37-244e62a6d3f4/"
+    },
+    {
+      "id": "535c1a09-97c8-4f96-bb64-6336d4bcb1fb",
+      "name": "Vanguard | Vanguard",
+      "net": "1957-12-06T16:44:35Z",
+      "date_only": false,
+      "time_known": false,
+      "pad_name": "Launch Complex 18A",
+      "status": "Launch Failure",
+      "updated_at": "2023-06-14T17:43:00Z",
+      "source_url": "https://ll.thespacedevs.com/2.3.0/launches/535c1a09-97c8-4f96-bb64-6336d4bcb1fb/"
+    }
+  ],
+  "provider_count": 1414,
+  "next_cursor": null,
+  "fetched_at": "2026-10-13T20:26:11Z",
+  "source_url": "https://ll.thespacedevs.com/2.3.0/launches/previous/?limit=100&location__ids=12,27&ordering=-net&net__lte=2026-10-13T10%3A33%3A44Z&offset=1400",
+  "state": "ready",
+  "error": null,
+  "refreshing": false,
+  "retry_at": null
+}

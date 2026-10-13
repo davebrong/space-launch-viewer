@@ -1,0 +1,14 @@
+{
+  "run_at": "2026-10-13T15:49:02.486273+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "implementation.gates",
+    "historical-cape"
+  ],
+  "exit_code": 2,
+  "status": "failed",
+  "artifact_path": "evidence/build/logs/gate-historical-cape-2026-10-13T154902_486273_0000.txt",
+  "sha256": "a8b502b424ebd3d0032de217b044699e906e3d5d77738148569e0b579943e207",
+  "software_sha256": "d515cc89651f95a830e384f6c8fdcf81c16a1b5c06c31e4e0f1d987298905d22"
+}

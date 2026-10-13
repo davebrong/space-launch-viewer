@@ -1,0 +1,85 @@
+{
+  "checked_at": "2026-10-13T20:27:52.243475+00:00",
+  "scope": "Cape Canaveral and Kennedy, default historical endpoint scope",
+  "provider_count": 1414,
+  "newest_launch": {
+    "id": "bf2c3027-a314-403e-a416-2bfd5d165ad1",
+    "name": "Falcon 9 Block 5 | Dragon CRS-2 SpX-35",
+    "net": "2026-10-13T10:33:44Z",
+    "last_updated": "2026-10-13T11:31:18Z"
+  },
+  "oldest_launch": {
+    "id": "535c1a09-97c8-4f96-bb64-6336d4bcb1fb",
+    "name": "Vanguard | Vanguard",
+    "net": "1957-12-06T16:44:35Z",
+    "date_only": false,
+    "time_known": false,
+    "pad_name": "Launch Complex 18A",
+    "status": "Launch Failure",
+    "updated_at": "2023-06-14T17:43:00Z",
+    "source_url": "https://ll.thespacedevs.com/2.3.0/launches/535c1a09-97c8-4f96-bb64-6336d4bcb1fb/"
+  },
+  "latest_upcoming_record_update": {
+    "id": "3b430f81-0ff1-4d85-8a1a-cef0de326198",
+    "name": "Falcon 9 Block 5 | Bandwagon 5 (Dedicated Mid-Inclination Rideshare)",
+    "net": "2026-10-19T10:30:00Z",
+    "last_updated": "2026-10-13T17:28:28Z"
+  },
+  "sources": [
+    {
+      "key": "ll2:history:415aefddb8a6d0b6054c9260452acb65cd930c54878432a320aa13335a824073:1400",
+      "provenance": {
+        "kind": "provider",
+        "notes": [],
+        "sha256": "8a436407d5cd1bf6accbaabc51dff40d015459d4fd0f6ec6f5e7b2898c34c197",
+        "license": "The Space Devs LL2 attribution; no linked imagery redistributed",
+        "issued_at": null,
+        "fetched_at": "2026-10-13T20:26:11Z",
+        "source_url": "https://ll.thespacedevs.com/2.3.0/launches/previous/?limit=100&location__ids=12,27&ordering=-net&net__lte=2026-10-13T10%3A33%3A44Z&offset=1400",
+        "parser_version": "ll2-v1",
+        "source_revision": null
+      },
+      "error": null
+    },
+    {
+      "key": "ll2:history:415aefddb8a6d0b6054c9260452acb65cd930c54878432a320aa13335a824073:100",
+      "provenance": {
+        "kind": "provider",
+        "notes": [],
+        "sha256": "17af466b7cc085523738cbdb49ca51ab0cd324eff0293ab73bc50430546ac7bf",
+        "license": "The Space Devs LL2 attribution; no linked imagery redistributed",
+        "issued_at": null,
+        "fetched_at": "2026-10-13T20:26:44Z",
+        "source_url": "https://ll.thespacedevs.com/2.3.0/launches/previous/?limit=100&location__ids=12,27&ordering=-net&net__lte=2026-10-13T10%3A33%3A44Z&offset=100",
+        "parser_version": "ll2-v1",
+        "source_revision": null
+      },
+      "error": null
+    },
+    {
+      "key": "ll2:history:head",
+      "provenance": {
+        "kind": "provider",
+        "notes": [],
+        "sha256": "415aefddb8a6d0b6054c9260452acb65cd930c54878432a320aa13335a824073",
+        "license": "The Space Devs LL2 attribution; no linked imagery redistributed",
+        "issued_at": null,
+        "fetched_at": "2026-10-13T20:19:00Z",
+        "source_url": "https://ll.thespacedevs.com/2.3.0/launches/previous/?limit=100&location__ids=12,27&ordering=-net",
+        "parser_version": "ll2-v1",
+        "source_revision": null
+      },
+      "error": null
+    }
+  ],
+  "failed_attempt": {
+    "url": "https://ll.thespacedevs.com/2.3.0/launches/previous/?limit=1&location__ids=12,27&ordering=net",
+    "error": "ReadTimeout",
+    "attempted_at": "2026-10-13T20:22:18.812565Z",
+    "next_retry_at": "2026-10-14 20:22:18.812565+00:00",
+    "resolution": "The final page of the regular descending archive succeeded, independently establishing the oldest record."
+  },
+  "loaded_pages_only": true,
+  "visibility_evidence": false,
+  "semantics": "100 records per page; Load older launches follows the archive. No ZIP visibility or 30-day filter. Worker-owned fetches share LL2 budget, snapshots and Retry-After policy. A fixed upper launch time prevents newly completed launches shifting older pages."
+}

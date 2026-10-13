@@ -1,0 +1,17 @@
+{
+  "run_at": "2026-10-13T16:26:27.742019+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/application",
+    "-q",
+    "-p",
+    "no:cacheprovider"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/qa-md-zip-unit-2026-10-13T162627_742019_0000.txt",
+  "sha256": "b0e1d8ad28e9298fe5503eb3f4091e49c260a588659d9233c957f116abf21fee",
+  "software_sha256": "05be9b8899be1ff4e7271ea033860cda98f7b6bce740617b22d58ee06d6e1207"
+}

@@ -1,0 +1,3 @@
+Acceptance: 0 passed, 1 failed, 0 blocked
+FAIL api-contract /all_operations_exercised: False != True
+

@@ -1,0 +1,20 @@
+{
+  "reviewed_input_manifest": "evidence/build/release-input-manifest.json",
+  "checks": [
+    {
+      "run_at": "2026-10-13T16:10:19.175905+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-c",
+        "from implementation.operational_checks import backup_restore; backup_restore(require_offhost=True)"
+      ],
+      "exit_code": 1,
+      "status": "blocked",
+      "artifact_path": "evidence/build/logs/offhost-backup-failure-detail-2026-10-13T161019_175905_0000.txt",
+      "sha256": "482416da856342a4fef36d76c737a627c6287a10401bace225de3bbbaafd85de",
+      "software_sha256": "201a4f9e7394dec8307bf7ef6d5f8e02f5bf87acb44c44fe1f1b4b71456f1672"
+    }
+  ],
+  "local_drill": "evidence/build/logs/deployment-artifact-restore.json",
+  "reason": "BACKUP_DESTINATION and BACKUP_KEY are unconfigured. Existing N: is verified as a local fixed disk (DriveType 3), not off-host storage. Encrypted isolated restore passed on the Linux artifact; off-host RPO/disaster recovery is not demonstrated."
+}

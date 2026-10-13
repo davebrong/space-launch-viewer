@@ -1,0 +1,22 @@
+[
+  {
+    "url": "https://issc.space/robots.txt",
+    "at": "2026-10-13T19:16:41.330403+00:00",
+    "error": "ConnectError"
+  },
+  {
+    "url": "https://issc.space/api/launches",
+    "at": "2026-10-13T19:16:44.234009+00:00",
+    "error": "ConnectError"
+  },
+  {
+    "url": "https://issc.space/launch-simulator?science=1",
+    "at": "2026-10-13T19:16:47.123987+00:00",
+    "error": "ConnectError"
+  },
+  {
+    "url": "https://lldev.thespacedevs.com/2.3.0/json",
+    "at": "2026-10-13T19:16:50.036514+00:00",
+    "error": "ConnectError"
+  }
+]

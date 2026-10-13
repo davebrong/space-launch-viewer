@@ -1,0 +1,4886 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Launch Visibility API",
+    "version": "1.0.0",
+    "description": "All times UTC Z. Public reads omit private data; same-origin capability sessions for mutations. See contracts/README.md for cross-field invariants."
+  },
+  "servers": [
+    {
+      "url": "/api/v1"
+    }
+  ],
+  "paths": {
+    "/session": {
+      "post": {
+        "operationId": "createLocalSession",
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ]
+      }
+    },
+    "/locations/resolve": {
+      "post": {
+        "operationId": "resolveLocation",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "location.schema.json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationInput"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ]
+      }
+    },
+    "/locations/{id}/confirm": {
+      "post": {
+        "operationId": "confirmLocation",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "location.schema.json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfirmInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/locations/{id}": {
+      "get": {
+        "operationId": "getOwnLocation",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "location.schema.json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "deleteLocation",
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ]
+      }
+    },
+    "/launches": {
+      "get": {
+        "operationId": "listLaunches",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "launch.schema.json"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Opaque next cursor; absent if exhausted",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            }
+          }
+        ]
+      }
+    },
+    "/launches/{id}": {
+      "get": {
+        "operationId": "getLaunch",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "launch.schema.json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ]
+      }
+    },
+    "/assessments": {
+      "post": {
+        "operationId": "computeAssessment",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "assessment.schema.json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssessmentInput"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ]
+      }
+    },
+    "/assessments/{id}": {
+      "get": {
+        "operationId": "getOwnAssessment",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "assessment.schema.json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ]
+      }
+    },
+    "/launches/{id}/evidence": {
+      "get": {
+        "operationId": "listEvidence",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "route-evidence.schema.json"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Opaque next cursor; absent if exhausted",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            }
+          }
+        ]
+      }
+    },
+    "/profiles/{id}": {
+      "get": {
+        "operationId": "getProfile",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "ascent-profile.schema.json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ]
+      }
+    },
+    "/subscriptions": {
+      "post": {
+        "operationId": "createSubscription",
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "subscription.schema.json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscriptionInput"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 16
+            }
+          }
+        ]
+      },
+      "get": {
+        "operationId": "listSubscriptions",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "subscription.schema.json"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Opaque next cursor; absent if exhausted",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            }
+          }
+        ]
+      }
+    },
+    "/subscriptions/{id}": {
+      "put": {
+        "operationId": "replaceSubscription",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "subscription.schema.json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscriptionInput"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteSubscription",
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ]
+      }
+    },
+    "/unsubscribe": {
+      "post": {
+        "operationId": "unsubscribe",
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TokenInput"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ]
+      }
+    },
+    "/notifications": {
+      "get": {
+        "operationId": "listNotifications",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "notification.schema.json"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Opaque next cursor; absent if exhausted",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            }
+          }
+        ]
+      }
+    },
+    "/launches/{id}/calendar": {
+      "get": {
+        "operationId": "downloadCalendar",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/calendar": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "assessment_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ]
+      }
+    },
+    "/observations": {
+      "post": {
+        "operationId": "recordObservation",
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "observation.schema.json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ObservationInput"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ]
+      }
+    },
+    "/admin/launches/{id}": {
+      "patch": {
+        "operationId": "disableLaunch",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "launch.schema.json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "admin": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/ingestion": {
+      "get": {
+        "operationId": "ingestionHealth",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "enum": [
+                        "ok",
+                        "degraded",
+                        "unavailable"
+                      ]
+                    },
+                    "checked_at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "Z$",
+                      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                    },
+                    "components": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "status": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "last_success_at": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "Z$",
+                                "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "reason": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "status",
+                          "last_success_at",
+                          "reason"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "checked_at",
+                    "components"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "admin": []
+          }
+        ]
+      }
+    },
+    "/admin/ingestion/{id}/retry": {
+      "post": {
+        "operationId": "retryIngestion",
+        "responses": {
+          "202": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "admin": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ]
+      }
+    },
+    "/health/live": {
+      "get": {
+        "operationId": "liveness",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "enum": [
+                        "ok",
+                        "degraded",
+                        "unavailable"
+                      ]
+                    },
+                    "checked_at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "Z$",
+                      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                    },
+                    "components": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "status": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "last_success_at": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "Z$",
+                                "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "reason": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "status",
+                          "last_success_at",
+                          "reason"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "checked_at",
+                    "components"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "operationId": "readiness",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "enum": [
+                        "ok",
+                        "degraded",
+                        "unavailable"
+                      ]
+                    },
+                    "checked_at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "Z$",
+                      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                    },
+                    "components": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "status": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "last_success_at": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "Z$",
+                                "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "reason": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "status",
+                          "last_success_at",
+                          "reason"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "checked_at",
+                    "components"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/locations/{id}/viewing-opportunities": {
+      "get": {
+        "operationId": "getViewingOpportunities",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ViewingOpportunity"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden or CSRF rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Revision conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid/unsupported input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local budget exhausted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/launch-history": {
+      "get": {
+        "operationId": "launchHistory",
+        "summary": "Browse all past Cape/Kennedy launches independently of observer visibility. Shared worker-cached pages respect provider request budgets.",
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 80
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Historical records or a pending retrieval state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LaunchHistoryPage"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "History changed or cursor invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "location": {
+        "$ref": "location.schema.json"
+      },
+      "launch": {
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "provider_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "mission_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "pad_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "pad_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "pad_point": {
+            "type": "object",
+            "properties": {
+              "latitude_deg": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "longitude_deg": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "altitude_m": {
+                "type": "number"
+              },
+              "frame": {
+                "const": "WGS84_GEODETIC"
+              },
+              "altitude_datum": {
+                "const": "WGS84_ELLIPSOID"
+              }
+            },
+            "required": [
+              "latitude_deg",
+              "longitude_deg",
+              "altitude_m",
+              "frame",
+              "altitude_datum"
+            ],
+            "additionalProperties": false
+          },
+          "vehicle_variant": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "mission_class": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "recovery_configuration": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "attempt_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "time_precision": {
+            "enum": [
+              "exact",
+              "window",
+              "date",
+              "unknown"
+            ]
+          },
+          "net": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$",
+                "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "window": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "Z$",
+                    "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                  },
+                  "end": {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "Z$",
+                    "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                  }
+                },
+                "required": [
+                  "start",
+                  "end"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "date_label": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "date_basis_timezone": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "actual_liftoff": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$",
+                "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status": {
+            "enum": [
+              "scheduled",
+              "hold",
+              "scrubbed",
+              "cancelled",
+              "completed",
+              "unknown",
+              "in_flight"
+            ]
+          },
+          "disabled": {
+            "type": "boolean"
+          },
+          "source_updated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$",
+                "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "provenance": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "source_url": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "fetched_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$",
+                  "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                },
+                "issued_at": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "Z$",
+                      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "source_revision": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "license": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "parser_version": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "kind": {
+                  "enum": [
+                    "provider",
+                    "published_path",
+                    "hazard_corridor",
+                    "historical_telemetry",
+                    "reconstructed_estimate",
+                    "official_guidance",
+                    "observed_sighting",
+                    "synthetic"
+                  ]
+                },
+                "notes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "required": [
+                "source_url",
+                "sha256",
+                "fetched_at",
+                "issued_at",
+                "source_revision",
+                "license",
+                "parser_version",
+                "kind",
+                "notes"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "schema_version",
+          "id",
+          "revision",
+          "provider_id",
+          "mission_id",
+          "name",
+          "pad_id",
+          "pad_name",
+          "pad_point",
+          "vehicle_variant",
+          "mission_class",
+          "recovery_configuration",
+          "attempt_id",
+          "time_precision",
+          "net",
+          "window",
+          "date_label",
+          "date_basis_timezone",
+          "actual_liftoff",
+          "status",
+          "disabled",
+          "source_updated_at",
+          "provenance"
+        ],
+        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "launch.schema.json",
+        "title": "launch"
+      },
+      "route-evidence": {
+        "$ref": "route-evidence.schema.json"
+      },
+      "ascent-profile": {
+        "$ref": "ascent-profile.schema.json"
+      },
+      "weather-interval": {
+        "$ref": "weather-interval.schema.json"
+      },
+      "assessment": {
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "launch_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "launch_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "attempt_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "location_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "location_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "computed_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$",
+            "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$",
+            "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+          },
+          "ruleset": {
+            "const": "visibility_rules_v1_1"
+          },
+          "astronomy_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ephemeris_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "input_hashes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "profile_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "mode": {
+            "enum": [
+              "reconstructed",
+              "official_guidance",
+              "route_screening",
+              "unavailable"
+            ]
+          },
+          "advice": {
+            "enum": [
+              "Worth a look",
+              "Possible",
+              "Unlikely",
+              "Not enough data"
+            ]
+          },
+          "display_status": {
+            "enum": [
+              "forecast",
+              "awaiting_confirmation",
+              "hold",
+              "scrubbed",
+              "cancelled",
+              "completed",
+              "disabled",
+              "in_flight"
+            ]
+          },
+          "weather_state": {
+            "enum": [
+              "clear",
+              "mixed",
+              "poor",
+              "unavailable",
+              "stale"
+            ]
+          },
+          "fresh": {
+            "type": "boolean"
+          },
+          "conditional": {
+            "type": "boolean"
+          },
+          "all_tracks_agree": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "lighting_flag": {
+            "type": "boolean"
+          },
+          "windows": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "interval": {
+                  "type": "object",
+                  "properties": {
+                    "start": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "Z$",
+                      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                    },
+                    "end": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "Z$",
+                      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                    }
+                  },
+                  "required": [
+                    "start",
+                    "end"
+                  ],
+                  "additionalProperties": false
+                },
+                "t_start_s": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "t_end_s": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "candidate_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "bearing_sectors": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "start_deg": {
+                        "type": "number",
+                        "minimum": 0,
+                        "exclusiveMaximum": 360
+                      },
+                      "end_deg": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 360
+                      },
+                      "wraps_north": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "start_deg",
+                      "end_deg",
+                      "wraps_north"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "max_elevation_min_deg": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 90
+                },
+                "max_elevation_max_deg": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 90
+                },
+                "movement": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "rounded_for_display": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "interval",
+                "t_start_s",
+                "t_end_s",
+                "candidate_ids",
+                "bearing_sectors",
+                "max_elevation_min_deg",
+                "max_elevation_max_deg",
+                "movement",
+                "rounded_for_display"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "solar_events": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "local_date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "timezone": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sunrise": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "Z$",
+                      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "sunset": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "Z$",
+                      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "rise_set_state": {
+                  "enum": [
+                    "normal",
+                    "no_rise",
+                    "no_set",
+                    "no_rise_or_set",
+                    "unavailable"
+                  ]
+                },
+                "transitions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "Z$",
+                        "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                      },
+                      "event": {
+                        "enum": [
+                          "sunrise",
+                          "sunset",
+                          "civil",
+                          "nautical",
+                          "astronomical"
+                        ]
+                      },
+                      "direction": {
+                        "enum": [
+                          "rising",
+                          "setting"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "at",
+                      "event",
+                      "direction"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "local_date",
+                "timezone",
+                "sunrise",
+                "sunset",
+                "rise_set_state",
+                "transitions"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "missing_flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "reason_codes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "provenance": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "source_url": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "fetched_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$",
+                  "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                },
+                "issued_at": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "Z$",
+                      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "source_revision": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "license": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "parser_version": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "kind": {
+                  "enum": [
+                    "provider",
+                    "published_path",
+                    "hazard_corridor",
+                    "historical_telemetry",
+                    "reconstructed_estimate",
+                    "official_guidance",
+                    "observed_sighting",
+                    "synthetic"
+                  ]
+                },
+                "notes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "required": [
+                "source_url",
+                "sha256",
+                "fetched_at",
+                "issued_at",
+                "source_revision",
+                "license",
+                "parser_version",
+                "kind",
+                "notes"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "official_intervals": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "start": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$",
+                  "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                },
+                "end": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$",
+                  "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                }
+              },
+              "required": [
+                "start",
+                "end"
+              ],
+              "additionalProperties": false
+            },
+            "description": "Only the timing supplied by applicable official guidance; no invented elevation or azimuth."
+          },
+          "supported_intervals": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "start": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$",
+                  "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                },
+                "end": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$",
+                  "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                }
+              },
+              "required": [
+                "start",
+                "end"
+              ],
+              "additionalProperties": false
+            },
+            "description": "Unrounded, fresh, weather-supported portions used for reminders."
+          },
+          "alternatives": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "t0": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "result": {
+                  "type": "object"
+                }
+              },
+              "required": [
+                "t0",
+                "result"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "planning_scenario": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "model_version": {
+                "type": "string"
+              },
+              "model_sha256": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "launch_time": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time"
+              },
+              "watch_interval": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "start": {
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "Z$",
+                        "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                      },
+                      "end": {
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "Z$",
+                        "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                      }
+                    },
+                    "required": [
+                      "start",
+                      "end"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "directions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "windows": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "interval": {
+                      "type": "object",
+                      "properties": {
+                        "start": {
+                          "type": "string",
+                          "format": "date-time",
+                          "pattern": "Z$",
+                          "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                        },
+                        "end": {
+                          "type": "string",
+                          "format": "date-time",
+                          "pattern": "Z$",
+                          "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                        }
+                      },
+                      "required": [
+                        "start",
+                        "end"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "t_start_s": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "t_end_s": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "candidate_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "bearing_sectors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "start_deg": {
+                            "type": "number",
+                            "minimum": 0,
+                            "exclusiveMaximum": 360
+                          },
+                          "end_deg": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 360
+                          },
+                          "wraps_north": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "start_deg",
+                          "end_deg",
+                          "wraps_north"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "max_elevation_min_deg": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 90
+                    },
+                    "max_elevation_max_deg": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 90
+                    },
+                    "movement": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "rounded_for_display": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "interval",
+                    "t_start_s",
+                    "t_end_s",
+                    "candidate_ids",
+                    "bearing_sectors",
+                    "max_elevation_min_deg",
+                    "max_elevation_max_deg",
+                    "movement",
+                    "rounded_for_display"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "cloud_cover_min_pct": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 100
+              },
+              "cloud_cover_max_pct": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 100
+              },
+              "weather_basis": {
+                "enum": [
+                  "archived_prelaunch",
+                  "unavailable"
+                ]
+              },
+              "assumptions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "references": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "supports": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "url",
+                    "supports"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "uses_actual_liftoff": {
+                "const": false
+              },
+              "uses_sightings": {
+                "const": false
+              },
+              "kind": {
+                "enum": [
+                  "near_launch_site",
+                  "trajectory_simulation"
+                ]
+              },
+              "pad_distance_m": {
+                "type": "number",
+                "minimum": 0
+              },
+              "pad_bearing_deg": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 360
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "model_version",
+              "model_sha256",
+              "label",
+              "launch_time",
+              "watch_interval",
+              "directions",
+              "windows",
+              "cloud_cover_min_pct",
+              "cloud_cover_max_pct",
+              "weather_basis",
+              "assumptions",
+              "references",
+              "uses_actual_liftoff",
+              "uses_sightings"
+            ]
+          }
+        },
+        "required": [
+          "schema_version",
+          "id",
+          "revision",
+          "launch_id",
+          "launch_revision",
+          "attempt_id",
+          "location_id",
+          "location_revision",
+          "computed_at",
+          "as_of",
+          "ruleset",
+          "astronomy_version",
+          "ephemeris_sha256",
+          "input_hashes",
+          "evidence_ids",
+          "profile_ids",
+          "mode",
+          "advice",
+          "display_status",
+          "weather_state",
+          "fresh",
+          "conditional",
+          "all_tracks_agree",
+          "lighting_flag",
+          "windows",
+          "solar_events",
+          "missing_flags",
+          "reason_codes",
+          "limitations",
+          "provenance"
+        ],
+        "additionalProperties": false,
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "assessment.schema.json",
+        "title": "assessment",
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "mode": {
+                  "const": "reconstructed"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "advice": {
+                  "enum": [
+                    "Possible",
+                    "Unlikely",
+                    "Not enough data"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "mode": {
+                  "enum": [
+                    "route_screening",
+                    "unavailable"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "advice": {
+                  "const": "Not enough data"
+                },
+                "windows": {
+                  "maxItems": 0
+                }
+              }
+            }
+          }
+        ]
+      },
+      "subscription": {
+        "$ref": "subscription.schema.json"
+      },
+      "notification": {
+        "$ref": "notification.schema.json"
+      },
+      "error": {
+        "$ref": "error.schema.json"
+      },
+      "observation": {
+        "$ref": "observation.schema.json"
+      },
+      "LocationInput": {
+        "type": "object",
+        "properties": {
+          "zip": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[0-9]{5}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "latitude_deg": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "longitude_deg": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "altitude_m": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "zip",
+          "latitude_deg",
+          "longitude_deg",
+          "altitude_m"
+        ],
+        "additionalProperties": false
+      },
+      "ConfirmInput": {
+        "type": "object",
+        "properties": {
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "confirmed": {
+            "const": true
+          }
+        },
+        "required": [
+          "revision",
+          "confirmed"
+        ],
+        "additionalProperties": false
+      },
+      "AssessmentInput": {
+        "type": "object",
+        "properties": {
+          "launch_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "location_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "launch_id",
+          "location_id"
+        ],
+        "additionalProperties": false
+      },
+      "SubscriptionInput": {
+        "type": "object",
+        "properties": {
+          "location_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "launch_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "all_supported_launches": {
+            "type": "boolean"
+          },
+          "allow_possible": {
+            "type": "boolean"
+          },
+          "overnight_opt_in": {
+            "type": "boolean"
+          },
+          "milestones": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "planning_24h",
+                "viewing_30m"
+              ]
+            }
+          }
+        },
+        "required": [
+          "location_id",
+          "launch_ids",
+          "all_supported_launches",
+          "allow_possible",
+          "overnight_opt_in",
+          "milestones"
+        ],
+        "additionalProperties": false
+      },
+      "AdminInput": {
+        "type": "object",
+        "properties": {
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "disabled": {
+            "type": "boolean"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "scheduled",
+              "hold",
+              "scrubbed",
+              "cancelled",
+              "completed",
+              "unknown",
+              "in_flight"
+            ]
+          },
+          "recovery_configuration": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_url": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "required": [
+          "revision",
+          "disabled",
+          "reason"
+        ],
+        "additionalProperties": false
+      },
+      "TokenInput": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "minLength": 32
+          }
+        },
+        "required": [
+          "token"
+        ],
+        "additionalProperties": false
+      },
+      "ObservationInput": {
+        "type": "object",
+        "properties": {
+          "assessment_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "outcome": {
+            "enum": [
+              "seen",
+              "not_seen",
+              "inconclusive",
+              "not_attempted"
+            ]
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$",
+            "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+          },
+          "actual_cloud_notes": {
+            "type": "string",
+            "minLength": 1
+          },
+          "notes": {
+            "type": "string",
+            "minLength": 1
+          },
+          "consent_to_archive": {
+            "type": "boolean"
+          },
+          "retrospective": {
+            "type": "boolean",
+            "description": "Self-reported retrospective context. Excluded from prospective forecast validation. The server also classifies post-launch assessments as retrospective."
+          }
+        },
+        "required": [
+          "assessment_id",
+          "outcome",
+          "observed_at",
+          "actual_cloud_notes",
+          "notes",
+          "consent_to_archive"
+        ],
+        "additionalProperties": false
+      },
+      "ViewingOpportunity": {
+        "type": "object",
+        "properties": {
+          "launch_id": {
+            "type": "string"
+          },
+          "viewable": {
+            "type": "boolean"
+          },
+          "label": {
+            "type": "string"
+          },
+          "basis": {
+            "enum": [
+              "unavailable",
+              "simulation",
+              "reconstructed",
+              "official_guidance",
+              "near_launch_site"
+            ]
+          },
+          "directions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "watch_interval": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "Z$",
+                    "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                  },
+                  "end": {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "Z$",
+                    "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                  }
+                },
+                "required": [
+                  "start",
+                  "end"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "launch_id",
+          "viewable",
+          "label",
+          "basis",
+          "directions",
+          "watch_interval"
+        ]
+      },
+      "LaunchHistoryPage": {
+        "type": "object",
+        "properties": {
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "net": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "format": "date-time"
+                },
+                "date_only": {
+                  "type": "boolean"
+                },
+                "time_known": {
+                  "type": "boolean"
+                },
+                "pad_name": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "updated_at": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "format": "date-time"
+                },
+                "source_url": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "net",
+                "date_only",
+                "time_known",
+                "pad_name",
+                "status",
+                "updated_at",
+                "source_url"
+              ]
+            }
+          },
+          "provider_count": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "fetched_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "source_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "state": {
+            "enum": [
+              "ready",
+              "pending",
+              "unavailable"
+            ]
+          },
+          "error": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "refreshing": {
+            "type": "boolean"
+          },
+          "retry_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "rows",
+          "provider_count",
+          "next_cursor",
+          "fetched_at",
+          "source_url",
+          "state",
+          "error",
+          "refreshing",
+          "retry_at"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "session": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "lv_session"
+      },
+      "admin": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}

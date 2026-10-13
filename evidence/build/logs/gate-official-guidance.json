@@ -1,0 +1,14 @@
+{
+  "run_at": "2026-10-13T15:49:04.992872+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "implementation.gates",
+    "official-guidance"
+  ],
+  "exit_code": 2,
+  "status": "failed",
+  "artifact_path": "evidence/build/logs/gate-official-guidance-2026-10-13T154904_992872_0000.txt",
+  "sha256": "057e4c6834864929f125d0b833aee8b571c85bb7ea968bc7ff6a465503e05c21",
+  "software_sha256": "d515cc89651f95a830e384f6c8fdcf81c16a1b5c06c31e4e0f1d987298905d22"
+}

@@ -1,0 +1,183 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.43kB done
+#1 DONE 0.0s
+
+#2 [web internal] load build definition from web.Dockerfile
+#2 transferring dockerfile: 758B done
+#2 DONE 0.0s
+
+#3 [worker internal] load build definition from api.Dockerfile
+#3 transferring dockerfile: 999B done
+#3 DONE 0.0s
+
+#4 [web internal] load metadata for docker.io/library/node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20
+#4 DONE 0.0s
+
+#5 [worker internal] load metadata for docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#5 DONE 0.0s
+
+#6 [api internal] load .dockerignore
+#6 transferring context: 179B done
+#6 DONE 0.0s
+
+#7 [web build 1/7] FROM docker.io/library/node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20
+#7 DONE 0.0s
+
+#8 [worker  1/16] FROM docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#8 DONE 0.0s
+
+#9 [web internal] load build context
+#9 transferring context: 267.70kB 0.0s done
+#9 DONE 0.0s
+
+#10 [worker internal] load build context
+#10 transferring context: 177.89kB 0.0s done
+#10 DONE 0.1s
+
+#11 [web build 4/7] COPY apps/web/package.json apps/web/package.json
+#11 CACHED
+
+#12 [web build 2/7] WORKDIR /app
+#12 CACHED
+
+#13 [web build 3/7] COPY package.json package-lock.json ./
+#13 CACHED
+
+#14 [web build 5/7] RUN npm ci
+#14 CACHED
+
+#15 [api  2/16] WORKDIR /app
+#15 CACHED
+
+#16 [api  4/16] RUN pip install --no-cache-dir --require-hashes -r requirements-app.lock.txt
+#16 CACHED
+
+#17 [api  3/16] COPY requirements-app.lock.txt .
+#17 CACHED
+
+#18 [api  5/16] RUN useradd --uid 1000 --create-home launch && mkdir /data && chown launch:launch /data
+#18 CACHED
+
+#19 [web build 6/7] COPY apps/web apps/web
+#19 DONE 0.0s
+
+#20 [api  6/16] COPY --chown=launch:launch packages packages
+#20 DONE 0.0s
+
+#21 [api  7/16] COPY --chown=launch:launch services services
+#21 DONE 0.0s
+
+#22 [api  8/16] COPY --chown=launch:launch implementation implementation
+#22 DONE 0.0s
+
+#23 [worker  9/16] COPY --chown=launch:launch ops ops
+#23 DONE 0.0s
+
+#24 [api 10/16] COPY --chown=launch:launch migrations migrations
+#24 DONE 0.0s
+
+#25 [web build 7/7] RUN npm run build
+#25 ...
+
+#24 [worker 10/16] COPY --chown=launch:launch migrations migrations
+#24 DONE 0.0s
+
+#26 [worker 11/16] COPY --chown=launch:launch spec/contracts spec/contracts
+#26 DONE 0.0s
+
+#27 [worker 12/16] COPY --chown=launch:launch data/gazetteer data/gazetteer
+#27 DONE 0.0s
+
+#28 [worker 13/16] COPY --chown=launch:launch data/registry data/registry
+#28 DONE 0.0s
+
+#28 [api 13/16] COPY --chown=launch:launch data/registry data/registry
+#28 DONE 0.0s
+
+#29 [api 14/16] COPY --chown=launch:launch data/profiles data/profiles
+#29 DONE 0.0s
+
+#30 [api 15/16] COPY --chown=launch:launch evidence/build/dependency-manifest.json evidence/build/dependency-manifest.json
+#30 DONE 0.0s
+
+#31 [api 16/16] COPY alembic.ini .
+#31 DONE 0.0s
+
+#25 [web build 7/7] RUN npm run build
+#25 0.393 
+#25 0.393 > launch-visibility-workspace@0.1.0 build
+#25 0.393 > npm run build --workspace apps/web
+#25 0.393 
+#25 ...
+
+#32 [worker] exporting to image
+#32 exporting layers 0.1s done
+#32 writing image sha256:e161837e47fd1b512f8b027a540e0435d2591cb6cd2f09c6a2c13104f589d43b done
+#32 naming to docker.io/library/launch-visibility-worker done
+#32 DONE 0.1s
+
+#33 [api] exporting to image
+#33 exporting layers 0.1s done
+#33 writing image sha256:41b7f6cf519bc13c2dc91fffda2582e4c1eddf92e864a1018be51d5ba0091acc done
+#33 naming to docker.io/library/launch-visibility-api done
+#33 DONE 0.1s
+
+#34 [worker] resolving provenance for metadata file
+#34 DONE 0.0s
+
+#35 [api] resolving provenance for metadata file
+#35 DONE 0.0s
+
+#25 [web build 7/7] RUN npm run build
+#25 0.518 
+#25 0.518 > launch-visibility-web@0.1.0 build
+#25 0.518 > next build --webpack
+#25 0.518 
+#25 0.941 ▲ Next.js 16.4.0 (webpack)
+#25 0.987 ✓ Running next.config.ts took 45ms
+#25 1.000 
+#25 1.019   Creating an optimized production build ...
+#25 8.173 ✓ Compiled successfully in 4.9s
+#25 8.175   Running TypeScript ...
+#25 10.29   Finished TypeScript in 2.1s ...
+#25 10.29   Collecting page data using 4 workers ...
+#25 10.87   Generating static pages using 4 workers (0/2) ...
+#25 11.36 ✓ Generating static pages using 4 workers (2/2) in 485ms
+#25 11.59   Finalizing page optimization ...
+#25 11.59   Collecting build traces ...
+#25 25.82 
+#25 25.82 Route (app)
+#25 25.82 ┌ ○ /_not-found
+#25 25.82 └ ƒ /[[...slug]]
+#25 25.82 
+#25 25.82 
+#25 25.82 ○  (Static)   prerendered as static content
+#25 25.82 ƒ  (Dynamic)  server-rendered on demand
+#25 25.82 
+#25 DONE 26.0s
+
+#12 [web build 2/7] WORKDIR /app
+#12 CACHED
+
+#36 [web stage-1 3/4] COPY --from=build --chown=node:node /app/apps/web/.next/standalone ./
+#36 DONE 0.7s
+
+#37 [web stage-1 4/4] COPY --from=build --chown=node:node /app/apps/web/.next/static ./apps/web/.next/static
+#37 DONE 0.0s
+
+#38 [web] exporting to image
+#38 exporting layers
+#38 exporting layers 0.3s done
+#38 writing image sha256:d692e55590b5f9e18b75fbd27a6bf5e555e69405fb2fda4b97a29a658954b017 done
+#38 naming to docker.io/library/launch-visibility-web done
+#38 DONE 0.3s
+
+#39 [web] resolving provenance for metadata file
+#39 DONE 0.0s
+
+ Image launch-visibility-api Building 
+ Image launch-visibility-worker Building 
+ Image launch-visibility-web Building 
+ Image launch-visibility-web Built 
+ Image launch-visibility-api Built 
+ Image launch-visibility-worker Built 

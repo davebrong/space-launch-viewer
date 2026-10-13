@@ -1,0 +1,14 @@
+{
+  "run_at": "2026-10-13T19:22:05.737948+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "implementation.checks",
+    "ingestion"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/source-ingestion-2026-10-13T192205_737948_0000.txt",
+  "sha256": "e859ff0b07dfaa52c00eabd89aada9bd5bb90f99ccc583bc83e8ac37d57bdc57",
+  "software_sha256": "79f8127ec1372a61f47929cd136449d6ccca49e01d68a510d30ee533612497c2"
+}

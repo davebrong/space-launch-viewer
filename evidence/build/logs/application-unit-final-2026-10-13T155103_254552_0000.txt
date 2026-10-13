@@ -1,0 +1,17 @@
+.............                                                            [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  <repo>\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/application/test_regressions.py::test_complete_negative_requires_complete_fresh_weather
+tests/application/test_regressions.py::test_complete_negative_requires_complete_fresh_weather
+tests/application/test_regressions.py::test_complete_negative_requires_complete_fresh_weather
+tests/application/test_regressions.py::test_complete_negative_requires_complete_fresh_weather
+  <repo>\.venv\Lib\site-packages\skyfield\searchlib.py:224: DeprecationWarning: Setting the dtype on a NumPy array has been deprecated in NumPy 2.5.
+  Instead of changing the dtype on an array x, create a new array with x.view(new_dtype)
+    y.dtype = int8
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+13 passed, 5 warnings in 2.92s
+

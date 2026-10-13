@@ -1,0 +1,14 @@
+{
+  "run_at": "2026-10-13T15:49:05.938466+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "implementation.gates",
+    "pilot"
+  ],
+  "exit_code": 2,
+  "status": "failed",
+  "artifact_path": "evidence/build/logs/gate-pilot-2026-10-13T154905_938466_0000.txt",
+  "sha256": "cce9106eadc7464d759831ce4c843fc98176e763c02d02bfb9a123f83645f460",
+  "software_sha256": "d515cc89651f95a830e384f6c8fdcf81c16a1b5c06c31e4e0f1d987298905d22"
+}

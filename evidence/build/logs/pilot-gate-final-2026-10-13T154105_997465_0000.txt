@@ -1,0 +1,6 @@
+{
+  "run_at": "2026-10-13T15:41:06Z",
+  "status": "blocked",
+  "reason": "Prospective human observations for five launches and thirty labeled attempts have not been collected. Software fixtures do not count."
+}
+

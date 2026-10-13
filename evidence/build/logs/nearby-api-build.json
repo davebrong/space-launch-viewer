@@ -1,0 +1,15 @@
+{
+  "run_at": "2026-10-13T19:46:48.124340+00:00",
+  "command": [
+    "docker",
+    "compose",
+    "build",
+    "api",
+    "worker"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/nearby-api-build-2026-10-13T194648_124340_0000.txt",
+  "sha256": "58903223228cbb62bd16037df3b7bcce33ea7547dae88a53ba5fd45fdfc795a6",
+  "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+}

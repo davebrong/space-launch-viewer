@@ -1,0 +1,193 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "zip": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9]{5}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "point": {
+      "type": "object",
+      "properties": {
+        "latitude_deg": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "longitude_deg": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        "altitude_m": {
+          "type": "number"
+        },
+        "frame": {
+          "const": "WGS84_GEODETIC"
+        },
+        "altitude_datum": {
+          "const": "WGS84_ELLIPSOID"
+        }
+      },
+      "required": [
+        "latitude_deg",
+        "longitude_deg",
+        "altitude_m",
+        "frame",
+        "altitude_datum"
+      ],
+      "additionalProperties": false
+    },
+    "origin": {
+      "enum": [
+        "zcta",
+        "gps",
+        "manual"
+      ]
+    },
+    "confirmed": {
+      "type": "boolean"
+    },
+    "timezone": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "timezone_data_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "representative_point": {
+      "type": "boolean"
+    },
+    "altitude_assumed": {
+      "type": "boolean"
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "fetched_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$",
+            "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+          },
+          "issued_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$",
+                "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "license": {
+            "type": "string",
+            "minLength": 1
+          },
+          "parser_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "provider",
+              "published_path",
+              "hazard_corridor",
+              "historical_telemetry",
+              "reconstructed_estimate",
+              "official_guidance",
+              "observed_sighting",
+              "synthetic"
+            ]
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "source_url",
+          "sha256",
+          "fetched_at",
+          "issued_at",
+          "source_revision",
+          "license",
+          "parser_version",
+          "kind",
+          "notes"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "revision",
+    "zip",
+    "point",
+    "origin",
+    "confirmed",
+    "timezone",
+    "timezone_data_version",
+    "representative_point",
+    "altitude_assumed",
+    "provenance"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "location.schema.json",
+  "title": "location"
+}

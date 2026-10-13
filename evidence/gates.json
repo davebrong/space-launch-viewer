@@ -1,0 +1,67 @@
+[
+  {
+    "id": "G-SPEC",
+    "status": "passed",
+    "reason": "9 offline specification checks passed; see evidence/spec-check.json"
+  },
+  {
+    "id": "G-SOFTWARE",
+    "status": "blocked",
+    "reason": "Core automatic per-mission route discovery and profile integration is incomplete, in addition to off-host recovery. Passing component tests do not satisfy the ZIP visibility product.",
+    "evidence": "evidence/build/source-audit.json",
+    "attempted_at": "2026-10-13T19:29:00.473988+00:00",
+    "external_attempts": [
+      {
+        "url": "https://ll.thespacedevs.com/2.3.0/launches/previous/?limit=1&location__ids=12,27&ordering=net",
+        "error": "ReadTimeout",
+        "attempted_at": "2026-10-13T20:22:18.812565Z",
+        "next_retry_at": "2026-10-14 20:22:18.812565+00:00",
+        "resolution": "The final page of the regular descending archive succeeded, independently establishing the oldest record.",
+        "affected_gate": "G-SOFTWARE",
+        "evidence": "evidence/build/history.json",
+        "status": "resolved_by_historical_last_page"
+      }
+    ]
+  },
+  {
+    "id": "G-REAL",
+    "status": "blocked",
+    "reason": "Orbcomm OG2 has no independently verified geodetic route, altitude datum/stage admission or different held-out qualified profile. No Maryland estimate is asserted.",
+    "required_evidence": [
+      "historical-association-manifest",
+      "profile-compatibility",
+      "heldout-report",
+      "geometry-comparison"
+    ],
+    "evidence": "evidence/build/G-REAL.json",
+    "attempted_at": "2026-10-13T15:49:02Z"
+  },
+  {
+    "id": "G-UPCOMING",
+    "status": "blocked",
+    "reason": "All 205 Cape/Kennedy schedule records retrieved. Bandwagon-5 advisory retrieved (HTTP 200), but supplies aircraft hazards, not timed altitude/profile data; automatic parser/discovery is not implemented. ISSC API returned 403. No real mission route/profile admitted.",
+    "evidence": "evidence/build/source-audit.json",
+    "attempted_at": "2026-10-13T19:29:00.473988+00:00"
+  },
+  {
+    "id": "G-GUIDANCE",
+    "status": "blocked",
+    "reason": "NASA TOMEX+ guidance retrieved for review. No verified coordinate membership and observer-specific usable interval fixture is yet admitted; launch window alone is insufficient.",
+    "evidence": "evidence/build/G-GUIDANCE.json",
+    "attempted_at": "2026-10-13T15:49:05Z"
+  },
+  {
+    "id": "G-PILOT",
+    "status": "blocked",
+    "reason": "Prospective human observations for five launches and thirty labeled attempts have not been collected. Software fixtures do not count.",
+    "evidence": "evidence/build/G-PILOT.json",
+    "attempted_at": "2026-10-13T15:49:06Z"
+  },
+  {
+    "id": "G-BACKUP",
+    "status": "blocked",
+    "reason": "BACKUP_DESTINATION and BACKUP_KEY are unconfigured. Existing N: is verified as a local fixed disk (DriveType 3), not off-host storage. Encrypted isolated restore passed on the Linux artifact; off-host RPO/disaster recovery is not demonstrated.",
+    "evidence": "evidence/build/logs/existing-storage-inspection.json",
+    "attempted_at": "2026-10-13T16:10:32.923779+00:00"
+  }
+]

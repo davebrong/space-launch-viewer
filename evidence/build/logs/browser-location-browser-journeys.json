@@ -1,0 +1,14 @@
+{
+  "run_at": "2026-10-13T15:25:56.178439+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "<repo>\\tests\\acceptance\\run.py",
+    "--suite",
+    "browser-journeys"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/browser-location-browser-journeys-2026-10-13T152556_178439_0000.txt",
+  "sha256": "7d9f7ed8a357bc29ae702e045a0c38ea521c3dda53af1a0c4823fdc8659bd428",
+  "software_sha256": "616414490655661dd35d1413d89e3184b73e3e737d397c8bcb4492ebe87181dd"
+}

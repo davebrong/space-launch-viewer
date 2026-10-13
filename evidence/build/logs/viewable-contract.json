@@ -1,0 +1,14 @@
+{
+  "run_at": "2026-10-13T19:11:26.002121+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "tests/acceptance/run.py",
+    "--suite",
+    "api-contract"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/viewable-contract-2026-10-13T191126_002121_0000.txt",
+  "sha256": "7d9f7ed8a357bc29ae702e045a0c38ea521c3dda53af1a0c4823fdc8659bd428",
+  "software_sha256": "521c686105f7f7ad87c9268364e6ee02183e348c1614ab5be3e32ea44722f283"
+}

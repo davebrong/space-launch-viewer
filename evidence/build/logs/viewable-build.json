@@ -1,0 +1,16 @@
+{
+  "run_at": "2026-10-13T19:10:10.395076+00:00",
+  "command": [
+    "docker",
+    "compose",
+    "build",
+    "web",
+    "api",
+    "worker"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/viewable-build-2026-10-13T191010_395076_0000.txt",
+  "sha256": "e5185874963480497ddd82900df766e8ed107bbc40424628c3cced0b5311355b",
+  "software_sha256": "07a4c0032e61094e59e6fdd952e908d935bf610e1674b8daf734ade128367d05"
+}

@@ -1,0 +1,10 @@
+PASSED json-schemas 
+PASSED openapi-3.1 
+PASSED positive-negative-schema-examples 
+PASSED fixture-shape-and-oracle-hash 
+PASSED raw-provenance-hashes 
+PASSED real-provider-snapshot-contracts 
+PASSED requirements-stories-task-graph-traceability 
+PASSED local-document-links 
+PASSED harness-fail-closed-self-tests 
+Specification: 9 passed, 0 failed

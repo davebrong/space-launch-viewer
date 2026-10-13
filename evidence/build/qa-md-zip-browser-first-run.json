@@ -1,0 +1,604 @@
+{
+  "config": {
+    "argv": [
+      "C:\\nvm4w\\nodejs\\node.exe",
+      "<repo>\\node_modules\\@playwright\\test\\cli.js",
+      "test"
+    ],
+    "configFile": "<repo>\\playwright.config.ts",
+    "rootDir": "<repo>/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "<repo>/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "<repo>/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "<repo>/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "<repo>/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "<repo>\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "desktop",
+        "testDir": "<repo>\\tests\\browser",
+        "snapshotDir": "<repo>\\tests\\browser",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 60000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3007",
+          "browserName": "chromium",
+          "timezoneId": "America/Los_Angeles",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "desktop"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "<repo>\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "mobile",
+        "testDir": "<repo>\\tests\\browser",
+        "snapshotDir": "<repo>\\tests\\browser",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 60000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3007",
+          "browserName": "chromium",
+          "timezoneId": "America/Los_Angeles",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "viewport": {
+            "width": 360,
+            "height": 800
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "mobile"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "evidence/build/playwright.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.0",
+    "workers": 1,
+    "webServer": {
+      "command": ".venv\\Scripts\\python.exe -m tests.browser_server",
+      "url": "http://127.0.0.1:3091/api/v1/health/live",
+      "reuseExistingServer": false,
+      "timeout": 60000
+    }
+  },
+  "suites": [
+    {
+      "title": "completed-review.spec.ts",
+      "file": "completed-review.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "ZIP md-zip can review the reported same-day completed launch",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5127,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T16:23:41.317Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aa84bc48443187455b75-724af2726a5acce51124",
+          "file": "completed-review.spec.ts",
+          "line": 5,
+          "column": 5
+        },
+        {
+          "title": "unknown provider placeholders never create exact date groups",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 9799,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.launch-group').filter({ has: locator('a[href=\"/launches/a1f6bcea-5dcc-46d0-bf74-d2e51b2da6d0\"]') }).getByRole('heading')\nExpected: \u001b[32m\"Date to be announced\"\u001b[39m\nError: strict mode violation: locator('.launch-group').filter({ has: locator('a[href=\"/launches/a1f6bcea-5dcc-46d0-bf74-d2e51b2da6d0\"]') }).getByRole('heading') resolved to 2 elements:\n    1) <h2 class=\"date-heading\">Date to be announced</h2> aka getByRole('heading', { name: 'Date to be announced' })\n    2) <h3>unknown</h3> aka getByRole('link', { name: 'SYNTHETIC Cape pad • test-' })\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.launch-group').filter({ has: locator('a[href=\"/launches/a1f6bcea-5dcc-46d0-bf74-d2e51b2da6d0\"]') }).getByRole('heading') with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('.launch-group').filter({ has: locator('a[href=\"/launches/a1f6bcea-5dcc-46d0-bf74-d2e51b2da6d0\"]') }).getByRole('heading')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.launch-group').filter({ has: locator('a[href=\"/launches/a1f6bcea-5dcc-46d0-bf74-d2e51b2da6d0\"]') }).getByRole('heading')\nExpected: \u001b[32m\"Date to be announced\"\u001b[39m\nError: strict mode violation: locator('.launch-group').filter({ has: locator('a[href=\"/launches/a1f6bcea-5dcc-46d0-bf74-d2e51b2da6d0\"]') }).getByRole('heading') resolved to 2 elements:\n    1) <h2 class=\"date-heading\">Date to be announced</h2> aka getByRole('heading', { name: 'Date to be announced' })\n    2) <h3>unknown</h3> aka getByRole('link', { name: 'SYNTHETIC Cape pad • test-' })\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.launch-group').filter({ has: locator('a[href=\"/launches/a1f6bcea-5dcc-46d0-bf74-d2e51b2da6d0\"]') }).getByRole('heading') with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('.launch-group').filter({ has: locator('a[href=\"/launches/a1f6bcea-5dcc-46d0-bf74-d2e51b2da6d0\"]') }).getByRole('heading')\u001b[22m\n\n    at <repo>\\tests\\browser\\completed-review.spec.ts:50:44",
+                    "location": {
+                      "file": "<repo>\\tests\\browser\\completed-review.spec.ts",
+                      "column": 44,
+                      "line": 50
+                    },
+                    "snippet": "  48 |   await page.reload();\n  49 |   const group=page.locator('.launch-group').filter({has:page.locator(`a[href=\"/launches/${id}\"]`)});\n> 50 |   await expect(group.getByRole('heading')).toHaveText('Date to be announced');\n     |                                            ^\n  51 |   await expect(group.locator(`a[href=\"/launches/${id}\"]`)).toContainText('Launch time not yet confirmed');\n  52 |   await page.route('**/api/v1/assessments',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({message:'Synthetic assessment outage'})}));\n  53 |   await page.goto('http://127.0.0.1:3091/launches/'+id);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "<repo>\\tests\\browser\\completed-review.spec.ts",
+                        "column": 44,
+                        "line": 50
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.launch-group').filter({ has: locator('a[href=\"/launches/a1f6bcea-5dcc-46d0-bf74-d2e51b2da6d0\"]') }).getByRole('heading')\nExpected: \u001b[32m\"Date to be announced\"\u001b[39m\nError: strict mode violation: locator('.launch-group').filter({ has: locator('a[href=\"/launches/a1f6bcea-5dcc-46d0-bf74-d2e51b2da6d0\"]') }).getByRole('heading') resolved to 2 elements:\n    1) <h2 class=\"date-heading\">Date to be announced</h2> aka getByRole('heading', { name: 'Date to be announced' })\n    2) <h3>unknown</h3> aka getByRole('link', { name: 'SYNTHETIC Cape pad • test-' })\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.launch-group').filter({ has: locator('a[href=\"/launches/a1f6bcea-5dcc-46d0-bf74-d2e51b2da6d0\"]') }).getByRole('heading') with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('.launch-group').filter({ has: locator('a[href=\"/launches/a1f6bcea-5dcc-46d0-bf74-d2e51b2da6d0\"]') }).getByRole('heading')\u001b[22m\n\n\n  48 |   await page.reload();\n  49 |   const group=page.locator('.launch-group').filter({has:page.locator(`a[href=\"/launches/${id}\"]`)});\n> 50 |   await expect(group.getByRole('heading')).toHaveText('Date to be announced');\n     |                                            ^\n  51 |   await expect(group.locator(`a[href=\"/launches/${id}\"]`)).toContainText('Launch time not yet confirmed');\n  52 |   await page.route('**/api/v1/assessments',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({message:'Synthetic assessment outage'})}));\n  53 |   await page.goto('http://127.0.0.1:3091/launches/'+id);\n    at <repo>\\tests\\browser\\completed-review.spec.ts:50:44"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T16:23:46.800Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "<repo>\\test-results\\completed-review-unknown-p-bed28-er-create-exact-date-groups-desktop\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "<repo>\\test-results\\completed-review-unknown-p-bed28-er-create-exact-date-groups-desktop\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "<repo>\\test-results\\completed-review-unknown-p-bed28-er-create-exact-date-groups-desktop\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "<repo>\\tests\\browser\\completed-review.spec.ts",
+                    "column": 44,
+                    "line": 50
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "aa84bc48443187455b75-f187213323b3bb601fa1",
+          "file": "completed-review.spec.ts",
+          "line": 37,
+          "column": 5
+        },
+        {
+          "title": "ZIP md-zip can review the reported same-day completed launch",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3506,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T16:25:23.528Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aa84bc48443187455b75-29de1f0ed6a3cd35f29f",
+          "file": "completed-review.spec.ts",
+          "line": 5,
+          "column": 5
+        },
+        {
+          "title": "unknown provider placeholders never create exact date groups",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 9102,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.launch-group').filter({ has: locator('a[href=\"/launches/58a228ed-f6e4-4a7c-9001-70bb7cc2558f\"]') }).getByRole('heading')\nExpected: \u001b[32m\"Date to be announced\"\u001b[39m\nError: strict mode violation: locator('.launch-group').filter({ has: locator('a[href=\"/launches/58a228ed-f6e4-4a7c-9001-70bb7cc2558f\"]') }).getByRole('heading') resolved to 2 elements:\n    1) <h2 class=\"date-heading\">Date to be announced</h2> aka getByRole('heading', { name: 'Date to be announced' })\n    2) <h3>unknown</h3> aka getByRole('link', { name: 'SYNTHETIC Cape pad • test-' })\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.launch-group').filter({ has: locator('a[href=\"/launches/58a228ed-f6e4-4a7c-9001-70bb7cc2558f\"]') }).getByRole('heading') with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('.launch-group').filter({ has: locator('a[href=\"/launches/58a228ed-f6e4-4a7c-9001-70bb7cc2558f\"]') }).getByRole('heading')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.launch-group').filter({ has: locator('a[href=\"/launches/58a228ed-f6e4-4a7c-9001-70bb7cc2558f\"]') }).getByRole('heading')\nExpected: \u001b[32m\"Date to be announced\"\u001b[39m\nError: strict mode violation: locator('.launch-group').filter({ has: locator('a[href=\"/launches/58a228ed-f6e4-4a7c-9001-70bb7cc2558f\"]') }).getByRole('heading') resolved to 2 elements:\n    1) <h2 class=\"date-heading\">Date to be announced</h2> aka getByRole('heading', { name: 'Date to be announced' })\n    2) <h3>unknown</h3> aka getByRole('link', { name: 'SYNTHETIC Cape pad • test-' })\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.launch-group').filter({ has: locator('a[href=\"/launches/58a228ed-f6e4-4a7c-9001-70bb7cc2558f\"]') }).getByRole('heading') with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('.launch-group').filter({ has: locator('a[href=\"/launches/58a228ed-f6e4-4a7c-9001-70bb7cc2558f\"]') }).getByRole('heading')\u001b[22m\n\n    at <repo>\\tests\\browser\\completed-review.spec.ts:50:44",
+                    "location": {
+                      "file": "<repo>\\tests\\browser\\completed-review.spec.ts",
+                      "column": 44,
+                      "line": 50
+                    },
+                    "snippet": "  48 |   await page.reload();\n  49 |   const group=page.locator('.launch-group').filter({has:page.locator(`a[href=\"/launches/${id}\"]`)});\n> 50 |   await expect(group.locator('h2.date-heading')).toHaveText('Date to be announced');\n     |                                            ^\n  51 |   await expect(group.locator(`a[href=\"/launches/${id}\"]`)).toContainText('Launch time not yet confirmed');\n  52 |   await page.route('**/api/v1/assessments',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({message:'Synthetic assessment outage'})}));\n  53 |   await page.goto('http://127.0.0.1:3091/launches/'+id);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "<repo>\\tests\\browser\\completed-review.spec.ts",
+                        "column": 44,
+                        "line": 50
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.launch-group').filter({ has: locator('a[href=\"/launches/58a228ed-f6e4-4a7c-9001-70bb7cc2558f\"]') }).getByRole('heading')\nExpected: \u001b[32m\"Date to be announced\"\u001b[39m\nError: strict mode violation: locator('.launch-group').filter({ has: locator('a[href=\"/launches/58a228ed-f6e4-4a7c-9001-70bb7cc2558f\"]') }).getByRole('heading') resolved to 2 elements:\n    1) <h2 class=\"date-heading\">Date to be announced</h2> aka getByRole('heading', { name: 'Date to be announced' })\n    2) <h3>unknown</h3> aka getByRole('link', { name: 'SYNTHETIC Cape pad • test-' })\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" locator('.launch-group').filter({ has: locator('a[href=\"/launches/58a228ed-f6e4-4a7c-9001-70bb7cc2558f\"]') }).getByRole('heading') with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('.launch-group').filter({ has: locator('a[href=\"/launches/58a228ed-f6e4-4a7c-9001-70bb7cc2558f\"]') }).getByRole('heading')\u001b[22m\n\n\n  48 |   await page.reload();\n  49 |   const group=page.locator('.launch-group').filter({has:page.locator(`a[href=\"/launches/${id}\"]`)});\n> 50 |   await expect(group.locator('h2.date-heading')).toHaveText('Date to be announced');\n     |                                            ^\n  51 |   await expect(group.locator(`a[href=\"/launches/${id}\"]`)).toContainText('Launch time not yet confirmed');\n  52 |   await page.route('**/api/v1/assessments',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({message:'Synthetic assessment outage'})}));\n  53 |   await page.goto('http://127.0.0.1:3091/launches/'+id);\n    at <repo>\\tests\\browser\\completed-review.spec.ts:50:44"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T16:25:27.187Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "<repo>\\test-results\\completed-review-unknown-p-bed28-er-create-exact-date-groups-mobile\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "<repo>\\test-results\\completed-review-unknown-p-bed28-er-create-exact-date-groups-mobile\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "<repo>\\test-results\\completed-review-unknown-p-bed28-er-create-exact-date-groups-mobile\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "<repo>\\tests\\browser\\completed-review.spec.ts",
+                    "column": 44,
+                    "line": 50
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "aa84bc48443187455b75-912b63765420f23bfa7a",
+          "file": "completed-review.spec.ts",
+          "line": 37,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "journeys.spec.ts",
+      "file": "journeys.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "live location, schedule, uncertainty, reminders, privacy and keyboard journeys",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7519,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T16:23:57.484Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aa09586c1d16412a1f00-350e4eb780417905f613",
+          "file": "journeys.spec.ts",
+          "line": 5,
+          "column": 5
+        },
+        {
+          "title": "observer clock is independent of browser timezone and preserves DST fold",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1743,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T16:24:05.198Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aa09586c1d16412a1f00-8547bdd1bb5eea50fa6e",
+          "file": "journeys.spec.ts",
+          "line": 52,
+          "column": 5
+        },
+        {
+          "title": "live location, schedule, uncertainty, reminders, privacy and keyboard journeys",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5273,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T16:25:37.010Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aa09586c1d16412a1f00-18aef36da75fc04b1ca2",
+          "file": "journeys.spec.ts",
+          "line": 5,
+          "column": 5
+        },
+        {
+          "title": "observer clock is independent of browser timezone and preserves DST fold",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1452,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T16:25:42.446Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aa09586c1d16412a1f00-7e792f71909dfd383e0e",
+          "file": "journeys.spec.ts",
+          "line": 52,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "states.spec.ts",
+      "file": "states.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "synthetic edge cases through actual API, database and UI",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 75953,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T16:24:06.963Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "be092eae759d55e55094-b03cf6b16ac54a0a0a7d",
+          "file": "states.spec.ts",
+          "line": 6,
+          "column": 5
+        },
+        {
+          "title": "synthetic edge cases through actual API, database and UI",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 80963,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T16:25:43.917Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "be092eae759d55e55094-ab941fa868f0262f4230",
+          "file": "states.spec.ts",
+          "line": 6,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-13T16:23:37.048Z",
+    "duration": 210187.33,
+    "expected": 8,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

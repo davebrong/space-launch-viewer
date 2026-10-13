@@ -1,0 +1,101 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 989B done
+#1 DONE 0.0s
+
+#2 [api internal] load build definition from api.Dockerfile
+#2 transferring dockerfile: 999B done
+#2 DONE 0.0s
+
+#3 [api internal] load metadata for docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#3 DONE 0.0s
+
+#4 [worker internal] load .dockerignore
+#4 transferring context: 179B done
+#4 DONE 0.0s
+
+#5 [worker  1/16] FROM docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#5 DONE 0.0s
+
+#6 [api internal] load build context
+#6 transferring context: 12.60kB 0.0s done
+#6 DONE 0.0s
+
+#7 [worker  2/16] WORKDIR /app
+#7 CACHED
+
+#8 [worker  3/16] COPY requirements-app.lock.txt .
+#8 CACHED
+
+#9 [worker  4/16] RUN pip install --no-cache-dir --require-hashes -r requirements-app.lock.txt
+#9 CACHED
+
+#10 [worker  5/16] RUN useradd --uid 1000 --create-home launch && mkdir /data && chown launch:launch /data
+#10 CACHED
+
+#11 [api  6/16] COPY --chown=launch:launch packages packages
+#11 DONE 0.1s
+
+#11 [worker  6/16] COPY --chown=launch:launch packages packages
+#11 DONE 0.1s
+
+#12 [worker  7/16] COPY --chown=launch:launch services services
+#12 DONE 0.1s
+
+#13 [worker  8/16] COPY --chown=launch:launch implementation implementation
+#13 DONE 0.0s
+
+#14 [worker  9/16] COPY --chown=launch:launch ops ops
+#14 DONE 0.1s
+
+#14 [api  9/16] COPY --chown=launch:launch ops ops
+#14 DONE 0.1s
+
+#15 [worker 10/16] COPY --chown=launch:launch migrations migrations
+#15 DONE 0.0s
+
+#16 [worker 11/16] COPY --chown=launch:launch spec/contracts spec/contracts
+#16 DONE 0.0s
+
+#17 [api 12/16] COPY --chown=launch:launch data/gazetteer data/gazetteer
+#17 DONE 0.0s
+
+#17 [worker 12/16] COPY --chown=launch:launch data/gazetteer data/gazetteer
+#17 DONE 0.0s
+
+#18 [worker 13/16] COPY --chown=launch:launch data/registry data/registry
+#18 DONE 0.0s
+
+#19 [api 14/16] COPY --chown=launch:launch data/profiles data/profiles
+#19 DONE 0.0s
+
+#20 [api 15/16] COPY --chown=launch:launch evidence/build/dependency-manifest.json evidence/build/dependency-manifest.json
+#20 DONE 0.0s
+
+#20 [worker 15/16] COPY --chown=launch:launch evidence/build/dependency-manifest.json evidence/build/dependency-manifest.json
+#20 DONE 0.0s
+
+#21 [api 16/16] COPY alembic.ini .
+#21 DONE 0.1s
+
+#22 [api] exporting to image
+#22 exporting layers 0.1s done
+#22 writing image sha256:6426a79e6b09f43a4b7f382cc238d934a9b6e9884fd1a1da32fd2e7cca6d68e1 done
+#22 naming to docker.io/library/launch-visibility-api done
+#22 DONE 0.1s
+
+#23 [worker] exporting to image
+#23 exporting layers 0.1s done
+#23 writing image sha256:aa3ac374f5004ef7483c71b8bbf5986ff6c864f804115c51f933589c0f74f1f3 done
+#23 naming to docker.io/library/launch-visibility-worker done
+#23 DONE 0.1s
+
+#24 [worker] resolving provenance for metadata file
+#24 DONE 0.0s
+
+#25 [api] resolving provenance for metadata file
+#25 DONE 0.0s
+
+ Image launch-visibility-api Building 
+ Image launch-visibility-worker Building 
+ Image launch-visibility-api Built 
+ Image launch-visibility-worker Built 

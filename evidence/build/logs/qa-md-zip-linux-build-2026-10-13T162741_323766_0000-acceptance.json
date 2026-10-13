@@ -1,0 +1,14 @@
+{
+  "suite": "privacy-security",
+  "passed": [
+    "privacy-security"
+  ],
+  "failed": [],
+  "blocked": [],
+  "adapter_command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "implementation.acceptance_adapter"
+  ],
+  "run_at": "2026-10-13T16:24:12.288570+00:00"
+}

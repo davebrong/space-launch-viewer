@@ -1,0 +1,39 @@
+{
+  "run_at": "2026-10-13T15:49:02Z",
+  "status": "blocked",
+  "parser_result": {
+    "sample_count": 578,
+    "last_t_s": 577.0,
+    "last_altitude_m": 619691.0,
+    "last_downrange_m": 1138029.0,
+    "ses1_s": 155,
+    "seco1_s": 565,
+    "production_admitted": false,
+    "reasons": [
+      "altitude_datum_unverified",
+      "stage_identity_unverified",
+      "compatibility_unverified"
+    ]
+  },
+  "reason": "Orbcomm OG2 has no independently verified geodetic route, altitude datum/stage admission or different held-out qualified profile. No Maryland estimate is asserted.",
+  "missing_inputs": [
+    "independent historical mission route",
+    "verified profile altitude datum and stage identity",
+    "held-out compatible mission"
+  ],
+  "retrievals": [
+    {
+      "url": "https://raw.githubusercontent.com/shahar603/Telemetry-Data/b245d3b81aa36b7941ec10f3f4b508999d106a6d/Orbcomm%20OG2/README.md",
+      "status": 200,
+      "at": "2026-10-13T15:49:02Z",
+      "sha256": "814c544e8adc56765aaa6f3c80b5de972c00c417f7311823ab1a5608e640e1a3"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/shahar603/Telemetry-Data/b245d3b81aa36b7941ec10f3f4b508999d106a6d/LICENSE",
+      "status": 200,
+      "at": "2026-10-13T15:49:02Z",
+      "sha256": "88d9b4eb60579c191ec391ca04c16130572d7eedc4a86daa58bf28c6e14c9bcd"
+    }
+  ]
+}
+

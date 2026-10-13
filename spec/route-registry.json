@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "approved_formats": [],
+  "candidates": [
+    {
+      "id": "sld45-kf3-2025",
+      "source_path": "tests/fixtures/raw/kf3.pdf",
+      "kind": "hazard_corridor",
+      "status": "candidate",
+      "reason": "DMS extractable; filename-only KF-3 association insufficient; no flight centerline/time/altitude",
+      "parser_approval_task": "T05"
+    }
+  ],
+  "production_profiles": [],
+  "research_profiles": [
+    {
+      "id": "orbcomm-og2",
+      "path": "tests/fixtures/raw/Telemetry-Data--Orbcomm OG2--JSON--analysed.json",
+      "production_admitted": false,
+      "reasons": [
+        "older_variant",
+        "unverified_altitude_datum",
+        "stage_identity_review_required"
+      ]
+    }
+  ]
+}

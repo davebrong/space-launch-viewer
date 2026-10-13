@@ -1,0 +1,42 @@
+{
+  "run_at": "2026-10-13T20:27:55.035486+00:00",
+  "scope": "Specification integrity only; application behavior is verified separately",
+  "checks": [
+    {
+      "id": "json-schemas",
+      "status": "passed"
+    },
+    {
+      "id": "openapi-3.1",
+      "status": "passed"
+    },
+    {
+      "id": "positive-negative-schema-examples",
+      "status": "passed"
+    },
+    {
+      "id": "fixture-shape-and-oracle-hash",
+      "status": "passed"
+    },
+    {
+      "id": "raw-provenance-hashes",
+      "status": "passed"
+    },
+    {
+      "id": "real-provider-snapshot-contracts",
+      "status": "passed"
+    },
+    {
+      "id": "requirements-stories-task-graph-traceability",
+      "status": "passed"
+    },
+    {
+      "id": "local-document-links",
+      "status": "passed"
+    },
+    {
+      "id": "harness-fail-closed-self-tests",
+      "status": "passed"
+    }
+  ]
+}

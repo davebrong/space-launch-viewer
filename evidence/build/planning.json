@@ -1,0 +1,243 @@
+{
+  "reviewed_at": "2026-10-13T17:07:57.195235+00:00",
+  "scope": "User-authorized nominal prelaunch scenario and simpler result page",
+  "model": {
+    "version": "dragon-iss-nominal-v1",
+    "knots_s_altitude_m_downrange_m": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        60,
+        10000,
+        4000
+      ],
+      [
+        120,
+        40000,
+        35000
+      ],
+      [
+        180,
+        85000,
+        130000
+      ],
+      [
+        240,
+        120000,
+        300000
+      ],
+      [
+        300,
+        155000,
+        550000
+      ],
+      [
+        360,
+        185000,
+        880000
+      ],
+      [
+        420,
+        205000,
+        1270000
+      ],
+      [
+        480,
+        215000,
+        1700000
+      ],
+      [
+        540,
+        215000,
+        2160000
+      ]
+    ],
+    "initial_bearings_deg": [
+      40,
+      45,
+      50
+    ],
+    "altitude_scales": [
+      0.85,
+      1.0,
+      1.15
+    ],
+    "watch_padding_s": 120,
+    "assumptions": [
+      "Assume a northeast, non-dogleg Falcon 9 / Dragon ascent toward the ISS.",
+      "Try initial headings of 40, 45 and 50 degrees and nominal heights varied by 15%.",
+      "Interpolate an authored altitude/downrange profile through nine minutes after scheduled liftoff.",
+      "Treat ascent engines as luminous from T+3 to T+9 minutes; omit later plume drift and booster return.",
+      "Use WGS84 horizon geometry; add two minutes either side as a practical watch buffer.",
+      "This is a planning simulation, not a mission-specific predicted trajectory or detection guarantee."
+    ],
+    "references": [
+      {
+        "title": "NASA: typical Dragon launch sequence (Crew-1)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2021/05/crew-1_timeline_nov15.pdf",
+        "supports": "An example of roughly nine minutes to second-stage cutoff; not the modeled height or route."
+      },
+      {
+        "title": "NASA: CRS-35 destination and launch site",
+        "url": "https://science.nasa.gov/missions/station/nasas-spacex-crs-35-mission-to-launch-health-research/",
+        "supports": "Prelaunch mission family context only; model coordinates are assumptions."
+      }
+    ]
+  },
+  "model_sha256": "80a4ea70dd6d6ec1ade75e48f4733b919a431451d325a8aed35443c01a11d975",
+  "model_assumptions_are_not_source_telemetry": true,
+  "results": {
+    "application_tests": 19,
+    "browser_tests": 10,
+    "spec_checks": 9,
+    "api_contract_scenarios": 1
+  },
+  "checks": [
+    {
+      "run_at": "2026-10-13T17:02:39.406623+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/application",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/planning-unit-2026-10-13T170239_406623_0000.txt",
+      "sha256": "34fc35ae27790e5a6f05bb666ec3884a8327f607dbf9df77dfedae7b15801bf7",
+      "software_sha256": "f1d2589f1d297e0006c07eeb7fba938befcf7033b816604c40fb55746f34eb98"
+    },
+    {
+      "run_at": "2026-10-13T17:07:25.418639+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/check_spec.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/planning-spec-2026-10-13T170725_418639_0000.txt",
+      "sha256": "3d25561fbb27d89d67a9c11b37b0feea842233ebf78509ef65683ca30834b854",
+      "software_sha256": "f1d2589f1d297e0006c07eeb7fba938befcf7033b816604c40fb55746f34eb98"
+    },
+    {
+      "run_at": "2026-10-13T17:02:45.758690+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "lint"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/planning-types-2026-10-13T170245_758690_0000.txt",
+      "sha256": "e7d7e1cf04dd29ae07238717e25773c0433128f5ceba1069dcd50a9ea6af1f05",
+      "software_sha256": "f1d2589f1d297e0006c07eeb7fba938befcf7033b816604c40fb55746f34eb98"
+    },
+    {
+      "run_at": "2026-10-13T17:02:48.029333+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "packages",
+        "services",
+        "tests/application"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/planning-lint-2026-10-13T170248_029333_0000.txt",
+      "sha256": "881513cd027e0334026cfcbad052e34fecb3f2c1fef5ab000c86973bc0196cd7",
+      "software_sha256": "f1d2589f1d297e0006c07eeb7fba938befcf7033b816604c40fb55746f34eb98"
+    },
+    {
+      "run_at": "2026-10-13T17:02:48.292812+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tests/acceptance/run.py",
+        "--suite",
+        "api-contract"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/planning-api-contract-2026-10-13T170248_292812_0000.txt",
+      "sha256": "7d9f7ed8a357bc29ae702e045a0c38ea521c3dda53af1a0c4823fdc8659bd428",
+      "software_sha256": "f1d2589f1d297e0006c07eeb7fba938befcf7033b816604c40fb55746f34eb98"
+    },
+    {
+      "run_at": "2026-10-13T17:02:51.465066+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "web",
+        "api",
+        "worker"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/planning-linux-build-2026-10-13T170251_465066_0000.txt",
+      "sha256": "38b0a73d9ef80fd6c15ff1a5261df237dba37bb473a7b304a01ab6750e5af9f4",
+      "software_sha256": "f1d2589f1d297e0006c07eeb7fba938befcf7033b816604c40fb55746f34eb98"
+    },
+    {
+      "run_at": "2026-10-13T17:03:39.793341+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "up",
+        "-d",
+        "--no-deps",
+        "api",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/planning-linux-start-2026-10-13T170339_793341_0000.txt",
+      "sha256": "7dc156bfac7c7fbfaaaf734fd37fcd9cdadc06db9d8ca44af0b6a15cf38af03d",
+      "software_sha256": "f1d2589f1d297e0006c07eeb7fba938befcf7033b816604c40fb55746f34eb98"
+    },
+    {
+      "run_at": "2026-10-13T17:04:32.373400+00:00",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/planning-browser-2026-10-13T170432_373400_0000.txt",
+      "sha256": "8242fe4b3c2d24421fe5b76417a4444d7e5f156c76d23468d09cabb7257dca36",
+      "software_sha256": "f1d2589f1d297e0006c07eeb7fba938befcf7033b816604c40fb55746f34eb98"
+    }
+  ],
+  "browser_stats": {
+    "startTime": "2026-10-13T17:04:32.819Z",
+    "duration": 178704.51200000002,
+    "expected": 10,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "example": {
+    "zip": "md-zip",
+    "mission": "Dragon CRS-2 SpX-35",
+    "direction": "south \u2192 southeast \u2192 east",
+    "watch_time": "2026-10-13 06:34\u201306:45 America/New_York",
+    "basis": "Scheduled time, nominal simulation, WGS84 representative-point geometry"
+  },
+  "screenshots": [
+    "evidence/build/planning-desktop-viewport.png",
+    "evidence/build/planning-mobile.png"
+  ],
+  "forecast_history_claimed": false,
+  "empirical_validation_claimed": false,
+  "full_acceptance_and_load_rerun": false,
+  "baseline_browser_report": "evidence/build/playwright-qa-md-zip.json",
+  "release_audit": "evidence/build/logs/planning-release.json"
+}

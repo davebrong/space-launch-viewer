@@ -1,0 +1,65 @@
+ Container launch-visibility-dev-postgres-1 Running 
+ Container launch-visibility-dev-postgres-1 Waiting 
+ Container launch-visibility-dev-postgres-1 Healthy 
+Open http://127.0.0.1:3007 . Ctrl+C stops the owned app processes; PostgreSQL data persists.
+
+> launch-visibility-web@0.1.0 dev
+> next dev --webpack -H 127.0.0.1 --port 3007
+
+▲ Next.js 16.4.0 (webpack)
+- Local:         http://127.0.0.1:3007
+- Network:       http://127.0.0.1:3007
+✓ Ready in 514ms
+INFO:     Started server process [300688]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+✓ Running next.config.ts took 41ms
+
+ GET / 200 in 743ms (next.js: 599ms, application-code: 144ms)
+ GET /favicon.ico 200 in 61ms (next.js: 15ms, application-code: 46ms)
+ GET / 200 in 43ms (next.js: 12ms, application-code: 32ms)
+ GET /launches 200 in 44ms (next.js: 20ms, application-code: 24ms)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+ GET /launches/bf2c3027-a314-403e-a416-2bfd5d165ad1 200 in 28ms (next.js: 12ms, application-code: 16ms)
+ GET /subscriptions 200 in 30ms (next.js: 13ms, application-code: 18ms)
+ GET / 200 in 35ms (next.js: 14ms, application-code: 21ms)
+ GET /launches 200 in 38ms (next.js: 17ms, application-code: 22ms)
+ GET /privacy 200 in 24ms (next.js: 2.0ms, application-code: 22ms)
+ GET / 200 in 47ms (next.js: 19ms, application-code: 28ms)
+ GET / 200 in 39ms (next.js: 11ms, application-code: 28ms)
+ GET /launches 200 in 27ms (next.js: 11ms, application-code: 16ms)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+ GET /launches/bf2c3027-a314-403e-a416-2bfd5d165ad1 200 in 28ms (next.js: 13ms, application-code: 15ms)
+ GET /subscriptions 200 in 30ms (next.js: 14ms, application-code: 16ms)
+ GET / 200 in 31ms (next.js: 14ms, application-code: 17ms)
+ GET /launches 200 in 35ms (next.js: 16ms, application-code: 18ms)
+ GET /privacy 200 in 19ms (next.js: 1.0ms, application-code: 18ms)
+ GET / 200 in 37ms (next.js: 11ms, application-code: 26ms)
+ GET / 200 in 41ms (next.js: 11ms, application-code: 30ms)
+ GET /launches 200 in 34ms (next.js: 14ms, application-code: 21ms)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+ GET /launches/bf2c3027-a314-403e-a416-2bfd5d165ad1 200 in 28ms (next.js: 13ms, application-code: 15ms)
+ GET /subscriptions 200 in 36ms (next.js: 18ms, application-code: 18ms)
+ GET / 200 in 34ms (next.js: 16ms, application-code: 17ms)
+ GET /launches 200 in 38ms (next.js: 17ms, application-code: 21ms)
+ GET /privacy 200 in 14ms (next.js: 1.0ms, application-code: 13ms)
+ GET / 200 in 49ms (next.js: 17ms, application-code: 32ms)
+ GET / 200 in 44ms (next.js: 11ms, application-code: 32ms)
+ GET /launches 200 in 38ms (next.js: 18ms, application-code: 21ms)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+ GET /launches/bf2c3027-a314-403e-a416-2bfd5d165ad1 200 in 28ms (next.js: 12ms, application-code: 15ms)
+ GET /subscriptions 200 in 18ms (next.js: 1.1ms, application-code: 17ms)
+ GET / 200 in 31ms (next.js: 12ms, application-code: 19ms)
+ GET /launches 200 in 30ms (next.js: 13ms, application-code: 17ms)
+ GET /privacy 200 in 15ms (next.js: 1.1ms, application-code: 14ms)
+ GET / 200 in 41ms (next.js: 13ms, application-code: 29ms)
+ GET / 200 in 45ms (next.js: 13ms, application-code: 32ms)
+ GET /launches 200 in 27ms (next.js: 13ms, application-code: 15ms)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+ GET /launches/bf2c3027-a314-403e-a416-2bfd5d165ad1 200 in 35ms (next.js: 14ms, application-code: 21ms)
+ GET /subscriptions 200 in 36ms (next.js: 17ms, application-code: 18ms)
+ GET / 200 in 30ms (next.js: 14ms, application-code: 16ms)
+ GET /launches 200 in 31ms (next.js: 13ms, application-code: 18ms)
+ GET /privacy 200 in 19ms (next.js: 1.1ms, application-code: 18ms)
+ GET / 200 in 42ms (next.js: 14ms, application-code: 27ms)

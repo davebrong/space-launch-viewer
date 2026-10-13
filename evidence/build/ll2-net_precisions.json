@@ -1,0 +1,80 @@
+{
+  "payload": {
+    "count": 17,
+    "next": "https://ll.thespacedevs.com/2.3.0/config/net_precisions/?limit=10&offset=10",
+    "previous": null,
+    "results": [
+      {
+        "id": 0,
+        "name": "Second",
+        "abbrev": "SEC",
+        "description": "The T-0 is accurate to the second."
+      },
+      {
+        "id": 1,
+        "name": "Minute",
+        "abbrev": "MIN",
+        "description": "The T-0 is accurate to the minute."
+      },
+      {
+        "id": 2,
+        "name": "Hour",
+        "abbrev": "HR",
+        "description": "The T-0 is accurate to the hour."
+      },
+      {
+        "id": 3,
+        "name": "Morning",
+        "abbrev": "AM",
+        "description": "The T-0 is expected in the morning (local time)."
+      },
+      {
+        "id": 4,
+        "name": "Afternoon",
+        "abbrev": "PM",
+        "description": "The T-0 is expected in the afternoon (local time)."
+      },
+      {
+        "id": 5,
+        "name": "Day",
+        "abbrev": "DAY",
+        "description": "The T-0 is expected on the given day."
+      },
+      {
+        "id": 7,
+        "name": "Month",
+        "abbrev": "M",
+        "description": "The T-0 is expected in the given month."
+      },
+      {
+        "id": 8,
+        "name": "Quarter 1",
+        "abbrev": "Q1",
+        "description": "The T-0 is expected in the first quarter of the given year."
+      },
+      {
+        "id": 9,
+        "name": "Quarter 2",
+        "abbrev": "Q2",
+        "description": "The T-0 is expected in the second quarter of the given year."
+      },
+      {
+        "id": 10,
+        "name": "Quarter 3",
+        "abbrev": "Q3",
+        "description": "The T-0 is expected in the third quarter of the given year."
+      }
+    ]
+  },
+  "provenance": {
+    "source_url": "https://ll.thespacedevs.com/2.3.0/config/net_precisions/",
+    "sha256": "2e30a150deac52be4b61bf8cab3b671231b698249707103268253462ccab39b1",
+    "fetched_at": "2026-10-13T15:09:16Z",
+    "issued_at": null,
+    "source_revision": null,
+    "license": "The Space Devs LL2 attribution; no linked imagery redistributed",
+    "parser_version": "ll2-v1",
+    "kind": "provider",
+    "notes": []
+  }
+}

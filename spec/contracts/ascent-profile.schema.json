@@ -1,0 +1,302 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "historical_mission": {
+      "type": "string",
+      "minLength": 1
+    },
+    "vehicle_variant": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mission_class": {
+      "type": "string",
+      "minLength": 1
+    },
+    "compatible_pad_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "launch_latitude_deg": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90
+    },
+    "recovery_configuration": {
+      "type": "string",
+      "minLength": 1
+    },
+    "time_origin": {
+      "const": "seconds_since_actual_liftoff"
+    },
+    "altitude_datum": {
+      "enum": [
+        "WGS84_ELLIPSOID",
+        "MSL",
+        "unknown"
+      ]
+    },
+    "datum_conversion": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "downrange_definition": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stage_identity_notes": {
+      "type": "string",
+      "minLength": 1
+    },
+    "compatibility": {
+      "enum": [
+        "approved",
+        "research_only",
+        "rejected"
+      ]
+    },
+    "compatibility_rationale": {
+      "type": "string",
+      "minLength": 1
+    },
+    "training_mission_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "held_out_mission_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "samples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "t_s": {
+            "type": "number",
+            "minimum": 0
+          },
+          "stage": {
+            "enum": [
+              1,
+              2
+            ]
+          },
+          "altitude_m": {
+            "type": "number",
+            "minimum": 0
+          },
+          "downrange_m": {
+            "type": "number",
+            "minimum": 0
+          },
+          "speed_m_s": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "t_s",
+          "stage",
+          "altitude_m",
+          "downrange_m",
+          "speed_m_s"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 2
+    },
+    "powered_intervals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "stage": {
+            "enum": [
+              1,
+              2
+            ]
+          },
+          "start_s": {
+            "type": "number",
+            "minimum": 0
+          },
+          "end_s": {
+            "type": "number",
+            "minimum": 0
+          },
+          "source_event_start": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_event_end": {
+            "type": "string",
+            "minLength": 1
+          },
+          "emission": {
+            "enum": [
+              "active_engine",
+              "active_plume"
+            ]
+          }
+        },
+        "required": [
+          "stage",
+          "start_s",
+          "end_s",
+          "source_event_start",
+          "source_event_end",
+          "emission"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "fetched_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$",
+            "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+          },
+          "issued_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$",
+                "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "license": {
+            "type": "string",
+            "minLength": 1
+          },
+          "parser_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "provider",
+              "published_path",
+              "hazard_corridor",
+              "historical_telemetry",
+              "reconstructed_estimate",
+              "official_guidance",
+              "observed_sighting",
+              "synthetic"
+            ]
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "source_url",
+          "sha256",
+          "fetched_at",
+          "issued_at",
+          "source_revision",
+          "license",
+          "parser_version",
+          "kind",
+          "notes"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "revision",
+    "historical_mission",
+    "vehicle_variant",
+    "mission_class",
+    "compatible_pad_ids",
+    "launch_latitude_deg",
+    "recovery_configuration",
+    "time_origin",
+    "altitude_datum",
+    "datum_conversion",
+    "downrange_definition",
+    "stage_identity_notes",
+    "compatibility",
+    "compatibility_rationale",
+    "training_mission_ids",
+    "held_out_mission_ids",
+    "samples",
+    "powered_intervals",
+    "provenance"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ascent-profile.schema.json",
+  "title": "ascent-profile"
+}

@@ -1,0 +1,2883 @@
+[
+  {
+    "id": "zip-fixture-zip",
+    "version": 1,
+    "kind": "real_reference",
+    "operation": "resolve_zip",
+    "input": {
+      "zip": "fixture-zip",
+      "gazetteer": "tests/fixtures/raw/census.zip"
+    },
+    "expected": {
+      "zip": "fixture-zip",
+      "latitude_deg": 39.0,
+      "longitude_deg": -77.0,
+      "confirmed": false
+    },
+    "requirements": [
+      "R002"
+    ],
+    "stories": [
+      "US-01"
+    ],
+    "oracle": "Direct exact GEOID row lookup in archived Census 2025, not application output."
+  },
+  {
+    "id": "zip-00601",
+    "version": 1,
+    "kind": "real_reference",
+    "operation": "resolve_zip",
+    "input": {
+      "zip": "00601",
+      "gazetteer": "tests/fixtures/raw/census.zip"
+    },
+    "expected": {
+      "zip": "00601",
+      "latitude_deg": 18.180555,
+      "longitude_deg": -66.749961,
+      "confirmed": false
+    },
+    "requirements": [
+      "R002"
+    ],
+    "stories": [
+      "US-01"
+    ],
+    "oracle": "Direct exact GEOID row lookup in archived Census 2025, not application output."
+  },
+  {
+    "id": "zip-missing",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "resolve_zip",
+    "input": {
+      "zip": "00000",
+      "gazetteer": "tests/fixtures/raw/census.zip"
+    },
+    "expected": {
+      "status": "unavailable",
+      "fallback": [
+        "gps",
+        "manual"
+      ]
+    },
+    "requirements": [
+      "R002"
+    ],
+    "stories": [
+      "US-01"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "zip-numeric",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "resolve_zip",
+    "input": {
+      "zip": 601
+    },
+    "expected": {
+      "error": "INVALID_INPUT"
+    },
+    "requirements": [
+      "R002"
+    ],
+    "stories": [
+      "US-01"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "location-change",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "location_change",
+    "input": {
+      "old_confirmed": true,
+      "old_revision": 1,
+      "new_point": [
+        39.5,
+        -77.4
+      ]
+    },
+    "expected": {
+      "confirmed": false,
+      "revision": 2,
+      "invalidate_assessment": true
+    },
+    "requirements": [
+      "R002",
+      "R011"
+    ],
+    "stories": [
+      "US-01"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "rollover",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "local_time",
+    "input": {
+      "utc": "2026-10-14T00:30:00Z",
+      "timezone": "America/New_York",
+      "device_timezone": "America/Los_Angeles"
+    },
+    "expected": {
+      "local": "2026-10-13T20:30:00-04:00",
+      "abbreviation": "EDT",
+      "fold": 0
+    },
+    "requirements": [
+      "R008"
+    ],
+    "stories": [
+      "US-02",
+      "US-03"
+    ],
+    "oracle": "Python zoneinfo/IANA conversion, frozen UTC vectors; no app code."
+  },
+  {
+    "id": "dst-fold-edt",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "local_time",
+    "input": {
+      "utc": "2026-11-01T05:30:00Z",
+      "timezone": "America/New_York",
+      "device_timezone": "America/Los_Angeles"
+    },
+    "expected": {
+      "local": "2026-11-01T01:30:00-04:00",
+      "abbreviation": "EDT",
+      "fold": 0
+    },
+    "requirements": [
+      "R008"
+    ],
+    "stories": [
+      "US-02",
+      "US-03"
+    ],
+    "oracle": "Python zoneinfo/IANA conversion, frozen UTC vectors; no app code."
+  },
+  {
+    "id": "dst-fold-est",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "local_time",
+    "input": {
+      "utc": "2026-11-01T06:30:00Z",
+      "timezone": "America/New_York",
+      "device_timezone": "America/Los_Angeles"
+    },
+    "expected": {
+      "local": "2026-11-01T01:30:00-05:00",
+      "abbreviation": "EST",
+      "fold": 1
+    },
+    "requirements": [
+      "R008"
+    ],
+    "stories": [
+      "US-02",
+      "US-03"
+    ],
+    "oracle": "Python zoneinfo/IANA conversion, frozen UTC vectors; no app code."
+  },
+  {
+    "id": "dst-spring-before",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "local_time",
+    "input": {
+      "utc": "2026-03-08T06:59:00Z",
+      "timezone": "America/New_York",
+      "device_timezone": "America/Los_Angeles"
+    },
+    "expected": {
+      "local": "2026-03-08T01:59:00-05:00",
+      "abbreviation": "EST",
+      "fold": 0
+    },
+    "requirements": [
+      "R008"
+    ],
+    "stories": [
+      "US-02",
+      "US-03"
+    ],
+    "oracle": "Python zoneinfo/IANA conversion, frozen UTC vectors; no app code."
+  },
+  {
+    "id": "dst-spring-after",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "local_time",
+    "input": {
+      "utc": "2026-03-08T07:00:00Z",
+      "timezone": "America/New_York",
+      "device_timezone": "America/Los_Angeles"
+    },
+    "expected": {
+      "local": "2026-03-08T03:00:00-04:00",
+      "abbreviation": "EDT",
+      "fold": 0
+    },
+    "requirements": [
+      "R008"
+    ],
+    "stories": [
+      "US-02",
+      "US-03"
+    ],
+    "oracle": "Python zoneinfo/IANA conversion, frozen UTC vectors; no app code."
+  },
+  {
+    "id": "dst-nonexistent",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "parse_local",
+    "input": {
+      "local": "2026-03-08T02:30:00",
+      "timezone": "America/New_York",
+      "offset": null
+    },
+    "expected": {
+      "error": "INVALID_INPUT"
+    },
+    "requirements": [
+      "R008"
+    ],
+    "stories": [
+      "US-03"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "dst-ambiguous",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "parse_local",
+    "input": {
+      "local": "2026-11-01T01:30:00",
+      "timezone": "America/New_York",
+      "offset": null
+    },
+    "expected": {
+      "error": "INVALID_INPUT"
+    },
+    "requirements": [
+      "R008"
+    ],
+    "stories": [
+      "US-03"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "cape-md-pad",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "geometry",
+    "input": {
+      "observer_lat_lon_alt_m": [
+        39.0,
+        -77.0,
+        0
+      ],
+      "target_lat_lon_alt_m": [
+        28.608,
+        -80.604,
+        0
+      ]
+    },
+    "expected": {
+      "azimuth_deg": 195.05253761167478,
+      "elevation_deg": -5.581974730388814,
+      "range_m": 1237090.3301558548
+    },
+    "requirements": [
+      "R006",
+      "R018",
+      "R019"
+    ],
+    "stories": [
+      "US-07"
+    ],
+    "oracle": "Independent PROJ topocentric pipeline via pyproj 3.7.2; WGS84. Synthetic target; no claimed flown route.",
+    "tolerance": {
+      "azimuth_deg": 0.1,
+      "elevation_deg": 0.1,
+      "range_m": 1
+    }
+  },
+  {
+    "id": "cape-md-high",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "geometry",
+    "input": {
+      "observer_lat_lon_alt_m": [
+        39.0,
+        -77.0,
+        0
+      ],
+      "target_lat_lon_alt_m": [
+        33,
+        -76,
+        200000
+      ]
+    },
+    "expected": {
+      "azimuth_deg": 170.08663211297622,
+      "elevation_deg": 11.914130295911493,
+      "range_m": 762559.7196710557
+    },
+    "requirements": [
+      "R006",
+      "R018",
+      "R019"
+    ],
+    "stories": [
+      "US-07"
+    ],
+    "oracle": "Independent PROJ topocentric pipeline via pyproj 3.7.2; WGS84. Synthetic target; no claimed flown route.",
+    "tolerance": {
+      "azimuth_deg": 0.1,
+      "elevation_deg": 0.1,
+      "range_m": 1
+    }
+  },
+  {
+    "id": "near-pad",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "geometry",
+    "input": {
+      "observer_lat_lon_alt_m": [
+        28.608,
+        -80.604,
+        0
+      ],
+      "target_lat_lon_alt_m": [
+        28.61,
+        -80.6,
+        10000
+      ]
+    },
+    "expected": {
+      "azimuth_deg": 60.46326118874677,
+      "elevation_deg": 87.42142208859929,
+      "range_m": 10010.119758944926
+    },
+    "requirements": [
+      "R006",
+      "R018",
+      "R019"
+    ],
+    "stories": [
+      "US-07"
+    ],
+    "oracle": "Independent PROJ topocentric pipeline via pyproj 3.7.2; WGS84. Synthetic target; no claimed flown route.",
+    "tolerance": {
+      "azimuth_deg": 0.1,
+      "elevation_deg": 0.1,
+      "range_m": 1
+    }
+  },
+  {
+    "id": "equator-east",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "geometry",
+    "input": {
+      "observer_lat_lon_alt_m": [
+        0,
+        0,
+        0
+      ],
+      "target_lat_lon_alt_m": [
+        0,
+        1,
+        100000
+      ]
+    },
+    "expected": {
+      "azimuth_deg": 90.0,
+      "elevation_deg": 41.21078737283902,
+      "range_m": 150286.38892572914
+    },
+    "requirements": [
+      "R006",
+      "R018",
+      "R019"
+    ],
+    "stories": [
+      "US-07"
+    ],
+    "oracle": "Independent PROJ topocentric pipeline via pyproj 3.7.2; WGS84. Synthetic target; no claimed flown route.",
+    "tolerance": {
+      "azimuth_deg": 0.1,
+      "elevation_deg": 0.1,
+      "range_m": 1
+    }
+  },
+  {
+    "id": "sunrise-maryland",
+    "version": 1,
+    "kind": "real_reference",
+    "operation": "solar_events",
+    "input": {
+      "latitude_deg": 39.0,
+      "longitude_deg": -77.0,
+      "altitude_m": 0,
+      "local_date": "2026-10-13",
+      "timezone": "America/New_York",
+      "sunrise_center_deg": -0.833
+    },
+    "expected": {
+      "sunrise": "2026-10-13T11:17:00Z",
+      "sunset": "2026-10-13T22:33:00Z"
+    },
+    "requirements": [
+      "R008",
+      "R018"
+    ],
+    "stories": [
+      "US-04"
+    ],
+    "oracle": "Archived USNO one-day API at same point, timezone explicitly -4 with dst=false to avoid double DST. Source minute rounding; tolerance120s.",
+    "tolerance": {
+      "sunrise": 120,
+      "sunset": 120
+    }
+  },
+  {
+    "id": "polar-no-rise",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "solar_events",
+    "input": {
+      "latitude_deg": 90,
+      "longitude_deg": 0,
+      "altitude_m": 0,
+      "local_date": "2026-12-21",
+      "timezone": "Etc/UTC",
+      "sunrise_center_deg": -0.833
+    },
+    "expected": {
+      "sunrise": null,
+      "sunset": null,
+      "rise_set_state": "no_rise_or_set"
+    },
+    "requirements": [
+      "R008"
+    ],
+    "stories": [
+      "US-04"
+    ],
+    "oracle": "North pole December solstice Sun remains below horizon all day; exact event times intentionally null."
+  },
+  {
+    "id": "twilight--18",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "twilight_label",
+    "input": {
+      "sun_deg": -18
+    },
+    "expected": {
+      "label": "astronomical"
+    },
+    "requirements": [
+      "R008"
+    ],
+    "stories": [
+      "US-04"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "twilight--12",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "twilight_label",
+    "input": {
+      "sun_deg": -12
+    },
+    "expected": {
+      "label": "nautical"
+    },
+    "requirements": [
+      "R008"
+    ],
+    "stories": [
+      "US-04"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "twilight--6",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "twilight_label",
+    "input": {
+      "sun_deg": -6
+    },
+    "expected": {
+      "label": "civil"
+    },
+    "requirements": [
+      "R008"
+    ],
+    "stories": [
+      "US-04"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "twilight--0.833",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "twilight_label",
+    "input": {
+      "sun_deg": -0.833
+    },
+    "expected": {
+      "label": "daylight"
+    },
+    "requirements": [
+      "R008"
+    ],
+    "stories": [
+      "US-04"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "twilight--18.001",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "twilight_label",
+    "input": {
+      "sun_deg": -18.001
+    },
+    "expected": {
+      "label": "night"
+    },
+    "requirements": [
+      "R008"
+    ],
+    "stories": [
+      "US-04"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "sunrise-slip",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "slip",
+    "input": {
+      "launch_local": "2026-10-13T06:58:00-04:00",
+      "view_offset_s": 480,
+      "slip_s": 600,
+      "synthetic_sunrise": "2026-10-13T07:10:00-04:00"
+    },
+    "expected": {
+      "before_view": "2026-10-13T07:06:00-04:00",
+      "after_view": "2026-10-13T07:16:00-04:00",
+      "recompute": [
+        "solar",
+        "weather",
+        "rules"
+      ],
+      "automatic_daylight_rejection": false
+    },
+    "requirements": [
+      "R008",
+      "R011"
+    ],
+    "stories": [
+      "US-05"
+    ],
+    "oracle": "PRD synthetic arithmetic example; 07:10 is NOT a real Maryland sunrise."
+  },
+  {
+    "id": "shadow-night",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "earth_shadow",
+    "input": {
+      "target_ecef_m": [
+        -7000000,
+        0,
+        0
+      ],
+      "sun_direction_ecef_unit": [
+        1,
+        0,
+        0
+      ],
+      "earth_a_m": 6378137,
+      "earth_b_m": 6356752.314245
+    },
+    "expected": {
+      "in_shadow": true
+    },
+    "requirements": [
+      "R006",
+      "R008"
+    ],
+    "stories": [
+      "US-06"
+    ],
+    "oracle": "Analytic ray/ellipsoid cases: ray toward+x intersects Earth only for antisolar point within Earth radius."
+  },
+  {
+    "id": "shadow-day",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "earth_shadow",
+    "input": {
+      "target_ecef_m": [
+        7000000,
+        0,
+        0
+      ],
+      "sun_direction_ecef_unit": [
+        1,
+        0,
+        0
+      ],
+      "earth_a_m": 6378137,
+      "earth_b_m": 6356752.314245
+    },
+    "expected": {
+      "in_shadow": false
+    },
+    "requirements": [
+      "R006",
+      "R008"
+    ],
+    "stories": [
+      "US-06"
+    ],
+    "oracle": "Analytic ray/ellipsoid cases: ray toward+x intersects Earth only for antisolar point within Earth radius."
+  },
+  {
+    "id": "shadow-offset",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "earth_shadow",
+    "input": {
+      "target_ecef_m": [
+        -7000000,
+        7000000,
+        0
+      ],
+      "sun_direction_ecef_unit": [
+        1,
+        0,
+        0
+      ],
+      "earth_a_m": 6378137,
+      "earth_b_m": 6356752.314245
+    },
+    "expected": {
+      "in_shadow": false
+    },
+    "requirements": [
+      "R006",
+      "R008"
+    ],
+    "stories": [
+      "US-06"
+    ],
+    "oracle": "Analytic ray/ellipsoid cases: ray toward+x intersects Earth only for antisolar point within Earth radius."
+  },
+  {
+    "id": "engine-in-shadow",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "emission",
+    "input": {
+      "active_engine": true,
+      "active_plume": false,
+      "sunlit": false
+    },
+    "expected": {
+      "eligible": true
+    },
+    "requirements": [
+      "R006",
+      "R008"
+    ],
+    "stories": [
+      "US-06"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "sunlit-inactive",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "emission",
+    "input": {
+      "active_engine": false,
+      "active_plume": false,
+      "sunlit": true
+    },
+    "expected": {
+      "eligible": false
+    },
+    "requirements": [
+      "R006",
+      "R008"
+    ],
+    "stories": [
+      "US-06"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "active-sunlit-plume",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "emission",
+    "input": {
+      "active_engine": false,
+      "active_plume": true,
+      "sunlit": true
+    },
+    "expected": {
+      "eligible": true
+    },
+    "requirements": [
+      "R006",
+      "R008"
+    ],
+    "stories": [
+      "US-06"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "duration-19.999",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "duration",
+    "input": {
+      "continuous_s": 19.999,
+      "elevation_deg": 1,
+      "active_engine": true
+    },
+    "expected": {
+      "eligible": false
+    },
+    "requirements": [
+      "R006"
+    ],
+    "stories": [
+      "US-07"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "duration-20",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "duration",
+    "input": {
+      "continuous_s": 20,
+      "elevation_deg": 1,
+      "active_engine": true
+    },
+    "expected": {
+      "eligible": true
+    },
+    "requirements": [
+      "R006"
+    ],
+    "stories": [
+      "US-07"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "duration-20.001",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "duration",
+    "input": {
+      "continuous_s": 20.001,
+      "elevation_deg": 1,
+      "active_engine": true
+    },
+    "expected": {
+      "eligible": true
+    },
+    "requirements": [
+      "R006"
+    ],
+    "stories": [
+      "US-07"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "zero-horizon",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "duration",
+    "input": {
+      "continuous_s": 60,
+      "elevation_deg": 0,
+      "active_engine": true
+    },
+    "expected": {
+      "eligible": false
+    },
+    "requirements": [
+      "R006"
+    ],
+    "stories": [
+      "US-07"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "gap-15",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "gap",
+    "input": {
+      "sample_gap_s": 15,
+      "same_stage": true
+    },
+    "expected": {
+      "interpolate": true
+    },
+    "requirements": [
+      "R006"
+    ],
+    "stories": [
+      "US-07"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "gap-15.001",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "gap",
+    "input": {
+      "sample_gap_s": 15.001,
+      "same_stage": true
+    },
+    "expected": {
+      "interpolate": false
+    },
+    "requirements": [
+      "R006"
+    ],
+    "stories": [
+      "US-07"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "stage-switch",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "gap",
+    "input": {
+      "sample_gap_s": 5,
+      "same_stage": false
+    },
+    "expected": {
+      "interpolate": false
+    },
+    "requirements": [
+      "R005",
+      "R006"
+    ],
+    "stories": [
+      "US-08"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "north-wrap",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "bearing_sector",
+    "input": {
+      "bearings_deg": [
+        359,
+        1
+      ]
+    },
+    "expected": {
+      "start_deg": 345,
+      "end_deg": 15,
+      "wraps_north": true
+    },
+    "requirements": [
+      "R007"
+    ],
+    "stories": [
+      "US-07"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "round-outward",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "round_window",
+    "input": {
+      "start": "2026-10-13T11:06:01Z",
+      "end": "2026-10-13T11:06:59Z"
+    },
+    "expected": {
+      "start": "2026-10-13T11:06:00Z",
+      "end": "2026-10-13T11:07:00Z"
+    },
+    "requirements": [
+      "R007"
+    ],
+    "stories": [
+      "US-07"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "lighting-39",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "lighting_flag",
+    "input": {
+      "continuous_s": 60,
+      "elevation_deg": 5,
+      "observer_sun_deg": -6,
+      "emission": true
+    },
+    "expected": {
+      "flag": true
+    },
+    "requirements": [
+      "R008",
+      "R010"
+    ],
+    "stories": [
+      "US-06",
+      "US-10"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "lighting-40",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "lighting_flag",
+    "input": {
+      "continuous_s": 59.999,
+      "elevation_deg": 5,
+      "observer_sun_deg": -6,
+      "emission": true
+    },
+    "expected": {
+      "flag": false
+    },
+    "requirements": [
+      "R008",
+      "R010"
+    ],
+    "stories": [
+      "US-06",
+      "US-10"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "lighting-41",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "lighting_flag",
+    "input": {
+      "continuous_s": 60,
+      "elevation_deg": 4.999,
+      "observer_sun_deg": -6,
+      "emission": true
+    },
+    "expected": {
+      "flag": false
+    },
+    "requirements": [
+      "R008",
+      "R010"
+    ],
+    "stories": [
+      "US-06",
+      "US-10"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "lighting-42",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "lighting_flag",
+    "input": {
+      "continuous_s": 60,
+      "elevation_deg": 5,
+      "observer_sun_deg": -5.999,
+      "emission": true
+    },
+    "expected": {
+      "flag": false
+    },
+    "requirements": [
+      "R008",
+      "R010"
+    ],
+    "stories": [
+      "US-06",
+      "US-10"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "cloud25",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_tier",
+    "input": {
+      "total": 25,
+      "visibility_m": 10000,
+      "low": null,
+      "mid": null,
+      "high": null,
+      "fog": false
+    },
+    "expected": {
+      "tier": "clear",
+      "visibility_unknown": false
+    },
+    "requirements": [
+      "R009"
+    ],
+    "stories": [
+      "US-09"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "cloud25plus",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_tier",
+    "input": {
+      "total": 25.001,
+      "visibility_m": 10000,
+      "low": null,
+      "mid": null,
+      "high": null,
+      "fog": false
+    },
+    "expected": {
+      "tier": "mixed",
+      "visibility_unknown": false
+    },
+    "requirements": [
+      "R009"
+    ],
+    "stories": [
+      "US-09"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "cloud75",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_tier",
+    "input": {
+      "total": 75,
+      "visibility_m": null,
+      "low": null,
+      "mid": null,
+      "high": null,
+      "fog": false
+    },
+    "expected": {
+      "tier": "poor",
+      "visibility_unknown": true
+    },
+    "requirements": [
+      "R009"
+    ],
+    "stories": [
+      "US-09"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "vis5000",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_tier",
+    "input": {
+      "total": 0,
+      "visibility_m": 5000,
+      "low": null,
+      "mid": null,
+      "high": null,
+      "fog": false
+    },
+    "expected": {
+      "tier": "mixed",
+      "visibility_unknown": false
+    },
+    "requirements": [
+      "R009"
+    ],
+    "stories": [
+      "US-09"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "vis4999",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_tier",
+    "input": {
+      "total": 0,
+      "visibility_m": 4999,
+      "low": null,
+      "mid": null,
+      "high": null,
+      "fog": false
+    },
+    "expected": {
+      "tier": "poor",
+      "visibility_unknown": false
+    },
+    "requirements": [
+      "R009"
+    ],
+    "stories": [
+      "US-09"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "vis9999",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_tier",
+    "input": {
+      "total": 0,
+      "visibility_m": 9999,
+      "low": null,
+      "mid": null,
+      "high": null,
+      "fog": false
+    },
+    "expected": {
+      "tier": "mixed",
+      "visibility_unknown": false
+    },
+    "requirements": [
+      "R009"
+    ],
+    "stories": [
+      "US-09"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "vis10000",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_tier",
+    "input": {
+      "total": 0,
+      "visibility_m": 10000,
+      "low": null,
+      "mid": null,
+      "high": null,
+      "fog": false
+    },
+    "expected": {
+      "tier": "clear",
+      "visibility_unknown": false
+    },
+    "requirements": [
+      "R009"
+    ],
+    "stories": [
+      "US-09"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "visibility-missing",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_tier",
+    "input": {
+      "total": 0,
+      "visibility_m": null,
+      "low": null,
+      "mid": null,
+      "high": null,
+      "fog": null
+    },
+    "expected": {
+      "tier": "clear",
+      "visibility_unknown": true
+    },
+    "requirements": [
+      "R009"
+    ],
+    "stories": [
+      "US-09"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "layers-clear",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_tier",
+    "input": {
+      "total": 25,
+      "visibility_m": 10000,
+      "low": 20,
+      "mid": 40,
+      "high": 60,
+      "fog": false
+    },
+    "expected": {
+      "tier": "clear",
+      "visibility_unknown": false
+    },
+    "requirements": [
+      "R009"
+    ],
+    "stories": [
+      "US-09"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "layers-low60",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_tier",
+    "input": {
+      "total": 0,
+      "visibility_m": 10000,
+      "low": 60,
+      "mid": 0,
+      "high": 0,
+      "fog": false
+    },
+    "expected": {
+      "tier": "poor",
+      "visibility_unknown": false
+    },
+    "requirements": [
+      "R009"
+    ],
+    "stories": [
+      "US-09"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "layers-mid41",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_tier",
+    "input": {
+      "total": 0,
+      "visibility_m": 10000,
+      "low": 0,
+      "mid": 41,
+      "high": 0,
+      "fog": false
+    },
+    "expected": {
+      "tier": "mixed",
+      "visibility_unknown": false
+    },
+    "requirements": [
+      "R009"
+    ],
+    "stories": [
+      "US-09"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "fog",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_tier",
+    "input": {
+      "total": 0,
+      "visibility_m": 10000,
+      "low": null,
+      "mid": null,
+      "high": null,
+      "fog": true
+    },
+    "expected": {
+      "tier": "poor",
+      "visibility_unknown": false
+    },
+    "requirements": [
+      "R009"
+    ],
+    "stories": [
+      "US-09"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "total-missing",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_tier",
+    "input": {
+      "total": null,
+      "visibility_m": 10000,
+      "low": 0,
+      "mid": 0,
+      "high": 0,
+      "fog": false
+    },
+    "expected": {
+      "tier": "unavailable",
+      "visibility_unknown": false
+    },
+    "requirements": [
+      "R009"
+    ],
+    "stories": [
+      "US-09"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "bin-boundary",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_overlap",
+    "input": {
+      "view": [
+        0,
+        60
+      ],
+      "bins": [
+        {
+          "interval": [
+            0,
+            60
+          ],
+          "tier": "clear"
+        },
+        {
+          "interval": [
+            60,
+            120
+          ],
+          "tier": "poor"
+        }
+      ]
+    },
+    "expected": {
+      "tier": "clear"
+    },
+    "requirements": [
+      "R009"
+    ],
+    "stories": [
+      "US-09"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "bin-poor-overlap",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_overlap",
+    "input": {
+      "view": [
+        0,
+        61
+      ],
+      "bins": [
+        {
+          "interval": [
+            0,
+            60
+          ],
+          "tier": "clear"
+        },
+        {
+          "interval": [
+            60,
+            120
+          ],
+          "tier": "poor"
+        }
+      ]
+    },
+    "expected": {
+      "tier": "poor"
+    },
+    "requirements": [
+      "R009"
+    ],
+    "stories": [
+      "US-09"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "better-subinterval",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_subinterval",
+    "input": {
+      "view": [
+        0,
+        120
+      ],
+      "bins": [
+        {
+          "interval": [
+            0,
+            40
+          ],
+          "tier": "poor"
+        },
+        {
+          "interval": [
+            40,
+            100
+          ],
+          "tier": "clear"
+        },
+        {
+          "interval": [
+            100,
+            120
+          ],
+          "tier": "poor"
+        }
+      ]
+    },
+    "expected": {
+      "selected": [
+        [
+          40,
+          100
+        ]
+      ],
+      "tier": "clear"
+    },
+    "requirements": [
+      "R009"
+    ],
+    "stories": [
+      "US-09"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "fresh-boundary",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_fresh",
+    "input": {
+      "fetch_age_s": 3600,
+      "issue_age_s": 43200,
+      "covered": true
+    },
+    "expected": {
+      "fresh": true
+    },
+    "requirements": [
+      "R009",
+      "R011"
+    ],
+    "stories": [
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "fetch-stale",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_fresh",
+    "input": {
+      "fetch_age_s": 3600.001,
+      "issue_age_s": 100,
+      "covered": true
+    },
+    "expected": {
+      "fresh": false
+    },
+    "requirements": [
+      "R009",
+      "R011"
+    ],
+    "stories": [
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "issue-stale",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_fresh",
+    "input": {
+      "fetch_age_s": 1,
+      "issue_age_s": 43200.001,
+      "covered": true
+    },
+    "expected": {
+      "fresh": false
+    },
+    "requirements": [
+      "R009",
+      "R011"
+    ],
+    "stories": [
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "issue-unknown",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_fresh",
+    "input": {
+      "fetch_age_s": 1,
+      "issue_age_s": null,
+      "covered": true
+    },
+    "expected": {
+      "fresh": false
+    },
+    "requirements": [
+      "R009",
+      "R011"
+    ],
+    "stories": [
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "coverage-gap",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "weather_fresh",
+    "input": {
+      "fetch_age_s": 1,
+      "issue_age_s": 1,
+      "covered": false
+    },
+    "expected": {
+      "fresh": false
+    },
+    "requirements": [
+      "R009",
+      "R011"
+    ],
+    "stories": [
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "reconstruction-cap",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "advice",
+    "input": {
+      "status": "scheduled",
+      "mode": "reconstructed",
+      "route": "approved",
+      "profile": "compatible",
+      "complete": true,
+      "fresh": true,
+      "weather": "clear",
+      "luminous_seconds": 60,
+      "all_below_horizon": false,
+      "official_member": false
+    },
+    "expected": {
+      "advice": "Possible"
+    },
+    "requirements": [
+      "R004",
+      "R005",
+      "R010",
+      "R011"
+    ],
+    "stories": [
+      "US-08",
+      "US-10",
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "missing-route",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "advice",
+    "input": {
+      "status": "scheduled",
+      "mode": "reconstructed",
+      "route": "missing",
+      "profile": "compatible",
+      "complete": true,
+      "fresh": true,
+      "weather": "clear",
+      "luminous_seconds": 60,
+      "all_below_horizon": false,
+      "official_member": false
+    },
+    "expected": {
+      "advice": "Not enough data"
+    },
+    "requirements": [
+      "R004",
+      "R005",
+      "R010",
+      "R011"
+    ],
+    "stories": [
+      "US-08",
+      "US-10",
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "hazard-only",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "advice",
+    "input": {
+      "status": "scheduled",
+      "mode": "route_screening",
+      "route": "approved",
+      "profile": "compatible",
+      "complete": true,
+      "fresh": true,
+      "weather": "clear",
+      "luminous_seconds": 60,
+      "all_below_horizon": false,
+      "official_member": false
+    },
+    "expected": {
+      "advice": "Not enough data"
+    },
+    "requirements": [
+      "R004",
+      "R005",
+      "R010",
+      "R011"
+    ],
+    "stories": [
+      "US-08",
+      "US-10",
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "dogleg",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "advice",
+    "input": {
+      "status": "scheduled",
+      "mode": "reconstructed",
+      "route": "unsupported_dogleg",
+      "profile": "compatible",
+      "complete": true,
+      "fresh": true,
+      "weather": "clear",
+      "luminous_seconds": 60,
+      "all_below_horizon": false,
+      "official_member": false
+    },
+    "expected": {
+      "advice": "Not enough data"
+    },
+    "requirements": [
+      "R004",
+      "R005",
+      "R010",
+      "R011"
+    ],
+    "stories": [
+      "US-08",
+      "US-10",
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "ambiguous-mission",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "advice",
+    "input": {
+      "status": "scheduled",
+      "mode": "reconstructed",
+      "route": "ambiguous",
+      "profile": "compatible",
+      "complete": true,
+      "fresh": true,
+      "weather": "clear",
+      "luminous_seconds": 60,
+      "all_below_horizon": false,
+      "official_member": false
+    },
+    "expected": {
+      "advice": "Not enough data"
+    },
+    "requirements": [
+      "R004",
+      "R005",
+      "R010",
+      "R011"
+    ],
+    "stories": [
+      "US-08",
+      "US-10",
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "variant-mismatch",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "advice",
+    "input": {
+      "status": "scheduled",
+      "mode": "reconstructed",
+      "route": "approved",
+      "profile": "incompatible",
+      "complete": true,
+      "fresh": true,
+      "weather": "clear",
+      "luminous_seconds": 60,
+      "all_below_horizon": false,
+      "official_member": false
+    },
+    "expected": {
+      "advice": "Not enough data"
+    },
+    "requirements": [
+      "R004",
+      "R005",
+      "R010",
+      "R011"
+    ],
+    "stories": [
+      "US-08",
+      "US-10",
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "missing-emission",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "advice",
+    "input": {
+      "status": "scheduled",
+      "mode": "reconstructed",
+      "route": "approved",
+      "profile": "compatible",
+      "complete": true,
+      "fresh": true,
+      "weather": "clear",
+      "luminous_seconds": null,
+      "all_below_horizon": false,
+      "official_member": false
+    },
+    "expected": {
+      "advice": "Not enough data"
+    },
+    "requirements": [
+      "R004",
+      "R005",
+      "R010",
+      "R011"
+    ],
+    "stories": [
+      "US-08",
+      "US-10",
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "incomplete-negative",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "advice",
+    "input": {
+      "status": "scheduled",
+      "mode": "reconstructed",
+      "route": "approved",
+      "profile": "compatible",
+      "complete": false,
+      "fresh": true,
+      "weather": "clear",
+      "luminous_seconds": 60,
+      "all_below_horizon": true,
+      "official_member": false
+    },
+    "expected": {
+      "advice": "Not enough data"
+    },
+    "requirements": [
+      "R004",
+      "R005",
+      "R010",
+      "R011"
+    ],
+    "stories": [
+      "US-08",
+      "US-10",
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "complete-negative",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "advice",
+    "input": {
+      "status": "scheduled",
+      "mode": "reconstructed",
+      "route": "approved",
+      "profile": "compatible",
+      "complete": true,
+      "fresh": true,
+      "weather": "clear",
+      "luminous_seconds": 0,
+      "all_below_horizon": true,
+      "official_member": false
+    },
+    "expected": {
+      "advice": "Unlikely"
+    },
+    "requirements": [
+      "R004",
+      "R005",
+      "R010",
+      "R011"
+    ],
+    "stories": [
+      "US-08",
+      "US-10",
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "poor-clouds",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "advice",
+    "input": {
+      "status": "scheduled",
+      "mode": "reconstructed",
+      "route": "approved",
+      "profile": "compatible",
+      "complete": true,
+      "fresh": true,
+      "weather": "poor",
+      "luminous_seconds": 60,
+      "all_below_horizon": false,
+      "official_member": false
+    },
+    "expected": {
+      "advice": "Unlikely"
+    },
+    "requirements": [
+      "R004",
+      "R005",
+      "R010",
+      "R011"
+    ],
+    "stories": [
+      "US-08",
+      "US-10",
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "stale-feed",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "advice",
+    "input": {
+      "status": "scheduled",
+      "mode": "reconstructed",
+      "route": "approved",
+      "profile": "compatible",
+      "complete": true,
+      "fresh": false,
+      "weather": "clear",
+      "luminous_seconds": 60,
+      "all_below_horizon": false,
+      "official_member": false
+    },
+    "expected": {
+      "advice": "Not enough data"
+    },
+    "requirements": [
+      "R004",
+      "R005",
+      "R010",
+      "R011"
+    ],
+    "stories": [
+      "US-08",
+      "US-10",
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "missing-weather",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "advice",
+    "input": {
+      "status": "scheduled",
+      "mode": "reconstructed",
+      "route": "approved",
+      "profile": "compatible",
+      "complete": true,
+      "fresh": true,
+      "weather": "unavailable",
+      "luminous_seconds": 60,
+      "all_below_horizon": false,
+      "official_member": false
+    },
+    "expected": {
+      "advice": "Not enough data"
+    },
+    "requirements": [
+      "R004",
+      "R005",
+      "R010",
+      "R011"
+    ],
+    "stories": [
+      "US-08",
+      "US-10",
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "official-clear",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "advice",
+    "input": {
+      "status": "scheduled",
+      "mode": "official_guidance",
+      "route": "approved",
+      "profile": "compatible",
+      "complete": true,
+      "fresh": true,
+      "weather": "clear",
+      "luminous_seconds": 60,
+      "all_below_horizon": false,
+      "official_member": true
+    },
+    "expected": {
+      "advice": "Worth a look"
+    },
+    "requirements": [
+      "R004",
+      "R005",
+      "R010",
+      "R011"
+    ],
+    "stories": [
+      "US-08",
+      "US-10",
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "official-mixed",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "advice",
+    "input": {
+      "status": "scheduled",
+      "mode": "official_guidance",
+      "route": "approved",
+      "profile": "compatible",
+      "complete": true,
+      "fresh": true,
+      "weather": "mixed",
+      "luminous_seconds": 60,
+      "all_below_horizon": false,
+      "official_member": true
+    },
+    "expected": {
+      "advice": "Possible"
+    },
+    "requirements": [
+      "R004",
+      "R005",
+      "R010",
+      "R011"
+    ],
+    "stories": [
+      "US-08",
+      "US-10",
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "outside-map",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "advice",
+    "input": {
+      "status": "scheduled",
+      "mode": "official_guidance",
+      "route": "approved",
+      "profile": "compatible",
+      "complete": true,
+      "fresh": true,
+      "weather": "clear",
+      "luminous_seconds": 60,
+      "all_below_horizon": false,
+      "official_member": false
+    },
+    "expected": {
+      "advice": "Not enough data"
+    },
+    "requirements": [
+      "R004",
+      "R005",
+      "R010",
+      "R011"
+    ],
+    "stories": [
+      "US-08",
+      "US-10",
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "scrub",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "advice",
+    "input": {
+      "status": "scrubbed",
+      "mode": "reconstructed",
+      "route": "approved",
+      "profile": "compatible",
+      "complete": true,
+      "fresh": true,
+      "weather": "clear",
+      "luminous_seconds": 60,
+      "all_below_horizon": false,
+      "official_member": false
+    },
+    "expected": {
+      "advice": "Not enough data"
+    },
+    "requirements": [
+      "R004",
+      "R005",
+      "R010",
+      "R011"
+    ],
+    "stories": [
+      "US-08",
+      "US-10",
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "hold",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "advice",
+    "input": {
+      "status": "hold",
+      "mode": "reconstructed",
+      "route": "approved",
+      "profile": "compatible",
+      "complete": true,
+      "fresh": true,
+      "weather": "clear",
+      "luminous_seconds": 60,
+      "all_below_horizon": false,
+      "official_member": false
+    },
+    "expected": {
+      "advice": "Not enough data"
+    },
+    "requirements": [
+      "R004",
+      "R005",
+      "R010",
+      "R011"
+    ],
+    "stories": [
+      "US-08",
+      "US-10",
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "completed",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "advice",
+    "input": {
+      "status": "completed",
+      "mode": "reconstructed",
+      "route": "approved",
+      "profile": "compatible",
+      "complete": true,
+      "fresh": true,
+      "weather": "clear",
+      "luminous_seconds": 60,
+      "all_below_horizon": false,
+      "official_member": false
+    },
+    "expected": {
+      "advice": "Not enough data"
+    },
+    "requirements": [
+      "R004",
+      "R005",
+      "R010",
+      "R011"
+    ],
+    "stories": [
+      "US-08",
+      "US-10",
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "cancelled",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "advice",
+    "input": {
+      "status": "cancelled",
+      "mode": "reconstructed",
+      "route": "approved",
+      "profile": "compatible",
+      "complete": true,
+      "fresh": true,
+      "weather": "clear",
+      "luminous_seconds": 60,
+      "all_below_horizon": false,
+      "official_member": false
+    },
+    "expected": {
+      "advice": "Not enough data"
+    },
+    "requirements": [
+      "R004",
+      "R005",
+      "R010",
+      "R011"
+    ],
+    "stories": [
+      "US-08",
+      "US-10",
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "date-only",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "time_presentation",
+    "input": {
+      "precision": "date",
+      "date": "2026-10-13",
+      "actual_liftoff": null
+    },
+    "expected": {
+      "countdown": false,
+      "precise_reminder": false
+    },
+    "requirements": [
+      "R003",
+      "R011"
+    ],
+    "stories": [
+      "US-12"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "window-only",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "time_presentation",
+    "input": {
+      "precision": "window",
+      "start": "2026-10-13T11:00:00Z",
+      "end": "2026-10-13T12:00:00Z",
+      "actual_liftoff": null
+    },
+    "expected": {
+      "conditional": true,
+      "precise_reminder": false
+    },
+    "requirements": [
+      "R003",
+      "R011"
+    ],
+    "stories": [
+      "US-12"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "awaiting-confirmation",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "time_presentation",
+    "input": {
+      "precision": "exact",
+      "net": "2026-10-13T11:00:00Z",
+      "now": "2026-10-13T11:00:00Z",
+      "actual_liftoff": null
+    },
+    "expected": {
+      "display_status": "awaiting_confirmation",
+      "countdown": false
+    },
+    "requirements": [
+      "R003",
+      "R011"
+    ],
+    "stories": [
+      "US-12"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "quiet-215959",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "quiet_hours",
+    "input": {
+      "local_time": "21:59:59",
+      "overnight_opt_in": false
+    },
+    "expected": {
+      "suppressed": false
+    },
+    "requirements": [
+      "R012"
+    ],
+    "stories": [
+      "US-13"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "quiet-220000",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "quiet_hours",
+    "input": {
+      "local_time": "22:00:00",
+      "overnight_opt_in": false
+    },
+    "expected": {
+      "suppressed": true
+    },
+    "requirements": [
+      "R012"
+    ],
+    "stories": [
+      "US-13"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "quiet-065959",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "quiet_hours",
+    "input": {
+      "local_time": "06:59:59",
+      "overnight_opt_in": false
+    },
+    "expected": {
+      "suppressed": true
+    },
+    "requirements": [
+      "R012"
+    ],
+    "stories": [
+      "US-13"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "quiet-070000",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "quiet_hours",
+    "input": {
+      "local_time": "07:00:00",
+      "overnight_opt_in": false
+    },
+    "expected": {
+      "suppressed": false
+    },
+    "requirements": [
+      "R012"
+    ],
+    "stories": [
+      "US-13"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "overnight-opt-in",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "quiet_hours",
+    "input": {
+      "local_time": "05:00:00",
+      "overnight_opt_in": true
+    },
+    "expected": {
+      "suppressed": false
+    },
+    "requirements": [
+      "R012"
+    ],
+    "stories": [
+      "US-13"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "correction-299",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "correction",
+    "input": {
+      "shift_from_last_delivered_s": 299,
+      "local_date_changed": false,
+      "previously_notified": true
+    },
+    "expected": {
+      "notify": false
+    },
+    "requirements": [
+      "R013"
+    ],
+    "stories": [
+      "US-14"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "correction-300",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "correction",
+    "input": {
+      "shift_from_last_delivered_s": 300,
+      "local_date_changed": false,
+      "previously_notified": true
+    },
+    "expected": {
+      "notify": true
+    },
+    "requirements": [
+      "R013"
+    ],
+    "stories": [
+      "US-14"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "date-correction",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "correction",
+    "input": {
+      "shift_from_last_delivered_s": 60,
+      "local_date_changed": true,
+      "previously_notified": true
+    },
+    "expected": {
+      "notify": true
+    },
+    "requirements": [
+      "R013"
+    ],
+    "stories": [
+      "US-14"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "debounce-94",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "downgrade",
+    "input": {
+      "persistent_s": 599,
+      "inside_30m": false,
+      "scrub": false
+    },
+    "expected": {
+      "notify": false
+    },
+    "requirements": [
+      "R013"
+    ],
+    "stories": [
+      "US-14"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "debounce-95",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "downgrade",
+    "input": {
+      "persistent_s": 600,
+      "inside_30m": false,
+      "scrub": false
+    },
+    "expected": {
+      "notify": true
+    },
+    "requirements": [
+      "R013"
+    ],
+    "stories": [
+      "US-14"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "debounce-96",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "downgrade",
+    "input": {
+      "persistent_s": 0,
+      "inside_30m": true,
+      "scrub": false
+    },
+    "expected": {
+      "notify": true
+    },
+    "requirements": [
+      "R013"
+    ],
+    "stories": [
+      "US-14"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "debounce-97",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "downgrade",
+    "input": {
+      "persistent_s": 0,
+      "inside_30m": false,
+      "scrub": true
+    },
+    "expected": {
+      "notify": true
+    },
+    "requirements": [
+      "R013"
+    ],
+    "stories": [
+      "US-14"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "no-past-milestone",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "enqueue",
+    "input": {
+      "created_at": "2026-10-13T10:00:00Z",
+      "due_at": "2026-10-13T10:00:00Z"
+    },
+    "expected": {
+      "enqueue": false
+    },
+    "requirements": [
+      "R012"
+    ],
+    "stories": [
+      "US-13"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "expired-notice",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "delivery",
+    "input": {
+      "now": "2026-10-13T11:30:00Z",
+      "expires_at": "2026-10-13T11:30:00Z",
+      "consent": true
+    },
+    "expected": {
+      "deliver": false,
+      "state": "expired"
+    },
+    "requirements": [
+      "R013"
+    ],
+    "stories": [
+      "US-14"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "notification-race",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "notification_race",
+    "input": {
+      "workers": 2,
+      "subscription": "sub1",
+      "attempt": "attempt1",
+      "type": "planning_24h",
+      "revision": 1,
+      "barrier": "before_claim"
+    },
+    "expected": {
+      "logical_notices": 1,
+      "outbox_rows": 1
+    },
+    "requirements": [
+      "R013"
+    ],
+    "stories": [
+      "US-14"
+    ],
+    "oracle": "Database uniqueness requirement; real adapter must run2 concurrent transactions, not return canned counts."
+  },
+  {
+    "id": "unsubscribe-race",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "unsubscribe_race",
+    "input": {
+      "unsubscribe_commits_before_claim": true,
+      "pending": 1
+    },
+    "expected": {
+      "enabled": false,
+      "delivered": 0,
+      "pending": 0
+    },
+    "requirements": [
+      "R013",
+      "R014"
+    ],
+    "stories": [
+      "US-15"
+    ],
+    "oracle": "Transaction ordering: committed disable must be read under delivery lock."
+  },
+  {
+    "id": "revision-race",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "revision_race",
+    "input": {
+      "old_revision": 1,
+      "new_revision": 2,
+      "revision_commits_before_claim": true
+    },
+    "expected": {
+      "old_deliveries": 0,
+      "current_revision": 2
+    },
+    "requirements": [
+      "R013"
+    ],
+    "stories": [
+      "US-14"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "delete-24h",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "privacy_delete",
+    "input": {
+      "elapsed_s": 86400,
+      "subscription_deleted": true
+    },
+    "expected": {
+      "subscription_exists": false,
+      "pending": 0
+    },
+    "requirements": [
+      "R014"
+    ],
+    "stories": [
+      "US-15"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "provider-403",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "provider_failure",
+    "input": {
+      "status": 403,
+      "has_cache": true
+    },
+    "expected": {
+      "paid_fallback": false,
+      "positive_notices": false,
+      "cached_data_retained": true
+    },
+    "requirements": [
+      "R001",
+      "R011",
+      "R015"
+    ],
+    "stories": [
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "provider-429",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "provider_failure",
+    "input": {
+      "status": 429,
+      "has_cache": true
+    },
+    "expected": {
+      "paid_fallback": false,
+      "positive_notices": false,
+      "cached_data_retained": true
+    },
+    "requirements": [
+      "R001",
+      "R011",
+      "R015"
+    ],
+    "stories": [
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "provider-503",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "provider_failure",
+    "input": {
+      "status": 503,
+      "has_cache": true
+    },
+    "expected": {
+      "paid_fallback": false,
+      "positive_notices": false,
+      "cached_data_retained": true
+    },
+    "requirements": [
+      "R001",
+      "R011",
+      "R015"
+    ],
+    "stories": [
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "provider-timeout",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "provider_failure",
+    "input": {
+      "status": "timeout",
+      "has_cache": true
+    },
+    "expected": {
+      "paid_fallback": false,
+      "positive_notices": false,
+      "cached_data_retained": true
+    },
+    "requirements": [
+      "R001",
+      "R011",
+      "R015"
+    ],
+    "stories": [
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "ll2-budget",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "provider_budget",
+    "input": {
+      "requests_in_last_3600s": 12,
+      "next_request_kind": "retry"
+    },
+    "expected": {
+      "allowed": false
+    },
+    "requirements": [
+      "R015"
+    ],
+    "stories": [
+      "US-11"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "reproducibility",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "assessment_key",
+    "input": {
+      "baseline_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "changed_input": "weather_snapshot",
+      "changed_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "expected": {
+      "same_key": false,
+      "archive_original": true
+    },
+    "requirements": [
+      "R018"
+    ],
+    "stories": [
+      "US-16"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "mission-disable",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "admin_disable",
+    "input": {
+      "authenticated": true,
+      "mission_enabled": true
+    },
+    "expected": {
+      "mission_enabled": false,
+      "positive_notices": false,
+      "audit_created": true
+    },
+    "requirements": [
+      "R014",
+      "R018"
+    ],
+    "stories": [
+      "US-16"
+    ],
+    "oracle": "Normative decision table in spec/rules.md; hand-specified boundary outcome."
+  },
+  {
+    "id": "orbcomm-archive",
+    "version": 1,
+    "kind": "real_reference",
+    "operation": "parse_historical_archive",
+    "input": {
+      "series_path": "tests/fixtures/raw/Telemetry-Data--Orbcomm OG2--JSON--analysed.json",
+      "events_path": "tests/fixtures/raw/Telemetry-Data--Orbcomm OG2--JSON--events.json"
+    },
+    "expected": {
+      "sample_count": 578,
+      "last_t_s": 577.0,
+      "last_altitude_m": 619691.0,
+      "last_downrange_m": 1138029.0,
+      "ses1_s": 155,
+      "seco1_s": 565,
+      "production_admitted": false
+    },
+    "requirements": [
+      "R005",
+      "R018",
+      "R019"
+    ],
+    "stories": [
+      "US-08"
+    ],
+    "oracle": "Direct archived JSON fields; km->m dimensional conversion, metadata insufficient for production; no application code."
+  }
+]

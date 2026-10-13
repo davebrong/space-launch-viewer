@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "id": "real-cape-maryland-release",
+  "kind": "real_evidence_gate",
+  "status": "blocked",
+  "inputs_available": {
+    "historical_archive": "tests/fixtures/raw/Telemetry-Data--Orbcomm OG2--JSON--analysed.json",
+    "events": "tests/fixtures/raw/Telemetry-Data--Orbcomm OG2--JSON--events.json",
+    "observer_zip": "fixture-zip",
+    "observer_reference": "tests/fixtures/raw/census.zip"
+  },
+  "missing_inputs": [
+    "Independently supported route for the selected historical Cape mission",
+    "Fully verified stage/altitude-datum/profile metadata and compatible family",
+    "Held-out different historical mission and independent comparison"
+  ],
+  "expected_assessment": null,
+  "expected_assessment_reason": "Not defined until independent route/profile evidence exists; a fabricated golden positive would invalidate the test.",
+  "requirements": [
+    "R004",
+    "R005",
+    "R018",
+    "R019",
+    "R020"
+  ],
+  "implementation_task": "T02",
+  "must_not_accept": [
+    "synthetic geometry alone",
+    "hazard polygon treated as centerline",
+    "Orbcomm sample treated as current Block5",
+    "same mission training and validation"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "run_at": "2026-10-13T15:39:25.203451+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "tests/acceptance/live.py"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/provider-live-final-2026-10-13T153925_203451_0000.txt",
+  "sha256": "24696957e40c1feff9506ea9380ea18e8f5e1c6bc0f5c89c5e0c914c484a4270",
+  "software_sha256": "3c263ebda111a3746d36931fd2fac008ae4768d8213800a90477588c21014752"
+}

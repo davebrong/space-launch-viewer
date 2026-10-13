@@ -1,0 +1,146 @@
+[
+  {
+    "id": "R001",
+    "scope": "required",
+    "title": "Cost and scope",
+    "requirement": "Mandatory API/data spend is $0; preserve Cape/Kennedy-to-Maryland use case, existing hardware and free local deployment; no purchases, paid fallback or automatic upgrade."
+  },
+  {
+    "id": "R002",
+    "scope": "required",
+    "title": "Location",
+    "requirement": "US ZIP representative point confirmation; optional GPS/manual fallback, coordinates, local IANA timezone; preserve leading zero; up to 100 active locations; fixture-zip is a fixture only."
+  },
+  {
+    "id": "R003",
+    "scope": "required",
+    "title": "Schedule",
+    "requirement": "LL2 production v2.3.0; normalize identifiers, pad, variant, precision, window, status and timestamps; exact/window/date/unknown remain distinct; no fabricated liftoff."
+  },
+  {
+    "id": "R004",
+    "scope": "required",
+    "title": "Evidence",
+    "requirement": "Exact mission/pad/attempt association; typed evidence and versioned route registry; deterministic approved parsers; hazard-only screening has no timed/elevation forecast; unknown branches/doglegs fail closed."
+  },
+  {
+    "id": "R005",
+    "scope": "required",
+    "title": "Profiles and reuse",
+    "requirement": "Inspect and reuse suitable open source; pin historical snapshots, licenses, hashes and metadata including variant/class/recovery/stage/datum/downrange/time origin and powered intervals. Incompatible/unknown metadata cannot enter production."
+  },
+  {
+    "id": "R006",
+    "scope": "required",
+    "title": "Geometry",
+    "requirement": "WGS84 ECEF/ENU, true azimuth, geometric elevation/range/occultation; 5 s samples, gaps <=15 s, >=20 s luminous visibility; only first ascent burns; no booster return, passive drift, refraction or full simulator."
+  },
+  {
+    "id": "R007",
+    "scope": "required",
+    "title": "Ensemble",
+    "requirement": "Preserve correlated candidate tracks, union of windows, maximum elevation range, circular sectors and movement; round times outward to minute and bearings outward to 15 degrees; disclose disagreement and uncertainty."
+  },
+  {
+    "id": "R008",
+    "scope": "required",
+    "title": "Astronomy/time",
+    "requirement": "Observer-local date and offset across DST; numeric solar elevation, Earth shadow, active emission; DE421 pinned/range checked; sunrise -0.833 degrees, twilight -6/-12/-18; no-rise/no-set null; daylight is explanatory."
+  },
+  {
+    "id": "R009",
+    "scope": "required",
+    "title": "Weather",
+    "requirement": "NWS observer point/grid skyCover with intervals and issue/fetch times; percent/meters; worst overlapping bin or qualifying continuous subinterval; exact clear/mixed/poor/fresh thresholds; missing clouds unavailable, missing visibility disclosed."
+  },
+  {
+    "id": "R010",
+    "scope": "required",
+    "title": "Advice",
+    "requirement": "Deterministic visibility_rules_v1_1 order, four advice labels, reconstruction <=Possible; official observer-region/time evidence required for Worth a look; no percentage probability, model-dependent negatives."
+  },
+  {
+    "id": "R011",
+    "scope": "required",
+    "title": "Uncertainty/revisions",
+    "requirement": "Evaluate window alternatives and refine changing outcomes; invalidate on time/liftoff/location/route/weather/rules changes; stale essential data blocks combined positive advice and new positive notices."
+  },
+  {
+    "id": "R012",
+    "scope": "required",
+    "title": "Free notices",
+    "requirement": "In-app history and downloadable ICS snapshots; precise-target T-24h/T-30m, conditional window planning; default Worth a look, Possible opt-in; quiet 22:00-07:00 with explicit override; no past milestones."
+  },
+  {
+    "id": "R013",
+    "scope": "required",
+    "title": "Notice transitions",
+    "requirement": "Revision cancel/recompute; >=300 s shift, local-date change, scrub or persistent downgrade correct prior notices; 10 min coalesce except inside T-30 or scrub; transactional uniqueness and consent/status recheck, retries and expiry."
+  },
+  {
+    "id": "R014",
+    "scope": "required",
+    "title": "Privacy/security",
+    "requirement": "Selected subscription location only; optional exact GPS; immediate unsubscribe, deletion <=24h; 30-day redacted logs, protected admin, audit actions, server secrets, HTTPS."
+  },
+  {
+    "id": "R015",
+    "scope": "required",
+    "title": "Ingestion budgets",
+    "requirement": "Shared LL2 30m/5m polls with 12 requests rolling hour including pages/retries; route 6h/1h where permitted; NWS daily points and hourly/15m distinct-cell grids with backoff; no per-user schedule polling."
+  },
+  {
+    "id": "R016",
+    "scope": "required",
+    "title": "Backend and operations",
+    "requirement": "Next.js/FastAPI/worker/PostgreSQL Compose, versioned evidence/templates locally; jobs/outbox/cache, health, daily off-host backup/recovery; no mandatory Redis/Kubernetes."
+  },
+  {
+    "id": "R017",
+    "scope": "required",
+    "title": "UI",
+    "requirement": "Responsive accessible location/list/detail/sky-band/conditions/sources/subscriptions/notices/admin journeys; state distinctions, local dates, sunrise changes and source-supported precision."
+  },
+  {
+    "id": "R018",
+    "scope": "required",
+    "title": "Reproducibility",
+    "requirement": "Record source URLs/hashes/licenses, coordinates, UTC, parser/astronomy/rules versions and reasons; independent geometry <=0.1 degree and sunrise/sunset <=120 s; every story has regression evidence."
+  },
+  {
+    "id": "R019",
+    "scope": "required",
+    "title": "Engineering gate",
+    "requirement": "Initial three-day investigation: historical Cape/Maryland case FIRST, held-out profile, independent route, near-pad comparison, then upcoming mission attempt; failure report is not a passed real-data gate; continue whole build."
+  },
+  {
+    "id": "R020",
+    "scope": "required",
+    "title": "Release and performance",
+    "requirement": "Real Cape fixture, compatible profile family, independent mission route, separate official-guidance fixture; all stories and failure modes; 100 locations x two-stage 15m full candidate set; cached p95 <2 s and no budget overrun."
+  },
+  {
+    "id": "R021",
+    "scope": "required",
+    "title": "Empirical pilot",
+    "requirement": "Archive prospective forecasts and forecast-time weather before launch; collect >=5 launches and >=30 labeled attempts, clouds and unsuccessful/inconclusive outcomes; publish denominators/false positives/missed sightings; absence of sighting !=negative."
+  },
+  {
+    "id": "R022",
+    "scope": "optional",
+    "title": "Email",
+    "requirement": "Only already available verified no-additional-cost email, explicit consent/verified address and provider-specific idempotency/reconciliation tests; disabled by default."
+  },
+  {
+    "id": "R023",
+    "scope": "optional",
+    "title": "Research improvements",
+    "requirement": "Multiple representative profiles beyond initial one, modern video OCR and licensed ISSC exports; optional layers can downgrade, never improve worse baseline; not required dependencies."
+  },
+  {
+    "id": "R024",
+    "scope": "excluded",
+    "title": "Non-goals",
+    "requirement": "No Flight Club, paid feeds, full flight simulator, orbital passes/reentry, terrain/building obstruction, 3D cloud transfer, live dot, SMS/required push, guaranteed email, calibrated probabilities or arbitrary map interpretation."
+  }
+]

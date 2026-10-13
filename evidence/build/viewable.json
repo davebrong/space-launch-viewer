@@ -1,0 +1,169 @@
+{
+  "reviewed_at": "2026-10-13T19:32:19.129878+00:00",
+  "scope": "ZIP-specific Viewable default, All schedule distinction and hidden Observations/Privacy entry points",
+  "results": {
+    "application_tests": 21,
+    "browser_tests": 12,
+    "spec_checks": 9,
+    "api_contract_scenarios": 1
+  },
+  "checks": [
+    {
+      "run_at": "2026-10-13T19:10:09.121429+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/application",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/viewable-unit-2026-10-13T191009_121429_0000.txt",
+      "sha256": "de9ff198f5b575aa965713ddfb3cedb7bb3347a75c186c01c7333db224f0b011",
+      "software_sha256": "07a4c0032e61094e59e6fdd952e908d935bf610e1674b8daf734ade128367d05"
+    },
+    {
+      "run_at": "2026-10-13T19:13:33.206024+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/check_spec.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/viewable-spec-2026-10-13T191333_206024_0000.txt",
+      "sha256": "3d25561fbb27d89d67a9c11b37b0feea842233ebf78509ef65683ca30834b854",
+      "software_sha256": "521c686105f7f7ad87c9268364e6ee02183e348c1614ab5be3e32ea44722f283"
+    },
+    {
+      "run_at": "2026-10-13T19:10:17.921898+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "lint"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/viewable-types-2026-10-13T191017_921898_0000.txt",
+      "sha256": "e7d7e1cf04dd29ae07238717e25773c0433128f5ceba1069dcd50a9ea6af1f05",
+      "software_sha256": "07a4c0032e61094e59e6fdd952e908d935bf610e1674b8daf734ade128367d05"
+    },
+    {
+      "run_at": "2026-10-13T19:10:20.959651+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "packages",
+        "services",
+        "tests/application"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/viewable-lint-2026-10-13T191020_959651_0000.txt",
+      "sha256": "881513cd027e0334026cfcbad052e34fecb3f2c1fef5ab000c86973bc0196cd7",
+      "software_sha256": "07a4c0032e61094e59e6fdd952e908d935bf610e1674b8daf734ade128367d05"
+    },
+    {
+      "run_at": "2026-10-13T19:11:26.002121+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tests/acceptance/run.py",
+        "--suite",
+        "api-contract"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/viewable-contract-2026-10-13T191126_002121_0000.txt",
+      "sha256": "7d9f7ed8a357bc29ae702e045a0c38ea521c3dda53af1a0c4823fdc8659bd428",
+      "software_sha256": "521c686105f7f7ad87c9268364e6ee02183e348c1614ab5be3e32ea44722f283"
+    },
+    {
+      "run_at": "2026-10-13T19:10:10.395076+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "web",
+        "api",
+        "worker"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/viewable-build-2026-10-13T191010_395076_0000.txt",
+      "sha256": "e5185874963480497ddd82900df766e8ed107bbc40424628c3cced0b5311355b",
+      "software_sha256": "07a4c0032e61094e59e6fdd952e908d935bf610e1674b8daf734ade128367d05"
+    },
+    {
+      "run_at": "2026-10-13T19:11:28.907604+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "api",
+        "worker"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/viewable-api-build-2026-10-13T191128_907604_0000.txt",
+      "sha256": "c12a79f540fb9668a284e716d3138eafc23e3020e2a5e20bac868423e86268cd",
+      "software_sha256": "521c686105f7f7ad87c9268364e6ee02183e348c1614ab5be3e32ea44722f283"
+    },
+    {
+      "run_at": "2026-10-13T19:11:55.025018+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "up",
+        "-d",
+        "--no-deps",
+        "api",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/viewable-start-2026-10-13T191155_025018_0000.txt",
+      "sha256": "7dc156bfac7c7fbfaaaf734fd37fcd9cdadc06db9d8ca44af0b6a15cf38af03d",
+      "software_sha256": "521c686105f7f7ad87c9268364e6ee02183e348c1614ab5be3e32ea44722f283"
+    },
+    {
+      "run_at": "2026-10-13T19:12:25.559761+00:00",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/viewable-browser-2026-10-13T191225_559761_0000.txt",
+      "sha256": "5a4a72d8e4a3082fa55d4cfab11b270bb19e6508b7c0acc81d879903a2607095",
+      "software_sha256": "521c686105f7f7ad87c9268364e6ee02183e348c1614ab5be3e32ea44722f283"
+    }
+  ],
+  "browser_stats": {
+    "startTime": "2026-10-13T19:12:26.139Z",
+    "duration": 198451.603,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "reported_launch": {
+    "id": "3b430f81-0ff1-4d85-8a1a-cef0de326198",
+    "name": "Bandwagon 5",
+    "reason": "No supported nominal family or admitted mission route/profile. No viewing estimate; retained under All."
+  },
+  "semantics": "Plans with a location-specific interval, including explicit simulations; not guaranteed sightings. Excludes stopped/imprecise/unsupported launches, all-below-horizon models and uniformly poor known clouds. Today local-time completed plans remain; older launches remain in All.",
+  "privacy_and_observations_data_deleted": false,
+  "direct_routes_and_api_preserved": true,
+  "full_acceptance_and_load_rerun": false,
+  "prior_browser_report": "evidence/build/playwright-before-viewable.json",
+  "screenshots": [
+    "evidence/build/viewable-desktop-viewport.png",
+    "evidence/build/viewable-mobile.png"
+  ],
+  "release_audit": "evidence/build/logs/viewable-release.json"
+}

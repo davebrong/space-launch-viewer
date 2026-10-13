@@ -1,0 +1,20 @@
+{
+  "run_at": "2026-10-13T19:50:28.559679+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "ruff",
+    "check",
+    "packages/visibility/nearby.py",
+    "packages/visibility/planning.py",
+    "services/api/opportunities.py",
+    "tests/application/test_nearby.py",
+    "tests/application/test_opportunities.py",
+    "tools/audit_nearby.py"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/nearby-python-lint-2026-10-13T195028_559679_0000.txt",
+  "sha256": "881513cd027e0334026cfcbad052e34fecb3f2c1fef5ab000c86973bc0196cd7",
+  "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+}

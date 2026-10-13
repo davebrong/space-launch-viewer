@@ -1,0 +1,208 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.43kB done
+#1 DONE 0.0s
+
+#2 [web internal] load build definition from web.Dockerfile
+#2 transferring dockerfile: 758B done
+#2 DONE 0.1s
+
+#3 [api internal] load build definition from api.Dockerfile
+#3 transferring dockerfile: 999B done
+#3 DONE 0.1s
+
+#4 [api internal] load metadata for docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#4 DONE 0.0s
+
+#5 [web internal] load metadata for docker.io/library/node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20
+#5 DONE 0.0s
+
+#6 [worker internal] load .dockerignore
+#6 transferring context: 179B done
+#6 DONE 0.0s
+
+#7 [worker  1/16] FROM docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#7 DONE 0.0s
+
+#8 [web build 1/7] FROM docker.io/library/node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20
+#8 DONE 0.0s
+
+#9 [api internal] load build context
+#9 transferring context: 189.59kB 0.1s done
+#9 DONE 0.1s
+
+#10 [web internal] load build context
+#10 transferring context: 303.68kB 0.1s done
+#10 DONE 0.1s
+
+#11 [api  5/16] RUN useradd --uid 1000 --create-home launch && mkdir /data && chown launch:launch /data
+#11 CACHED
+
+#12 [api  4/16] RUN pip install --no-cache-dir --require-hashes -r requirements-app.lock.txt
+#12 CACHED
+
+#13 [api  2/16] WORKDIR /app
+#13 CACHED
+
+#14 [api  3/16] COPY requirements-app.lock.txt .
+#14 CACHED
+
+#15 [api  6/16] COPY --chown=launch:launch packages packages
+#15 CACHED
+
+#16 [api  7/16] COPY --chown=launch:launch services services
+#16 ...
+
+#14 [worker  3/16] COPY requirements-app.lock.txt .
+#14 CACHED
+
+#12 [worker  4/16] RUN pip install --no-cache-dir --require-hashes -r requirements-app.lock.txt
+#12 CACHED
+
+#11 [worker  5/16] RUN useradd --uid 1000 --create-home launch && mkdir /data && chown launch:launch /data
+#11 CACHED
+
+#13 [worker  2/16] WORKDIR /app
+#13 CACHED
+
+#15 [worker  6/16] COPY --chown=launch:launch packages packages
+#15 CACHED
+
+#17 [web build 4/7] COPY apps/web/package.json apps/web/package.json
+#17 CACHED
+
+#18 [web build 3/7] COPY package.json package-lock.json ./
+#18 CACHED
+
+#19 [web build 2/7] WORKDIR /app
+#19 CACHED
+
+#20 [web build 5/7] RUN npm ci
+#20 CACHED
+
+#21 [web build 6/7] COPY apps/web apps/web
+#21 DONE 0.1s
+
+#16 [worker  7/16] COPY --chown=launch:launch services services
+#16 DONE 0.1s
+
+#22 [api  8/16] COPY --chown=launch:launch implementation implementation
+#22 DONE 0.0s
+
+#23 [api  9/16] COPY --chown=launch:launch ops ops
+#23 DONE 0.0s
+
+#24 [web build 7/7] RUN npm run build
+#24 ...
+
+#23 [worker  9/16] COPY --chown=launch:launch ops ops
+#23 DONE 0.0s
+
+#25 [api 10/16] COPY --chown=launch:launch migrations migrations
+#25 DONE 0.1s
+
+#26 [worker 11/16] COPY --chown=launch:launch spec/contracts spec/contracts
+#26 DONE 0.0s
+
+#26 [api 11/16] COPY --chown=launch:launch spec/contracts spec/contracts
+#26 DONE 0.0s
+
+#27 [api 12/16] COPY --chown=launch:launch data/gazetteer data/gazetteer
+#27 DONE 0.1s
+
+#28 [worker 13/16] COPY --chown=launch:launch data/registry data/registry
+#28 DONE 0.0s
+
+#24 [web build 7/7] RUN npm run build
+#24 ...
+
+#28 [api 13/16] COPY --chown=launch:launch data/registry data/registry
+#28 DONE 0.0s
+
+#29 [api 14/16] COPY --chown=launch:launch data/profiles data/profiles
+#29 DONE 0.1s
+
+#30 [worker 15/16] COPY --chown=launch:launch evidence/build/dependency-manifest.json evidence/build/dependency-manifest.json
+#30 DONE 0.1s
+
+#30 [api 15/16] COPY --chown=launch:launch evidence/build/dependency-manifest.json evidence/build/dependency-manifest.json
+#30 DONE 0.1s
+
+#31 [worker 16/16] COPY alembic.ini .
+#31 DONE 0.1s
+
+#32 [worker] exporting to image
+#32 exporting layers
+#32 exporting layers 0.3s done
+#32 writing image sha256:c21721c2d6c82cf86de0b7b68701a34fdff72b81da019cf3f20f954ce25a66a8 done
+#32 naming to docker.io/library/launch-visibility-worker 0.0s done
+#32 DONE 0.3s
+
+#33 [api] exporting to image
+#33 exporting layers 0.3s done
+#33 writing image sha256:076585666d99daa06374119fba2fd99c29de85302fbee68d1582dbb32e8d301d done
+#33 naming to docker.io/library/launch-visibility-api done
+#33 DONE 0.3s
+
+#34 [worker] resolving provenance for metadata file
+#34 DONE 0.0s
+
+#35 [api] resolving provenance for metadata file
+#35 DONE 0.0s
+
+#24 [web build 7/7] RUN npm run build
+#24 0.801 
+#24 0.801 > launch-visibility-workspace@0.1.0 build
+#24 0.801 > npm run build --workspace apps/web
+#24 0.801 
+#24 1.012 
+#24 1.012 > launch-visibility-web@0.1.0 build
+#24 1.012 > next build --webpack
+#24 1.012 
+#24 1.710 ▲ Next.js 16.4.0 (webpack)
+#24 1.910 ✓ Running next.config.ts took 198ms
+#24 1.936 
+#24 1.972   Creating an optimized production build ...
+#24 13.66 ✓ Compiled successfully in 8.2s
+#24 13.66   Running TypeScript ...
+#24 18.74   Finished TypeScript in 5.1s ...
+#24 18.74   Collecting page data using 4 workers ...
+#24 19.69   Generating static pages using 4 workers (0/2) ...
+#24 20.49 ✓ Generating static pages using 4 workers (2/2) in 798ms
+#24 20.87   Finalizing page optimization ...
+#24 20.87   Collecting build traces ...
+#24 44.01 
+#24 44.01 Route (app)
+#24 44.01 ┌ ○ /_not-found
+#24 44.01 └ ƒ /[[...slug]]
+#24 44.01 
+#24 44.01 
+#24 44.01 ○  (Static)   prerendered as static content
+#24 44.01 ƒ  (Dynamic)  server-rendered on demand
+#24 44.01 
+#24 DONE 44.2s
+
+#19 [web build 2/7] WORKDIR /app
+#19 CACHED
+
+#36 [web stage-1 3/4] COPY --from=build --chown=node:node /app/apps/web/.next/standalone ./
+#36 DONE 1.1s
+
+#37 [web stage-1 4/4] COPY --from=build --chown=node:node /app/apps/web/.next/static ./apps/web/.next/static
+#37 DONE 0.1s
+
+#38 [web] exporting to image
+#38 exporting layers
+#38 exporting layers 0.4s done
+#38 writing image sha256:864249a6c7bcde4bd881393155138fd863e14c48db88d9488db56c7c1818e2e0 done
+#38 naming to docker.io/library/launch-visibility-web done
+#38 DONE 0.4s
+
+#39 [web] resolving provenance for metadata file
+#39 DONE 0.0s
+
+ Image launch-visibility-api Building 
+ Image launch-visibility-worker Building 
+ Image launch-visibility-web Building 
+ Image launch-visibility-web Built 
+ Image launch-visibility-api Built 
+ Image launch-visibility-worker Built 

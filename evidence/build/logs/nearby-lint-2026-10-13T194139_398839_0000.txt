@@ -1,0 +1,19 @@
+
+> launch-visibility-workspace@0.1.0 lint
+> npm run lint --workspace apps/web
+
+
+> launch-visibility-web@0.1.0 lint
+> tsc --noEmit
+
+components/PlanningSummary.tsx(8,21): error TS2339: Property 'kind' does not exist on type '{ model_version: string; model_sha256: string; label: string; launch_time: string; watch_interval: { start: string; end: string; } | null; directions: string[]; windows: { interval: { start: string; end: string; }; ... 7 more ...; rounded_for_display: boolean; }[]; ... 6 more ...; uses_sightings: false; }'.
+components/PlanningSummary.tsx(16,85): error TS2339: Property 'pad_distance_m' does not exist on type '{ model_version: string; model_sha256: string; label: string; launch_time: string; watch_interval: { start: string; end: string; } | null; directions: string[]; windows: { interval: { start: string; end: string; }; ... 7 more ...; rounded_for_display: boolean; }[]; ... 6 more ...; uses_sightings: false; }'.
+components/Viewer.tsx(110,280): error TS2304: Cannot find name 'currentTime'.
+
+npm error Lifecycle script `lint` failed with error:
+npm error code 2
+npm error path <repo>\apps\web
+npm error workspace launch-visibility-web@0.1.0
+npm error location <repo>\apps\web
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c tsc --noEmit

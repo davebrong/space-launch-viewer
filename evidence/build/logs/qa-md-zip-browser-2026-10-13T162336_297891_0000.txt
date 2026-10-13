@@ -1,0 +1,110 @@
+
+Running 10 tests using 1 worker
+
+  ok  1 [desktop] › tests\browser\completed-review.spec.ts:5:5 › ZIP md-zip can review the reported same-day completed launch (5.1s)
+  x   2 [desktop] › tests\browser\completed-review.spec.ts:37:5 › unknown provider placeholders never create exact date groups (9.8s)
+  ok  3 [desktop] › tests\browser\journeys.spec.ts:5:5 › live location, schedule, uncertainty, reminders, privacy and keyboard journeys (7.5s)
+  ok  4 [desktop] › tests\browser\journeys.spec.ts:52:5 › observer clock is independent of browser timezone and preserves DST fold (1.7s)
+  ok  5 [desktop] › tests\browser\states.spec.ts:6:5 › synthetic edge cases through actual API, database and UI (1.3m)
+  ok  6 [mobile] › tests\browser\completed-review.spec.ts:5:5 › ZIP md-zip can review the reported same-day completed launch (3.5s)
+  x   7 [mobile] › tests\browser\completed-review.spec.ts:37:5 › unknown provider placeholders never create exact date groups (9.1s)
+  ok  8 [mobile] › tests\browser\journeys.spec.ts:5:5 › live location, schedule, uncertainty, reminders, privacy and keyboard journeys (5.3s)
+  ok  9 [mobile] › tests\browser\journeys.spec.ts:52:5 › observer clock is independent of browser timezone and preserves DST fold (1.5s)
+  ok 10 [mobile] › tests\browser\states.spec.ts:6:5 › synthetic edge cases through actual API, database and UI (1.3m)
+
+
+  1) [desktop] › tests\browser\completed-review.spec.ts:37:5 › unknown provider placeholders never create exact date groups 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: locator('.launch-group').filter({ has: locator('a[href="/launches/a1f6bcea-5dcc-46d0-bf74-d2e51b2da6d0"]') }).getByRole('heading')
+    Expected: "Date to be announced"
+    Error: strict mode violation: locator('.launch-group').filter({ has: locator('a[href="/launches/a1f6bcea-5dcc-46d0-bf74-d2e51b2da6d0"]') }).getByRole('heading') resolved to 2 elements:
+        1) <h2 class="date-heading">Date to be announced</h2> aka getByRole('heading', { name: 'Date to be announced' })
+        2) <h3>unknown</h3> aka getByRole('link', { name: 'SYNTHETIC Cape pad • test-' })
+
+    Call log:
+      - Expect "toHaveText" locator('.launch-group').filter({ has: locator('a[href="/launches/a1f6bcea-5dcc-46d0-bf74-d2e51b2da6d0"]') }).getByRole('heading') with timeout 15000ms
+      - waiting for locator('.launch-group').filter({ has: locator('a[href="/launches/a1f6bcea-5dcc-46d0-bf74-d2e51b2da6d0"]') }).getByRole('heading')
+
+
+      48 |   await page.reload();
+      49 |   const group=page.locator('.launch-group').filter({has:page.locator(`a[href="/launches/${id}"]`)});
+    > 50 |   await expect(group.getByRole('heading')).toHaveText('Date to be announced');
+         |                                            ^
+      51 |   await expect(group.locator(`a[href="/launches/${id}"]`)).toContainText('Launch time not yet confirmed');
+      52 |   await page.route('**/api/v1/assessments',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({message:'Synthetic assessment outage'})}));
+      53 |   await page.goto('http://127.0.0.1:3091/launches/'+id);
+        at <repo>\tests\browser\completed-review.spec.ts:50:44
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\completed-review-unknown-p-bed28-er-create-exact-date-groups-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\completed-review-unknown-p-bed28-er-create-exact-date-groups-desktop\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\completed-review-unknown-p-bed28-er-create-exact-date-groups-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\completed-review-unknown-p-bed28-er-create-exact-date-groups-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [mobile] › tests\browser\completed-review.spec.ts:37:5 › unknown provider placeholders never create exact date groups 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: locator('.launch-group').filter({ has: locator('a[href="/launches/58a228ed-f6e4-4a7c-9001-70bb7cc2558f"]') }).getByRole('heading')
+    Expected: "Date to be announced"
+    Error: strict mode violation: locator('.launch-group').filter({ has: locator('a[href="/launches/58a228ed-f6e4-4a7c-9001-70bb7cc2558f"]') }).getByRole('heading') resolved to 2 elements:
+        1) <h2 class="date-heading">Date to be announced</h2> aka getByRole('heading', { name: 'Date to be announced' })
+        2) <h3>unknown</h3> aka getByRole('link', { name: 'SYNTHETIC Cape pad • test-' })
+
+    Call log:
+      - Expect "toHaveText" locator('.launch-group').filter({ has: locator('a[href="/launches/58a228ed-f6e4-4a7c-9001-70bb7cc2558f"]') }).getByRole('heading') with timeout 15000ms
+      - waiting for locator('.launch-group').filter({ has: locator('a[href="/launches/58a228ed-f6e4-4a7c-9001-70bb7cc2558f"]') }).getByRole('heading')
+
+
+      48 |   await page.reload();
+      49 |   const group=page.locator('.launch-group').filter({has:page.locator(`a[href="/launches/${id}"]`)});
+    > 50 |   await expect(group.locator('h2.date-heading')).toHaveText('Date to be announced');
+         |                                            ^
+      51 |   await expect(group.locator(`a[href="/launches/${id}"]`)).toContainText('Launch time not yet confirmed');
+      52 |   await page.route('**/api/v1/assessments',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({message:'Synthetic assessment outage'})}));
+      53 |   await page.goto('http://127.0.0.1:3091/launches/'+id);
+        at <repo>\tests\browser\completed-review.spec.ts:50:44
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\completed-review-unknown-p-bed28-er-create-exact-date-groups-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\completed-review-unknown-p-bed28-er-create-exact-date-groups-mobile\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\completed-review-unknown-p-bed28-er-create-exact-date-groups-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\completed-review-unknown-p-bed28-er-create-exact-date-groups-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [desktop] › tests\browser\completed-review.spec.ts:37:5 › unknown provider placeholders never create exact date groups 
+    [mobile] › tests\browser\completed-review.spec.ts:37:5 › unknown provider placeholders never create exact date groups 
+  8 passed (3.5m)
+
+[WebServer] <repo>\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+[WebServer]   from starlette.testclient import TestClient as TestClient  # noqa
+[WebServer] INFO:     Started server process [304484]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:3091 (Press CTRL+C to quit)
+(node:244216) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:307416) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:244852) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:213920) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

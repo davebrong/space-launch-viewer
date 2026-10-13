@@ -1,0 +1,2246 @@
+[
+  {
+    "id": "R001",
+    "scope": "required",
+    "tasks": [
+      "T01",
+      "T18",
+      "T19"
+    ],
+    "fixtures": [
+      "provider-403",
+      "provider-429",
+      "provider-503",
+      "provider-timeout"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite R001",
+      "python tests/acceptance/run.py --suite scope-cost"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [
+      "scope-cost"
+    ],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "provider-403",
+        "provider-429",
+        "provider-503",
+        "provider-timeout",
+        "scope-cost"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    }
+  },
+  {
+    "id": "R002",
+    "scope": "required",
+    "tasks": [
+      "T02",
+      "T06",
+      "T13"
+    ],
+    "fixtures": [
+      "zip-fixture-zip",
+      "zip-00601",
+      "zip-missing",
+      "zip-numeric",
+      "location-change"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite R002",
+      "python tests/acceptance/run.py --suite browser-journeys"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [
+      "browser-journeys"
+    ],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "zip-fixture-zip",
+        "zip-00601",
+        "zip-missing",
+        "zip-numeric",
+        "location-change",
+        "browser-journeys"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json"
+    ]
+  },
+  {
+    "id": "R003",
+    "scope": "required",
+    "tasks": [
+      "T03",
+      "T04",
+      "T13"
+    ],
+    "fixtures": [
+      "date-only",
+      "window-only",
+      "awaiting-confirmation"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite R003"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "date-only",
+        "window-only",
+        "awaiting-confirmation"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json",
+      "evidence/build/source-audit.json"
+    ]
+  },
+  {
+    "id": "R004",
+    "scope": "required",
+    "tasks": [
+      "T02",
+      "T03",
+      "T05",
+      "T14"
+    ],
+    "fixtures": [
+      "reconstruction-cap",
+      "missing-route",
+      "hazard-only",
+      "dogleg",
+      "ambiguous-mission",
+      "variant-mismatch",
+      "missing-emission",
+      "incomplete-negative",
+      "complete-negative",
+      "poor-clouds",
+      "stale-feed",
+      "missing-weather",
+      "official-clear",
+      "official-mixed",
+      "outside-map",
+      "scrub",
+      "hold",
+      "completed",
+      "cancelled"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite R004",
+      "python tests/acceptance/run.py --suite route-registry"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE",
+      "G-REAL"
+    ],
+    "future_observation": false,
+    "scenarios": [
+      "route-registry"
+    ],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "reconstruction-cap",
+        "missing-route",
+        "hazard-only",
+        "dogleg",
+        "ambiguous-mission",
+        "variant-mismatch",
+        "missing-emission",
+        "incomplete-negative",
+        "complete-negative",
+        "poor-clouds",
+        "stale-feed",
+        "missing-weather",
+        "official-clear",
+        "official-mixed",
+        "outside-map",
+        "scrub",
+        "hold",
+        "completed",
+        "cancelled",
+        "route-registry"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [
+        "G-REAL"
+      ],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json",
+      "evidence/build/source-audit.json"
+    ]
+  },
+  {
+    "id": "R005",
+    "scope": "required",
+    "tasks": [
+      "T01",
+      "T02",
+      "T05"
+    ],
+    "fixtures": [
+      "stage-switch",
+      "reconstruction-cap",
+      "missing-route",
+      "hazard-only",
+      "dogleg",
+      "ambiguous-mission",
+      "variant-mismatch",
+      "missing-emission",
+      "incomplete-negative",
+      "complete-negative",
+      "poor-clouds",
+      "stale-feed",
+      "missing-weather",
+      "official-clear",
+      "official-mixed",
+      "outside-map",
+      "scrub",
+      "hold",
+      "completed",
+      "cancelled",
+      "orbcomm-archive"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite R005",
+      "python tests/acceptance/run.py --suite route-registry"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE",
+      "G-REAL"
+    ],
+    "future_observation": false,
+    "scenarios": [
+      "route-registry"
+    ],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "stage-switch",
+        "reconstruction-cap",
+        "missing-route",
+        "hazard-only",
+        "dogleg",
+        "ambiguous-mission",
+        "variant-mismatch",
+        "missing-emission",
+        "incomplete-negative",
+        "complete-negative",
+        "poor-clouds",
+        "stale-feed",
+        "missing-weather",
+        "official-clear",
+        "official-mixed",
+        "outside-map",
+        "scrub",
+        "hold",
+        "completed",
+        "cancelled",
+        "orbcomm-archive",
+        "route-registry"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [
+        "G-REAL"
+      ],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/source-audit.json"
+    ]
+  },
+  {
+    "id": "R006",
+    "scope": "required",
+    "tasks": [
+      "T02",
+      "T07"
+    ],
+    "fixtures": [
+      "cape-md-pad",
+      "cape-md-high",
+      "near-pad",
+      "equator-east",
+      "shadow-night",
+      "shadow-day",
+      "shadow-offset",
+      "engine-in-shadow",
+      "sunlit-inactive",
+      "active-sunlit-plume",
+      "duration-19.999",
+      "duration-20",
+      "duration-20.001",
+      "zero-horizon",
+      "gap-15",
+      "gap-15.001",
+      "stage-switch"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite R006"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE",
+      "G-REAL"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "cape-md-pad",
+        "cape-md-high",
+        "near-pad",
+        "equator-east",
+        "shadow-night",
+        "shadow-day",
+        "shadow-offset",
+        "engine-in-shadow",
+        "sunlit-inactive",
+        "active-sunlit-plume",
+        "duration-19.999",
+        "duration-20",
+        "duration-20.001",
+        "zero-horizon",
+        "gap-15",
+        "gap-15.001",
+        "stage-switch"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [
+        "G-REAL"
+      ],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    }
+  },
+  {
+    "id": "R007",
+    "scope": "required",
+    "tasks": [
+      "T07",
+      "T14"
+    ],
+    "fixtures": [
+      "north-wrap",
+      "round-outward"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite R007",
+      "python tests/acceptance/run.py --suite browser-journeys"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [
+      "browser-journeys"
+    ],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "north-wrap",
+        "round-outward",
+        "browser-journeys"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json"
+    ]
+  },
+  {
+    "id": "R008",
+    "scope": "required",
+    "tasks": [
+      "T08",
+      "T13"
+    ],
+    "fixtures": [
+      "rollover",
+      "dst-fold-edt",
+      "dst-fold-est",
+      "dst-spring-before",
+      "dst-spring-after",
+      "dst-nonexistent",
+      "dst-ambiguous",
+      "sunrise-maryland",
+      "polar-no-rise",
+      "twilight--18",
+      "twilight--12",
+      "twilight--6",
+      "twilight--0.833",
+      "twilight--18.001",
+      "sunrise-slip",
+      "shadow-night",
+      "shadow-day",
+      "shadow-offset",
+      "engine-in-shadow",
+      "sunlit-inactive",
+      "active-sunlit-plume",
+      "lighting-39",
+      "lighting-40",
+      "lighting-41",
+      "lighting-42"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite R008",
+      "python tests/acceptance/run.py --suite launch-windows",
+      "python tests/acceptance/run.py --suite browser-journeys"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [
+      "launch-windows",
+      "browser-journeys"
+    ],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "rollover",
+        "dst-fold-edt",
+        "dst-fold-est",
+        "dst-spring-before",
+        "dst-spring-after",
+        "dst-nonexistent",
+        "dst-ambiguous",
+        "sunrise-maryland",
+        "polar-no-rise",
+        "twilight--18",
+        "twilight--12",
+        "twilight--6",
+        "twilight--0.833",
+        "twilight--18.001",
+        "sunrise-slip",
+        "shadow-night",
+        "shadow-day",
+        "shadow-offset",
+        "engine-in-shadow",
+        "sunlit-inactive",
+        "active-sunlit-plume",
+        "lighting-39",
+        "lighting-40",
+        "lighting-41",
+        "lighting-42",
+        "launch-windows",
+        "browser-journeys"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json"
+    ]
+  },
+  {
+    "id": "R009",
+    "scope": "required",
+    "tasks": [
+      "T03",
+      "T06",
+      "T09",
+      "T14"
+    ],
+    "fixtures": [
+      "cloud25",
+      "cloud25plus",
+      "cloud75",
+      "vis5000",
+      "vis4999",
+      "vis9999",
+      "vis10000",
+      "visibility-missing",
+      "layers-clear",
+      "layers-low60",
+      "layers-mid41",
+      "fog",
+      "total-missing",
+      "bin-boundary",
+      "bin-poor-overlap",
+      "better-subinterval",
+      "fresh-boundary",
+      "fetch-stale",
+      "issue-stale",
+      "issue-unknown",
+      "coverage-gap"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite R009"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "cloud25",
+        "cloud25plus",
+        "cloud75",
+        "vis5000",
+        "vis4999",
+        "vis9999",
+        "vis10000",
+        "visibility-missing",
+        "layers-clear",
+        "layers-low60",
+        "layers-mid41",
+        "fog",
+        "total-missing",
+        "bin-boundary",
+        "bin-poor-overlap",
+        "better-subinterval",
+        "fresh-boundary",
+        "fetch-stale",
+        "issue-stale",
+        "issue-unknown",
+        "coverage-gap"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json"
+    ]
+  },
+  {
+    "id": "R010",
+    "scope": "required",
+    "tasks": [
+      "T09",
+      "T14"
+    ],
+    "fixtures": [
+      "lighting-39",
+      "lighting-40",
+      "lighting-41",
+      "lighting-42",
+      "reconstruction-cap",
+      "missing-route",
+      "hazard-only",
+      "dogleg",
+      "ambiguous-mission",
+      "variant-mismatch",
+      "missing-emission",
+      "incomplete-negative",
+      "complete-negative",
+      "poor-clouds",
+      "stale-feed",
+      "missing-weather",
+      "official-clear",
+      "official-mixed",
+      "outside-map",
+      "scrub",
+      "hold",
+      "completed",
+      "cancelled"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite R010"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE",
+      "G-GUIDANCE"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "lighting-39",
+        "lighting-40",
+        "lighting-41",
+        "lighting-42",
+        "reconstruction-cap",
+        "missing-route",
+        "hazard-only",
+        "dogleg",
+        "ambiguous-mission",
+        "variant-mismatch",
+        "missing-emission",
+        "incomplete-negative",
+        "complete-negative",
+        "poor-clouds",
+        "stale-feed",
+        "missing-weather",
+        "official-clear",
+        "official-mixed",
+        "outside-map",
+        "scrub",
+        "hold",
+        "completed",
+        "cancelled"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [
+        "G-GUIDANCE"
+      ],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json"
+    ]
+  },
+  {
+    "id": "R011",
+    "scope": "required",
+    "tasks": [
+      "T03",
+      "T04",
+      "T08",
+      "T09",
+      "T11"
+    ],
+    "fixtures": [
+      "location-change",
+      "sunrise-slip",
+      "fresh-boundary",
+      "fetch-stale",
+      "issue-stale",
+      "issue-unknown",
+      "coverage-gap",
+      "reconstruction-cap",
+      "missing-route",
+      "hazard-only",
+      "dogleg",
+      "ambiguous-mission",
+      "variant-mismatch",
+      "missing-emission",
+      "incomplete-negative",
+      "complete-negative",
+      "poor-clouds",
+      "stale-feed",
+      "missing-weather",
+      "official-clear",
+      "official-mixed",
+      "outside-map",
+      "scrub",
+      "hold",
+      "completed",
+      "cancelled",
+      "date-only",
+      "window-only",
+      "awaiting-confirmation",
+      "provider-403",
+      "provider-429",
+      "provider-503",
+      "provider-timeout"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite R011",
+      "python tests/acceptance/run.py --suite launch-windows",
+      "python tests/acceptance/run.py --suite worker-recovery"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [
+      "launch-windows",
+      "worker-recovery"
+    ],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "location-change",
+        "sunrise-slip",
+        "fresh-boundary",
+        "fetch-stale",
+        "issue-stale",
+        "issue-unknown",
+        "coverage-gap",
+        "reconstruction-cap",
+        "missing-route",
+        "hazard-only",
+        "dogleg",
+        "ambiguous-mission",
+        "variant-mismatch",
+        "missing-emission",
+        "incomplete-negative",
+        "complete-negative",
+        "poor-clouds",
+        "stale-feed",
+        "missing-weather",
+        "official-clear",
+        "official-mixed",
+        "outside-map",
+        "scrub",
+        "hold",
+        "completed",
+        "cancelled",
+        "date-only",
+        "window-only",
+        "awaiting-confirmation",
+        "provider-403",
+        "provider-429",
+        "provider-503",
+        "provider-timeout",
+        "launch-windows",
+        "worker-recovery"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/planning.json",
+      "evidence/build/source-audit.json"
+    ]
+  },
+  {
+    "id": "R012",
+    "scope": "required",
+    "tasks": [
+      "T15",
+      "T16",
+      "T17"
+    ],
+    "fixtures": [
+      "quiet-215959",
+      "quiet-220000",
+      "quiet-065959",
+      "quiet-070000",
+      "overnight-opt-in",
+      "no-past-milestone"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite R012",
+      "python tests/acceptance/run.py --suite postgres-races",
+      "python tests/acceptance/run.py --suite calendar"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [
+      "postgres-races",
+      "calendar"
+    ],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "quiet-215959",
+        "quiet-220000",
+        "quiet-065959",
+        "quiet-070000",
+        "overnight-opt-in",
+        "no-past-milestone",
+        "postgres-races",
+        "calendar"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json"
+    ]
+  },
+  {
+    "id": "R013",
+    "scope": "required",
+    "tasks": [
+      "T15",
+      "T16"
+    ],
+    "fixtures": [
+      "correction-299",
+      "correction-300",
+      "date-correction",
+      "debounce-94",
+      "debounce-95",
+      "debounce-96",
+      "debounce-97",
+      "expired-notice",
+      "notification-race",
+      "unsubscribe-race",
+      "revision-race"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite R013",
+      "python tests/acceptance/run.py --suite postgres-races",
+      "python tests/acceptance/run.py --suite calendar"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [
+      "postgres-races",
+      "calendar"
+    ],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "correction-299",
+        "correction-300",
+        "date-correction",
+        "debounce-94",
+        "debounce-95",
+        "debounce-96",
+        "debounce-97",
+        "expired-notice",
+        "notification-race",
+        "unsubscribe-race",
+        "revision-race",
+        "postgres-races",
+        "calendar"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json"
+    ]
+  },
+  {
+    "id": "R014",
+    "scope": "required",
+    "tasks": [
+      "T10",
+      "T12",
+      "T15",
+      "T18"
+    ],
+    "fixtures": [
+      "unsubscribe-race",
+      "delete-24h",
+      "mission-disable"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite R014",
+      "python tests/acceptance/run.py --suite api-contract",
+      "python tests/acceptance/run.py --suite postgres-races",
+      "python tests/acceptance/run.py --suite privacy-security",
+      "python tests/acceptance/run.py --suite backup-restore"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [
+      "api-contract",
+      "postgres-races",
+      "privacy-security",
+      "backup-restore"
+    ],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "unsubscribe-race",
+        "delete-24h",
+        "mission-disable",
+        "api-contract",
+        "postgres-races",
+        "privacy-security"
+      ],
+      "nonpassing_cases": [
+        "backup-restore"
+      ],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json"
+    ]
+  },
+  {
+    "id": "R015",
+    "scope": "required",
+    "tasks": [
+      "T04",
+      "T06",
+      "T11",
+      "T20"
+    ],
+    "fixtures": [
+      "provider-403",
+      "provider-429",
+      "provider-503",
+      "provider-timeout",
+      "ll2-budget"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite R015",
+      "python tests/acceptance/run.py --suite worker-recovery",
+      "python tests/acceptance/run.py --suite load-100"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [
+      "worker-recovery",
+      "load-100"
+    ],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "provider-403",
+        "provider-429",
+        "provider-503",
+        "provider-timeout",
+        "ll2-budget",
+        "worker-recovery",
+        "load-100"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/source-audit.json"
+    ]
+  },
+  {
+    "id": "R016",
+    "scope": "required",
+    "tasks": [
+      "T01",
+      "T10",
+      "T11",
+      "T12",
+      "T17",
+      "T18",
+      "T20"
+    ],
+    "fixtures": [],
+    "tests": [
+      "python tools/check_spec.py",
+      "python tests/acceptance/run.py --suite R001",
+      "make lint",
+      "python -m implementation.checks api-contract",
+      "python -m implementation.checks migrations",
+      "python tests/acceptance/run.py --suite R014",
+      "python -m implementation.checks worker-recovery",
+      "python tests/acceptance/run.py --suite revision_race",
+      "python -m implementation.checks security",
+      "python tests/acceptance/run.py --suite privacy_delete",
+      "python tests/acceptance/run.py --suite admin_disable",
+      "python -m implementation.checks calendar",
+      "python -m implementation.checks health",
+      "python -m implementation.checks optional-email-policy",
+      "python -m implementation.checks deployment",
+      "python -m implementation.checks backup-restore",
+      "python -m implementation.checks load-100",
+      "python -m implementation.checks release-recovery",
+      "python tools/release_gate.py",
+      "python tests/acceptance/run.py --suite api-contract",
+      "python tests/acceptance/run.py --suite worker-recovery",
+      "python tests/acceptance/run.py --suite privacy-security",
+      "python tests/acceptance/run.py --suite backup-restore"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [
+      "api-contract",
+      "worker-recovery",
+      "privacy-security",
+      "backup-restore"
+    ],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "api-contract",
+        "worker-recovery",
+        "privacy-security"
+      ],
+      "nonpassing_cases": [
+        "backup-restore"
+      ],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json"
+    ]
+  },
+  {
+    "id": "R017",
+    "scope": "required",
+    "tasks": [
+      "T13",
+      "T14",
+      "T15"
+    ],
+    "fixtures": [],
+    "tests": [
+      "python -m implementation.checks browser-location",
+      "python -m implementation.checks accessibility",
+      "python -m implementation.checks browser-guidance",
+      "python -m implementation.gates official-guidance",
+      "python -m implementation.checks browser-subscriptions",
+      "python -m implementation.checks accessibility",
+      "python tests/acceptance/run.py --suite browser-journeys"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [
+      "browser-journeys"
+    ],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "browser-journeys"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json"
+    ]
+  },
+  {
+    "id": "R018",
+    "scope": "required",
+    "tasks": [
+      "T01",
+      "T02",
+      "T05",
+      "T07",
+      "T08",
+      "T09",
+      "T10",
+      "T12",
+      "T19"
+    ],
+    "fixtures": [
+      "cape-md-pad",
+      "cape-md-high",
+      "near-pad",
+      "equator-east",
+      "sunrise-maryland",
+      "reproducibility",
+      "mission-disable",
+      "orbcomm-archive"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite R018",
+      "python tests/acceptance/run.py --suite api-contract"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [
+      "api-contract"
+    ],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "cape-md-pad",
+        "cape-md-high",
+        "near-pad",
+        "equator-east",
+        "sunrise-maryland",
+        "reproducibility",
+        "mission-disable",
+        "orbcomm-archive",
+        "api-contract"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json",
+      "evidence/build/source-audit.json"
+    ]
+  },
+  {
+    "id": "R019",
+    "scope": "required",
+    "tasks": [
+      "T02",
+      "T03",
+      "T19"
+    ],
+    "fixtures": [
+      "cape-md-pad",
+      "cape-md-high",
+      "near-pad",
+      "equator-east",
+      "orbcomm-archive"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite R019"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE",
+      "G-REAL"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "cape-md-pad",
+        "cape-md-high",
+        "near-pad",
+        "equator-east",
+        "orbcomm-archive"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [
+        "G-REAL"
+      ],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    }
+  },
+  {
+    "id": "R020",
+    "scope": "required",
+    "tasks": [
+      "T19",
+      "T20"
+    ],
+    "fixtures": [],
+    "tests": [
+      "python tools/check_spec.py",
+      "python tests/acceptance/run.py --suite all",
+      "python tests/acceptance/live.py",
+      "python -m implementation.checks full-release",
+      "python -m implementation.checks load-100",
+      "python -m implementation.checks release-recovery",
+      "python tools/release_gate.py",
+      "python tests/acceptance/run.py --suite load-100"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE",
+      "G-REAL"
+    ],
+    "future_observation": false,
+    "scenarios": [
+      "load-100"
+    ],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "load-100"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [
+        "G-REAL"
+      ],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    }
+  },
+  {
+    "id": "R021",
+    "scope": "required",
+    "tasks": [
+      "T15",
+      "T21"
+    ],
+    "fixtures": [],
+    "tests": [
+      "python -m implementation.checks browser-subscriptions",
+      "python -m implementation.checks accessibility",
+      "python -m implementation.checks pilot-archive",
+      "python -m implementation.gates pilot",
+      "python tests/acceptance/run.py --suite pilot-archive"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-PILOT"
+    ],
+    "future_observation": true,
+    "scenarios": [
+      "pilot-archive"
+    ],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "pilot-archive"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [
+        "G-PILOT"
+      ],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json"
+    ]
+  },
+  {
+    "id": "R022",
+    "scope": "optional",
+    "tasks": [
+      "T17"
+    ],
+    "fixtures": [],
+    "tests": [
+      "python -m implementation.checks calendar",
+      "python -m implementation.checks health",
+      "python -m implementation.checks optional-email-policy",
+      "python tests/acceptance/run.py --suite scope-cost"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [
+      "scope-cost"
+    ],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "scope-cost"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    }
+  },
+  {
+    "id": "R023",
+    "scope": "optional",
+    "tasks": [
+      "T21"
+    ],
+    "fixtures": [],
+    "tests": [
+      "python -m implementation.checks pilot-archive",
+      "python -m implementation.gates pilot",
+      "python tests/acceptance/run.py --suite scope-cost"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [
+      "scope-cost"
+    ],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "scope-cost"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json"
+    ]
+  },
+  {
+    "id": "R024",
+    "scope": "excluded",
+    "tasks": [
+      "T21"
+    ],
+    "fixtures": [],
+    "tests": [
+      "python -m implementation.checks pilot-archive",
+      "python -m implementation.gates pilot",
+      "python tests/acceptance/run.py --suite scope-cost"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [
+      "scope-cost"
+    ],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "scope-cost"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json"
+    ]
+  },
+  {
+    "id": "US-01",
+    "scope": "required",
+    "tasks": [
+      "T02",
+      "T06",
+      "T13"
+    ],
+    "fixtures": [
+      "zip-fixture-zip",
+      "zip-00601",
+      "zip-missing",
+      "zip-numeric",
+      "location-change"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite US-01"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "zip-fixture-zip",
+        "zip-00601",
+        "zip-missing",
+        "zip-numeric",
+        "location-change"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json"
+    ]
+  },
+  {
+    "id": "US-02",
+    "scope": "required",
+    "tasks": [
+      "T08",
+      "T13"
+    ],
+    "fixtures": [
+      "rollover",
+      "dst-fold-edt",
+      "dst-fold-est",
+      "dst-spring-before",
+      "dst-spring-after"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite US-02"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "rollover",
+        "dst-fold-edt",
+        "dst-fold-est",
+        "dst-spring-before",
+        "dst-spring-after"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json"
+    ]
+  },
+  {
+    "id": "US-03",
+    "scope": "required",
+    "tasks": [
+      "T08",
+      "T13",
+      "T15",
+      "T16",
+      "T17"
+    ],
+    "fixtures": [
+      "rollover",
+      "dst-fold-edt",
+      "dst-fold-est",
+      "dst-spring-before",
+      "dst-spring-after",
+      "dst-nonexistent",
+      "dst-ambiguous"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite US-03"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "rollover",
+        "dst-fold-edt",
+        "dst-fold-est",
+        "dst-spring-before",
+        "dst-spring-after",
+        "dst-nonexistent",
+        "dst-ambiguous"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json"
+    ]
+  },
+  {
+    "id": "US-04",
+    "scope": "required",
+    "tasks": [
+      "T08",
+      "T13"
+    ],
+    "fixtures": [
+      "sunrise-maryland",
+      "polar-no-rise",
+      "twilight--18",
+      "twilight--12",
+      "twilight--6",
+      "twilight--0.833",
+      "twilight--18.001"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite US-04"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "sunrise-maryland",
+        "polar-no-rise",
+        "twilight--18",
+        "twilight--12",
+        "twilight--6",
+        "twilight--0.833",
+        "twilight--18.001"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json"
+    ]
+  },
+  {
+    "id": "US-05",
+    "scope": "required",
+    "tasks": [
+      "T03",
+      "T04",
+      "T08",
+      "T09",
+      "T11",
+      "T13"
+    ],
+    "fixtures": [
+      "sunrise-slip"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite US-05"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "sunrise-slip"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json",
+      "evidence/build/source-audit.json"
+    ]
+  },
+  {
+    "id": "US-06",
+    "scope": "required",
+    "tasks": [
+      "T02",
+      "T07",
+      "T08",
+      "T13"
+    ],
+    "fixtures": [
+      "shadow-night",
+      "shadow-day",
+      "shadow-offset",
+      "engine-in-shadow",
+      "sunlit-inactive",
+      "active-sunlit-plume",
+      "lighting-39",
+      "lighting-40",
+      "lighting-41",
+      "lighting-42"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite US-06"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "shadow-night",
+        "shadow-day",
+        "shadow-offset",
+        "engine-in-shadow",
+        "sunlit-inactive",
+        "active-sunlit-plume",
+        "lighting-39",
+        "lighting-40",
+        "lighting-41",
+        "lighting-42"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json"
+    ]
+  },
+  {
+    "id": "US-07",
+    "scope": "required",
+    "tasks": [
+      "T02",
+      "T07",
+      "T14"
+    ],
+    "fixtures": [
+      "cape-md-pad",
+      "cape-md-high",
+      "near-pad",
+      "equator-east",
+      "duration-19.999",
+      "duration-20",
+      "duration-20.001",
+      "zero-horizon",
+      "gap-15",
+      "gap-15.001",
+      "north-wrap",
+      "round-outward"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite US-07"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "cape-md-pad",
+        "cape-md-high",
+        "near-pad",
+        "equator-east",
+        "duration-19.999",
+        "duration-20",
+        "duration-20.001",
+        "zero-horizon",
+        "gap-15",
+        "gap-15.001",
+        "north-wrap",
+        "round-outward"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json"
+    ]
+  },
+  {
+    "id": "US-08",
+    "scope": "required",
+    "tasks": [
+      "T01",
+      "T02",
+      "T03",
+      "T05",
+      "T14"
+    ],
+    "fixtures": [
+      "stage-switch",
+      "reconstruction-cap",
+      "missing-route",
+      "hazard-only",
+      "dogleg",
+      "ambiguous-mission",
+      "variant-mismatch",
+      "missing-emission",
+      "incomplete-negative",
+      "complete-negative",
+      "poor-clouds",
+      "stale-feed",
+      "missing-weather",
+      "official-clear",
+      "official-mixed",
+      "outside-map",
+      "scrub",
+      "hold",
+      "completed",
+      "cancelled",
+      "orbcomm-archive"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite US-08"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "stage-switch",
+        "reconstruction-cap",
+        "missing-route",
+        "hazard-only",
+        "dogleg",
+        "ambiguous-mission",
+        "variant-mismatch",
+        "missing-emission",
+        "incomplete-negative",
+        "complete-negative",
+        "poor-clouds",
+        "stale-feed",
+        "missing-weather",
+        "official-clear",
+        "official-mixed",
+        "outside-map",
+        "scrub",
+        "hold",
+        "completed",
+        "cancelled",
+        "orbcomm-archive"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json",
+      "evidence/build/source-audit.json"
+    ]
+  },
+  {
+    "id": "US-09",
+    "scope": "required",
+    "tasks": [
+      "T03",
+      "T06",
+      "T09",
+      "T14"
+    ],
+    "fixtures": [
+      "cloud25",
+      "cloud25plus",
+      "cloud75",
+      "vis5000",
+      "vis4999",
+      "vis9999",
+      "vis10000",
+      "visibility-missing",
+      "layers-clear",
+      "layers-low60",
+      "layers-mid41",
+      "fog",
+      "total-missing",
+      "bin-boundary",
+      "bin-poor-overlap",
+      "better-subinterval"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite US-09"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "cloud25",
+        "cloud25plus",
+        "cloud75",
+        "vis5000",
+        "vis4999",
+        "vis9999",
+        "vis10000",
+        "visibility-missing",
+        "layers-clear",
+        "layers-low60",
+        "layers-mid41",
+        "fog",
+        "total-missing",
+        "bin-boundary",
+        "bin-poor-overlap",
+        "better-subinterval"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json"
+    ]
+  },
+  {
+    "id": "US-10",
+    "scope": "required",
+    "tasks": [
+      "T09",
+      "T14"
+    ],
+    "fixtures": [
+      "lighting-39",
+      "lighting-40",
+      "lighting-41",
+      "lighting-42",
+      "reconstruction-cap",
+      "missing-route",
+      "hazard-only",
+      "dogleg",
+      "ambiguous-mission",
+      "variant-mismatch",
+      "missing-emission",
+      "incomplete-negative",
+      "complete-negative",
+      "poor-clouds",
+      "stale-feed",
+      "missing-weather",
+      "official-clear",
+      "official-mixed",
+      "outside-map",
+      "scrub",
+      "hold",
+      "completed",
+      "cancelled"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite US-10"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "lighting-39",
+        "lighting-40",
+        "lighting-41",
+        "lighting-42",
+        "reconstruction-cap",
+        "missing-route",
+        "hazard-only",
+        "dogleg",
+        "ambiguous-mission",
+        "variant-mismatch",
+        "missing-emission",
+        "incomplete-negative",
+        "complete-negative",
+        "poor-clouds",
+        "stale-feed",
+        "missing-weather",
+        "official-clear",
+        "official-mixed",
+        "outside-map",
+        "scrub",
+        "hold",
+        "completed",
+        "cancelled"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json"
+    ]
+  },
+  {
+    "id": "US-11",
+    "scope": "required",
+    "tasks": [
+      "T03",
+      "T04",
+      "T06",
+      "T08",
+      "T09",
+      "T11",
+      "T20"
+    ],
+    "fixtures": [
+      "fresh-boundary",
+      "fetch-stale",
+      "issue-stale",
+      "issue-unknown",
+      "coverage-gap",
+      "reconstruction-cap",
+      "missing-route",
+      "hazard-only",
+      "dogleg",
+      "ambiguous-mission",
+      "variant-mismatch",
+      "missing-emission",
+      "incomplete-negative",
+      "complete-negative",
+      "poor-clouds",
+      "stale-feed",
+      "missing-weather",
+      "official-clear",
+      "official-mixed",
+      "outside-map",
+      "scrub",
+      "hold",
+      "completed",
+      "cancelled",
+      "provider-403",
+      "provider-429",
+      "provider-503",
+      "provider-timeout",
+      "ll2-budget"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite US-11"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "fresh-boundary",
+        "fetch-stale",
+        "issue-stale",
+        "issue-unknown",
+        "coverage-gap",
+        "reconstruction-cap",
+        "missing-route",
+        "hazard-only",
+        "dogleg",
+        "ambiguous-mission",
+        "variant-mismatch",
+        "missing-emission",
+        "incomplete-negative",
+        "complete-negative",
+        "poor-clouds",
+        "stale-feed",
+        "missing-weather",
+        "official-clear",
+        "official-mixed",
+        "outside-map",
+        "scrub",
+        "hold",
+        "completed",
+        "cancelled",
+        "provider-403",
+        "provider-429",
+        "provider-503",
+        "provider-timeout",
+        "ll2-budget"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/planning.json",
+      "evidence/build/source-audit.json"
+    ]
+  },
+  {
+    "id": "US-12",
+    "scope": "required",
+    "tasks": [
+      "T03",
+      "T04",
+      "T08",
+      "T09",
+      "T11",
+      "T13"
+    ],
+    "fixtures": [
+      "date-only",
+      "window-only",
+      "awaiting-confirmation"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite US-12"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "date-only",
+        "window-only",
+        "awaiting-confirmation"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json",
+      "evidence/build/source-audit.json"
+    ]
+  },
+  {
+    "id": "US-13",
+    "scope": "required",
+    "tasks": [
+      "T15",
+      "T16",
+      "T17"
+    ],
+    "fixtures": [
+      "quiet-215959",
+      "quiet-220000",
+      "quiet-065959",
+      "quiet-070000",
+      "overnight-opt-in",
+      "no-past-milestone"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite US-13"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "quiet-215959",
+        "quiet-220000",
+        "quiet-065959",
+        "quiet-070000",
+        "overnight-opt-in",
+        "no-past-milestone"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json"
+    ]
+  },
+  {
+    "id": "US-14",
+    "scope": "required",
+    "tasks": [
+      "T15",
+      "T16"
+    ],
+    "fixtures": [
+      "correction-299",
+      "correction-300",
+      "date-correction",
+      "debounce-94",
+      "debounce-95",
+      "debounce-96",
+      "debounce-97",
+      "expired-notice",
+      "notification-race",
+      "revision-race"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite US-14"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "correction-299",
+        "correction-300",
+        "date-correction",
+        "debounce-94",
+        "debounce-95",
+        "debounce-96",
+        "debounce-97",
+        "expired-notice",
+        "notification-race",
+        "revision-race"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json"
+    ]
+  },
+  {
+    "id": "US-15",
+    "scope": "required",
+    "tasks": [
+      "T10",
+      "T12",
+      "T15",
+      "T18"
+    ],
+    "fixtures": [
+      "unsubscribe-race",
+      "delete-24h"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite US-15"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "unsubscribe-race",
+        "delete-24h"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json"
+    ]
+  },
+  {
+    "id": "US-16",
+    "scope": "required",
+    "tasks": [
+      "T01",
+      "T02",
+      "T05",
+      "T07",
+      "T08",
+      "T09",
+      "T10",
+      "T12",
+      "T19"
+    ],
+    "fixtures": [
+      "reproducibility",
+      "mission-disable"
+    ],
+    "tests": [
+      "python tests/acceptance/run.py --suite US-16"
+    ],
+    "gates": [
+      "G-SPEC",
+      "G-SOFTWARE"
+    ],
+    "future_observation": false,
+    "scenarios": [],
+    "implementation_verification": {
+      "report": "evidence/build/acceptance-final.json",
+      "passing_cases": [
+        "reproducibility",
+        "mission-disable"
+      ],
+      "nonpassing_cases": [],
+      "external_gates": [],
+      "task_status": "evidence/build/task-status.json",
+      "software_and_empirical_validation_separate": true
+    },
+    "qa_followups": [
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/planning.json",
+      "evidence/build/viewable.json",
+      "evidence/build/source-audit.json"
+    ]
+  }
+]

@@ -1,0 +1,62 @@
+{
+  "type": "object",
+  "required": [
+    "properties"
+  ],
+  "properties": {
+    "properties": {
+      "type": "object",
+      "required": [
+        "updateTime",
+        "skyCover"
+      ],
+      "properties": {
+        "updateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "skyCover": {
+          "type": "object",
+          "required": [
+            "uom",
+            "values"
+          ],
+          "properties": {
+            "uom": {
+              "const": "wmoUnit:percent"
+            },
+            "values": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "validTime",
+                  "value"
+                ],
+                "properties": {
+                  "validTime": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "value": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 100
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

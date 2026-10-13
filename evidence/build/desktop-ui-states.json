@@ -1,0 +1,52 @@
+[
+  {
+    "mode": "reconstructed",
+    "advice": "Possible",
+    "band": true
+  },
+  {
+    "mode": "official",
+    "advice": "Worth a look",
+    "band": false
+  },
+  {
+    "mode": "hazard",
+    "advice": "Not enough data",
+    "band": false
+  },
+  {
+    "mode": "stale",
+    "advice": "Not enough data",
+    "band": false
+  },
+  {
+    "mode": "window",
+    "advice": "Possible",
+    "band": true
+  },
+  {
+    "mode": "date",
+    "advice": "Not enough data",
+    "band": true
+  },
+  {
+    "mode": "unknown",
+    "advice": "Not enough data",
+    "band": true
+  },
+  {
+    "mode": "scrubbed",
+    "advice": "Not enough data",
+    "band": true
+  },
+  {
+    "mode": "completed",
+    "advice": "Approximate viewing window",
+    "band": true
+  },
+  {
+    "mode": "hold",
+    "advice": "Not enough data",
+    "band": true
+  }
+]

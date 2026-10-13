@@ -1,0 +1,36 @@
+# ISSC (International Space & Science Coalition) -- issc.space
+# Everything here is public and meant to be found: real membership programs,
+# community project showcases, and open astronomy data tools. Nothing on this
+# site is gated behind a login. The named entries below are redundant with
+# the wildcard rule (nothing here is disallowed for anyone) but make it
+# unambiguous that AI crawlers/assistants are explicitly welcome, not just
+# tolerated by omission.
+
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://issc.space/sitemap.xml

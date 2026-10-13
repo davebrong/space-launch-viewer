@@ -1,0 +1,14 @@
+{
+  "run_at": "2026-10-13T15:39:20.846865+00:00",
+  "command": [
+    "powershell",
+    "-NoProfile",
+    "-Command",
+    "Get-CimInstance Win32_LogicalDisk -Filter \"DeviceID='N:'\" | Select-Object DeviceID,DriveType,ProviderName,VolumeName | ConvertTo-Json"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/existing-storage-inspection-2026-10-13T153920_846865_0000.txt",
+  "sha256": "3f5df9c6fb4708816c579ca6996f5c49624a3cea15d0cbfe32049d65e3c4a3eb",
+  "software_sha256": "3c263ebda111a3746d36931fd2fac008ae4768d8213800a90477588c21014752"
+}

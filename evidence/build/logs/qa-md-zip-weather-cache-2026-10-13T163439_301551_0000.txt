@@ -1,0 +1,6 @@
+ZIP md-zip point cache exists: True
+Point error: None body fields: ['payload', 'provenance']
+Grid exists: True
+Grid error: None body fields: ['payload', 'provenance']
+Normalized rows: 95
+

@@ -1,0 +1,210 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.43kB done
+#1 DONE 0.0s
+
+#2 [api internal] load build definition from api.Dockerfile
+#2 transferring dockerfile: 999B done
+#2 DONE 0.0s
+
+#3 [web internal] load build definition from web.Dockerfile
+#3 transferring dockerfile: 758B done
+#3 DONE 0.0s
+
+#4 [api internal] load metadata for docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#4 DONE 0.0s
+
+#5 [web internal] load metadata for docker.io/library/node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20
+#5 DONE 0.0s
+
+#6 [api internal] load .dockerignore
+#6 transferring context: 179B done
+#6 DONE 0.0s
+
+#7 [worker  1/16] FROM docker.io/library/python:3.12-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+#7 DONE 0.0s
+
+#8 [web build 1/7] FROM docker.io/library/node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20
+#8 DONE 0.0s
+
+#9 [worker internal] load build context
+#9 transferring context: 1.43MB 0.1s done
+#9 DONE 0.1s
+
+#10 [web internal] load build context
+#10 transferring context: 342.97kB 0.1s done
+#10 DONE 0.1s
+
+#11 [web build 3/7] COPY package.json package-lock.json ./
+#11 CACHED
+
+#12 [web build 4/7] COPY apps/web/package.json apps/web/package.json
+#12 CACHED
+
+#13 [web build 2/7] WORKDIR /app
+#13 CACHED
+
+#14 [web build 5/7] RUN npm ci
+#14 CACHED
+
+#15 [api  2/16] WORKDIR /app
+#15 CACHED
+
+#16 [api  4/16] RUN pip install --no-cache-dir --require-hashes -r requirements-app.lock.txt
+#16 CACHED
+
+#17 [api  3/16] COPY requirements-app.lock.txt .
+#17 CACHED
+
+#18 [api  5/16] RUN useradd --uid 1000 --create-home launch && mkdir /data && chown launch:launch /data
+#18 CACHED
+
+#19 [web build 6/7] COPY apps/web apps/web
+#19 DONE 0.0s
+
+#20 [api  6/16] COPY --chown=launch:launch packages packages
+#20 DONE 0.0s
+
+#21 [worker  7/16] COPY --chown=launch:launch services services
+#21 DONE 0.0s
+
+#22 [web build 7/7] RUN npm run build
+#22 ...
+
+#21 [api  7/16] COPY --chown=launch:launch services services
+#21 DONE 0.0s
+
+#23 [worker  8/16] COPY --chown=launch:launch implementation implementation
+#23 DONE 0.0s
+
+#24 [api  9/16] COPY --chown=launch:launch ops ops
+#24 DONE 0.0s
+
+#25 [worker 10/16] COPY --chown=launch:launch migrations migrations
+#25 DONE 0.0s
+
+#25 [api 10/16] COPY --chown=launch:launch migrations migrations
+#25 DONE 0.0s
+
+#26 [api 11/16] COPY --chown=launch:launch spec/contracts spec/contracts
+#26 DONE 0.1s
+
+#22 [web build 7/7] RUN npm run build
+#22 ...
+
+#26 [worker 11/16] COPY --chown=launch:launch spec/contracts spec/contracts
+#26 DONE 0.1s
+
+#27 [worker 12/16] COPY --chown=launch:launch data/gazetteer data/gazetteer
+#27 DONE 0.1s
+
+#27 [api 12/16] COPY --chown=launch:launch data/gazetteer data/gazetteer
+#27 DONE 0.1s
+
+#28 [worker 13/16] COPY --chown=launch:launch data/registry data/registry
+#28 DONE 0.2s
+
+#29 [api 14/16] COPY --chown=launch:launch data/profiles data/profiles
+#29 DONE 0.1s
+
+#22 [web build 7/7] RUN npm run build
+#22 0.561 
+#22 0.561 > launch-visibility-workspace@0.1.0 build
+#22 0.561 > npm run build --workspace apps/web
+#22 0.561 
+#22 ...
+
+#29 [worker 14/16] COPY --chown=launch:launch data/profiles data/profiles
+#29 DONE 0.1s
+
+#30 [worker 15/16] COPY --chown=launch:launch evidence/build/dependency-manifest.json evidence/build/dependency-manifest.json
+#30 DONE 0.1s
+
+#30 [api 15/16] COPY --chown=launch:launch evidence/build/dependency-manifest.json evidence/build/dependency-manifest.json
+#30 DONE 0.1s
+
+#31 [api 16/16] COPY alembic.ini .
+#31 DONE 0.0s
+
+#32 [api] exporting to image
+#32 exporting layers
+#32 exporting layers 0.2s done
+#32 writing image sha256:ce14fb8b94d4175aef3892bbba4831786b16ee9afdcdc83e27858e653d751945 done
+#32 naming to docker.io/library/launch-visibility-api 0.0s done
+#32 DONE 0.3s
+
+#33 [worker] exporting to image
+#33 exporting layers 0.2s done
+#33 writing image sha256:40a98486163014cccff8f2b7cb34ab4311b926f4143836a9b86510cf4d1f9b4f done
+#33 naming to docker.io/library/launch-visibility-worker 0.0s done
+#33 DONE 0.3s
+
+#22 [web build 7/7] RUN npm run build
+#22 0.880 
+#22 0.880 > launch-visibility-web@0.1.0 build
+#22 0.880 > next build --webpack
+#22 0.880 
+#22 ...
+
+#34 [api] resolving provenance for metadata file
+#34 DONE 0.0s
+
+#35 [worker] resolving provenance for metadata file
+#35 DONE 0.0s
+
+#22 [web build 7/7] RUN npm run build
+#22 1.783 ▲ Next.js 16.4.0 (webpack)
+#22 1.834 ✓ Running next.config.ts took 50ms
+#22 1.858 
+#22 1.900   Creating an optimized production build ...
+#22 10.50 ✓ Compiled successfully in 5.5s
+#22 10.51   Running TypeScript ...
+#22 12.67 lib/client.ts(14,11): error TS7022: 'response' implicitly has type 'any' because it does not have a type annotation and is referenced directly or indirectly in its own initializer.
+#22 12.74 Failed to type check.
+#22 12.74 
+#22 12.76 npm error Lifecycle script `build` failed with error:
+#22 12.76 npm error code 1
+#22 12.76 npm error path /app/apps/web
+#22 12.76 npm error workspace launch-visibility-web@0.1.0
+#22 12.76 npm error location /app/apps/web
+#22 12.76 npm error command failed
+#22 12.77 npm error command sh -c next build --webpack
+#22 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [web build 7/7] RUN npm run build:
+12.67 lib/client.ts(14,11): error TS7022: 'response' implicitly has type 'any' because it does not have a type annotation and is referenced directly or indirectly in its own initializer.
+12.74 Failed to type check.
+12.74 
+12.76 npm error Lifecycle script `build` failed with error:
+12.76 npm error code 1
+12.76 npm error path /app/apps/web
+12.76 npm error workspace launch-visibility-web@0.1.0
+12.76 npm error location /app/apps/web
+12.76 npm error command failed
+12.77 npm error command sh -c next build --webpack
+------
+
+ Image launch-visibility-api Building 
+ Image launch-visibility-worker Building 
+ Image launch-visibility-web Building 
+web.Dockerfile:8
+
+--------------------
+
+   6 |     RUN npm ci
+
+   7 |     COPY apps/web apps/web
+
+   8 | >>> RUN npm run build
+
+   9 |     FROM node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20
+
+  10 |     WORKDIR /app
+
+--------------------
+
+target web: failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+
+
+
+View build details: docker-desktop://dashboard/build/default/default/deveor7jmn81o6nznvkdbmk2p
+

@@ -1,0 +1,112 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "location_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "launch_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "all_supported_launches": {
+      "type": "boolean"
+    },
+    "channel": {
+      "enum": [
+        "in_app",
+        "email"
+      ]
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "allow_possible": {
+      "type": "boolean"
+    },
+    "overnight_opt_in": {
+      "type": "boolean"
+    },
+    "quiet_start": {
+      "const": "22:00"
+    },
+    "quiet_end": {
+      "const": "07:00"
+    },
+    "milestones": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "planning_24h",
+          "viewing_30m"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "Z$",
+      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+    },
+    "consented_at": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "Z$",
+      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+    },
+    "email_verified": {
+      "type": "boolean"
+    },
+    "deleted_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$",
+          "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "revision",
+    "location_id",
+    "launch_ids",
+    "all_supported_launches",
+    "channel",
+    "enabled",
+    "allow_possible",
+    "overnight_opt_in",
+    "quiet_start",
+    "quiet_end",
+    "milestones",
+    "created_at",
+    "consented_at",
+    "email_verified",
+    "deleted_at"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "subscription.schema.json",
+  "title": "subscription"
+}

@@ -1,0 +1,480 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "launch_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "attempt_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pad_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mission_aliases": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "evidence_type": {
+      "enum": [
+        "published_path",
+        "hazard_corridor",
+        "official_guidance",
+        "observed_sighting"
+      ]
+    },
+    "admission": {
+      "enum": [
+        "approved",
+        "candidate",
+        "rejected",
+        "unsupported"
+      ]
+    },
+    "association": {
+      "enum": [
+        "exact",
+        "ambiguous",
+        "unmatched"
+      ]
+    },
+    "valid_interval": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "start": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "Z$",
+              "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+            },
+            "end": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "Z$",
+              "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+            }
+          },
+          "required": [
+            "start",
+            "end"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reviewed_schedule_revision": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_format": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parser_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dogleg": {
+      "enum": [
+        "absent_supported",
+        "present",
+        "unknown"
+      ]
+    },
+    "path_vertices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "latitude_deg": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "longitude_deg": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "altitude_m": {
+            "type": "number"
+          },
+          "frame": {
+            "const": "WGS84_GEODETIC"
+          },
+          "altitude_datum": {
+            "const": "WGS84_ELLIPSOID"
+          }
+        },
+        "required": [
+          "latitude_deg",
+          "longitude_deg",
+          "altitude_m",
+          "frame",
+          "altitude_datum"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "hazard_polygons": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "latitude_deg": {
+              "type": "number",
+              "minimum": -90,
+              "maximum": 90
+            },
+            "longitude_deg": {
+              "type": "number",
+              "minimum": -180,
+              "maximum": 180
+            },
+            "altitude_m": {
+              "type": "number"
+            },
+            "frame": {
+              "const": "WGS84_GEODETIC"
+            },
+            "altitude_datum": {
+              "const": "WGS84_ELLIPSOID"
+            }
+          },
+          "required": [
+            "latitude_deg",
+            "longitude_deg",
+            "altitude_m",
+            "frame",
+            "altitude_datum"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "heading_range_deg": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "start_deg": {
+              "type": "number",
+              "minimum": 0,
+              "exclusiveMaximum": 360
+            },
+            "end_deg": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 360
+            },
+            "wraps_north": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "start_deg",
+            "end_deg",
+            "wraps_north"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "guidance": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "observer_region": {
+              "type": "string",
+              "minLength": 1
+            },
+            "membership": {
+              "enum": [
+                "included",
+                "outside",
+                "uncertain"
+              ]
+            },
+            "membership_method": {
+              "enum": [
+                "source_named_region",
+                "verified_coordinates",
+                "unclassified"
+              ]
+            },
+            "viewing_interval": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "start": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "Z$",
+                      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                    },
+                    "end": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "Z$",
+                      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                    }
+                  },
+                  "required": [
+                    "start",
+                    "end"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "relative_start_s": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "relative_end_s": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "timing_basis": {
+              "enum": [
+                "absolute",
+                "liftoff_relative",
+                "unknown"
+              ]
+            },
+            "timing_change_policy": {
+              "enum": [
+                "recheck_every_revision",
+                "source_relative_valid"
+              ]
+            },
+            "boundary_uncertainty_m": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "location_id": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "observer_region",
+            "membership",
+            "membership_method",
+            "viewing_interval",
+            "relative_start_s",
+            "relative_end_s",
+            "timing_basis",
+            "timing_change_policy",
+            "boundary_uncertainty_m",
+            "location_id"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "uncertainty_notes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "fetched_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$",
+            "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+          },
+          "issued_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$",
+                "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "license": {
+            "type": "string",
+            "minLength": 1
+          },
+          "parser_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "provider",
+              "published_path",
+              "hazard_corridor",
+              "historical_telemetry",
+              "reconstructed_estimate",
+              "official_guidance",
+              "observed_sighting",
+              "synthetic"
+            ]
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "source_url",
+          "sha256",
+          "fetched_at",
+          "issued_at",
+          "source_revision",
+          "license",
+          "parser_version",
+          "kind",
+          "notes"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "revision",
+    "launch_id",
+    "attempt_id",
+    "pad_id",
+    "mission_aliases",
+    "evidence_type",
+    "admission",
+    "association",
+    "valid_interval",
+    "reviewed_schedule_revision",
+    "source_format",
+    "parser_version",
+    "dogleg",
+    "path_vertices",
+    "hazard_polygons",
+    "heading_range_deg",
+    "guidance",
+    "uncertainty_notes",
+    "provenance"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "route-evidence.schema.json",
+  "title": "route-evidence",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "evidence_type": {
+            "const": "hazard_corridor"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "path_vertices": {
+            "maxItems": 0
+          },
+          "guidance": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+
+Running 6 tests using 1 worker
+
+  x  1 [desktop] › tests\browser\journeys.spec.ts:5:5 › live location, schedule, uncertainty, reminders, privacy and keyboard journeys (276ms)
+  x  2 [desktop] › tests\browser\journeys.spec.ts:52:5 › observer clock is independent of browser timezone and preserves DST fold (238ms)
+  ok 3 [desktop] › tests\browser\states.spec.ts:6:5 › synthetic edge cases through actual API, database and UI (53.2s)
+  ok 4 [mobile] › tests\browser\journeys.spec.ts:5:5 › live location, schedule, uncertainty, reminders, privacy and keyboard journeys (5.5s)
+  ok 5 [mobile] › tests\browser\journeys.spec.ts:52:5 › observer clock is independent of browser timezone and preserves DST fold (1.2s)
+  ok 6 [mobile] › tests\browser\states.spec.ts:6:5 › synthetic edge cases through actual API, database and UI (57.8s)
+
+
+  1) [desktop] › tests\browser\journeys.spec.ts:5:5 › live location, schedule, uncertainty, reminders, privacy and keyboard journeys 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3007/
+    Call log:
+      - navigating to "http://127.0.0.1:3007/", waiting until "load"
+
+
+      4 |
+      5 | test('live location, schedule, uncertainty, reminders, privacy and keyboard journeys',async({page},info)=>{
+    > 6 |   await page.goto('/');
+        |              ^
+      7 |   await expect(page.getByRole('button',{name:'Find location'})).toBeEnabled();
+      8 |   await page.getByLabel('US ZIP code').fill('fixture-zip');
+      9 |   await page.getByRole('button',{name:'Find location'}).click();
+        at <repo>\tests\browser\journeys.spec.ts:6:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\journeys-live-location-sch-ada74-ivacy-and-keyboard-journeys-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\journeys-live-location-sch-ada74-ivacy-and-keyboard-journeys-desktop\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\journeys-live-location-sch-ada74-ivacy-and-keyboard-journeys-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\journeys-live-location-sch-ada74-ivacy-and-keyboard-journeys-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests\browser\journeys.spec.ts:52:5 › observer clock is independent of browser timezone and preserves DST fold 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3007/
+    Call log:
+      - navigating to "http://127.0.0.1:3007/", waiting until "load"
+
+
+      51 |
+      52 | test('observer clock is independent of browser timezone and preserves DST fold',async({page})=>{
+    > 53 |   await page.goto('/');
+         |              ^
+      54 |   const times=await page.evaluate(()=>['2026-10-14T00:30:00Z','2026-11-01T05:30:00Z','2026-11-01T06:30:00Z'].map(value=>new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(new Date(value))));
+      55 |   expect(times[0]).toContain('Oct 13');expect(times[0]).toContain('8:30');expect(times[1]).toContain('EDT');expect(times[2]).toContain('EST');
+      56 |   await page.keyboard.press('Tab');await expect(page.getByRole('link',{name:'Skip to content'})).toBeFocused();
+        at <repo>\tests\browser\journeys.spec.ts:53:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\journeys-observer-clock-is-83cba-zone-and-preserves-DST-fold-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\journeys-observer-clock-is-83cba-zone-and-preserves-DST-fold-desktop\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\journeys-observer-clock-is-83cba-zone-and-preserves-DST-fold-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\journeys-observer-clock-is-83cba-zone-and-preserves-DST-fold-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [desktop] › tests\browser\journeys.spec.ts:5:5 › live location, schedule, uncertainty, reminders, privacy and keyboard journeys 
+    [desktop] › tests\browser\journeys.spec.ts:52:5 › observer clock is independent of browser timezone and preserves DST fold 
+  4 passed (2.1m)
+
+[WebServer] <repo>\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+[WebServer]   from starlette.testclient import TestClient as TestClient  # noqa
+[WebServer] INFO:     Started server process [222048]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:3091 (Press CTRL+C to quit)
+(node:338040) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:270020) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:390368) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:273388) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

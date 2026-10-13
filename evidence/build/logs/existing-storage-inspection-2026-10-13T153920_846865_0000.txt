@@ -1,0 +1,7 @@
+{
+    "DeviceID":  "N:",
+    "DriveType":  3,
+    "ProviderName":  null,
+    "VolumeName":  "New Volume"
+}
+

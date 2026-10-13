@@ -1,0 +1,13 @@
+{
+  "run_at": "2026-10-13T16:24:15.371305+00:00",
+  "command": [
+    "npm.cmd",
+    "run",
+    "lint"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/qa-md-zip-types-2026-10-13T162415_371305_0000.txt",
+  "sha256": "e7d7e1cf04dd29ae07238717e25773c0433128f5ceba1069dcd50a9ea6af1f05",
+  "software_sha256": "cf9a8e4e0016b786ec6271ada84541e5971acb88989615bb62fe904d9356724b"
+}

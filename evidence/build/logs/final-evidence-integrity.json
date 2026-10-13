@@ -1,0 +1,12 @@
+{
+  "run_at": "2026-10-13T16:10:56.975580+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    ".runtime/audit_final_evidence.py"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/final-evidence-integrity-2026-10-13T161056_975580_0000.txt",
+  "sha256": "8a314cb2e756d32d71310b137b56dad298785f5a520f394f31227eb163c64c6d",
+  "software_sha256": "201a4f9e7394dec8307bf7ef6d5f8e02f5bf87acb44c44fe1f1b4b71456f1672"
+}

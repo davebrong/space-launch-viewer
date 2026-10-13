@@ -1,0 +1,18 @@
+{
+  "run_at": "2026-10-13T19:29:32.186609+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "ruff",
+    "check",
+    "packages",
+    "services",
+    "tests/application",
+    "tools/audit_catalog.py"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/source-lint-2026-10-13T192932_186609_0000.txt",
+  "sha256": "881513cd027e0334026cfcbad052e34fecb3f2c1fef5ab000c86973bc0196cd7",
+  "software_sha256": "e5e17b82bd13d163f3d81af0b43642fe2fc0b34b79ad07e89e53f93769109d63"
+}

@@ -1,0 +1,246 @@
+[
+  {
+    "id": "T01",
+    "title": "Bootstrap locked application and acceptance adapter",
+    "implementation_status": "Implemented / verified",
+    "work": "Pinned locks, real dev/lint/test/migrate commands, generated DTOs, immutable base images",
+    "verification": "spec-final; python-lint-final; typescript-final; linux-compose-final",
+    "plan_commands": [
+      "python tools/check_spec.py",
+      "python tests/acceptance/run.py --suite R001",
+      "make lint"
+    ]
+  },
+  {
+    "id": "T02",
+    "title": "Demonstrate real historical Cape-to-Maryland case",
+    "implementation_status": "Externally blocked",
+    "work": "Parsed 578 real Orbcomm samples and archived permissions; route/datum/stage/held-out admission missing",
+    "verification": "G-REAL.json; gate-historical-cape",
+    "plan_commands": [
+      "python tests/acceptance/run.py --suite R019",
+      "python -m implementation.gates historical-cape"
+    ]
+  },
+  {
+    "id": "T03",
+    "title": "Attempt upcoming Cape mission and re-estimate remaining build",
+    "implementation_status": "Attempt complete; visibility externally blocked",
+    "work": "Live Cape schedule and Maryland NWS attempt recorded; no qualified path/profile for upcoming mission",
+    "verification": "G-UPCOMING.json; provider-live-final",
+    "plan_commands": [
+      "python tests/acceptance/live.py",
+      "python -m implementation.gates upcoming-cape"
+    ]
+  },
+  {
+    "id": "T04",
+    "title": "Schedule adapter, versioning and budgets",
+    "implementation_status": "Implemented / verified",
+    "work": "Real LL2 enums, Cape filter, material revisions, shared budgets and failure behavior; corrected first-page-only bug with complete budgeted pagination",
+    "verification": "full acceptance R003/R015; worker-recovery; ll2-launch_statuses.json; source-catalog/source-unit/source-ingestion",
+    "plan_commands": [
+      "python tests/acceptance/run.py --suite R015",
+      "python -m implementation.checks ingestion"
+    ]
+  },
+  {
+    "id": "T05",
+    "title": "Route registry and historical compatibility",
+    "implementation_status": "Partial: registry implemented; automatic source integration missing",
+    "work": "Audited versioned registry, raw hashes, tested formats, compatibility and source-change suppression; no automatic mission-source discovery or qualified production profile integration",
+    "verification": "route-registry; application-unit-final; G-REAL/G-GUIDANCE; source-audit.json corrects completion scope",
+    "plan_commands": [
+      "python tests/acceptance/run.py --suite R004",
+      "python tests/acceptance/run.py --suite parse_historical_archive",
+      "python -m implementation.checks route-registry"
+    ]
+  },
+  {
+    "id": "T06",
+    "title": "NWS and location normalization",
+    "implementation_status": "Implemented / verified",
+    "work": "Census ZIP/GPS/manual confirmation, IANA zone, NWS units/intervals/cache and quota",
+    "verification": "full acceptance R002/R009; live provider check; browser",
+    "plan_commands": [
+      "python tests/acceptance/run.py --suite R002",
+      "python tests/acceptance/run.py --suite R009",
+      "python -m implementation.checks normalization"
+    ]
+  },
+  {
+    "id": "T07",
+    "title": "Geometry and correlated envelopes",
+    "implementation_status": "Implemented / verified",
+    "work": "WGS84 geometry, first ascent burns, horizon crossings, gaps, circular envelopes and complete-negative rules",
+    "verification": "geometry/R006/R007; independent PROJ unit check",
+    "plan_commands": [
+      "python tests/acceptance/run.py --suite geometry",
+      "python tests/acceptance/run.py --suite R006",
+      "python tests/acceptance/run.py --suite R007"
+    ]
+  },
+  {
+    "id": "T08",
+    "title": "Astronomy, clocks and window alternatives",
+    "implementation_status": "Implemented / verified",
+    "work": "Local DE421, solar references, DST/folds/gaps, launch-window alternatives",
+    "verification": "R008/R011; launch-windows; browser",
+    "plan_commands": [
+      "python tests/acceptance/run.py --suite R008",
+      "python tests/acceptance/run.py --suite R011",
+      "python -m implementation.checks launch-windows"
+    ]
+  },
+  {
+    "id": "T09",
+    "title": "Combine weather and advice with provenance",
+    "implementation_status": "Implemented / verified",
+    "work": "Ordered advice, weather subintervals/freshness, source-failure suppression, immutable input archives",
+    "verification": "R009/R010; reproducibility; application-unit-final",
+    "plan_commands": [
+      "python tests/acceptance/run.py --suite R010",
+      "python tests/acceptance/run.py --suite R009",
+      "python -m implementation.checks assessment-provenance"
+    ]
+  },
+  {
+    "id": "T10",
+    "title": "Database and API ownership contracts",
+    "implementation_status": "Implemented / verified",
+    "work": "PostgreSQL migrations, original OpenAPI operations, ownership, revisions, cursor pages, idempotency",
+    "verification": "api-contract; encrypted restore; application-unit-final",
+    "plan_commands": [
+      "python -m implementation.checks api-contract",
+      "python -m implementation.checks migrations",
+      "python tests/acceptance/run.py --suite R014"
+    ]
+  },
+  {
+    "id": "T11",
+    "title": "Durable jobs, cache and computation orchestration",
+    "implementation_status": "Implemented / verified",
+    "work": "Leased durable jobs, leader/request locks, atomic snapshots, recovery and cache invalidation",
+    "verification": "worker-recovery; revision_race; load-100",
+    "plan_commands": [
+      "python -m implementation.checks worker-recovery",
+      "python tests/acceptance/run.py --suite revision_race"
+    ]
+  },
+  {
+    "id": "T12",
+    "title": "Security, admin and privacy lifecycle",
+    "implementation_status": "Implemented / verified",
+    "work": "Admin auth/audit, CSRF/SSRF, private deletion including raw point blobs, recovery tombstones, redacted logs",
+    "verification": "privacy-security; admin_disable; privacy_delete; unit/browser",
+    "plan_commands": [
+      "python -m implementation.checks security",
+      "python tests/acceptance/run.py --suite privacy_delete",
+      "python tests/acceptance/run.py --suite admin_disable"
+    ]
+  },
+  {
+    "id": "T13",
+    "title": "Location and launch browsing",
+    "implementation_status": "Implemented / verified",
+    "work": "Responsive confirmation, fallback, local date grouping, precision/status/error/empty states",
+    "verification": "six desktop/mobile browser journeys; accessibility artifacts",
+    "plan_commands": [
+      "python -m implementation.checks browser-location",
+      "python -m implementation.checks accessibility"
+    ]
+  },
+  {
+    "id": "T14",
+    "title": "Viewing guidance, sources and conditions",
+    "implementation_status": "Software implemented; real guidance gate blocked",
+    "work": "SVG/table, source provenance, uncertainty, solar/weather and conditional alternatives",
+    "verification": "browser-guidance; G-GUIDANCE.json",
+    "plan_commands": [
+      "python -m implementation.checks browser-guidance",
+      "python -m implementation.gates official-guidance"
+    ]
+  },
+  {
+    "id": "T15",
+    "title": "Subscriptions, history, privacy and observations UI",
+    "implementation_status": "Implemented / verified",
+    "work": "Reminder previews/editing/opt-ins, history, privacy/recovery, observations and admin controls",
+    "verification": "browser journeys; API/security/notification suites",
+    "plan_commands": [
+      "python -m implementation.checks browser-subscriptions",
+      "python -m implementation.checks accessibility"
+    ]
+  },
+  {
+    "id": "T16",
+    "title": "Notification state machine and race safety",
+    "implementation_status": "Implemented / verified",
+    "work": "Transactional outbox, timing, quiet hours, corrections, downgrade debounce, unsubscribe and races",
+    "verification": "R012/R013; postgres-races; revision_race",
+    "plan_commands": [
+      "python tests/acceptance/run.py --suite R012",
+      "python tests/acceptance/run.py --suite R013",
+      "python -m implementation.checks postgres-races"
+    ]
+  },
+  {
+    "id": "T17",
+    "title": "ICS, operational metrics and optional delivery boundary",
+    "implementation_status": "Implemented / verified",
+    "work": "RFC5545 snapshot export, health/coverage/queue metrics; optional email disabled",
+    "verification": "calendar; health; scope-cost",
+    "plan_commands": [
+      "python -m implementation.checks calendar",
+      "python -m implementation.checks health",
+      "python -m implementation.checks optional-email-policy"
+    ]
+  },
+  {
+    "id": "T18",
+    "title": "Existing hardware deployment, backup and recovery",
+    "implementation_status": "Software/local deployment verified; off-host gate blocked",
+    "work": "Nonroot Linux Compose, encrypted backup scheduler and isolated restore; no off-host destination",
+    "verification": "linux-compose-final; deployment-artifact-restore; G-BACKUP",
+    "plan_commands": [
+      "python -m implementation.checks deployment",
+      "python -m implementation.checks backup-restore"
+    ]
+  },
+  {
+    "id": "T19",
+    "title": "Complete application release regression",
+    "implementation_status": "Regression complete; release gates blocked",
+    "work": "Original 112 vectors plus 12 scenarios: 123 pass, off-host restore fails; real gates remain blocked",
+    "verification": "acceptance-final.json; releases/; spec-final",
+    "plan_commands": [
+      "python tools/check_spec.py",
+      "python tests/acceptance/run.py --suite all",
+      "python tests/acceptance/live.py",
+      "python -m implementation.checks full-release"
+    ]
+  },
+  {
+    "id": "T20",
+    "title": "Full ensemble load and release recovery exercise",
+    "implementation_status": "Load/local recovery verified; off-host verification blocked",
+    "work": "100 points, full two-candidate/two-stage ensemble, cached target met, memory and queue metrics, Linux restore",
+    "verification": "ensemble-load.json; deployment-artifact-restore; G-BACKUP",
+    "plan_commands": [
+      "python -m implementation.checks load-100",
+      "python -m implementation.checks release-recovery",
+      "python tools/release_gate.py"
+    ]
+  },
+  {
+    "id": "T21",
+    "title": "Prospective pilot and coverage evaluation",
+    "implementation_status": "Archive software verified; human pilot externally blocked",
+    "work": "Prelaunch immutable forecasts, outcomes and denominators; no fabricated observations or stronger advice",
+    "verification": "pilot-archive; G-PILOT.json",
+    "plan_commands": [
+      "python -m implementation.checks pilot-archive",
+      "python -m implementation.gates pilot"
+    ]
+  }
+]

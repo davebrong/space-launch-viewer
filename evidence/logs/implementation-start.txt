@@ -1,0 +1,9 @@
+START T01: Bootstrap locked application and acceptance adapter
+Read AGENTS.md, spec/requirements.md, and plans/01-vertical-slice.md
+Acceptance: Inspect maintained dependency source/licenses; pin supported Python/Node/images and package lockfiles. Implement real dev/lint/test/migrate commands and JSON adapter protocol; missing code must fail. No app component performs paid calls.
+Affected components: apps/web/, services/api/, services/worker/, packages/visibility/, pyproject.toml, package.json, compose.yaml, Makefile, implementation/acceptance_adapter.py
+Verify with:
+  python tools/check_spec.py
+  python tests/acceptance/run.py --suite R001
+  make lint
+Then continue T02 historical Cape/Maryland, T03 upcoming attempt, and every remaining milestone.

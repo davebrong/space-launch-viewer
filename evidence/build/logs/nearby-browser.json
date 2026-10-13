@@ -1,0 +1,13 @@
+{
+  "run_at": "2026-10-13T19:44:32.705766+00:00",
+  "command": [
+    "npm.cmd",
+    "run",
+    "test:browser"
+  ],
+  "exit_code": 1,
+  "status": "failed",
+  "artifact_path": "evidence/build/logs/nearby-browser-2026-10-13T194432_705766_0000.txt",
+  "sha256": "aaba9cd933e49ea4ef09c21059c9a4bbe89f8e35c4448878b182be582e1b3b01",
+  "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+}

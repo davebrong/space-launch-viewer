@@ -1,0 +1,341 @@
+[
+  {
+    "id": "api-contract",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "scenario",
+    "input": {
+      "scenario": "api-contract",
+      "steps": [
+        "Start API with ephemeral PostgreSQL migrated from empty",
+        "Create session; CSRF missing rejected; other-owner IDs hidden",
+        "Resolve/confirm location; compute missing-evidence assessment200 Not enough data",
+        "Exercise every OpenAPI operation and validate response schemas",
+        "Replay idempotency keys, stale If-Match, opaque cursor boundaries"
+      ],
+      "use_real_application": true
+    },
+    "expected": {
+      "all_operations_exercised": true,
+      "schema_errors": 0,
+      "ownership_violations": 0,
+      "duplicate_creates": 0
+    },
+    "requirements": [
+      "R014",
+      "R016",
+      "R018"
+    ],
+    "stories": [],
+    "oracle": "Normative requirement/operational invariant; adapter executes real isolated application components, no canned booleans."
+  },
+  {
+    "id": "route-registry",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "scenario",
+    "input": {
+      "scenario": "route-registry",
+      "steps": [
+        "Parse archived supported format and mutated unsupported format",
+        "Try filename-only identity, mismatched pad/attempt, possible dogleg",
+        "Try hazard polygon as flight path, old map transfer and variant/stage/datum mismatch"
+      ],
+      "use_real_application": true
+    },
+    "expected": {
+      "unsupported_admissions": 0,
+      "hazard_timed_tracks": 0,
+      "model_generated_evidence_admitted": 0
+    },
+    "requirements": [
+      "R004",
+      "R005"
+    ],
+    "stories": [],
+    "oracle": "Normative requirement/operational invariant; adapter executes real isolated application components, no canned booleans."
+  },
+  {
+    "id": "launch-windows",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "scenario",
+    "input": {
+      "scenario": "launch-windows",
+      "steps": [
+        "Evaluate closed window endpoints and5-minute alternatives",
+        "Insert solar/weather transitions and refine changed outcomes to<=60s",
+        "Slip by600s, change vehicle/profile and recheck absolute official guidance"
+      ],
+      "use_real_application": true
+    },
+    "expected": {
+      "endpoint_coverage": true,
+      "max_transition_uncertainty_s": 60,
+      "recomputed_solar_weather": true,
+      "old_guidance_reused": false
+    },
+    "requirements": [
+      "R008",
+      "R011"
+    ],
+    "stories": [],
+    "oracle": "Normative requirement/operational invariant; adapter executes real isolated application components, no canned booleans."
+  },
+  {
+    "id": "browser-journeys",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "scenario",
+    "input": {
+      "scenario": "browser-journeys",
+      "steps": [
+        "Playwright360px and desktop; axe and keyboard navigation",
+        "ZIP confirmation/manual fallback/leading zero",
+        "Run travel-zone rollover and DST fixtures in browser",
+        "Exercise loading/empty/unavailable/stale/error/unsupported states",
+        "View reconstructed band plus table, official-only fields, hazard-only source"
+      ],
+      "use_real_application": true
+    },
+    "expected": {
+      "journeys_passed": true,
+      "critical_accessibility_violations": 0,
+      "unsupported_precision_fields": 0
+    },
+    "requirements": [
+      "R002",
+      "R007",
+      "R008",
+      "R017"
+    ],
+    "stories": [],
+    "oracle": "Normative requirement/operational invariant; adapter executes real isolated application components, no canned booleans."
+  },
+  {
+    "id": "postgres-races",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "scenario",
+    "input": {
+      "scenario": "postgres-races",
+      "steps": [
+        "Two real concurrent PostgreSQL clients block at same outbox claim barrier",
+        "Commit unsubscribe before claim and schedule revision before another claim",
+        "Crash worker after in-app transaction; restart and drain queue",
+        "Simulate expiration at exact boundary"
+      ],
+      "use_real_application": true
+    },
+    "expected": {
+      "logical_duplicates": 0,
+      "post_unsubscribe_deliveries": 0,
+      "obsolete_deliveries": 0,
+      "expired_deliveries": 0
+    },
+    "requirements": [
+      "R012",
+      "R013",
+      "R014"
+    ],
+    "stories": [],
+    "oracle": "Normative requirement/operational invariant; adapter executes real isolated application components, no canned booleans."
+  },
+  {
+    "id": "calendar",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "scenario",
+    "input": {
+      "scenario": "calendar",
+      "steps": [
+        "Parse generated ICS with independent RFC5545 parser",
+        "Verify UTC date rollover, UID, SEQUENCE, escaping and75-octet fold",
+        "Redownload after slip/scrub; inspect snapshot disclosure"
+      ],
+      "use_real_application": true
+    },
+    "expected": {
+      "valid_ics": true,
+      "stable_uid": true,
+      "revision_increases": true,
+      "snapshot_warning": true
+    },
+    "requirements": [
+      "R012",
+      "R013"
+    ],
+    "stories": [],
+    "oracle": "Normative requirement/operational invariant; adapter executes real isolated application components, no canned booleans."
+  },
+  {
+    "id": "worker-recovery",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "scenario",
+    "input": {
+      "scenario": "worker-recovery",
+      "steps": [
+        "Kill worker with acquired lease; advance injected clock past120s",
+        "Restart and reject stale cache positivity",
+        "Inject429 Retry-After,403 and disk-full",
+        "Share LL2 budget among workers/pages/retries and spread100 NWS grids"
+      ],
+      "use_real_application": true
+    },
+    "expected": {
+      "lost_jobs": 0,
+      "stale_positive_results": 0,
+      "ll2_requests_rolling_hour_max": 12,
+      "paid_fallback_calls": 0
+    },
+    "requirements": [
+      "R011",
+      "R015",
+      "R016"
+    ],
+    "stories": [],
+    "oracle": "Normative requirement/operational invariant; adapter executes real isolated application components, no canned booleans."
+  },
+  {
+    "id": "privacy-security",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "scenario",
+    "input": {
+      "scenario": "privacy-security",
+      "steps": [
+        "Check SSRF private-address redirects, malformed requests, CSRF and admin auth",
+        "Delete subscription and advance clock24h; inspect DB and redacted logs",
+        "Restore older backup; apply opaque deletion tombstones before serving/sending"
+      ],
+      "use_real_application": true
+    },
+    "expected": {
+      "secret_leaks": 0,
+      "retained_deleted_location": false,
+      "unauthorized_admin_actions": 0,
+      "deletion_reapplied": true
+    },
+    "requirements": [
+      "R014",
+      "R016"
+    ],
+    "stories": [],
+    "oracle": "Normative requirement/operational invariant; adapter executes real isolated application components, no canned booleans."
+  },
+  {
+    "id": "backup-restore",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "scenario",
+    "input": {
+      "scenario": "backup-restore",
+      "steps": [
+        "Use existing encrypted off-host destination",
+        "Backup DB plus immutable assets with hashes",
+        "Restore isolated deployment, migrations and deletion ledger",
+        "Disable external delivery in drill; validate outbox reconciliation"
+      ],
+      "use_real_application": true
+    },
+    "expected": {
+      "hashes_match": true,
+      "rpo_seconds_max": 86400,
+      "rto_seconds_max": 14400,
+      "external_sends_during_drill": 0
+    },
+    "requirements": [
+      "R014",
+      "R016"
+    ],
+    "stories": [],
+    "oracle": "Normative requirement/operational invariant; adapter executes real isolated application components, no canned booleans."
+  },
+  {
+    "id": "load-100",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "scenario",
+    "input": {
+      "scenario": "load-100",
+      "steps": [
+        "Benchmark100 confirmed locations on documented existing hardware",
+        "Use two-stage15-minute ascent with181 samples/stage and ALL admitted candidates",
+        "Warm cache then measure>=1000 requests with20 concurrent clients",
+        "Report candidate count, raw timing samples, cached/uncached cost and actual budget counters"
+      ],
+      "use_real_application": true
+    },
+    "expected": {
+      "locations": 100,
+      "stages": 2,
+      "duration_s": 900,
+      "full_candidate_set": true,
+      "cached_p95_under_2s": true,
+      "budget_overruns": 0
+    },
+    "requirements": [
+      "R015",
+      "R020"
+    ],
+    "stories": [],
+    "oracle": "Normative requirement/operational invariant; adapter executes real isolated application components, no canned booleans."
+  },
+  {
+    "id": "pilot-archive",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "scenario",
+    "input": {
+      "scenario": "pilot-archive",
+      "steps": [
+        "Create prospective archive before T0 with original forecast weather",
+        "Record seen/not_seen/inconclusive/not_attempted after launch",
+        "Compute coverage denominator over all Cape missions including unsupported",
+        "Do not count unreported sightings as negatives"
+      ],
+      "use_real_application": true
+    },
+    "expected": {
+      "prelaunch_archive_immutable": true,
+      "inconclusive_preserved": true,
+      "absence_counted_negative": false,
+      "reconstruction_cap": "Possible"
+    },
+    "requirements": [
+      "R021"
+    ],
+    "stories": [],
+    "oracle": "Normative requirement/operational invariant; adapter executes real isolated application components, no canned booleans."
+  },
+  {
+    "id": "scope-cost",
+    "version": 1,
+    "kind": "synthetic",
+    "operation": "scenario",
+    "input": {
+      "scenario": "scope-cost",
+      "steps": [
+        "Inspect configuration/dependency/network allowlist and mandatory service manifest",
+        "Verify baseline in-app/ICS without email credentials",
+        "Optional email enabled only with actual existing free entitlement and delivery tests",
+        "Check no full simulator, paid feeds or arbitrary raster-to-route path"
+      ],
+      "use_real_application": true
+    },
+    "expected": {
+      "mandatory_subscription_cost_usd": 0,
+      "optional_email_default_enabled": false,
+      "excluded_features_required": false
+    },
+    "requirements": [
+      "R001",
+      "R022",
+      "R023",
+      "R024"
+    ],
+    "stories": [],
+    "oracle": "Normative requirement/operational invariant; adapter executes real isolated application components, no canned booleans."
+  }
+]
