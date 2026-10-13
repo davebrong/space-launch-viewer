@@ -1,0 +1,16 @@
+{
+  "run_at": "2026-10-13T21:22:41.518522+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "compileall",
+    "-q",
+    "services/api",
+    "services/worker"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/flight-plan-wip-compile-2026-10-13T212241_518522_0000.txt",
+  "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+  "software_sha256": "563da4a8b34a38e10bbeea26f95fa33f4d9fd0d7de7eccfb55c6f8adbffa7515"
+}

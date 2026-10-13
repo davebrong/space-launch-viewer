@@ -27,6 +27,8 @@ def approved_url(url: str) -> bool:
     parsed = urlparse(url)
     if parsed.scheme != "https" or parsed.username or parsed.password or parsed.port not in (None, 443):
         return False
+    if parsed.hostname == "nextspaceflight.com":
+        return not parsed.query and bool(re.fullmatch(r"/(?:robots\.txt|launches/|launches/details/\d+/)", parsed.path))
     if parsed.hostname in ("www.nasa.gov", "www.spacex.com") and parsed.path == "/robots.txt":
         return True
     if parsed.hostname == "www.nasa.gov" and parsed.path.startswith("/blogs/"):
@@ -59,7 +61,7 @@ def reserve(provider: str, now: datetime, limit: int | None = None) -> bool:
         )
         if not budget_allowed(
             count,
-            min(limit or 12, 12) if provider == "ll2" else 20 if provider.startswith("admin-auth:") else 500,
+            min(limit or 12, 12) if provider in ("ll2", "flight-plan") else 20 if provider.startswith("admin-auth:") else 500,
         ):
             return False
         conn.execute(db.budget.insert().values(provider=provider, requested_at=now))
@@ -148,6 +150,8 @@ def fetch(
                 payload = (
                     {"source_sha256": hashlib.sha256(content).hexdigest()}
                     if provider == "route"
+                    else {"html": content.decode("utf-8")}
+                    if provider == "flight-plan"
                     else {"robots_text": content.decode("utf-8")}
                     if provider == "robots"
                     else json.loads(content)
@@ -424,6 +428,8 @@ def cycle(now: datetime) -> None:
         )
     refresh_schedule(now, near)
     refresh_routes(now)
+    from .flight_plans import refresh_flight_plans
+    refresh_flight_plans(now)
     period = 900 if near else 3600
     for location in points[:100]:
         p = location["point"]

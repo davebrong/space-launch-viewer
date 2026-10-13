@@ -1,0 +1,52 @@
+WIP checkpoint — mission-specific flight-plan discovery
+Issue: https://github.com/davebrong/space-launch-viewer/issues/1
+Date: 2026-10-13
+
+This commit preserves incomplete work at the user's request. It is not a fix
+for issue #1 and is not ready for deployment.
+
+Included work
+- Public Next Spaceflight heading parser with mission/pad association checks.
+- Initial worker discovery/cache and flight-plan API endpoint, including cached
+  historical launch lookup. Discovery has no vehicle or launch-date filter.
+- Source retrieval metadata. Full downloaded pages remain local under ignored
+  .runtime/flight-plan-audit/; they are not redistributed in this repository.
+
+Build and verification status
+- Python compileall for services/api and services/worker: passed.
+- Ruff checks on the six changed/new Python modules: passed.
+- API and worker module imports: passed.
+- npm run lint (TypeScript tsc --noEmit): passed.
+- Exact outputs and command metadata: evidence/build/logs/flight-plan-wip-*.
+- The recorder's accompanying acceptance.json files copy the existing acceptance
+  report for context; they are not newly executed acceptance checks.
+- Full production/container build, behavioral integration tests and browser
+  tests were NOT run for this checkpoint. No build failure was found in the
+  checks above; this is not a claim that the complete build or runtime passes.
+- An initial import-check shell invocation failed due to command quoting;
+  the corrected invocation passed. That was not an application syntax failure.
+
+Known incomplete behavior and runtime risks
+- The new discovery routine is wired into the worker cycle; restarting a worker
+  on this commit activates the draft integration.
+- In services/worker/flight_plans.py, a previously cached robots body combined
+  with a later HTTP 404 can leave parser uninitialized before can_fetch is used,
+  causing UnboundLocalError. This needs a regression test and repair.
+- Robots/index fetch or parse failures return without recording a per-mission
+  failure state; the API can keep reporting pending. Retry scheduling for
+  exhausted provider budgets also needs refinement.
+- Ingestion's generic provenance license text still attributes this new source
+  to LL2; correct that before treating the source records as validated.
+- UI and generated OpenAPI contract are not wired to the new endpoint.
+- The old Dragon northeast simulation remains unchanged. No source heading is
+  connected to observer geometry, and no full trajectory source is established.
+- Heading-only source records must never be advertised as complete flight paths
+  or as the direction an observer should look. Weather deferral is not wired.
+- No new parser fixtures or behavioral tests have been added yet. The public
+  index is partial, so it does not establish coverage of all catalog missions.
+
+Source limitations
+The checked Next Spaceflight Bandwagon-5 page reports southeast departure only.
+ULA's site terms prohibit automated collection without prior written consent;
+no ULA scraper was added. Existing ISSC 403 and airspace-hazard-only findings
+remain unresolved. Software and empirical release gates are not advanced.

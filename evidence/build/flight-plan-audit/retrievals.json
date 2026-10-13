@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://nextspaceflight.com/robots.txt",
+    "status": 404,
+    "at": "2026-10-13T21:13:11.993478+00:00",
+    "path": ".runtime/flight-plan-audit/robots-0.txt",
+    "retained_locally_only": true,
+    "sha256": "839cfd1072ad3690671a852dc9f68d80887d9f77607f79aa993647ee12ec5297",
+    "bytes": 28798
+  },
+  {
+    "url": "https://www.ulalaunch.com/robots.txt",
+    "status": 200,
+    "at": "2026-10-13T21:13:12.284923+00:00",
+    "path": ".runtime/flight-plan-audit/robots-1.txt",
+    "retained_locally_only": true,
+    "sha256": "e6de9364d10272373952f29d4bad71c8f813f847fc454e81515edd613032d56d",
+    "bytes": 98
+  },
+  {
+    "url": "https://blog.ulalaunch.com/robots.txt",
+    "status": 200,
+    "at": "2026-10-13T21:13:12.733980+00:00",
+    "path": ".runtime/flight-plan-audit/robots-2.txt",
+    "retained_locally_only": true,
+    "sha256": "0ef69c5b132cf25c1b6728821562b29534fa76b9accf6783a6ef814e1253b7cf",
+    "bytes": 245
+  },
+  {
+    "url": "https://www.spacex.com/robots.txt",
+    "status": 404,
+    "at": "2026-10-13T21:13:12.951125+00:00",
+    "path": ".runtime/flight-plan-audit/robots-3.txt",
+    "retained_locally_only": true,
+    "sha256": "d9f9f00b147da30226b92c5ce5b2675101196cee844013dbe2e50fe26694619e",
+    "bytes": 321
+  },
+  {
+    "url": "https://nextspaceflight.com/launches/details/8362/",
+    "status": 200,
+    "at": "2026-10-13T21:13:32.815291+00:00",
+    "path": ".runtime/flight-plan-audit/page-0.html",
+    "sha256": "da7aeb46a2eb683151f59768ab6965a1c581a14a17996c4f1e74ef7d6c359a85",
+    "bytes": 84704,
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://nextspaceflight.com/launches/",
+    "status": 200,
+    "at": "2026-10-13T21:13:33.042071+00:00",
+    "path": ".runtime/flight-plan-audit/page-1.html",
+    "sha256": "73ede2f7b6bea456b3c3a0087e0a1d37b881eca294bc905c46c2df51aee787d7",
+    "bytes": 169441,
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://blog.ulalaunch.com/blog/protoflight-project-kuiper-payload-placed-atop-atlas-v",
+    "status": 200,
+    "at": "2026-10-13T21:13:33.218303+00:00",
+    "path": ".runtime/flight-plan-audit/page-2.html",
+    "sha256": "5b499ad76aad9e00ec6c631d07b95b17fe8af0772a562aea8e6935b021437c4b",
+    "bytes": 31206,
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://www.ulalaunch.com/terms-and-conditions",
+    "status": 200,
+    "at": "2026-10-13T21:13:33.371979+00:00",
+    "path": ".runtime/flight-plan-audit/page-3.html",
+    "sha256": "f4a5e92a18aff5d9f86298ca43af542945dd5c3a96379522b3066f6b2354bb99",
+    "bytes": 69723,
+    "retained_locally_only": true
+  }
+]

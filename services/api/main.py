@@ -485,6 +485,25 @@ def evidence(id: str):
         )
 
 
+@app.get("/api/v1/launches/{id}/flight-plan")
+def flight_plan(id: str, request: Request):
+    from .flight_plans import read_flight_plan
+    from .history import historical_launch
+    from services.worker.jobs import schedule
+    at = now()
+    with db.engine().connect() as conn:
+        row = conn.execute(select(db.launches.c.body).where(db.launches.c.id == id)).scalar()
+        if not row:
+            archived = historical_launch(conn, id)
+            row = archived[0] if archived else None
+        if not row:
+            fail("NOT_FOUND", "Launch not found", 404)
+        result = read_flight_plan(conn, row, at)
+    if result["state"] in ("pending", "stale"):
+        schedule("flight-plan:"+id+":"+str(int(at.timestamp())//21600), {"operation":"flight-plan","launch_id":id}, at)
+    return as_response(request, result)
+
+
 @app.get("/api/v1/profiles/{id}")
 def profile(id: str, request: Request):
     with db.engine().connect() as conn:

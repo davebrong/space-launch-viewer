@@ -1,0 +1,20 @@
+{
+  "run_at": "2026-10-13T21:22:42.630102+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "ruff",
+    "check",
+    "services/api/main.py",
+    "services/api/adapters/flight_plans.py",
+    "services/api/flight_plans.py",
+    "services/worker/ingestion.py",
+    "services/worker/main.py",
+    "services/worker/flight_plans.py"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/flight-plan-wip-lint-2026-10-13T212242_630102_0000.txt",
+  "sha256": "881513cd027e0334026cfcbad052e34fecb3f2c1fef5ab000c86973bc0196cd7",
+  "software_sha256": "563da4a8b34a38e10bbeea26f95fa33f4d9fd0d7de7eccfb55c6f8adbffa7515"
+}

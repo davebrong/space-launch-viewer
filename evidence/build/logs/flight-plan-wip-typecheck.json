@@ -1,0 +1,13 @@
+{
+  "run_at": "2026-10-13T21:22:51.418807+00:00",
+  "command": [
+    "C:\\nvm4w\\nodejs\\npm.cmd",
+    "run",
+    "lint"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/flight-plan-wip-typecheck-2026-10-13T212251_418807_0000.txt",
+  "sha256": "e7d7e1cf04dd29ae07238717e25773c0433128f5ceba1069dcd50a9ea6af1f05",
+  "software_sha256": "563da4a8b34a38e10bbeea26f95fa33f4d9fd0d7de7eccfb55c6f8adbffa7515"
+}

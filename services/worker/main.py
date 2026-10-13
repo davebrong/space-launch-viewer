@@ -76,6 +76,16 @@ def tick(at: datetime) -> None:
                         from .history import refresh_page
 
                         refresh_page(job["body"]["snapshot"], job["body"]["offset"], at)
+                    elif operation == "flight-plan":
+                        from .flight_plans import refresh_flight_plans
+                        from services.api.history import historical_launch
+                        with db.engine().connect() as conn:
+                            launch = conn.execute(select(db.launches.c.body).where(db.launches.c.id == job["body"]["launch_id"])).scalar()
+                            if not launch:
+                                archive = historical_launch(conn, job["body"]["launch_id"])
+                                launch = archive[0] if archive else None
+                        if launch:
+                            refresh_flight_plans(at, launches=[launch])
                     elif operation == "backup":
                         from ops.backup import write_backup
 
