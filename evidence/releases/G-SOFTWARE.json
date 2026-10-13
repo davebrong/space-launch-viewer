@@ -860,6 +860,285 @@
       "artifact_path": "evidence/build/logs/nearby-unit-2026-10-13T194635_936365_0000.txt",
       "sha256": "955fb38f833264839deb31a29cb7bc372620fb330cfd5e7f6d029136bed4322a",
       "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
+    },
+    {
+      "run_at": "2026-10-13T20:31:02.868823+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "test:browser",
+        "--",
+        "tests/browser/history.spec.ts"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-browser-final-authorized-2026-10-13T203102_868823_0000.txt",
+      "sha256": "b5c9ece27d056f3a90d3550a2b03ab432e63736e897e32cfc1960a3c12091705",
+      "software_sha256": "d85fe78b05b61a51fff2773f0b4eed8261ea051d732415b7f3327bdb3e4042d3"
+    },
+    {
+      "run_at": "2026-10-13T20:26:05.790401+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "test:browser",
+        "--",
+        "tests/browser/history.spec.ts"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-browser-recheck-2026-10-13T202605_790401_0000.txt",
+      "sha256": "62c79bfbcb5274c1bd84df4d38c3859c7153851baad38cf16e92dbb84885b9eb",
+      "software_sha256": "2b78787ae144ff60562fd332b228d50958b570fcaddfa762057d36d463303b33"
+    },
+    {
+      "run_at": "2026-10-13T20:24:58.600216+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "api",
+        "worker",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-compose-build-2026-10-13T202458_600216_0000.txt",
+      "sha256": "743bdbf06e73442cc1f4ae579209609b7fbd96865db31955d8997f674c28296f",
+      "software_sha256": "03c7b211b359485b99c40b77c20572a9852dfbc01709d3e7e7d4f44887dd6179"
+    },
+    {
+      "run_at": "2026-10-13T20:26:46.595870+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "lint"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-lint-2026-10-13T202646_595870_0000.txt",
+      "sha256": "e7d7e1cf04dd29ae07238717e25773c0433128f5ceba1069dcd50a9ea6af1f05",
+      "software_sha256": "2b78787ae144ff60562fd332b228d50958b570fcaddfa762057d36d463303b33"
+    },
+    {
+      "run_at": "2026-10-13T20:31:44.096297+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "up",
+        "-d",
+        "--no-deps",
+        "--wait",
+        "api",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-local-deploy-2026-10-13T203144_096297_0000.txt",
+      "sha256": "a86496243e602faca9e13441ae2dae8efbdba88d64b3b0130a8cba1dc1bf2062",
+      "software_sha256": "d85fe78b05b61a51fff2773f0b4eed8261ea051d732415b7f3327bdb3e4042d3"
+    },
+    {
+      "run_at": "2026-10-13T20:27:52.507762+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/check_spec.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-spec-2026-10-13T202752_507762_0000.txt",
+      "sha256": "3d25561fbb27d89d67a9c11b37b0feea842233ebf78509ef65683ca30834b854",
+      "software_sha256": "2b78787ae144ff60562fd332b228d50958b570fcaddfa762057d36d463303b33"
+    },
+    {
+      "run_at": "2026-10-13T20:26:44.411255+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "types"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-types-2026-10-13T202644_411255_0000.txt",
+      "sha256": "bd3633a945b46607513097e2653af7d5ae279752e3d8fe382e165c15f3b6ada8",
+      "software_sha256": "2b78787ae144ff60562fd332b228d50958b570fcaddfa762057d36d463303b33"
+    },
+    {
+      "run_at": "2026-10-13T20:23:17.006635+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/application",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-unit-2026-10-13T202317_006635_0000.txt",
+      "sha256": "d5e1467073c256c51939a3033203b113e0793b8091e215fd1f48e11b3e0f50e0",
+      "software_sha256": "ed860bed1d73981d199cb242053949297750b044c6faee75cb4f60608e9f1b53"
+    },
+    {
+      "run_at": "2026-10-13T20:28:34.280909+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-web-final-build-2026-10-13T202834_280909_0000.txt",
+      "sha256": "1a783b88bedcbab6f034092ed403ccbe57738b188817df2a98b4ca656fa9c28b",
+      "software_sha256": "2b78787ae144ff60562fd332b228d50958b570fcaddfa762057d36d463303b33"
+    },
+    {
+      "run_at": "2026-10-13T20:31:01.931901+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-web-year-build-authorized-2026-10-13T203101_931901_0000.txt",
+      "sha256": "c34232781977a20578482acdfe2981ee9cfa10e79bfce4f2800a61cc3017f26d",
+      "software_sha256": "d85fe78b05b61a51fff2773f0b4eed8261ea051d732415b7f3327bdb3e4042d3"
+    },
+    {
+      "run_at": "2026-10-13T20:44:44.397234+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "test:browser",
+        "--",
+        "tests/browser/history.spec.ts"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-detail-browser-final-2026-10-13T204444_397234_0000.txt",
+      "sha256": "97cee89c65f7488913a941f55efaa84e61408b2d498e1da475864f2ae0466538",
+      "software_sha256": "666d030a91ec604b2a7fac5f3e486f52763a35cc7504850ef41cb428cf380aeb"
+    },
+    {
+      "run_at": "2026-10-13T20:43:12.938976+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "test:browser",
+        "--",
+        "tests/browser/history.spec.ts"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-detail-browser-2026-10-13T204312_938976_0000.txt",
+      "sha256": "0da2d9edcd2fdc61130ad932437779a4f192b51630590a4edc7a4d7b1291183d",
+      "software_sha256": "932b8867012c7d6d5123e6f18f89755f41ce84ff69c46336521f6bf9f5e6321a"
+    },
+    {
+      "run_at": "2026-10-13T20:44:44.830534+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-detail-build-final-2026-10-13T204444_830534_0000.txt",
+      "sha256": "c9193d56a9ca0b40ffc34b35a0bd0510d6d827b512178e9c48099d9ce5f8d1c9",
+      "software_sha256": "666d030a91ec604b2a7fac5f3e486f52763a35cc7504850ef41cb428cf380aeb"
+    },
+    {
+      "run_at": "2026-10-13T20:43:53.805020+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "api",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-detail-build-2026-10-13T204353_805020_0000.txt",
+      "sha256": "241963a99a7e63da3297c5e094cc6fd97432d13b4d97e14c32e8190f7ec98c78",
+      "software_sha256": "932b8867012c7d6d5123e6f18f89755f41ce84ff69c46336521f6bf9f5e6321a"
+    },
+    {
+      "run_at": "2026-10-13T20:43:21.942798+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "lint"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-detail-lint-final-2026-10-13T204321_942798_0000.txt",
+      "sha256": "e7d7e1cf04dd29ae07238717e25773c0433128f5ceba1069dcd50a9ea6af1f05",
+      "software_sha256": "932b8867012c7d6d5123e6f18f89755f41ce84ff69c46336521f6bf9f5e6321a"
+    },
+    {
+      "run_at": "2026-10-13T20:42:19.695195+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "lint"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-detail-lint-2026-10-13T204219_695195_0000.txt",
+      "sha256": "e7d7e1cf04dd29ae07238717e25773c0433128f5ceba1069dcd50a9ea6af1f05",
+      "software_sha256": "42b1d8be8891ca893bc15485aba4f558e1380c49bbe4a7ff3b61c3ab35f59fd6"
+    },
+    {
+      "run_at": "2026-10-13T20:43:27.737487+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/check_spec.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-detail-spec-final-2026-10-13T204327_737487_0000.txt",
+      "sha256": "3d25561fbb27d89d67a9c11b37b0feea842233ebf78509ef65683ca30834b854",
+      "software_sha256": "932b8867012c7d6d5123e6f18f89755f41ce84ff69c46336521f6bf9f5e6321a"
+    },
+    {
+      "run_at": "2026-10-13T20:43:08.812496+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/application",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-detail-unit-final-2026-10-13T204308_812496_0000.txt",
+      "sha256": "f2b1170acbe6a307e6859eecc023da43cbf5ad331dfe78b439e9dad75a7bb0ac",
+      "software_sha256": "932b8867012c7d6d5123e6f18f89755f41ce84ff69c46336521f6bf9f5e6321a"
+    },
+    {
+      "run_at": "2026-10-13T20:45:39.852556+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "up",
+        "-d",
+        "--no-deps",
+        "--wait",
+        "api",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-detail-local-deploy-2026-10-13T204539_852556_0000.txt",
+      "sha256": "e76cb55e41ff351d062b3cdb524a99ea26f5921f4196a220521ded06debbfd38",
+      "software_sha256": "666d030a91ec604b2a7fac5f3e486f52763a35cc7504850ef41cb428cf380aeb"
     }
   ],
   "acceptance_report": "evidence/build/acceptance-final.json",
@@ -868,5 +1147,7 @@
   "viewable_followup": "evidence/build/viewable.json",
   "reason": "Core automatic per-mission route discovery and profile integration is incomplete, in addition to off-host recovery. Passing component tests do not satisfy the ZIP visibility product.",
   "source_audit": "evidence/build/source-audit.json",
-  "nearby_followup": "evidence/build/nearby.json"
+  "nearby_followup": "evidence/build/nearby.json",
+  "history_followup": "evidence/build/history.json",
+  "history_detail_followup": "evidence/build/history-detail.json"
 }

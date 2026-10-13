@@ -1,0 +1,15 @@
+{
+  "run_at": "2026-10-13T20:43:12.938976+00:00",
+  "command": [
+    "npm.cmd",
+    "run",
+    "test:browser",
+    "--",
+    "tests/browser/history.spec.ts"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/history-detail-browser-2026-10-13T204312_938976_0000.txt",
+  "sha256": "0da2d9edcd2fdc61130ad932437779a4f192b51630590a4edc7a4d7b1291183d",
+  "software_sha256": "932b8867012c7d6d5123e6f18f89755f41ce84ff69c46336521f6bf9f5e6321a"
+}

@@ -104,3 +104,5 @@ failing required acceptance scenario.
 Mandatory API/data spend is $0. No paid APIs or maps, no inference APIs, no new
 hosting. Source terms, robots rules, 403 and 429 responses are respected without
 workarounds.
+
+Historical archive entries now open local ZIP-specific viewing pages with the same planning models as upcoming launches. Display potential, direction and supported watch times; unknown precision stays untimed, current weather is excluded, and failed launches retain their outcome. Verified with 32 application tests and desktop/mobile detail, reload, navigation and pagination checks. [Historical detail QA](evidence/build/history-detail.json). Existing model-coverage and empirical release limitations remain.

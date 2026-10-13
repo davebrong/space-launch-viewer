@@ -1,6 +1,11 @@
 'use client';
 import {useEffect,useState} from 'react';
-import {api,localTime,type LaunchHistoryPage} from '../lib/client';
+import Link from 'next/link';
+import {api,type LaunchHistoryPage} from '../lib/client';
+
+function localTime(value:string,zone:string):string {
+  return new Intl.DateTimeFormat('en-US',{timeZone:zone,year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(new Date(value));
+}
 
 export default function PastLaunches({zone}:{zone:string}) {
   const [request,setRequest]=useState<{cursor:string|null;revision:number}>({cursor:null,revision:0});
@@ -43,10 +48,10 @@ export default function PastLaunches({zone}:{zone:string}) {
     <button className="secondary" disabled={busy} onClick={()=>setRequest(r=>({cursor:null,revision:r.revision+1}))}>Reload history</button>
     {error&&<div className="alert error" role="alert">{error} {page?.retry_at?`Retry after ${localTime(page.retry_at,zone)}.`:''} <button disabled={busy} onClick={()=>setRequest(r=>({...r,revision:r.revision+1}))}>Retry history page</button></div>}
     <div className="history-list">{rows.map(row=><article className="launch-card" key={row.id}>
-      <div className="launch-main"><div className="small muted">{row.pad_name}</div><h3>{row.name}</h3>
+      <div className="launch-main"><div className="small muted">{row.pad_name}</div><h3><Link href={'/launches/'+row.id+'?past=1'}>{row.name}</Link></h3>
         <p>{row.net?(row.time_known?localTime(row.net,zone):row.date_only?`${row.net.slice(0,10)} · date only (UTC)`:`${row.net.slice(0,10)} · recorded date; time precision unspecified (UTC)`):'Launch date unavailable'}</p>
         <p className="small muted">Record updated {row.updated_at?localTime(row.updated_at,zone):'at an unspecified time'}</p></div>
-      <div className="launch-state"><span className="badge">{row.status}</span><a href={row.source_url} target="_blank" rel="noreferrer">View API record ↗</a></div>
+      <div className="launch-state"><span className="badge">{row.status}</span><Link href={'/launches/'+row.id+'?past=1'}>Could I have seen it? →</Link><a href={row.source_url} target="_blank" rel="noreferrer">View API record ↗</a></div>
     </article>)}</div>
     {busy&&<p role="status">Retrieving past launches…</p>}
     {!busy&&!error&&page?.state==='ready'&&rows.length===0&&<p>No historical records were returned.</p>}

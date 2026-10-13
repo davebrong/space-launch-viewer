@@ -1,0 +1,14 @@
+{
+  "run_at": "2026-10-13T20:31:01.931901+00:00",
+  "command": [
+    "docker",
+    "compose",
+    "build",
+    "web"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/history-web-year-build-authorized-2026-10-13T203101_931901_0000.txt",
+  "sha256": "c34232781977a20578482acdfe2981ee9cfa10e79bfce4f2800a61cc3017f26d",
+  "software_sha256": "d85fe78b05b61a51fff2773f0b4eed8261ea051d732415b7f3327bdb3e4042d3"
+}

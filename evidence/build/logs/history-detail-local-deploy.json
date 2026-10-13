@@ -1,0 +1,18 @@
+{
+  "run_at": "2026-10-13T20:45:39.852556+00:00",
+  "command": [
+    "docker",
+    "compose",
+    "up",
+    "-d",
+    "--no-deps",
+    "--wait",
+    "api",
+    "web"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/history-detail-local-deploy-2026-10-13T204539_852556_0000.txt",
+  "sha256": "e76cb55e41ff351d062b3cdb524a99ea26f5921f4196a220521ded06debbfd38",
+  "software_sha256": "666d030a91ec604b2a7fac5f3e486f52763a35cc7504850ef41cb428cf380aeb"
+}

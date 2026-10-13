@@ -1,0 +1,209 @@
+{
+  "status": "verified",
+  "reviewed_at": "2026-10-13T20:46:15.307137+00:00",
+  "scope": "Local historical detail pages with ZIP-specific retrospective planning. No historical records inserted into the upcoming catalog; no saved prelaunch forecast or sighting claimed.",
+  "route": "/launches/[id]?past=1",
+  "api": "/api/v1/launch-history/{id}?location_id={owned_confirmed_location}",
+  "checks": [
+    {
+      "run_at": "2026-10-13T20:44:44.397234+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "test:browser",
+        "--",
+        "tests/browser/history.spec.ts"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-detail-browser-final-2026-10-13T204444_397234_0000.txt",
+      "sha256": "97cee89c65f7488913a941f55efaa84e61408b2d498e1da475864f2ae0466538",
+      "software_sha256": "666d030a91ec604b2a7fac5f3e486f52763a35cc7504850ef41cb428cf380aeb"
+    },
+    {
+      "run_at": "2026-10-13T20:43:12.938976+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "test:browser",
+        "--",
+        "tests/browser/history.spec.ts"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-detail-browser-2026-10-13T204312_938976_0000.txt",
+      "sha256": "0da2d9edcd2fdc61130ad932437779a4f192b51630590a4edc7a4d7b1291183d",
+      "software_sha256": "932b8867012c7d6d5123e6f18f89755f41ce84ff69c46336521f6bf9f5e6321a"
+    },
+    {
+      "run_at": "2026-10-13T20:44:44.830534+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-detail-build-final-2026-10-13T204444_830534_0000.txt",
+      "sha256": "c9193d56a9ca0b40ffc34b35a0bd0510d6d827b512178e9c48099d9ce5f8d1c9",
+      "software_sha256": "666d030a91ec604b2a7fac5f3e486f52763a35cc7504850ef41cb428cf380aeb"
+    },
+    {
+      "run_at": "2026-10-13T20:43:53.805020+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "api",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-detail-build-2026-10-13T204353_805020_0000.txt",
+      "sha256": "241963a99a7e63da3297c5e094cc6fd97432d13b4d97e14c32e8190f7ec98c78",
+      "software_sha256": "932b8867012c7d6d5123e6f18f89755f41ce84ff69c46336521f6bf9f5e6321a"
+    },
+    {
+      "run_at": "2026-10-13T20:43:21.942798+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "lint"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-detail-lint-final-2026-10-13T204321_942798_0000.txt",
+      "sha256": "e7d7e1cf04dd29ae07238717e25773c0433128f5ceba1069dcd50a9ea6af1f05",
+      "software_sha256": "932b8867012c7d6d5123e6f18f89755f41ce84ff69c46336521f6bf9f5e6321a"
+    },
+    {
+      "run_at": "2026-10-13T20:42:19.695195+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "lint"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-detail-lint-2026-10-13T204219_695195_0000.txt",
+      "sha256": "e7d7e1cf04dd29ae07238717e25773c0433128f5ceba1069dcd50a9ea6af1f05",
+      "software_sha256": "42b1d8be8891ca893bc15485aba4f558e1380c49bbe4a7ff3b61c3ab35f59fd6"
+    },
+    {
+      "run_at": "2026-10-13T20:45:39.852556+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "up",
+        "-d",
+        "--no-deps",
+        "--wait",
+        "api",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-detail-local-deploy-2026-10-13T204539_852556_0000.txt",
+      "sha256": "e76cb55e41ff351d062b3cdb524a99ea26f5921f4196a220521ded06debbfd38",
+      "software_sha256": "666d030a91ec604b2a7fac5f3e486f52763a35cc7504850ef41cb428cf380aeb"
+    },
+    {
+      "run_at": "2026-10-13T20:43:27.737487+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/check_spec.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-detail-spec-final-2026-10-13T204327_737487_0000.txt",
+      "sha256": "3d25561fbb27d89d67a9c11b37b0feea842233ebf78509ef65683ca30834b854",
+      "software_sha256": "932b8867012c7d6d5123e6f18f89755f41ce84ff69c46336521f6bf9f5e6321a"
+    },
+    {
+      "run_at": "2026-10-13T20:42:22.863091+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/check_spec.py"
+      ],
+      "exit_code": 1,
+      "status": "failed",
+      "artifact_path": "evidence/build/logs/history-detail-spec-2026-10-13T204222_863091_0000.txt",
+      "sha256": "2b5f1605770b5fb102f5e152cfd413a3f0547fed2597d0a4a814446cfc8d68b1",
+      "software_sha256": "42b1d8be8891ca893bc15485aba4f558e1380c49bbe4a7ff3b61c3ab35f59fd6"
+    },
+    {
+      "run_at": "2026-10-13T20:43:08.812496+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/application",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-detail-unit-final-2026-10-13T204308_812496_0000.txt",
+      "sha256": "f2b1170acbe6a307e6859eecc023da43cbf5ad331dfe78b439e9dad75a7bb0ac",
+      "software_sha256": "932b8867012c7d6d5123e6f18f89755f41ce84ff69c46336521f6bf9f5e6321a"
+    },
+    {
+      "run_at": "2026-10-13T20:42:08.358165+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/application",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 1,
+      "status": "failed",
+      "artifact_path": "evidence/build/logs/history-detail-unit-recheck-2026-10-13T204208_358165_0000.txt",
+      "sha256": "2d5e9df28d4981b25850e54b4535d193f360c0d038c05470bda160eb2892d052",
+      "software_sha256": "42b1d8be8891ca893bc15485aba4f558e1380c49bbe4a7ff3b61c3ab35f59fd6"
+    },
+    {
+      "run_at": "2026-10-13T20:41:38.004638+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/application",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 1,
+      "status": "failed",
+      "artifact_path": "evidence/build/logs/history-detail-unit-2026-10-13T204138_004638_0000.txt",
+      "sha256": "9f2e37874224a250ad837e96c81a649c846a8f6370f49ab583c11c8ca792b2de",
+      "software_sha256": "6e12c0d9dfac105febfacb79041411b75cebd3783732055abb250eb862515fe5"
+    }
+  ],
+  "results": {
+    "application_tests": 32,
+    "spec_checks": 9,
+    "desktop_mobile_browser_cases": 2
+  },
+  "verified_cases": [
+    "Real historical NROL-97 record, ZIP fl-zip: nearby southeast planning window, reload, return to archive, older pages.",
+    "Synthetic arbitrary old launch: ZIP fl-zip nearby plan versus ZIP md-zip unavailable; no future horizon filter.",
+    "Unspecified legacy time precision: untimed nearby potential; original launch-failure outcome preserved.",
+    "Cross-session location access denied; missing record is 404; no extra provider requests or assessment/catalog insertion."
+  ],
+  "weather": "Shared planning model admits only matching prelaunch forecast intervals; current and later forecasts do not become historical weather.",
+  "limitations": [
+    "Planning coverage remains the existing nearby-pad and Dragon station model coverage. Unknown does not mean invisible.",
+    "Direct historical links resolve records already loaded in the shared archive cache.",
+    "Historical provider records may contain later schedule corrections.",
+    "Flight failures are shown with a nominal-ascent caveat. Empirical release gates remain blocked."
+  ],
+  "screenshots": [
+    "evidence/build/history-detail-desktop.png",
+    "evidence/build/history-detail-mobile.png"
+  ]
+}

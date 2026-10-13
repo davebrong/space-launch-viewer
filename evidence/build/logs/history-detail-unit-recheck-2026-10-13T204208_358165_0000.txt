@@ -1,0 +1,254 @@
+.........F......................                                         [100%]
+================================== FAILURES ===================================
+_ test_historical_detail_uses_owned_zip_shared_model_and_never_creates_future_launches _
+
+self = <Registry (21 resources, 1 uncrawled)>, uri = 'launch.schema.json'
+
+    def get_or_retrieve(self, uri: URI) -> Retrieved[D, Resource[D]]:
+        """
+        Get a resource from the registry, crawling or retrieving if necessary.
+    
+        May involve crawling to find the given URI if it is not already known,
+        so the returned object is a `Retrieved` object which contains both the
+        resource value as well as the registry which ultimately contained it.
+        """
+        resource = self._resources.get(uri)
+        if resource is not None:
+            return Retrieved(registry=self, value=resource)
+    
+        registry = self.crawl()
+        resource = registry._resources.get(uri)
+        if resource is not None:
+            return Retrieved(registry=registry, value=resource)
+    
+        try:
+>           resource = registry._retrieve(uri)
+                       ^^^^^^^^^^^^^^^^^^^^^^^
+
+.venv\Lib\site-packages\referencing\_core.py:428: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\jsonschema\validators.py:111: in _warn_for_remote_retrieve
+    request = Request(uri, headers=headers)  # noqa: S310
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\urllib\request.py:318: in __init__
+    self.full_url = url
+    ^^^^^^^^^^^^^
+<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\urllib\request.py:344: in full_url
+    self._parse()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <urllib.request.Request object at 0x000001AB21C59100>
+
+    def _parse(self):
+        self.type, rest = _splittype(self._full_url)
+        if self.type is None:
+>           raise ValueError("unknown url type: %r" % self.full_url)
+E           ValueError: unknown url type: 'launch.schema.json'
+
+<home>\AppData\Roaming\uv\python\cpython-3.12.9-windows-x86_64-none\Lib\urllib\request.py:373: ValueError
+
+The above exception was the direct cause of the following exception:
+
+self = Resolver(_base_uri='', _registry=<Registry (21 resources, 1 uncrawled)>)
+ref = 'launch.schema.json'
+
+    def lookup(self, ref: URI) -> Resolved[D]:
+        """
+        Resolve the given reference to the resource it points to.
+    
+        Raises:
+    
+            `exceptions.Unresolvable`
+    
+                or a subclass thereof (see below) if the reference isn't
+                resolvable
+    
+            `exceptions.NoSuchAnchor`
+    
+                if the reference is to a URI where a resource exists but
+                contains a plain name fragment which does not exist within
+                the resource
+    
+            `exceptions.PointerToNowhere`
+    
+                if the reference is to a URI where a resource exists but
+                contains a JSON pointer to a location within the resource
+                that does not exist
+    
+        """
+        if ref.startswith("#"):
+            uri, fragment = self._base_uri, ref[1:]
+        else:
+            uri, fragment = urldefrag(urljoin(self._base_uri, ref))
+        try:
+>           retrieved = self._registry.get_or_retrieve(uri)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.venv\Lib\site-packages\referencing\_core.py:682: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Registry (21 resources, 1 uncrawled)>, uri = 'launch.schema.json'
+
+    def get_or_retrieve(self, uri: URI) -> Retrieved[D, Resource[D]]:
+        """
+        Get a resource from the registry, crawling or retrieving if necessary.
+    
+        May involve crawling to find the given URI if it is not already known,
+        so the returned object is a `Retrieved` object which contains both the
+        resource value as well as the registry which ultimately contained it.
+        """
+        resource = self._resources.get(uri)
+        if resource is not None:
+            return Retrieved(registry=self, value=resource)
+    
+        registry = self.crawl()
+        resource = registry._resources.get(uri)
+        if resource is not None:
+            return Retrieved(registry=registry, value=resource)
+    
+        try:
+            resource = registry._retrieve(uri)
+        except (
+            exceptions.CannotDetermineSpecification,
+            exceptions.NoSuchResource,
+        ):
+            raise
+        except Exception as error:
+>           raise exceptions.Unretrievable(ref=uri) from error
+E           referencing.exceptions.Unretrievable: 'launch.schema.json'
+
+.venv\Lib\site-packages\referencing\_core.py:435: Unretrievable
+
+The above exception was the direct cause of the following exception:
+
+self = Draft202012Validator(schema={'$ref': 'launch.schema.json'}, format_checker=<FormatChecker checkers=['date', 'date-time', 'email', 'idn-email', 'idn-hostname', 'ipv4', 'ipv6', 'regex', 'time', 'uuid']>)
+ref = 'launch.schema.json'
+instance = {'schema_version': '1.0', 'id': '5da64823-c30a-5713-927c-b7fae7bcdb86', 'revision': 1, 'provider_id': '5da64823-c30a-5713-927c-b7fae7bcdb86', ...}
+
+    def _validate_reference(self, ref, instance):
+        if self._ref_resolver is None:
+            try:
+>               resolved = self._resolver.lookup(ref)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.venv\Lib\site-packages\jsonschema\validators.py:462: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = Resolver(_base_uri='', _registry=<Registry (21 resources, 1 uncrawled)>)
+ref = 'launch.schema.json'
+
+    def lookup(self, ref: URI) -> Resolved[D]:
+        """
+        Resolve the given reference to the resource it points to.
+    
+        Raises:
+    
+            `exceptions.Unresolvable`
+    
+                or a subclass thereof (see below) if the reference isn't
+                resolvable
+    
+            `exceptions.NoSuchAnchor`
+    
+                if the reference is to a URI where a resource exists but
+                contains a plain name fragment which does not exist within
+                the resource
+    
+            `exceptions.PointerToNowhere`
+    
+                if the reference is to a URI where a resource exists but
+                contains a JSON pointer to a location within the resource
+                that does not exist
+    
+        """
+        if ref.startswith("#"):
+            uri, fragment = self._base_uri, ref[1:]
+        else:
+            uri, fragment = urldefrag(urljoin(self._base_uri, ref))
+        try:
+            retrieved = self._registry.get_or_retrieve(uri)
+        except exceptions.NoSuchResource:
+            raise exceptions.Unresolvable(ref=ref) from None
+        except exceptions.Unretrievable as error:
+>           raise exceptions.Unresolvable(ref=ref) from error
+E           referencing.exceptions.Unresolvable: launch.schema.json
+
+.venv\Lib\site-packages\referencing\_core.py:686: Unresolvable
+
+The above exception was the direct cause of the following exception:
+
+    def test_historical_detail_uses_owned_zip_shared_model_and_never_creates_future_launches():
+        body = historical()
+        raw = body["results"][0]
+        raw["name"] = "SYNTHETIC Falcon Heavy | Past launch"
+        raw["net"] = "2025-10-01T12:00:00Z"
+        raw["net_precision"] = {"id": 1}
+        legacy = body["results"][1]
+        legacy["net_precision"] = None
+        legacy["status"] = {"id": 4, "name": "Launch Failure"}
+        with (
+            s.isolated_database(),
+            httpx.Client(transport=httpx.MockTransport(lambda r: httpx.Response(200, json=body))) as source,
+            patch("services.api.main.now", return_value=s.AT),
+        ):
+            refresh_page("", 0, s.AT, client=source)
+            client = s.client()
+            near = s.location(client, "fl-zip")
+            far = s.location(client, "md-zip")
+            path = "/api/v1/launch-history/" + raw["id"]
+            result = client.get(path, params={"location_id": near["id"]})
+            assert result.status_code == 200, result.text
+            doc = result.json()
+>           validate("HistoricalLaunchDetail", doc)
+
+tests\application\test_history.py:125: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+services\api\main.py:47: in validate
+    jsonschema.Draft202012Validator(schema, format_checker=jsonschema.FormatChecker()).validate(body)
+.venv\Lib\site-packages\jsonschema\validators.py:449: in validate
+    for error in self.iter_errors(*args, **kwargs):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\jsonschema\validators.py:383: in iter_errors
+    for error in errors:
+                 ^^^^^^
+.venv\Lib\site-packages\jsonschema\_keywords.py:296: in properties
+    yield from validator.descend(
+.venv\Lib\site-packages\jsonschema\validators.py:431: in descend
+    for error in errors:
+                 ^^^^^^
+.venv\Lib\site-packages\jsonschema\_keywords.py:275: in ref
+    yield from validator._validate_reference(ref=ref, instance=instance)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = Draft202012Validator(schema={'$ref': 'launch.schema.json'}, format_checker=<FormatChecker checkers=['date', 'date-time', 'email', 'idn-email', 'idn-hostname', 'ipv4', 'ipv6', 'regex', 'time', 'uuid']>)
+ref = 'launch.schema.json'
+instance = {'schema_version': '1.0', 'id': '5da64823-c30a-5713-927c-b7fae7bcdb86', 'revision': 1, 'provider_id': '5da64823-c30a-5713-927c-b7fae7bcdb86', ...}
+
+    def _validate_reference(self, ref, instance):
+        if self._ref_resolver is None:
+            try:
+                resolved = self._resolver.lookup(ref)
+            except referencing.exceptions.Unresolvable as err:
+>               raise exceptions._WrappedReferencingError(err) from err
+E               jsonschema.exceptions._WrappedReferencingError: Unresolvable: launch.schema.json
+
+.venv\Lib\site-packages\jsonschema\validators.py:464: _WrappedReferencingError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  <repo>\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/application/test_history.py: 4 warnings
+tests/application/test_opportunities.py: 4 warnings
+tests/application/test_regressions.py: 4 warnings
+tests/application/test_retrospective.py: 4 warnings
+  <repo>\.venv\Lib\site-packages\skyfield\searchlib.py:224: DeprecationWarning: Setting the dtype on a NumPy array has been deprecated in NumPy 2.5.
+  Instead of changing the dtype on an array x, create a new array with x.view(new_dtype)
+    y.dtype = int8
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/application/test_history.py::test_historical_detail_uses_owned_zip_shared_model_and_never_creates_future_launches
+1 failed, 31 passed, 17 warnings in 10.34s
+

@@ -13,6 +13,36 @@ HEAD_KEY = "ll2:history:head"
 HEAD_URL = "https://ll.thespacedevs.com/2.3.0/launches/previous/?limit=100&location__ids=12,27&ordering=-net"
 
 
+def historical_launch(conn, launch_id: str) -> tuple[dict, dict] | None:
+    """Resolve a browsed archive record without adding it to the upcoming catalog."""
+    from .adapters.ll2 import normalize
+
+    cached = (
+        conn.execute(
+            select(db.cache)
+            .where(
+                db.cache.c.key.like("ll2:history:%"),
+                db.cache.c.last_success_at.is_not(None),
+                db.cache.c.body["payload"]["results"].contains([{"id": launch_id}]),
+            )
+            .order_by(db.cache.c.last_success_at.desc(), db.cache.c.key)
+            .limit(1)
+        )
+        .mappings()
+        .first()
+    )
+    if not cached:
+        return None
+    body = cached["body"]
+    raw = next(row for row in body["payload"]["results"] if row["id"] == launch_id)
+    launch = normalize(raw, body["provenance"])
+    # Legacy archive records lack precision metadata. Preserve the recorded day
+    # for untimed nearby potential; never promote their clock to a known time.
+    if raw.get("net_precision") is None and launch["net"]:
+        launch.update(time_precision="date", date_label=launch["net"][:10], date_basis_timezone="UTC")
+    return launch, raw
+
+
 def page_key(snapshot: str, offset: int) -> str:
     return HEAD_KEY if offset == 0 else f"ll2:history:{snapshot}:{offset}"
 

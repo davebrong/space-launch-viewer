@@ -1,0 +1,166 @@
+.........F......................                                         [100%]
+================================== FAILURES ===================================
+_ test_historical_detail_uses_owned_zip_shared_model_and_never_creates_future_launches _
+
+self = Resource(contents={'type': 'object', 'additionalProperties': False, 'properties': {'launch': {'$ref': '#/components/sc...nt', 'source_status', 'source_url', 'time_precision_unspecified']}, _specification=<Specification name='draft2020-12'>)
+pointer = '/components/schemas/launch'
+resolver = Resolver(_base_uri='', _registry=<Registry (21 resources, 1 uncrawled)>)
+
+    def pointer(self, pointer: str, resolver: Resolver[D]) -> Resolved[D]:
+        """
+        Resolve the given JSON pointer.
+    
+        Raises:
+    
+            `exceptions.PointerToNowhere`
+    
+                if the pointer points to a location not present in the document
+    
+        """
+        if not pointer:
+            return Resolved(contents=self.contents, resolver=resolver)
+    
+        contents = self.contents
+        segments: list[int | str] = []
+        for segment in unquote(pointer[1:]).split("/"):
+            if isinstance(contents, Sequence):
+                segment = int(segment)
+            else:
+                segment = segment.replace("~1", "/").replace("~0", "~")
+            try:
+>               contents = contents[segment]  # type: ignore[reportUnknownArgumentType]
+                           ^^^^^^^^^^^^^^^^^
+E               KeyError: 'components'
+
+.venv\Lib\site-packages\referencing\_core.py:276: KeyError
+
+The above exception was the direct cause of the following exception:
+
+self = Draft202012Validator(schema={'$ref': '#/components/schemas/launch'}, format_checker=<FormatChecker checkers=['date', 'date-time', 'email', 'idn-email', 'idn-hostname', 'ipv4', 'ipv6', 'regex', 'time', 'uuid']>)
+ref = '#/components/schemas/launch'
+instance = {'schema_version': '1.0', 'id': '5da64823-c30a-5713-927c-b7fae7bcdb86', 'revision': 1, 'provider_id': '5da64823-c30a-5713-927c-b7fae7bcdb86', ...}
+
+    def _validate_reference(self, ref, instance):
+        if self._ref_resolver is None:
+            try:
+>               resolved = self._resolver.lookup(ref)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.venv\Lib\site-packages\jsonschema\validators.py:462: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\referencing\_core.py:690: in lookup
+    return retrieved.value.pointer(pointer=fragment, resolver=resolver)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = Resource(contents={'type': 'object', 'additionalProperties': False, 'properties': {'launch': {'$ref': '#/components/sc...nt', 'source_status', 'source_url', 'time_precision_unspecified']}, _specification=<Specification name='draft2020-12'>)
+pointer = '/components/schemas/launch'
+resolver = Resolver(_base_uri='', _registry=<Registry (21 resources, 1 uncrawled)>)
+
+    def pointer(self, pointer: str, resolver: Resolver[D]) -> Resolved[D]:
+        """
+        Resolve the given JSON pointer.
+    
+        Raises:
+    
+            `exceptions.PointerToNowhere`
+    
+                if the pointer points to a location not present in the document
+    
+        """
+        if not pointer:
+            return Resolved(contents=self.contents, resolver=resolver)
+    
+        contents = self.contents
+        segments: list[int | str] = []
+        for segment in unquote(pointer[1:]).split("/"):
+            if isinstance(contents, Sequence):
+                segment = int(segment)
+            else:
+                segment = segment.replace("~1", "/").replace("~0", "~")
+            try:
+                contents = contents[segment]  # type: ignore[reportUnknownArgumentType]
+            except LookupError as lookup_error:
+                error = exceptions.PointerToNowhere(ref=pointer, resource=self)
+>               raise error from lookup_error
+E               referencing.exceptions.PointerToNowhere: '/components/schemas/launch' does not exist within {'type': 'object', 'additionalProperties': False, 'properties': {'launch': {'$ref': '#/components/schemas/launch'}, 'assessment': {'$ref': '#/components/schemas/assessment'}, 'source_status': {'type': 'string'}, 'source_url': {'type': 'string', 'format': 'uri'}, 'time_precision_unspecified': {'type': 'boolean'}}, 'required': ['launch', 'assessment', 'source_status', 'source_url', 'time_precision_unspecified']}
+
+.venv\Lib\site-packages\referencing\_core.py:279: PointerToNowhere
+
+The above exception was the direct cause of the following exception:
+
+    def test_historical_detail_uses_owned_zip_shared_model_and_never_creates_future_launches():
+        body = historical()
+        raw = body["results"][0]
+        raw["name"] = "SYNTHETIC Falcon Heavy | Past launch"
+        raw["net"] = "2025-10-01T12:00:00Z"
+        raw["net_precision"] = {"id": 1}
+        legacy = body["results"][1]
+        legacy["net_precision"] = None
+        legacy["status"] = {"id":4,"name":"Launch Failure"}
+        with (
+            s.isolated_database(),
+            httpx.Client(transport=httpx.MockTransport(lambda r:httpx.Response(200,json=body))) as source,
+            patch("services.api.main.now",return_value=s.AT),
+        ):
+            refresh_page("",0,s.AT,client=source)
+            client = s.client()
+            near = s.location(client,"fl-zip")
+            far = s.location(client,"md-zip")
+            path = "/api/v1/launch-history/" + raw["id"]
+            result = client.get(path,params={"location_id":near["id"]})
+            assert result.status_code == 200, result.text
+            doc = result.json()
+>           validate("HistoricalLaunchDetail",doc)
+
+tests\application\test_history.py:125: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+services\api\main.py:47: in validate
+    jsonschema.Draft202012Validator(schema, format_checker=jsonschema.FormatChecker()).validate(body)
+.venv\Lib\site-packages\jsonschema\validators.py:449: in validate
+    for error in self.iter_errors(*args, **kwargs):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\jsonschema\validators.py:383: in iter_errors
+    for error in errors:
+                 ^^^^^^
+.venv\Lib\site-packages\jsonschema\_keywords.py:296: in properties
+    yield from validator.descend(
+.venv\Lib\site-packages\jsonschema\validators.py:431: in descend
+    for error in errors:
+                 ^^^^^^
+.venv\Lib\site-packages\jsonschema\_keywords.py:275: in ref
+    yield from validator._validate_reference(ref=ref, instance=instance)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = Draft202012Validator(schema={'$ref': '#/components/schemas/launch'}, format_checker=<FormatChecker checkers=['date', 'date-time', 'email', 'idn-email', 'idn-hostname', 'ipv4', 'ipv6', 'regex', 'time', 'uuid']>)
+ref = '#/components/schemas/launch'
+instance = {'schema_version': '1.0', 'id': '5da64823-c30a-5713-927c-b7fae7bcdb86', 'revision': 1, 'provider_id': '5da64823-c30a-5713-927c-b7fae7bcdb86', ...}
+
+    def _validate_reference(self, ref, instance):
+        if self._ref_resolver is None:
+            try:
+                resolved = self._resolver.lookup(ref)
+            except referencing.exceptions.Unresolvable as err:
+>               raise exceptions._WrappedReferencingError(err) from err
+E               jsonschema.exceptions._WrappedReferencingError: PointerToNowhere: '/components/schemas/launch' does not exist within {'type': 'object', 'additionalProperties': False, 'properties': {'launch': {'$ref': '#/components/schemas/launch'}, 'assessment': {'$ref': '#/components/schemas/assessment'}, 'source_status': {'type': 'string'}, 'source_url': {'type': 'string', 'format': 'uri'}, 'time_precision_unspecified': {'type': 'boolean'}}, 'required': ['launch', 'assessment', 'source_status', 'source_url', 'time_precision_unspecified']}
+
+.venv\Lib\site-packages\jsonschema\validators.py:464: _WrappedReferencingError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  <repo>\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/application/test_history.py: 4 warnings
+tests/application/test_opportunities.py: 4 warnings
+tests/application/test_regressions.py: 4 warnings
+tests/application/test_retrospective.py: 4 warnings
+  <repo>\.venv\Lib\site-packages\skyfield\searchlib.py:224: DeprecationWarning: Setting the dtype on a NumPy array has been deprecated in NumPy 2.5.
+  Instead of changing the dtype on an array x, create a new array with x.view(new_dtype)
+    y.dtype = int8
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/application/test_history.py::test_historical_detail_uses_owned_zip_shared_model_and_never_creates_future_launches
+1 failed, 31 passed, 17 warnings in 10.29s
+

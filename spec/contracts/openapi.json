@@ -3241,6 +3241,74 @@
           }
         }
       }
+    },
+    "/launch-history/{id}": {
+      "get": {
+        "operationId": "historicalLaunchDetail",
+        "summary": "Calculate a retrospective planning scenario at an owned confirmed viewing point from a cached archive record. No sighting inference or upcoming catalog insertion.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "location_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Historical launch and newly calculated planning scenario",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricalLaunchDetail"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Session required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Location not owned or archive record not loaded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unconfirmed location or unsupported pad",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -4869,6 +4937,1207 @@
           "retry_at"
         ],
         "additionalProperties": false
+      },
+      "HistoricalLaunchDetail": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "launch": {
+            "type": "object",
+            "properties": {
+              "schema_version": {
+                "const": "1.0"
+              },
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "revision": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "provider_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "mission_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "pad_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "pad_name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "pad_point": {
+                "type": "object",
+                "properties": {
+                  "latitude_deg": {
+                    "type": "number",
+                    "minimum": -90,
+                    "maximum": 90
+                  },
+                  "longitude_deg": {
+                    "type": "number",
+                    "minimum": -180,
+                    "maximum": 180
+                  },
+                  "altitude_m": {
+                    "type": "number"
+                  },
+                  "frame": {
+                    "const": "WGS84_GEODETIC"
+                  },
+                  "altitude_datum": {
+                    "const": "WGS84_ELLIPSOID"
+                  }
+                },
+                "required": [
+                  "latitude_deg",
+                  "longitude_deg",
+                  "altitude_m",
+                  "frame",
+                  "altitude_datum"
+                ],
+                "additionalProperties": false
+              },
+              "vehicle_variant": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "mission_class": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "recovery_configuration": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "attempt_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "time_precision": {
+                "enum": [
+                  "exact",
+                  "window",
+                  "date",
+                  "unknown"
+                ]
+              },
+              "net": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "Z$",
+                    "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "window": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "start": {
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "Z$",
+                        "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                      },
+                      "end": {
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "Z$",
+                        "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                      }
+                    },
+                    "required": [
+                      "start",
+                      "end"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "date_label": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "date_basis_timezone": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "actual_liftoff": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "Z$",
+                    "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "status": {
+                "enum": [
+                  "scheduled",
+                  "hold",
+                  "scrubbed",
+                  "cancelled",
+                  "completed",
+                  "unknown",
+                  "in_flight"
+                ]
+              },
+              "disabled": {
+                "type": "boolean"
+              },
+              "source_updated_at": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "Z$",
+                    "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "provenance": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "source_url": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "fetched_at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "Z$",
+                      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                    },
+                    "issued_at": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date-time",
+                          "pattern": "Z$",
+                          "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "source_revision": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "license": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "parser_version": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "kind": {
+                      "enum": [
+                        "provider",
+                        "published_path",
+                        "hazard_corridor",
+                        "historical_telemetry",
+                        "reconstructed_estimate",
+                        "official_guidance",
+                        "observed_sighting",
+                        "synthetic"
+                      ]
+                    },
+                    "notes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  },
+                  "required": [
+                    "source_url",
+                    "sha256",
+                    "fetched_at",
+                    "issued_at",
+                    "source_revision",
+                    "license",
+                    "parser_version",
+                    "kind",
+                    "notes"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "schema_version",
+              "id",
+              "revision",
+              "provider_id",
+              "mission_id",
+              "name",
+              "pad_id",
+              "pad_name",
+              "pad_point",
+              "vehicle_variant",
+              "mission_class",
+              "recovery_configuration",
+              "attempt_id",
+              "time_precision",
+              "net",
+              "window",
+              "date_label",
+              "date_basis_timezone",
+              "actual_liftoff",
+              "status",
+              "disabled",
+              "source_updated_at",
+              "provenance"
+            ],
+            "additionalProperties": false,
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "launch.schema.json",
+            "title": "launch"
+          },
+          "assessment": {
+            "type": "object",
+            "properties": {
+              "schema_version": {
+                "const": "1.0"
+              },
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "revision": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "launch_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "launch_revision": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "attempt_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "location_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "location_revision": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "computed_at": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$",
+                "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+              },
+              "as_of": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$",
+                "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+              },
+              "ruleset": {
+                "const": "visibility_rules_v1_1"
+              },
+              "astronomy_version": {
+                "type": "string",
+                "minLength": 1
+              },
+              "ephemeris_sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "input_hashes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              },
+              "evidence_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "profile_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "mode": {
+                "enum": [
+                  "reconstructed",
+                  "official_guidance",
+                  "route_screening",
+                  "unavailable"
+                ]
+              },
+              "advice": {
+                "enum": [
+                  "Worth a look",
+                  "Possible",
+                  "Unlikely",
+                  "Not enough data"
+                ]
+              },
+              "display_status": {
+                "enum": [
+                  "forecast",
+                  "awaiting_confirmation",
+                  "hold",
+                  "scrubbed",
+                  "cancelled",
+                  "completed",
+                  "disabled",
+                  "in_flight"
+                ]
+              },
+              "weather_state": {
+                "enum": [
+                  "clear",
+                  "mixed",
+                  "poor",
+                  "unavailable",
+                  "stale"
+                ]
+              },
+              "fresh": {
+                "type": "boolean"
+              },
+              "conditional": {
+                "type": "boolean"
+              },
+              "all_tracks_agree": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "lighting_flag": {
+                "type": "boolean"
+              },
+              "windows": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "interval": {
+                      "type": "object",
+                      "properties": {
+                        "start": {
+                          "type": "string",
+                          "format": "date-time",
+                          "pattern": "Z$",
+                          "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                        },
+                        "end": {
+                          "type": "string",
+                          "format": "date-time",
+                          "pattern": "Z$",
+                          "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                        }
+                      },
+                      "required": [
+                        "start",
+                        "end"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "t_start_s": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "t_end_s": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "candidate_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "bearing_sectors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "start_deg": {
+                            "type": "number",
+                            "minimum": 0,
+                            "exclusiveMaximum": 360
+                          },
+                          "end_deg": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 360
+                          },
+                          "wraps_north": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "start_deg",
+                          "end_deg",
+                          "wraps_north"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "max_elevation_min_deg": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 90
+                    },
+                    "max_elevation_max_deg": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 90
+                    },
+                    "movement": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "rounded_for_display": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "interval",
+                    "t_start_s",
+                    "t_end_s",
+                    "candidate_ids",
+                    "bearing_sectors",
+                    "max_elevation_min_deg",
+                    "max_elevation_max_deg",
+                    "movement",
+                    "rounded_for_display"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "solar_events": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "local_date": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "timezone": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "sunrise": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date-time",
+                          "pattern": "Z$",
+                          "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "sunset": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date-time",
+                          "pattern": "Z$",
+                          "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "rise_set_state": {
+                      "enum": [
+                        "normal",
+                        "no_rise",
+                        "no_set",
+                        "no_rise_or_set",
+                        "unavailable"
+                      ]
+                    },
+                    "transitions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "at": {
+                            "type": "string",
+                            "format": "date-time",
+                            "pattern": "Z$",
+                            "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                          },
+                          "event": {
+                            "enum": [
+                              "sunrise",
+                              "sunset",
+                              "civil",
+                              "nautical",
+                              "astronomical"
+                            ]
+                          },
+                          "direction": {
+                            "enum": [
+                              "rising",
+                              "setting"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "at",
+                          "event",
+                          "direction"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "local_date",
+                    "timezone",
+                    "sunrise",
+                    "sunset",
+                    "rise_set_state",
+                    "transitions"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "missing_flags": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "reason_codes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              },
+              "limitations": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "provenance": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "source_url": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "fetched_at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "Z$",
+                      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                    },
+                    "issued_at": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date-time",
+                          "pattern": "Z$",
+                          "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "source_revision": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "license": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "parser_version": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "kind": {
+                      "enum": [
+                        "provider",
+                        "published_path",
+                        "hazard_corridor",
+                        "historical_telemetry",
+                        "reconstructed_estimate",
+                        "official_guidance",
+                        "observed_sighting",
+                        "synthetic"
+                      ]
+                    },
+                    "notes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  },
+                  "required": [
+                    "source_url",
+                    "sha256",
+                    "fetched_at",
+                    "issued_at",
+                    "source_revision",
+                    "license",
+                    "parser_version",
+                    "kind",
+                    "notes"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "official_intervals": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "start": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "Z$",
+                      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                    },
+                    "end": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "Z$",
+                      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                    }
+                  },
+                  "required": [
+                    "start",
+                    "end"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "Only the timing supplied by applicable official guidance; no invented elevation or azimuth."
+              },
+              "supported_intervals": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "start": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "Z$",
+                      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                    },
+                    "end": {
+                      "type": "string",
+                      "format": "date-time",
+                      "pattern": "Z$",
+                      "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                    }
+                  },
+                  "required": [
+                    "start",
+                    "end"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "Unrounded, fresh, weather-supported portions used for reminders."
+              },
+              "alternatives": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "t0": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "result": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "t0",
+                    "result"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "planning_scenario": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "model_version": {
+                    "type": "string"
+                  },
+                  "model_sha256": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "launch_time": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "format": "date-time"
+                  },
+                  "watch_interval": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "start": {
+                            "type": "string",
+                            "format": "date-time",
+                            "pattern": "Z$",
+                            "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                          },
+                          "end": {
+                            "type": "string",
+                            "format": "date-time",
+                            "pattern": "Z$",
+                            "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                          }
+                        },
+                        "required": [
+                          "start",
+                          "end"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "directions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "windows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "interval": {
+                          "type": "object",
+                          "properties": {
+                            "start": {
+                              "type": "string",
+                              "format": "date-time",
+                              "pattern": "Z$",
+                              "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                            },
+                            "end": {
+                              "type": "string",
+                              "format": "date-time",
+                              "pattern": "Z$",
+                              "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                            }
+                          },
+                          "required": [
+                            "start",
+                            "end"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "t_start_s": {
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        "t_end_s": {
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        "candidate_ids": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        },
+                        "bearing_sectors": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "start_deg": {
+                                "type": "number",
+                                "minimum": 0,
+                                "exclusiveMaximum": 360
+                              },
+                              "end_deg": {
+                                "type": "number",
+                                "minimum": 0,
+                                "maximum": 360
+                              },
+                              "wraps_north": {
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "start_deg",
+                              "end_deg",
+                              "wraps_north"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "max_elevation_min_deg": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 90
+                        },
+                        "max_elevation_max_deg": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 90
+                        },
+                        "movement": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "rounded_for_display": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "interval",
+                        "t_start_s",
+                        "t_end_s",
+                        "candidate_ids",
+                        "bearing_sectors",
+                        "max_elevation_min_deg",
+                        "max_elevation_max_deg",
+                        "movement",
+                        "rounded_for_display"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "cloud_cover_min_pct": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "cloud_cover_max_pct": {
+                    "type": [
+                      "number",
+                      "null"
+                    ],
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "weather_basis": {
+                    "enum": [
+                      "archived_prelaunch",
+                      "unavailable"
+                    ]
+                  },
+                  "assumptions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "references": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "title": {
+                          "type": "string"
+                        },
+                        "url": {
+                          "type": "string"
+                        },
+                        "supports": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "title",
+                        "url",
+                        "supports"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "uses_actual_liftoff": {
+                    "const": false
+                  },
+                  "uses_sightings": {
+                    "const": false
+                  },
+                  "kind": {
+                    "enum": [
+                      "near_launch_site",
+                      "trajectory_simulation"
+                    ]
+                  },
+                  "pad_distance_m": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "pad_bearing_deg": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 360
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "model_version",
+                  "model_sha256",
+                  "label",
+                  "launch_time",
+                  "watch_interval",
+                  "directions",
+                  "windows",
+                  "cloud_cover_min_pct",
+                  "cloud_cover_max_pct",
+                  "weather_basis",
+                  "assumptions",
+                  "references",
+                  "uses_actual_liftoff",
+                  "uses_sightings"
+                ]
+              }
+            },
+            "required": [
+              "schema_version",
+              "id",
+              "revision",
+              "launch_id",
+              "launch_revision",
+              "attempt_id",
+              "location_id",
+              "location_revision",
+              "computed_at",
+              "as_of",
+              "ruleset",
+              "astronomy_version",
+              "ephemeris_sha256",
+              "input_hashes",
+              "evidence_ids",
+              "profile_ids",
+              "mode",
+              "advice",
+              "display_status",
+              "weather_state",
+              "fresh",
+              "conditional",
+              "all_tracks_agree",
+              "lighting_flag",
+              "windows",
+              "solar_events",
+              "missing_flags",
+              "reason_codes",
+              "limitations",
+              "provenance"
+            ],
+            "additionalProperties": false,
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "assessment.schema.json",
+            "title": "assessment",
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "mode": {
+                      "const": "reconstructed"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "advice": {
+                      "enum": [
+                        "Possible",
+                        "Unlikely",
+                        "Not enough data"
+                      ]
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "mode": {
+                      "enum": [
+                        "route_screening",
+                        "unavailable"
+                      ]
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "advice": {
+                      "const": "Not enough data"
+                    },
+                    "windows": {
+                      "maxItems": 0
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "source_status": {
+            "type": "string"
+          },
+          "source_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "time_precision_unspecified": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "launch",
+          "assessment",
+          "source_status",
+          "source_url",
+          "time_precision_unspecified"
+        ]
       }
     },
     "securitySchemes": {

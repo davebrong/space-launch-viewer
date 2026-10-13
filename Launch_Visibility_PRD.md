@@ -1,5 +1,7 @@
 # Space Launch Visibility by ZIP Code
 
+Historical detail amendment: each past record links to a local `/launches/[id]?past=1` page with a new ZIP-specific planning scenario, shared planning assumptions, directions, supported watch intervals, local sunlight, and prelaunch-only cloud data. Do not apply the future 30-day filter or insert archive records into the upcoming catalog. Unknown legacy time precision may support untimed nearby potential from the recorded day, never a fabricated clock. Distinguish potential visibility, outside modeled coverage, unknown, and flight failure; none establishes a sighting or a saved prelaunch forecast.
+
 Historical browsing amendment: retain location-based Viewable as default, All as the upcoming catalog, and add Past launches for the separate Cape/Kennedy previous-launch archive. Past launches is independent of ZIP eligibility and the 30-day horizon, sorted newest first, with explicit provider total, page retrieval time, original outcome, record-update time and API links. Load older pages on demand through the shared worker/cache and provider budget; never label a partial page as the complete archive.
 
 Implementation specification and feasibility review

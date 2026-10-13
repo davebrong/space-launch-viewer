@@ -9,6 +9,7 @@ from services.api.history import read_page, HEAD_URL
 from services.worker.history import refresh_page
 from tests.application import support as s
 from tests.application.test_schedule_paging import page
+from services.api.main import validate
 
 
 def historical(offset=0, anchor=None):
@@ -97,3 +98,48 @@ def test_history_respects_retry_after_budget_and_preserves_last_good_page():
         before = len(calls)
         refresh_page("", 0, s.AT, client=source)
         assert len(calls) == before and read_page(None, s.AT)["error"] == "BUDGET_DEFERRED"
+
+
+def test_historical_detail_uses_owned_zip_shared_model_and_never_creates_future_launches():
+    body = historical()
+    raw = body["results"][0]
+    raw["name"] = "SYNTHETIC Falcon Heavy | Past launch"
+    raw["net"] = "2025-10-01T12:00:00Z"
+    raw["net_precision"] = {"id": 1}
+    legacy = body["results"][1]
+    legacy["net_precision"] = None
+    legacy["status"] = {"id": 4, "name": "Launch Failure"}
+    with (
+        s.isolated_database(),
+        httpx.Client(transport=httpx.MockTransport(lambda r: httpx.Response(200, json=body))) as source,
+        patch("services.api.main.now", return_value=s.AT),
+    ):
+        refresh_page("", 0, s.AT, client=source)
+        client = s.client()
+        near = s.location(client, "fl-zip")
+        far = s.location(client, "md-zip")
+        path = "/api/v1/launch-history/" + raw["id"]
+        result = client.get(path, params={"location_id": near["id"]})
+        assert result.status_code == 200, result.text
+        doc = result.json()
+        validate("HistoricalLaunchDetail", doc)
+        plan = doc["assessment"]["planning_scenario"]
+        assert plan["kind"] == "near_launch_site"
+        assert plan["watch_interval"] == {"start": "2025-10-01T11:58:00Z", "end": "2025-10-01T12:05:00Z"}
+        assert plan["directions"] and not plan["uses_sightings"]
+        assert plan["cloud_cover_min_pct"] is None
+        distant = client.get(path, params={"location_id": far["id"]}).json()
+        assert distant["assessment"]["planning_scenario"] is None
+        old = client.get("/api/v1/launch-history/" + legacy["id"], params={"location_id": near["id"]}).json()
+        assert old["time_precision_unspecified"] and old["source_status"] == "Launch Failure"
+        assert old["assessment"]["planning_scenario"]["watch_interval"] is None
+        other = s.client()
+        assert other.get(path, params={"location_id": near["id"]}).status_code == 404
+        assert (
+            client.get("/api/v1/launch-history/missing", params={"location_id": near["id"]}).status_code
+            == 404
+        )
+        with db.engine().connect() as conn:
+            assert conn.scalar(select(func.count()).select_from(db.launches)) == 0
+            assert conn.scalar(select(func.count()).select_from(db.assessments)) == 0
+            assert conn.scalar(select(func.count()).select_from(db.budget)) == 1

@@ -1,0 +1,17 @@
+{
+  "run_at": "2026-10-13T20:43:08.812496+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/application",
+    "-q",
+    "-p",
+    "no:cacheprovider"
+  ],
+  "exit_code": 0,
+  "status": "passed",
+  "artifact_path": "evidence/build/logs/history-detail-unit-final-2026-10-13T204308_812496_0000.txt",
+  "sha256": "f2b1170acbe6a307e6859eecc023da43cbf5ad331dfe78b439e9dad75a7bb0ac",
+  "software_sha256": "932b8867012c7d6d5123e6f18f89755f41ce84ff69c46336521f6bf9f5e6321a"
+}

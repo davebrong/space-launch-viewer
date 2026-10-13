@@ -1,0 +1,15 @@
+
+ Container launch-visibility-api-1 Recreate 
+ Container launch-visibility-api-1 Recreated 
+ Container launch-visibility-web-1 Recreate 
+ Container launch-visibility-web-1 Recreated 
+ Container launch-visibility-api-1 Starting 
+ Container launch-visibility-api-1 Started 
+ Container launch-visibility-api-1 Waiting 
+ Container launch-visibility-api-1 Healthy 
+ Container launch-visibility-web-1 Starting 
+ Container launch-visibility-web-1 Started 
+ Container launch-visibility-web-1 Waiting 
+ Container launch-visibility-api-1 Waiting 
+ Container launch-visibility-api-1 Healthy 
+ Container launch-visibility-web-1 Healthy 

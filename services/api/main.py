@@ -379,6 +379,33 @@ def get_launch(id: str, request: Request):
         return as_response(request, owned(conn, db.launches, id)["body"])
 
 
+@app.get("/api/v1/launch-history/{id}")
+def historical_detail(id: str, request: Request, location_id: str):
+    from .history import historical_launch
+    from .assessment import calculate
+
+    with db.engine().connect() as conn:
+        loc = owned(conn, db.locations, location_id, owner(request, conn))["body"]
+        if not loc["confirmed"]:
+            fail("UNCONFIRMED_LOCATION", "Confirm your viewing point first")
+        try:
+            record = historical_launch(conn, id)
+        except ValueError:
+            fail("HISTORY_UNSUPPORTED", "This archive record has no supported Cape/Kennedy pad", 422)
+        if not record:
+            fail("HISTORY_NOT_LOADED", "Open Past launches and load the page containing this launch first", 404)
+        launch, raw = record
+        assessment = calculate(launch, loc, [], [], cached_weather(conn, loc), now())
+        result = {
+            "launch": launch,
+            "assessment": assessment,
+            "source_status": raw["status"]["name"],
+            "source_url": "https://ll.thespacedevs.com/2.3.0/launches/" + launch["id"] + "/",
+            "time_precision_unspecified": raw.get("net_precision") is None,
+        }
+    return as_response(request, result)
+
+
 @app.get("/api/v1/locations/{id}/viewing-opportunities")
 def viewing_opportunities(id: str, request: Request, limit: int = Query(50, ge=1, le=100), cursor: str | None = None):
     from .opportunities import summarize, within_viewing_horizon

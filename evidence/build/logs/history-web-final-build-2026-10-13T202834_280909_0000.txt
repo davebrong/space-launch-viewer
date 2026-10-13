@@ -1,0 +1,90 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 962B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from web.Dockerfile
+#2 transferring dockerfile: 758B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 179B done
+#4 DONE 0.0s
+
+#5 [build 1/7] FROM docker.io/library/node:24-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 374.70kB 0.0s done
+#6 DONE 0.1s
+
+#7 [build 2/7] WORKDIR /app
+#7 CACHED
+
+#8 [build 4/7] COPY apps/web/package.json apps/web/package.json
+#8 CACHED
+
+#9 [build 3/7] COPY package.json package-lock.json ./
+#9 CACHED
+
+#10 [build 5/7] RUN npm ci
+#10 CACHED
+
+#11 [build 6/7] COPY apps/web apps/web
+#11 DONE 0.0s
+
+#12 [build 7/7] RUN npm run build
+#12 0.424 
+#12 0.424 > launch-visibility-workspace@0.1.0 build
+#12 0.424 > npm run build --workspace apps/web
+#12 0.424 
+#12 0.609 
+#12 0.609 > launch-visibility-web@0.1.0 build
+#12 0.609 > next build --webpack
+#12 0.609 
+#12 1.157 ▲ Next.js 16.4.0 (webpack)
+#12 1.212 ✓ Running next.config.ts took 53ms
+#12 1.236 
+#12 1.264   Creating an optimized production build ...
+#12 10.76 ✓ Compiled successfully in 6.3s
+#12 10.76   Running TypeScript ...
+#12 13.47   Finished TypeScript in 2.7s ...
+#12 13.47   Collecting page data using 4 workers ...
+#12 14.09   Generating static pages using 4 workers (0/2) ...
+#12 14.93 ✓ Generating static pages using 4 workers (2/2) in 842ms
+#12 15.22   Finalizing page optimization ...
+#12 15.22   Collecting build traces ...
+#12 33.31 
+#12 33.32 Route (app)
+#12 33.32 ┌ ○ /_not-found
+#12 33.32 └ ƒ /[[...slug]]
+#12 33.32 
+#12 33.32 
+#12 33.32 ○  (Static)   prerendered as static content
+#12 33.32 ƒ  (Dynamic)  server-rendered on demand
+#12 33.32 
+#12 DONE 33.6s
+
+#7 [build 2/7] WORKDIR /app
+#7 CACHED
+
+#13 [stage-1 3/4] COPY --from=build --chown=node:node /app/apps/web/.next/standalone ./
+#13 DONE 0.7s
+
+#14 [stage-1 4/4] COPY --from=build --chown=node:node /app/apps/web/.next/static ./apps/web/.next/static
+#14 DONE 0.1s
+
+#15 exporting to image
+#15 exporting layers
+#15 exporting layers 0.4s done
+#15 writing image sha256:024d59b39c84dac1b7b6bdabc8655b4926f811a47d1c6e292f0f248f56b6f67b done
+#15 naming to docker.io/library/launch-visibility-web done
+#15 DONE 0.4s
+
+#16 resolving provenance for metadata file
+#16 DONE 0.0s
+
+ Image launch-visibility-web Building 
+ Image launch-visibility-web Built 

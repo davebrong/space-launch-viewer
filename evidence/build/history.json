@@ -81,5 +81,226 @@
   },
   "loaded_pages_only": true,
   "visibility_evidence": false,
-  "semantics": "100 records per page; Load older launches follows the archive. No ZIP visibility or 30-day filter. Worker-owned fetches share LL2 budget, snapshots and Retry-After policy. A fixed upper launch time prevents newly completed launches shifting older pages."
+  "semantics": "100 records per page; Load older launches follows the archive. No ZIP visibility or 30-day filter. Worker-owned fetches share LL2 budget, snapshots and Retry-After policy. A fixed upper launch time prevents newly completed launches shifting older pages.",
+  "status": "verified",
+  "reviewed_at": "2026-10-13T20:32:18.650112+00:00",
+  "checks": [
+    {
+      "run_at": "2026-10-13T20:31:02.868823+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "test:browser",
+        "--",
+        "tests/browser/history.spec.ts"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-browser-final-authorized-2026-10-13T203102_868823_0000.txt",
+      "sha256": "b5c9ece27d056f3a90d3550a2b03ab432e63736e897e32cfc1960a3c12091705",
+      "software_sha256": "d85fe78b05b61a51fff2773f0b4eed8261ea051d732415b7f3327bdb3e4042d3"
+    },
+    {
+      "run_at": "2026-10-13T20:30:52.216000+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "test:browser",
+        "--",
+        "tests/browser/history.spec.ts"
+      ],
+      "exit_code": 1,
+      "status": "failed",
+      "artifact_path": "evidence/build/logs/history-browser-final-2026-10-13T203052_216000_0000.txt",
+      "sha256": "f180b3d6ab9b84083fc5feb426e531217d252c6f687ffb0487a4233227c04ab2",
+      "software_sha256": "d85fe78b05b61a51fff2773f0b4eed8261ea051d732415b7f3327bdb3e4042d3"
+    },
+    {
+      "run_at": "2026-10-13T20:26:05.790401+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "test:browser",
+        "--",
+        "tests/browser/history.spec.ts"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-browser-recheck-2026-10-13T202605_790401_0000.txt",
+      "sha256": "62c79bfbcb5274c1bd84df4d38c3859c7153851baad38cf16e92dbb84885b9eb",
+      "software_sha256": "2b78787ae144ff60562fd332b228d50958b570fcaddfa762057d36d463303b33"
+    },
+    {
+      "run_at": "2026-10-13T20:24:46.585550+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "test:browser",
+        "--",
+        "tests/browser/history.spec.ts",
+        "tests/browser/viewable.spec.ts"
+      ],
+      "exit_code": 1,
+      "status": "failed",
+      "artifact_path": "evidence/build/logs/history-browser-2026-10-13T202446_585550_0000.txt",
+      "sha256": "eb4cada6135fed6f16b2e89316f1cf3ee20596ffa218377b4b1ec06d51059556",
+      "software_sha256": "03c7b211b359485b99c40b77c20572a9852dfbc01709d3e7e7d4f44887dd6179"
+    },
+    {
+      "run_at": "2026-10-13T20:24:58.600216+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "api",
+        "worker",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-compose-build-2026-10-13T202458_600216_0000.txt",
+      "sha256": "743bdbf06e73442cc1f4ae579209609b7fbd96865db31955d8997f674c28296f",
+      "software_sha256": "03c7b211b359485b99c40b77c20572a9852dfbc01709d3e7e7d4f44887dd6179"
+    },
+    {
+      "run_at": "2026-10-13T20:26:46.595870+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "lint"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-lint-2026-10-13T202646_595870_0000.txt",
+      "sha256": "e7d7e1cf04dd29ae07238717e25773c0433128f5ceba1069dcd50a9ea6af1f05",
+      "software_sha256": "2b78787ae144ff60562fd332b228d50958b570fcaddfa762057d36d463303b33"
+    },
+    {
+      "run_at": "2026-10-13T20:31:44.096297+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "up",
+        "-d",
+        "--no-deps",
+        "--wait",
+        "api",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-local-deploy-2026-10-13T203144_096297_0000.txt",
+      "sha256": "a86496243e602faca9e13441ae2dae8efbdba88d64b3b0130a8cba1dc1bf2062",
+      "software_sha256": "d85fe78b05b61a51fff2773f0b4eed8261ea051d732415b7f3327bdb3e4042d3"
+    },
+    {
+      "run_at": "2026-10-13T20:27:52.507762+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "tools/check_spec.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-spec-2026-10-13T202752_507762_0000.txt",
+      "sha256": "3d25561fbb27d89d67a9c11b37b0feea842233ebf78509ef65683ca30834b854",
+      "software_sha256": "2b78787ae144ff60562fd332b228d50958b570fcaddfa762057d36d463303b33"
+    },
+    {
+      "run_at": "2026-10-13T20:26:44.411255+00:00",
+      "command": [
+        "npm.cmd",
+        "run",
+        "types"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-types-2026-10-13T202644_411255_0000.txt",
+      "sha256": "bd3633a945b46607513097e2653af7d5ae279752e3d8fe382e165c15f3b6ada8",
+      "software_sha256": "2b78787ae144ff60562fd332b228d50958b570fcaddfa762057d36d463303b33"
+    },
+    {
+      "run_at": "2026-10-13T20:23:17.006635+00:00",
+      "command": [
+        "<repo>\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/application",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-unit-2026-10-13T202317_006635_0000.txt",
+      "sha256": "d5e1467073c256c51939a3033203b113e0793b8091e215fd1f48e11b3e0f50e0",
+      "software_sha256": "ed860bed1d73981d199cb242053949297750b044c6faee75cb4f60608e9f1b53"
+    },
+    {
+      "run_at": "2026-10-13T20:28:34.280909+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-web-final-build-2026-10-13T202834_280909_0000.txt",
+      "sha256": "1a783b88bedcbab6f034092ed403ccbe57738b188817df2a98b4ca656fa9c28b",
+      "software_sha256": "2b78787ae144ff60562fd332b228d50958b570fcaddfa762057d36d463303b33"
+    },
+    {
+      "run_at": "2026-10-13T20:31:01.931901+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "web"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "artifact_path": "evidence/build/logs/history-web-year-build-authorized-2026-10-13T203101_931901_0000.txt",
+      "sha256": "c34232781977a20578482acdfe2981ee9cfa10e79bfce4f2800a61cc3017f26d",
+      "software_sha256": "d85fe78b05b61a51fff2773f0b4eed8261ea051d732415b7f3327bdb3e4042d3"
+    },
+    {
+      "run_at": "2026-10-13T20:30:52.209451+00:00",
+      "command": [
+        "docker",
+        "compose",
+        "build",
+        "web"
+      ],
+      "exit_code": 1,
+      "status": "failed",
+      "artifact_path": "evidence/build/logs/history-web-year-build-2026-10-13T203052_209451_0000.txt",
+      "sha256": "0d965ccd676f8a42f5b2a28bc2961ab1bdd7b60b60dcbb6d720f481c59cf9b9f",
+      "software_sha256": "d85fe78b05b61a51fff2773f0b4eed8261ea051d732415b7f3327bdb3e4042d3"
+    }
+  ],
+  "results": {
+    "application_tests": 31,
+    "spec_checks": 9,
+    "browser_cases_passed": 4,
+    "browser_initial": {
+      "startTime": "2026-10-13T20:24:48.034Z",
+      "duration": 50504.424,
+      "expected": 2,
+      "skipped": 0,
+      "unexpected": 2,
+      "flaky": 0
+    },
+    "browser_history_final": {
+      "startTime": "2026-10-13T20:31:03.845Z",
+      "duration": 21004.441000000003,
+      "expected": 2,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "screenshots": [
+    "evidence/build/history-desktop.png",
+    "evidence/build/history-mobile.png"
+  ]
 }

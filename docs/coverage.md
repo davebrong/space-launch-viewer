@@ -48,3 +48,5 @@ review. Other hosts need a tested adapter before automatic retrieval is supporte
 Within each route/profile family, only the highest immutable revision participates;
 a later rejection supersedes an older approval. Same-revision alternatives remain
 separate candidates. LL2 ingestion now follows all Cape/Kennedy result pages, retains partial results on failure, and records catalogue completeness in `ll2:catalog-status`. Every page/retry shares the rolling budget; broad pages reserve one slot for imminent refreshes. The live audit retrieved 205 entries over three pages. Coverage denominators describe ingested Cape/Kennedy records, not a global census.
+
+Historical archive entries now open local ZIP-specific viewing pages with the same planning models as upcoming launches. Display potential, direction and supported watch times; unknown precision stays untimed, current weather is excluded, and failed launches retain their outcome. Verified with 32 application tests and desktop/mobile detail, reload, navigation and pagination checks. [Historical detail QA](../evidence/build/history-detail.json). Existing model-coverage and empirical release limitations remain.

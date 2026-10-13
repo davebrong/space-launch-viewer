@@ -5,6 +5,7 @@ export type Assessment = components['schemas']['assessment'];
 export type Subscription = components['schemas']['subscription'];
 export type Notice = components['schemas']['notification'];
 export type Evidence = components['schemas']['route-evidence'];
+export type HistoricalLaunchDetail = components['schemas']['HistoricalLaunchDetail'];
 
 export async function apiAll<T>(path: string): Promise<T[]> {
   const rows:T[]=[];

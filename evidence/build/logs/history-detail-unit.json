@@ -1,0 +1,17 @@
+{
+  "run_at": "2026-10-13T20:41:38.004638+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/application",
+    "-q",
+    "-p",
+    "no:cacheprovider"
+  ],
+  "exit_code": 1,
+  "status": "failed",
+  "artifact_path": "evidence/build/logs/history-detail-unit-2026-10-13T204138_004638_0000.txt",
+  "sha256": "9f2e37874224a250ad837e96c81a649c846a8f6370f49ab583c11c8ca792b2de",
+  "software_sha256": "6e12c0d9dfac105febfacb79041411b75cebd3783732055abb250eb862515fe5"
+}

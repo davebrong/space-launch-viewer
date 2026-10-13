@@ -1,10 +1,11 @@
 'use client';
 import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { api, apiAll, localTime, launchTime, launchDay, type Location, type Launch, type Assessment, type Subscription, type Notice, type Evidence, type ViewingOpportunity } from '../lib/client';
 import LaunchDetail, {type Weather} from './LaunchDetail';
 import PastLaunches from './PastLaunches';
+import HistoricalDetail from './HistoricalDetail';
 
 type Preview = {launch_id:string;name:string;advice:string;reason:string;milestones:{notice_type:string;due_at:string;expires_at:string;suppressed:boolean;eligible:boolean;reason:string}[]};
 type Metrics = {pending_jobs:number;provider_requests_last_hour:Record<string,number>;coverage:{all_cape_missions:number;supported_missions:number;unsupported_missions:number;labeled_denominator:number;reconstruction_cap:string}};
@@ -12,7 +13,8 @@ type Source = { id:string;source:string;last_success_at:string|null;next_at:stri
 const nav = [['/launches','Launches'],['/subscriptions','Reminders'],['/notifications','History']];
 
 export default function Viewer() {
-  const path=usePathname(), router=useRouter();
+  const path=usePathname(), router=useRouter(), search=useSearchParams();
+  const historical=search.get('past')==='1';
   const [location,setLocation]=useState<Location|null>(null), [candidate,setCandidate]=useState<Location|null>(null);
   const [zip,setZip]=useState(''), [lat,setLat]=useState(''), [lon,setLon]=useState(''), [manual,setManual]=useState(false);
   const [launches,setLaunches]=useState<Launch[]>([]), [assessment,setAssessment]=useState<Assessment|null>(null), [evidence,setEvidence]=useState<Evidence[]>([]), [weather,setWeather]=useState<Weather|null>(null);
@@ -45,7 +47,7 @@ export default function Viewer() {
     return()=>{window.removeEventListener('online',update);window.removeEventListener('offline',update);};
   },[perform,loadLaunches]);
   useEffect(()=>{
-    if(!ready||!(['/subscriptions','/notifications'].includes(path)||(selectedId&&location?.confirmed)))return;
+    if(!ready||historical||!(['/subscriptions','/notifications'].includes(path)||(selectedId&&location?.confirmed)))return;
     let active=true;
     setBusy(true);setError('');setMessage('');
     if(selectedId){setAssessment(null);setEvidence([]);setWeather(null);}
@@ -61,7 +63,7 @@ export default function Viewer() {
       finally{if(active)setBusy(false);}
     })();
     return()=>{active=false;};
-  },[path,selectedId,location,ready]);
+  },[path,selectedId,location,ready,historical]);
 
   useEffect(()=>{
     if(!ready||!location?.confirmed||path!=='/launches'||filter==='past')return;
@@ -116,8 +118,9 @@ export default function Viewer() {
       <div className="small muted">Schedule: The Space Devs Launch Library 2</div></>}
     </>}
 
-    {selected&&location&&<LaunchDetail launch={selected} location={location} assessment={assessment} evidence={evidence} weather={weather} busy={busy||!online} error={error} onDownload={()=>void perform(download)}/>}
-    {selectedId&&ready&&!busy&&!selected&&<section className="panel"><h1>Launch unavailable</h1><p>This mission is not in the available schedule. Return to the launch list or try again when the source is available.</p><Link href="/launches">View launches</Link></section>}
+    {historical&&selectedId&&location?.confirmed&&<HistoricalDetail key={selectedId+location.id} id={selectedId} location={location} onReturn={()=>setFilter('past')}/>}
+    {!historical&&selected&&location&&<LaunchDetail launch={selected} location={location} assessment={assessment} evidence={evidence} weather={weather} busy={busy||!online} error={error} onDownload={()=>void perform(download)}/>}
+    {!historical&&selectedId&&ready&&!busy&&!selected&&<section className="panel"><h1>Launch unavailable</h1><p>This mission is not in the available schedule. Return to the launch list or try again when the source is available.</p><Link href="/launches">View launches</Link></section>}
 
     {path==='/subscriptions'&&location&&<><div className="page-heading"><div><div className="eyebrow">A LITTLE PLANNING</div><h1>Your reminders</h1><p>In-app notices for supported opportunities at {location.zip?`ZIP ${location.zip}`:'your selected point'}.</p></div></div><div className="detail-grid"><section className="panel"><h2>Reminder preferences</h2><p>By default, only “Worth a look” advice qualifies. Missing or stale data cannot trigger a positive notice.</p><label className="check"><input type="checkbox" checked={possible} onChange={e=>setPossible(e.target.checked)}/> Include Possible opportunities, including approximate reconstructed flight profiles</label><label className="check"><input type="checkbox" checked={overnight} onChange={e=>setOvernight(e.target.checked)}/> Allow overnight notices (10 p.m.–7 a.m. at my viewing location)</label><p>Planning notice: 24 hours before the supported viewing start. Viewing notice: 30 minutes before. New subscriptions receive no past milestones.</p><div className="notice-strip">{overnight?'Overnight delivery is enabled by your explicit choice.':'Overnight notices appear as suppressed in history; they are never delayed until after the opportunity.'}</div><label className="check"><input type="checkbox" checked={all} onChange={e=>{setAll(e.target.checked);setPreviews(null);}}/> All supported launches</label>{!all&&<label>Choose missions<select multiple value={chosenLaunches} onChange={e=>setChosenLaunches(Array.from(e.target.selectedOptions,o=>o.value))}>{launches.map(l=><option key={l.id} value={l.id}>{l.name}</option>)}</select></label>}<button className="secondary" onClick={()=>void perform(async()=>setPreviews(await api<Preview[]>('/subscriptions/preview',{method:'POST',body:JSON.stringify(preferenceBody())})))} disabled={busy||!online}>Preview local reminder times</button> <button onClick={()=>void perform(subscribe)} disabled={busy||!online}>{editing?'Save subscription changes':all?'Save preferences for all supported launches':'Save preferences for selected launches'}</button>{previews&&<div><h3>Preview at your viewing location</h3>{previews.every(p=>p.milestones.length===0)?<p>No supported future reminder times are currently available. Missing evidence does not schedule a notice.</p>:previews.filter(p=>p.milestones.length>0).map(p=><div key={p.launch_id}><h4>{p.name}</h4>{p.milestones.map(m=><p key={m.notice_type}>{m.notice_type.replaceAll('_',' ')} · {localTime(m.due_at,zone)} · {m.suppressed?'suppressed during quiet hours':m.eligible?'eligible':'ineligible or past milestone'}</p>)}</div>)}</div>}<p className="small muted">Window-only launches support conditional planning, without a precise 30-minute notice. Email is disabled; no paid service is required.</p></section><section className="panel"><h2>Saved subscriptions</h2>{subscriptions.length===0?<p>No subscriptions yet.</p>:subscriptions.map(s=><div className="subscription-row" key={s.id}><h3>{s.enabled?'Active':'Unsubscribed'}</h3><p>{s.allow_possible?'Possible and Worth a look':'Worth a look only'} · {s.overnight_opt_in?'overnight allowed':'quiet 22:00–07:00'}</p><button className="text-button" disabled={!s.enabled||busy} onClick={()=>{setEditing(s);setPossible(s.allow_possible);setOvernight(s.overnight_opt_in);setAll(s.all_supported_launches);setChosenLaunches(s.launch_ids);const loc=savedLocations.find(l=>l.id===s.location_id);if(loc)setLocation(loc);setPreviews(null);}}>Edit preferences</button> <button className="secondary" disabled={!s.enabled||busy||!online} onClick={()=>void perform(async()=>{await api('/subscriptions/'+s.id,{method:'DELETE'});setSubscriptions(await api('/subscriptions'));setMessage('Unsubscribed. Pending notices are cancelled.');})}>Unsubscribe immediately</button></div>)}</section></div></>}
 

@@ -1,0 +1,12 @@
+{
+  "run_at": "2026-10-13T20:46:15.371844+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "tools/release_gate.py"
+  ],
+  "exit_code": 2,
+  "status": "failed",
+  "artifact_path": "evidence/build/logs/history-detail-release-2026-10-13T204615_371844_0000.txt",
+  "sha256": "d3c32f2a0cd0170168c309e8050f8e1403c54f0986a8f8acb15486f4842eaaa4",
+  "software_sha256": "666d030a91ec604b2a7fac5f3e486f52763a35cc7504850ef41cb428cf380aeb"
+}

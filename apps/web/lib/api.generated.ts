@@ -373,6 +373,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/launch-history/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Calculate a retrospective planning scenario at an owned confirmed viewing point from a cached archive record. No sighting inference or upcoming catalog insertion. */
+        get: operations["historicalLaunchDetail"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -749,6 +766,278 @@ export interface components {
             refreshing: boolean;
             /** Format: date-time */
             retry_at: string | null;
+        };
+        HistoricalLaunchDetail: {
+            /** launch */
+            launch: {
+                /** @constant */
+                schema_version: "1.0";
+                id: string;
+                revision: number;
+                provider_id: string;
+                mission_id: string | null;
+                name: string;
+                pad_id: string;
+                pad_name: string;
+                pad_point: {
+                    latitude_deg: number;
+                    longitude_deg: number;
+                    altitude_m: number;
+                    /** @constant */
+                    frame: "WGS84_GEODETIC";
+                    /** @constant */
+                    altitude_datum: "WGS84_ELLIPSOID";
+                };
+                vehicle_variant: string | null;
+                mission_class: string | null;
+                recovery_configuration: string | null;
+                attempt_id: string;
+                /** @enum {unknown} */
+                time_precision: "exact" | "window" | "date" | "unknown";
+                net: string | null;
+                window: {
+                    /**
+                     * Format: date-time
+                     * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                     */
+                    start: string;
+                    /**
+                     * Format: date-time
+                     * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                     */
+                    end: string;
+                } | null;
+                date_label: string | null;
+                date_basis_timezone: string | null;
+                actual_liftoff: string | null;
+                /** @enum {unknown} */
+                status: "scheduled" | "hold" | "scrubbed" | "cancelled" | "completed" | "unknown" | "in_flight";
+                disabled: boolean;
+                source_updated_at: string | null;
+                provenance: {
+                    /** Format: uri */
+                    source_url: string;
+                    sha256: string;
+                    /**
+                     * Format: date-time
+                     * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                     */
+                    fetched_at: string;
+                    issued_at: string | null;
+                    source_revision: string | null;
+                    license: string;
+                    parser_version: string;
+                    /** @enum {unknown} */
+                    kind: "provider" | "published_path" | "hazard_corridor" | "historical_telemetry" | "reconstructed_estimate" | "official_guidance" | "observed_sighting" | "synthetic";
+                    notes: string[];
+                }[];
+            };
+            /** assessment */
+            assessment: {
+                /** @constant */
+                schema_version: "1.0";
+                id: string;
+                revision: number;
+                launch_id: string;
+                launch_revision: number;
+                attempt_id: string;
+                location_id: string;
+                location_revision: number;
+                /**
+                 * Format: date-time
+                 * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                 */
+                computed_at: string;
+                /**
+                 * Format: date-time
+                 * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                 */
+                as_of: string;
+                /** @constant */
+                ruleset: "visibility_rules_v1_1";
+                astronomy_version: string;
+                ephemeris_sha256: string;
+                input_hashes: string[];
+                evidence_ids: string[];
+                profile_ids: string[];
+                /** @enum {unknown} */
+                mode: "reconstructed" | "official_guidance" | "route_screening" | "unavailable";
+                /** @enum {unknown} */
+                advice: "Worth a look" | "Possible" | "Unlikely" | "Not enough data";
+                /** @enum {unknown} */
+                display_status: "forecast" | "awaiting_confirmation" | "hold" | "scrubbed" | "cancelled" | "completed" | "disabled" | "in_flight";
+                /** @enum {unknown} */
+                weather_state: "clear" | "mixed" | "poor" | "unavailable" | "stale";
+                fresh: boolean;
+                conditional: boolean;
+                all_tracks_agree: boolean | null;
+                lighting_flag: boolean;
+                windows: {
+                    interval: {
+                        /**
+                         * Format: date-time
+                         * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                         */
+                        start: string;
+                        /**
+                         * Format: date-time
+                         * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                         */
+                        end: string;
+                    };
+                    t_start_s: number;
+                    t_end_s: number;
+                    candidate_ids: string[];
+                    bearing_sectors: {
+                        start_deg: number;
+                        end_deg: number;
+                        wraps_north: boolean;
+                    }[];
+                    max_elevation_min_deg: number;
+                    max_elevation_max_deg: number;
+                    movement: string;
+                    rounded_for_display: boolean;
+                }[];
+                solar_events: {
+                    /** Format: date */
+                    local_date: string;
+                    timezone: string;
+                    sunrise: string | null;
+                    sunset: string | null;
+                    /** @enum {unknown} */
+                    rise_set_state: "normal" | "no_rise" | "no_set" | "no_rise_or_set" | "unavailable";
+                    transitions: {
+                        /**
+                         * Format: date-time
+                         * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                         */
+                        at: string;
+                        /** @enum {unknown} */
+                        event: "sunrise" | "sunset" | "civil" | "nautical" | "astronomical";
+                        /** @enum {unknown} */
+                        direction: "rising" | "setting";
+                    }[];
+                }[];
+                missing_flags: string[];
+                reason_codes: string[];
+                limitations: string[];
+                provenance: {
+                    /** Format: uri */
+                    source_url: string;
+                    sha256: string;
+                    /**
+                     * Format: date-time
+                     * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                     */
+                    fetched_at: string;
+                    issued_at: string | null;
+                    source_revision: string | null;
+                    license: string;
+                    parser_version: string;
+                    /** @enum {unknown} */
+                    kind: "provider" | "published_path" | "hazard_corridor" | "historical_telemetry" | "reconstructed_estimate" | "official_guidance" | "observed_sighting" | "synthetic";
+                    notes: string[];
+                }[];
+                /** @description Only the timing supplied by applicable official guidance; no invented elevation or azimuth. */
+                official_intervals?: {
+                    /**
+                     * Format: date-time
+                     * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                     */
+                    start: string;
+                    /**
+                     * Format: date-time
+                     * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                     */
+                    end: string;
+                }[];
+                /** @description Unrounded, fresh, weather-supported portions used for reminders. */
+                supported_intervals?: {
+                    /**
+                     * Format: date-time
+                     * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                     */
+                    start: string;
+                    /**
+                     * Format: date-time
+                     * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                     */
+                    end: string;
+                }[];
+                alternatives?: {
+                    /** Format: date-time */
+                    t0: string;
+                    result: Record<string, never>;
+                }[];
+                planning_scenario?: {
+                    model_version: string;
+                    model_sha256: string;
+                    label: string;
+                    /** Format: date-time */
+                    launch_time: string | null;
+                    watch_interval: {
+                        /**
+                         * Format: date-time
+                         * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                         */
+                        start: string;
+                        /**
+                         * Format: date-time
+                         * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                         */
+                        end: string;
+                    } | null;
+                    directions: string[];
+                    windows: {
+                        interval: {
+                            /**
+                             * Format: date-time
+                             * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                             */
+                            start: string;
+                            /**
+                             * Format: date-time
+                             * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                             */
+                            end: string;
+                        };
+                        t_start_s: number;
+                        t_end_s: number;
+                        candidate_ids: string[];
+                        bearing_sectors: {
+                            start_deg: number;
+                            end_deg: number;
+                            wraps_north: boolean;
+                        }[];
+                        max_elevation_min_deg: number;
+                        max_elevation_max_deg: number;
+                        movement: string;
+                        rounded_for_display: boolean;
+                    }[];
+                    cloud_cover_min_pct: number | null;
+                    cloud_cover_max_pct: number | null;
+                    /** @enum {unknown} */
+                    weather_basis: "archived_prelaunch" | "unavailable";
+                    assumptions: string[];
+                    references: {
+                        title: string;
+                        url: string;
+                        supports: string;
+                    }[];
+                    /** @constant */
+                    uses_actual_liftoff: false;
+                    /** @constant */
+                    uses_sightings: false;
+                    /** @enum {unknown} */
+                    kind?: "near_launch_site" | "trajectory_simulation";
+                    pad_distance_m?: number;
+                    pad_bearing_deg?: number;
+                } | null;
+            } & (unknown & unknown);
+            source_status: string;
+            /** Format: uri */
+            source_url: string;
+            time_precision_unspecified: boolean;
         };
         /** error */
         "error.schema": {
@@ -3857,6 +4146,57 @@ export interface operations {
             };
             /** @description History changed or cursor invalid */
             409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["error.schema"];
+                };
+            };
+        };
+    };
+    historicalLaunchDetail: {
+        parameters: {
+            query: {
+                location_id: string;
+            };
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Historical launch and newly calculated planning scenario */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HistoricalLaunchDetail"];
+                };
+            };
+            /** @description Session required */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["error.schema"];
+                };
+            };
+            /** @description Location not owned or archive record not loaded */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["error.schema"];
+                };
+            };
+            /** @description Unconfirmed location or unsupported pad */
+            422: {
                 headers: {
                     [name: string]: unknown;
                 };

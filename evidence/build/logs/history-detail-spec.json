@@ -1,0 +1,12 @@
+{
+  "run_at": "2026-10-13T20:42:22.863091+00:00",
+  "command": [
+    "<repo>\\.venv\\Scripts\\python.exe",
+    "tools/check_spec.py"
+  ],
+  "exit_code": 1,
+  "status": "failed",
+  "artifact_path": "evidence/build/logs/history-detail-spec-2026-10-13T204222_863091_0000.txt",
+  "sha256": "2b5f1605770b5fb102f5e152cfd413a3f0547fed2597d0a4a814446cfc8d68b1",
+  "software_sha256": "42b1d8be8891ca893bc15485aba4f558e1380c49bbe4a7ff3b61c3ab35f59fd6"
+}
