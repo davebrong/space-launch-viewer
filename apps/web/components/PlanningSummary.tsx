@@ -1,7 +1,7 @@
 import {localTime, minutesAfterLiftoff, type Assessment} from '../lib/client';
 import SkyBand from './SkyBand';
 
-export default function PlanningSummary({assessment,zone,historical=false}:{assessment:Assessment;zone:string;historical?:boolean}) {
+export default function PlanningSummary({assessment,zone,historical=false,review=false}:{assessment:Assessment;zone:string;historical?:boolean;review?:boolean}) {
   const plan=assessment.planning_scenario;
   if(!plan)return null;
   const watch=plan.watch_interval;
@@ -15,7 +15,7 @@ export default function PlanningSummary({assessment,zone,historical=false}:{asse
   const visible=heading?Boolean(relative):Boolean(watch||nearby);
   const title=visible?`Look ${direction}${heading?' in clear skies':''}`:heading?(plan.horizon_grazing?'Only grazes your horizon':'Stays below your horizon'):'No viewing window in this simulation';
   return <>
-    <div className="eyebrow">YOUR VIEWING PLAN</div>
+    <div className="eyebrow">{review?'LAUNCH-DAY VIEWING PLAN':'YOUR VIEWING PLAN'}</div>
     <h2>{title}</h2>
     {time&&<p className="plan-time">Around {time}</p>}
     {heading&&relative&&!watch&&<p className="plan-time">About {minutesAfterLiftoff(relative)} · {historical?'launch time unspecified in the archive':'launch time to be announced'}</p>}

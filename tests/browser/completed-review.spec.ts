@@ -15,8 +15,13 @@ test('ZIP md-zip can review the completed CRS-35 launch-day plan from its publis
   await page.getByRole('combobox',{name:'Show'}).selectOption('all');
   await expect(card).toContainText('completed');
   await expect(card).toContainText('Clear-sky estimate');
+  // Badges keep the label's sentence case.
+  await expect(card.locator('.badge')).toHaveCSS('text-transform','none');
   await card.click();
   await expect(page.getByText('Launch-day plan',{exact:true})).toBeVisible();
+  // The completed-launch wording does not switch after loading: no review fallback beside a launch-day plan.
+  await expect(page.locator('.advice-panel .eyebrow')).toHaveText('LAUNCH-DAY VIEWING PLAN');
+  await expect(page.getByText('Review this launch',{exact:true})).toHaveCount(0);
   const observer=page.locator('.advice-panel h2');
   // Headings are swept over the published northeast quadrant narrowed to the NAVCEN hazard bearings (15°–60°).
   await expect(observer).toHaveText('Look south → southeast → east → northeast in clear skies');

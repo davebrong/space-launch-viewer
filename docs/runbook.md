@@ -15,15 +15,17 @@ profile or guidance evidence produces “Not enough data”.
 
 ## Linux Compose
 
-Copy `.env.example` to `.env`, supply a random `POSTGRES_PASSWORD`, and set
-`APP_ORIGIN=http://127.0.0.1:3080`. Run `docker compose up --build -d --wait`.
+Copy `.env.example` to `.env` and supply a random `POSTGRES_PASSWORD`. Compose serves
+`http://127.0.0.1:3080` and sets the API origin from `COMPOSE_APP_ORIGIN` (default
+`http://127.0.0.1:3080`), not from `APP_ORIGIN`, so the local `tools/dev.py` origin (3007)
+in the same `.env` cannot break a redeploy. Run `docker compose up --build -d --wait`.
 Open `http://127.0.0.1:3080`. The database has no published port in this deployment.
 The proxy binds loopback only. The Dockerfiles use resolved immutable base digests;
 application containers run without root and with read-only filesystems.
 
 External deployment requires an existing Linux machine, existing reachable name,
 and a working TLS configuration. Replace the local Caddy listener with the existing
-HTTPS listener/certificate configuration, set the exact HTTPS `APP_ORIGIN`, and set
+HTTPS listener/certificate configuration, set the exact HTTPS `COMPOSE_APP_ORIGIN`, and set
 `COOKIE_SECURE=true`. Do not expose the local HTTP listener publicly. No host,
 domain, certificate service subscription or cloud storage is provisioned here.
 

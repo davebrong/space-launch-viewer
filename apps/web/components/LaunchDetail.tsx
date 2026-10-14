@@ -51,11 +51,11 @@ export default function LaunchDetail({launch,location,assessment,evidence,weathe
       <h1>{launch.name.split(' | ').pop()}</h1><p>{launchTime(launch,zone)}</p>
       <span className="small muted">{launch.vehicle_variant} · {launch.actual_liftoff?'Confirmed liftoff':'Published launch time'} · {location.zip?'ZIP '+location.zip:'Your confirmed point'}</span>
     </div><span className="badge">{a?.display_status==='awaiting_confirmation'?'Awaiting launch confirmation':launch.status.replaceAll('_',' ')}</span></section>
-    {review&&<div className="notice-strip"><strong>{plan?'Launch-day plan':'Review this launch'}</strong><span>{plan?' This launch has happened. Here is the viewing plan based on its scheduled liftoff.':' This launch has happened. You can still review its viewing outlook.'}</span></div>}
+    {review&&a&&<div className="notice-strip"><strong>{plan?'Launch-day plan':'Review this launch'}</strong><span>{plan?' This launch has happened. Here is the viewing plan based on its scheduled liftoff.':' This launch has happened. You can still review its viewing outlook.'}</span></div>}
     {a&&missingModel&&!plan&&<div className="notice-strip"><strong>No viewing estimate</strong><span> {flightPlan?`${routeLabel(flightPlan)}. `:''}Without a published route for this mission, the app does not guess its direction from the rocket or destination. Missing route information is not a sign it cannot be seen.</span></div>}
     <div className="detail-grid"><div>
       <section className="panel advice-panel">
-        {plan&&a?<PlanningSummary assessment={a} zone={zone||'UTC'}/>:<><div className="eyebrow">{review?'WHAT COULD HAVE BEEN VISIBLE':'YOUR VIEWING OUTLOOK'}</div><h2>{title}</h2></>}
+        {plan&&a?<PlanningSummary assessment={a} zone={zone||'UTC'} review={review}/>:<><div className="eyebrow">{!a?'VIEWING DETAILS':review?'WHAT COULD HAVE BEEN VISIBLE':'YOUR VIEWING OUTLOOK'}</div><h2>{title}</h2></>}
         {a&&!plan&&<>
           <p>{missingModel?(review?
             'This app cannot reconstruct the viewing window, direction or elevation for this launch from the available evidence. It may still have been visible from your location.':
