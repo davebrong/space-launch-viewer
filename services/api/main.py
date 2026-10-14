@@ -512,7 +512,11 @@ def flight_plan(id: str, request: Request):
         if not row:
             fail("NOT_FOUND", "Launch not found", 404)
         result = read_flight_plan(conn, row, at)
-    if result["state"] in ("pending", "stale"):
+    # Archived launches are not in the worker's catalog walk, so due checks are queued here.
+    due = result["state"] in ("pending", "stale") or (
+        result.get("next_check_at") and utc(result["next_check_at"]) <= at
+    )
+    if due:
         schedule(
             "flight-plan:" + id + ":" + str(int(at.timestamp()) // 21600),
             {"operation": "flight-plan", "launch_id": id},

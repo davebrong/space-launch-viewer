@@ -36,6 +36,8 @@ NSF = "nextspaceflight"
 SOLAR = "navcen-solar"
 NAMES = {NSF: SOURCE_NAME, SOLAR: navcen.SOURCE_NAME}
 PROVIDER = "flight-plan"
+# fetch() records the exception type when a downloaded body fails to parse.
+PARSE_ERRORS = {"ValueError", "JSONDecodeError", "UnicodeDecodeError"}
 RETRY_S = {"found": 21600, "stale": 3600, "not_found": 21600, "ambiguous": 21600, "unavailable": 3600, "blocked": 86400, "queued": 300}
 
 
@@ -265,13 +267,12 @@ def nextspaceflight(pending: list[dict], previous: dict, at: datetime, client=No
         "entries": len(entries),
     }
     results = {}
-    for position, launch in enumerate(pending):
+    for launch in pending:
+        # A deferred page fetch makes no request (the budget is reserved before fetching);
+        # missions needing no request, or with fresh cached pages, still complete.
         result = check_mission(launch, entries, meta, policy, at, client, known_url(previous.get(launch["id"]), launch))
         if result["state"] == "queued":
-            # Budget exhausted: queue this and every remaining mission without requests.
-            queued = source_result(NSF, "queued", at, "Waiting for the shared hourly source request budget.", **meta)
-            results.update({later["id"]: dict(queued) for later in pending[position:]})
-            break
+            result["detail"] = "Waiting for the shared hourly source request budget."
         results[launch["id"]] = result
     return results
 
@@ -291,6 +292,11 @@ def solar(pending: list[dict], at: datetime, client=None) -> dict[str, dict]:
     data = fetch(navcen.SOLAR_URL, "flight-plan:navcen-solar", "navcen", at, 21600, client=client)
     row = cache_row("flight-plan:navcen-solar")
     error = row["error"] if row else "UNAVAILABLE"
+    if error in PARSE_ERRORS:
+        # A changed or invalid file withdraws hazard evidence; the older copy is not reused.
+        return everyone(
+            source_result(SOLAR, "unavailable", at, f"The SOLAR data format is unsupported ({error}); no hazard areas assigned.", parse_error=error)
+        )
     if not data:
         return everyone(source_result(SOLAR, failure_state(error), at, f"The SOLAR hazard data could not be retrieved ({error})."))
     meta = {"source_url": navcen.SOLAR_URL, "data_retrieved_at": data["provenance"]["fetched_at"], "notices": len(data["payload"]["notices"])}

@@ -56,11 +56,13 @@ def conflict(evidence: list[dict]) -> bool:
 
 def combine(launch: dict, at: datetime, sources: dict, changes: list | None = None) -> dict:
     """Build one mission record from independent per-source results."""
-    evidence = [e for s in sources.values() for e in s.get("evidence", [])]
+    # Each evidence item carries its own source's staleness, so a fresh result from
+    # one source never relabels another source's retained evidence as current.
+    evidence = [{**e, "stale": s["state"] == "stale"} for s in sources.values() for e in s.get("evidence", [])]
     states = {s["state"] for s in sources.values()} or {"pending"}
     state = next(s for s in STATES if s in states)
-    if evidence and state not in ("found", "stale"):
-        state = "stale" if "stale" in states else "found"
+    if evidence:
+        state = "stale" if any(e["stale"] for e in evidence) else "found"
     next_checks = [s["next_check_at"] for s in sources.values() if s.get("next_check_at")]
     return {
         "schema_version": "1.0",
@@ -84,7 +86,11 @@ def empty_record(launch: dict, at: datetime, state: str = "pending") -> dict:
 
 def identity(record: dict | None) -> str | None:
     """Calculation-relevant content only, so check timestamps do not defeat caching."""
-    return digest({"state": record["state"], "evidence": record["evidence"], "conflict": record.get("conflict")}) if record else None
+    if not record:
+        return None
+    volatile = ("fetched_at", "source_sha256", "hazard_windows")
+    evidence = [{k: v for k, v in e.items() if k not in volatile} for e in record["evidence"]]
+    return digest({"state": record["state"], "evidence": evidence, "conflict": record.get("conflict")})
 
 
 def current(record: dict | None, launch: dict, at: datetime) -> dict:
@@ -92,8 +98,13 @@ def current(record: dict | None, launch: dict, at: datetime) -> dict:
     if not record or record.get("mission_fingerprint") != fingerprint(launch) or "evidence" not in record:
         return empty_record(launch, at)
     result = dict(record)
-    if result["state"] == "found" and result["checked_at"] and utc(result["checked_at"]) < at - STALE_AFTER:
-        result.update(state="stale", note=NOTES["stale"])
+    # Age comes from each item's retrieval time, not from when the record was rechecked.
+    evidence = [
+        {**e, "stale": bool(e.get("stale")) or utc(e["fetched_at"]) < at - STALE_AFTER} for e in result["evidence"]
+    ]
+    result["evidence"] = evidence
+    if evidence and any(e["stale"] for e in evidence) and result["state"] == "found":
+        result.update(state="stale", note=NOTES["stale"] + (CONFLICT_NOTE if result.get("conflict") else ""))
     return result
 
 

@@ -74,7 +74,8 @@ def mission_key(name: str) -> str:
     # Explicit nomenclature equivalence, not fuzzy matching or a direction rule.
     name = re.sub(r"^(?:dragon\s+)?crs(?:-2)?\s+spx", "crs spx", name)
     name = re.sub(r"^(?:cygnus\s+)?crs(?:-2)?\s+ng", "crs ng", name)
-    return re.sub(r"[^a-z0-9]", "", name)
+    # Keep a separator between digit groups: "11-1" and "1-11" must stay distinct.
+    return re.sub(r"[^a-z0-9.]", "", re.sub(r"(?<=\d)[^a-z0-9]+(?=\d)", ".", name))
 
 
 def sector(direction: str) -> dict:

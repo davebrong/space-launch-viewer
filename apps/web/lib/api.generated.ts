@@ -1217,6 +1217,8 @@ export interface components {
                 message_id?: string;
                 /** @description Human-readable source page; source_url may be a data file. */
                 chart_url?: string;
+                /** @description This item's source could not be refreshed recently; last retrieved information retained. */
+                stale?: boolean;
                 source_mission_name?: string;
                 hazard_windows?: {
                     /**

@@ -23,7 +23,7 @@ export default function HistoricalDetail({id,location,onReturn}:{id:string;locat
   const zone=location.timezone||'UTC';
   const time=(value:string)=>new Intl.DateTimeFormat('en-US',{timeZone:zone,year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(new Date(value));
   const plan=record?.assessment.planning_scenario;
-  const potential=Boolean(plan&&(plan.watch_interval||plan.kind==='near_launch_site'));
+  const potential=Boolean(plan&&(plan.watch_interval||plan.kind==='near_launch_site'||(plan.kind==='published_heading_model'&&plan.relative_window)));
   const cloudy=plan?.cloud_cover_min_pct!==null&&plan?.cloud_cover_min_pct!==undefined&&plan.cloud_cover_min_pct>=75;
   const point=location.zip?`ZIP ${location.zip}`:'your viewing point';
   return <>

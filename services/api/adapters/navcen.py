@@ -59,7 +59,8 @@ def mission_keys(name: str) -> set[str]:
         value = re.sub(r"\bstarlink (?:group )?g?(\d+-\d+)", r"starlink \1", value)
         value = re.sub(r"^(?:dragon )?crs-2 spx-(\d+)", r"crs-\1", value)  # SpaceX CRS-2 numbering
         value = re.sub(r"\s+(?:launch operations?|launch)$", "", value)
-        key = re.sub(r"[^a-z0-9]", "", value)
+        # Keep a separator between digit groups: "11-1" and "1-11" must stay distinct.
+        key = re.sub(r"[^a-z0-9.]", "", re.sub(r"(?<=\d)[^a-z0-9]+(?=\d)", ".", value))
         if len(key) >= 3:
             keys.add(key)
     return keys

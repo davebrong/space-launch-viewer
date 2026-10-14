@@ -282,7 +282,7 @@ def calculate_plan(
     """Published mission heading first, then pad-relative nearby guidance, else nothing."""
     evidence = usable_heading(flight_plan)
     if evidence:
-        evidence = {**evidence, "stale": (flight_plan or {}).get("state") == "stale"}
+        evidence = {**evidence, "stale": bool(evidence.get("stale"))}
         plan = calculate_heading_plan(launch, location, weather, now, evidence, hazard_sectors(flight_plan))
         if plan:
             return plan

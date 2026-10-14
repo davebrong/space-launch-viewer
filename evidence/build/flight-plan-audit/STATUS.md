@@ -80,7 +80,7 @@ Raw bodies stay in the git-ignored `.runtime/flight-plan-audit/` and are not red
 
 See `verification-2026-10-14.json` and `../logs/flight-plan-*-2026-10-14.txt` for exact commands and outputs, including failures.
 
-- **Application tests:** 54 passed. 22 are new in `test_flight_plans.py`: parsers on fixtures, worker discovery with 403/404/429/robots/budget/changed-plan/stale cases, planning semantics, API contracts.
+- **Application tests:** 60 passed. 28 are new in `test_flight_plans.py`: parsers on fixtures, worker discovery with 403/404/429/robots/budget/changed-plan/stale cases, planning semantics, API contracts.
 - **Other checks:** Ruff passed; TypeScript passed; spec check 9/9.
 - **Docker builds:** production `docker compose build api worker web` passed (includes `next build`).
 - **Browser:** Playwright 14/14 (desktop + mobile) against the redeployed stack on port 3080 (`../logs/flight-plan-browser-2026-10-14.txt`).
@@ -91,3 +91,12 @@ See `verification-2026-10-14.json` and `../logs/flight-plan-*-2026-10-14.txt` fo
 - **Parser on real pages:** `parser-real-pages-2026-10-14.json` covers 7 retrieved Next Spaceflight pages (Falcon 9, Falcon Heavy, Vulcan, New Glenn). All parsed. Wrong-mission, wrong-pad and inconsistent-heading negatives were rejected.
 - **Chrome QA:** a manual pass of the live UI found a misleading blended sky band, contradictory "different direction" copy, a raw-data NAVCEN link, exposed hashes and "45–45%" cloud ranges. These were fixed and redeployed.
   - Not addressed: loading-state heading flicker, Title Case badges, and mobile layout, which was not checked in Chrome. Playwright's 360px project did pass.
+- **Code review (independent subagent):** fixed and regression-tested:
+  - Per-source staleness. A fresh second source no longer hides stale retained evidence, and evidence now ages by its own retrieval time.
+  - Undated historical estimates were labelled "not visible".
+  - Archived launches whose check failed or was budget-queued are rechecked when due.
+  - A changed SOLAR format now withdraws hazard evidence instead of reusing the old copy.
+  - The budget stop only queues missions that actually need a request.
+  - Digit-group name collisions ("11-1" vs "1-11") are fixed.
+  - Assessment cache keys ignore refetch hashes.
+- **Final live check:** after the last redeploy: `live-validation-final-2026-10-14.json`.

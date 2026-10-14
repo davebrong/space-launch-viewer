@@ -594,3 +594,103 @@ def test_solar_robots_and_http_failures_are_explicit():
         assert sources["navcen-solar"]["state"] == expected, (solar_robots, solar, sources)
         if "Disallow" in solar_robots[1]:
             assert not any(c.endswith("test.js") for c in upstream.calls)
+
+
+# Review regressions ---------------------------------------------------------------
+
+
+def expire_sources(at=s.AT) -> None:
+    with db.engine().begin() as conn:
+        conn.execute(db.cache.update().where(db.cache.c.key.like("flight-plan:%")).values(next_at=at))
+
+
+def test_one_fresh_source_never_hides_another_sources_stale_evidence():
+    mission = launch("Falcon 9 Block 5 | Fixture Rideshare-5", net="2026-10-19T11:45:00Z")
+    upstream = Upstream(pages={detail(9001): (200, page("Fixture Rideshare-5"))}, solar=(200, SOLAR))
+    with s.isolated_database():
+        run(upstream, [mission])
+        assert records([mission])[mission["id"]]["state"] == "found"
+        upstream.pages[detail(9001)] = (429, "")
+        expire_sources()
+        later = s.AT + timedelta(hours=7)
+        run(upstream, [mission], later)
+        record = records([mission], later)[mission["id"]]
+    heading = next(e for e in record["evidence"] if e["evidence_type"] == "departure_heading")
+    hazard = next(e for e in record["evidence"] if e["evidence_type"] == "hazard_corridor")
+    assert heading["stale"] and not hazard["stale"] and record["state"] == "stale"
+    assert calculate_plan(mission, FLORIDA, [], later, record)["route_basis"]["stale"]
+
+
+def test_evidence_retrieved_long_ago_is_stale_even_if_recently_rechecked():
+    record = {**heading_record("northeast"), "mission_fingerprint": None}
+    mission = launch("Falcon 9 Block 5 | Fixture Rideshare-5")
+    from services.api.flight_plans import current
+
+    record.update(
+        mission_fingerprint=fingerprint(mission), checked_at=stamp(s.AT + timedelta(days=3)), conflict=False, note="x"
+    )
+    aged = current(record, mission, s.AT + timedelta(days=3))
+    assert aged["state"] == "stale" and aged["evidence"][0]["stale"]
+    assert calculate_plan(mission, MARYLAND, [], s.AT, aged)["route_basis"]["stale"]
+
+
+def test_changed_solar_format_withdraws_hazard_evidence():
+    mission = launch("Falcon 9 Block 5 | Fixture Rideshare-5", net="2026-10-19T11:45:00Z")
+    upstream = Upstream(index=(200, "<html></html>"), solar=(200, SOLAR))
+    with s.isolated_database():
+        run(upstream, [mission])
+        assert records([mission])[mission["id"]]["evidence"]
+        upstream.solar = (200, "var chris = {redesigned")
+        expire_sources()
+        later = s.AT + timedelta(hours=7)
+        run(upstream, [mission], later)
+        record = records([mission], later)[mission["id"]]
+    solar_source = next(x for x in record["sources"] if x["source"] == "navcen-solar")
+    assert solar_source["state"] == "unavailable" and solar_source["parse_error"]
+    assert not record["evidence"]
+
+
+def test_budget_exhaustion_only_queues_missions_that_need_a_request():
+    missions = [
+        launch("Falcon 9 Block 5 | Fixture Rideshare-5"),
+        launch("Vulcan VC4S | USSF-9999", "Space Launch Complex 41", net=stamp(s.AT + timedelta(days=20))),
+        launch("Falcon 9 Block 5 | Not Listed Anywhere-1", net=stamp(s.AT + timedelta(days=25))),
+    ]
+    upstream = Upstream(pages={detail(9001): (200, page("Fixture Rideshare-5")), detail(9002): (200, page("USSF-9999", "SLC-41", "East"))})
+    with s.isolated_database():
+        with db.engine().begin() as conn:
+            conn.execute(db.budget.insert(), [{"provider": "flight-plan", "requested_at": s.AT}] * 9)
+        run(upstream, missions)
+        states = [records(missions)[m["id"]]["state"] for m in missions]
+    assert states == ["found", "queued", "not_found"]
+
+
+def test_digit_groups_do_not_collide_after_normalization():
+    assert mission_key("Starlink Group 11-1") != mission_key("Starlink Group 1-11")
+    assert not navcen.mission_keys("Falcon 9 | Starlink Group 11-1") & navcen.mission_keys("Starlink g1-11")
+    assert navcen.mission_keys("Falcon 9 | Starlink Group 11-1") & navcen.mission_keys("Starlink g11-1")
+
+
+def test_archived_or_failed_checks_are_requeued_when_due():
+    with s.isolated_database():
+        c = s.client()
+        doc = s.launch()
+        record = {
+            "schema_version": "1.0",
+            "launch_id": doc["id"],
+            "state": "unavailable",
+            "checked_at": stamp(s.AT),
+            "next_check_at": stamp(s.AT),
+            "mission_fingerprint": fingerprint(doc),
+            "evidence": [],
+            "sources": [],
+            "changes": [],
+            "trajectory_available": False,
+            "conflict": False,
+            "note": "x",
+        }
+        with db.engine().begin() as conn:
+            conn.execute(db.cache.insert().values(key=KEY + doc["id"], body=record, failures=0))
+        assert c.get(f"/api/v1/launches/{doc['id']}/flight-plan").json()["state"] == "unavailable"
+        with db.engine().connect() as conn:
+            assert conn.scalar(select(func.count()).select_from(db.jobs)) == 1

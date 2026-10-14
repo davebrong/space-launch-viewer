@@ -13,7 +13,7 @@ export default function FlightPlanPanel({plan,zone,error,complete=false}:{plan:F
         <h3>{evidenceLabels[e.evidence_type]||e.evidence_type.replaceAll('_',' ')}{e.departure_direction?`: ${e.departure_direction} from the pad`:''}</h3>
         <p>{e.note}</p>
         {e.hazard_bearing_sector_deg&&e.hazard_distance_km&&<p>Published hazard areas lie toward compass bearings {e.hazard_bearing_sector_deg.start_deg}°–{e.hazard_bearing_sector_deg.end_deg}°{e.hazard_bearing_sector_deg.wraps_north?' across north':''} ({compass(e.hazard_bearing_sector_deg.start_deg)}–{compass(e.hazard_bearing_sector_deg.end_deg)}) from the pad, {e.hazard_distance_km.min}–{e.hazard_distance_km.max} km away{e.message_id?` (notice ${e.message_id})`:''}. Altitude and timed visibility are unresolved.</p>}
-        <p><a href={e.chart_url||e.source_url} target="_blank" rel="noreferrer">{e.source_name} ↗</a> · retrieved {localTime(e.fetched_at,zone)}</p>
+        <p><a href={e.chart_url||e.source_url} target="_blank" rel="noreferrer">{e.source_name} ↗</a> · retrieved {localTime(e.fetched_at,zone)}{e.stale?' · not recently refreshed':''}</p>
         {!e.trajectory_available&&<p className="small muted">Not a timed trajectory: no published altitude or position over time.</p>}
         <details><summary>Source data & hash</summary><p className="small"><a href={e.source_url} target="_blank" rel="noreferrer">Retrieved data ↗</a> · parser {e.parser_version}</p><code>{e.source_sha256}</code></details>
       </div>)}

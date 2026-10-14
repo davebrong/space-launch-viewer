@@ -6811,6 +6811,10 @@
                   "type": "string",
                   "description": "Human-readable source page; source_url may be a data file."
                 },
+                "stale": {
+                  "type": "boolean",
+                  "description": "This item's source could not be refreshed recently; last retrieved information retained."
+                },
                 "source_mission_name": {
                   "type": "string"
                 },

@@ -1,43 +1,7 @@
 [
   {
-    "id": "acceptance",
-    "run_at": "2026-10-14T12:47:34.160948+00:00",
-    "command": [
-      "<repo>\\.venv\\Scripts\\python.exe",
-      "-m",
-      "implementation.checks",
-      "full-release"
-    ],
-    "exit_code": 1,
-    "status": "failed",
-    "artifact_path": "evidence/build/logs/flight-plan-acceptance-2026-10-14.txt",
-    "sha256": "17466f76cea396bbd691133f38f0e620e4232957496d735d45733c52198f6cc4",
-    "env": {
-      "LV_BROWSER_URL": "http://127.0.0.1:3080"
-    },
-    "note": "123 passed, 1 failed (backup-restore: no verified off-host destination; same failure as the 2026-10-13 baseline). Browser journeys ran against the deployed stack."
-  },
-  {
-    "id": "release-software",
-    "run_at": "2026-10-14T12:52:21.498770+00:00",
-    "command": [
-      "<repo>\\.venv\\Scripts\\python.exe",
-      "tools/release_gate.py",
-      "--stage",
-      "software"
-    ],
-    "exit_code": 2,
-    "status": "failed",
-    "artifact_path": "evidence/build/logs/flight-plan-release-software-2026-10-14.txt",
-    "sha256": "af0adf18c2a739c8633506d83e3d91aa1e780e5e324943debfccf84f2400e852",
-    "env": {
-      "LV_BROWSER_URL": "http://127.0.0.1:3080"
-    },
-    "note": "Exit 2: G-SOFTWARE, G-REAL, G-UPCOMING, G-GUIDANCE, G-BACKUP blocked; G-PILOT empirical and separate."
-  },
-  {
     "id": "unit",
-    "run_at": "2026-10-14T12:52:29.349021+00:00",
+    "run_at": "2026-10-14T13:02:16.207411+00:00",
     "command": [
       "<repo>\\.venv\\Scripts\\python.exe",
       "-m",
@@ -50,11 +14,11 @@
     "exit_code": 0,
     "status": "passed",
     "artifact_path": "evidence/build/logs/flight-plan-unit-2026-10-14.txt",
-    "sha256": "1160ffc6915cd74066e9a375947bcecc42b47927e2de1d55bedde8cb12f5ab99"
+    "sha256": "e6358a7c7f9be220e476f6dbc9fbe7466f76a080c6817cb269a4e74543ebf160"
   },
   {
     "id": "lint",
-    "run_at": "2026-10-14T12:52:43.476051+00:00",
+    "run_at": "2026-10-14T13:02:30.873981+00:00",
     "command": [
       "<repo>\\.venv\\Scripts\\python.exe",
       "-m",
@@ -73,7 +37,7 @@
   },
   {
     "id": "types",
-    "run_at": "2026-10-14T12:52:43.572955+00:00",
+    "run_at": "2026-10-14T13:02:30.965498+00:00",
     "command": [
       "npm.cmd",
       "run",
@@ -86,7 +50,7 @@
   },
   {
     "id": "spec",
-    "run_at": "2026-10-14T12:52:46.069335+00:00",
+    "run_at": "2026-10-14T13:02:33.364188+00:00",
     "command": [
       "<repo>\\.venv\\Scripts\\python.exe",
       "tools/check_spec.py"
@@ -95,5 +59,41 @@
     "status": "passed",
     "artifact_path": "evidence/build/logs/flight-plan-spec-2026-10-14.txt",
     "sha256": "e919ff6ce3470b6dd895219d842c54a6bd7a264b5064ba6285312dee2ae1f19c"
+  },
+  {
+    "id": "acceptance",
+    "run_at": "2026-10-14T13:02:35.093579+00:00",
+    "command": [
+      "<repo>\\.venv\\Scripts\\python.exe",
+      "-m",
+      "implementation.checks",
+      "full-release"
+    ],
+    "exit_code": 1,
+    "status": "failed",
+    "artifact_path": "evidence/build/logs/flight-plan-acceptance-2026-10-14.txt",
+    "sha256": "17466f76cea396bbd691133f38f0e620e4232957496d735d45733c52198f6cc4",
+    "env": {
+      "LV_BROWSER_URL": "http://127.0.0.1:3080"
+    },
+    "note": "123 passed, 1 failed (backup-restore: no verified off-host destination; same as the 2026-10-13 baseline). Includes Playwright browser journeys 14/14 against the deployed stack."
+  },
+  {
+    "id": "release-software",
+    "run_at": "2026-10-14T13:07:17.986116+00:00",
+    "command": [
+      "<repo>\\.venv\\Scripts\\python.exe",
+      "tools/release_gate.py",
+      "--stage",
+      "software"
+    ],
+    "exit_code": 2,
+    "status": "failed",
+    "artifact_path": "evidence/build/logs/flight-plan-release-software-2026-10-14.txt",
+    "sha256": "af0adf18c2a739c8633506d83e3d91aa1e780e5e324943debfccf84f2400e852",
+    "env": {
+      "LV_BROWSER_URL": "http://127.0.0.1:3080"
+    },
+    "note": "Exit 2: G-SOFTWARE, G-REAL, G-UPCOMING, G-GUIDANCE, G-BACKUP blocked; G-PILOT empirical and separate."
   }
 ]

@@ -1,0 +1,504 @@
+{
+ "run_at": "2026-10-14T13:07:26.831087+00:00",
+ "base": "http://127.0.0.1:3080",
+ "origin_header": "http://127.0.0.1:3080",
+ "zips": {
+  "md-zip": {
+   "point": {
+    "frame": "WGS84_GEODETIC",
+    "altitude_m": 0,
+    "latitude_deg": 39.0,
+    "longitude_deg": -77.0,
+    "altitude_datum": "WGS84_ELLIPSOID"
+   },
+   "timezone": "America/New_York",
+   "opportunity_rows": 205,
+   "viewable_count": 1,
+   "missions": {
+    "Dragon CRS-35": {
+     "list_summary": {
+      "launch_id": "bf2c3027-a314-403e-a416-2bfd5d165ad1",
+      "viewable": false,
+      "label": "Clear-sky estimate",
+      "basis": "published_heading",
+      "directions": [
+       "south",
+       "southeast",
+       "east",
+       "northeast"
+      ],
+      "watch_interval": {
+       "start": "2026-10-13T10:33:00Z",
+       "end": "2026-10-13T10:45:00Z"
+      },
+      "relative_window": {
+       "t_start_s": 0,
+       "t_end_s": 660
+      },
+      "coverage_state": "found",
+      "weather_note": null
+     },
+     "assessment_status": 200,
+     "assessment_error": null,
+     "plan": {
+      "kind": "published_heading_model",
+      "label": "Clear-sky estimate from published heading",
+      "directions": [
+       "south",
+       "southeast",
+       "east",
+       "northeast"
+      ],
+      "departure_direction": null,
+      "watch_interval": {
+       "end": "2026-10-13T10:45:00Z",
+       "start": "2026-10-13T10:33:00Z"
+      },
+      "relative_window": {
+       "t_end_s": 660,
+       "t_start_s": 0
+      },
+      "max_elevation_deg": {
+       "max_deg": 85.82273793646627,
+       "min_deg": 6.145041373895323
+      },
+      "candidates": {
+       "evaluated": 15,
+       "with_view": 15
+      },
+      "horizon_grazing": false,
+      "route_basis": {
+       "stale": false,
+       "fetched_at": "2026-10-14T12:17:55Z",
+       "source_url": "https://nextspaceflight.com/launches/details/6917/",
+       "source_name": "Next Spaceflight",
+       "evidence_type": "departure_heading",
+       "swept_sector_deg": {
+        "end_deg": 60.0,
+        "start_deg": 15.0
+       },
+       "departure_direction": "northeast",
+       "departure_sector_deg": {
+        "end_deg": 90.0,
+        "start_deg": 0.0
+       },
+       "narrowed_by_hazard_areas": true
+      },
+      "pad_distance_m": null,
+      "coverage_state": null,
+      "missing_coverage_label": null
+     }
+    },
+    "Bandwagon-5": {
+     "list_summary": {
+      "launch_id": "3b430f81-0ff1-4d85-8a1a-cef0de326198",
+      "viewable": false,
+      "label": "Grazes your horizon (modeled)",
+      "basis": "published_heading",
+      "directions": [],
+      "watch_interval": null,
+      "relative_window": null,
+      "coverage_state": "found",
+      "weather_note": null
+     },
+     "assessment_status": 200,
+     "assessment_error": null,
+     "plan": {
+      "kind": "published_heading_model",
+      "label": "Clear-sky estimate from published heading",
+      "directions": [],
+      "departure_direction": null,
+      "watch_interval": null,
+      "relative_window": null,
+      "max_elevation_deg": null,
+      "candidates": {
+       "evaluated": 15,
+       "with_view": 0
+      },
+      "horizon_grazing": true,
+      "route_basis": {
+       "stale": false,
+       "fetched_at": "2026-10-14T12:17:55Z",
+       "source_url": "https://nextspaceflight.com/launches/details/8362/",
+       "source_name": "Next Spaceflight",
+       "evidence_type": "departure_heading",
+       "swept_sector_deg": {
+        "end_deg": 180.0,
+        "start_deg": 90.0
+       },
+       "departure_direction": "southeast",
+       "departure_sector_deg": {
+        "end_deg": 180.0,
+        "start_deg": 90.0
+       },
+       "narrowed_by_hazard_areas": false
+      },
+      "pad_distance_m": null,
+      "coverage_state": null,
+      "missing_coverage_label": null
+     }
+    }
+   }
+  },
+  "fl-zip": {
+   "point": {
+    "frame": "WGS84_GEODETIC",
+    "altitude_m": 0,
+    "latitude_deg": 29.0,
+    "longitude_deg": -81.0,
+    "altitude_datum": "WGS84_ELLIPSOID"
+   },
+   "timezone": "America/New_York",
+   "opportunity_rows": 205,
+   "viewable_count": 2,
+   "missions": {
+    "Dragon CRS-35": {
+     "list_summary": {
+      "launch_id": "bf2c3027-a314-403e-a416-2bfd5d165ad1",
+      "viewable": false,
+      "label": "Clear-sky estimate",
+      "basis": "published_heading",
+      "directions": [
+       "southeast",
+       "east",
+       "northeast"
+      ],
+      "watch_interval": {
+       "start": "2026-10-13T10:33:00Z",
+       "end": "2026-10-13T10:45:00Z"
+      },
+      "relative_window": {
+       "t_start_s": 0,
+       "t_end_s": 660
+      },
+      "coverage_state": "found",
+      "weather_note": null
+     },
+     "assessment_status": 200,
+     "assessment_error": null,
+     "plan": {
+      "kind": "published_heading_model",
+      "label": "Clear-sky estimate from published heading",
+      "directions": [
+       "southeast",
+       "east",
+       "northeast"
+      ],
+      "departure_direction": null,
+      "watch_interval": {
+       "end": "2026-10-13T10:45:00Z",
+       "start": "2026-10-13T10:33:00Z"
+      },
+      "relative_window": {
+       "t_end_s": 660,
+       "t_start_s": 0
+      },
+      "max_elevation_deg": {
+       "max_deg": 46.44602817789073,
+       "min_deg": 23.697353240551102
+      },
+      "candidates": {
+       "evaluated": 15,
+       "with_view": 15
+      },
+      "horizon_grazing": false,
+      "route_basis": {
+       "stale": false,
+       "fetched_at": "2026-10-14T12:17:55Z",
+       "source_url": "https://nextspaceflight.com/launches/details/6917/",
+       "source_name": "Next Spaceflight",
+       "evidence_type": "departure_heading",
+       "swept_sector_deg": {
+        "end_deg": 60.0,
+        "start_deg": 15.0
+       },
+       "departure_direction": "northeast",
+       "departure_sector_deg": {
+        "end_deg": 90.0,
+        "start_deg": 0.0
+       },
+       "narrowed_by_hazard_areas": true
+      },
+      "pad_distance_m": null,
+      "coverage_state": null,
+      "missing_coverage_label": null
+     }
+    },
+    "Bandwagon-5": {
+     "list_summary": {
+      "launch_id": "3b430f81-0ff1-4d85-8a1a-cef0de326198",
+      "viewable": true,
+      "label": "Clear-sky estimate",
+      "basis": "published_heading",
+      "directions": [
+       "southeast"
+      ],
+      "watch_interval": {
+       "start": "2026-10-19T10:30:00Z",
+       "end": "2026-10-19T10:41:00Z"
+      },
+      "relative_window": {
+       "t_start_s": 0,
+       "t_end_s": 660
+      },
+      "coverage_state": "found",
+      "weather_note": "Forecast 45% cloud cover"
+     },
+     "assessment_status": 200,
+     "assessment_error": null,
+     "plan": {
+      "kind": "published_heading_model",
+      "label": "Clear-sky estimate from published heading",
+      "directions": [
+       "southeast"
+      ],
+      "departure_direction": null,
+      "watch_interval": {
+       "end": "2026-10-19T10:41:00Z",
+       "start": "2026-10-19T10:30:00Z"
+      },
+      "relative_window": {
+       "t_end_s": 660,
+       "t_start_s": 0
+      },
+      "max_elevation_deg": {
+       "max_deg": 26.309835799282535,
+       "min_deg": 17.70542599529557
+      },
+      "candidates": {
+       "evaluated": 15,
+       "with_view": 15
+      },
+      "horizon_grazing": false,
+      "route_basis": {
+       "stale": false,
+       "fetched_at": "2026-10-14T12:17:55Z",
+       "source_url": "https://nextspaceflight.com/launches/details/8362/",
+       "source_name": "Next Spaceflight",
+       "evidence_type": "departure_heading",
+       "swept_sector_deg": {
+        "end_deg": 180.0,
+        "start_deg": 90.0
+       },
+       "departure_direction": "southeast",
+       "departure_sector_deg": {
+        "end_deg": 180.0,
+        "start_deg": 90.0
+       },
+       "narrowed_by_hazard_areas": false
+      },
+      "pad_distance_m": null,
+      "coverage_state": null,
+      "missing_coverage_label": null
+     }
+    }
+   }
+  }
+ },
+ "flight_plans": {
+  "Dragon CRS-35": {
+   "launch": {
+    "name": "Falcon 9 Block 5 | Dragon CRS-2 SpX-35",
+    "net": "2026-10-13T10:33:44Z",
+    "status": "completed",
+    "pad_id": "80",
+    "actual_liftoff": null
+   },
+   "state": "found",
+   "conflict": false,
+   "departure": {
+    "note": "Mission-specific route information was found. See its evidence type and source.",
+    "changes": [],
+    "launch_id": "bf2c3027-a314-403e-a416-2bfd5d165ad1",
+    "checked_at": "2026-10-14T13:02:08Z",
+    "next_check_at": "2026-10-14T19:02:08Z",
+    "schema_version": "1.0",
+    "mission_fingerprint": "ce52c20fa1e4271437ec7f2e9bfff5ffeb4a085403e728ca1ce67b971682723e",
+    "trajectory_available": false
+   },
+   "evidence": [
+    {
+     "evidence_type": "departure_heading",
+     "source_name": "Next Spaceflight",
+     "source_url": "https://nextspaceflight.com/launches/details/6917/",
+     "fetched_at": "2026-10-14T12:17:55Z",
+     "departure_direction": "northeast",
+     "departure_sector_deg": {
+      "end_deg": 90.0,
+      "start_deg": 0.0
+     },
+     "message_id": null,
+     "hazard_bearing_sector_deg": null,
+     "hazard_distance_km": null
+    },
+    {
+     "evidence_type": "hazard_corridor",
+     "source_name": "US Coast Guard NAVCEN SOLAR",
+     "source_url": "https://www.navcen.uscg.gov/sites/default/files/tmp/test.js",
+     "fetched_at": "2026-10-14T12:17:55Z",
+     "departure_direction": null,
+     "departure_sector_deg": null,
+     "message_id": "CGD-SE BNM 9079-26",
+     "hazard_bearing_sector_deg": {
+      "end_deg": 60,
+      "start_deg": 15,
+      "wraps_north": false
+     },
+     "hazard_distance_km": {
+      "max": 552,
+      "min": 35
+     }
+    }
+   ],
+   "sources": [
+    {
+     "source": "navcen-solar",
+     "state": "found",
+     "detail": "Published launch hazard notice CGD-SE BNM 9079-26 names this mission.",
+     "checked_at": "2026-10-14T13:02:08Z"
+    },
+    {
+     "source": "nextspaceflight",
+     "state": "found",
+     "detail": "Published general departure direction found.",
+     "checked_at": "2026-10-14T13:02:08Z"
+    }
+   ]
+  },
+  "Bandwagon-5": {
+   "launch": {
+    "name": "Falcon 9 Block 5 | Bandwagon 5 (Dedicated Mid-Inclination Rideshare)",
+    "net": "2026-10-19T10:30:00Z",
+    "status": "scheduled",
+    "pad_id": "80",
+    "actual_liftoff": null
+   },
+   "state": "found",
+   "conflict": false,
+   "departure": {
+    "note": "Mission-specific route information was found. See its evidence type and source.",
+    "changes": [],
+    "launch_id": "3b430f81-0ff1-4d85-8a1a-cef0de326198",
+    "checked_at": "2026-10-14T13:02:08Z",
+    "next_check_at": "2026-10-14T19:02:08Z",
+    "schema_version": "1.0",
+    "mission_fingerprint": "0d2d74614e1318cd9cf84c84856ae7a30f8c79646e2bff712cd06cf1446cc1cf",
+    "trajectory_available": false
+   },
+   "evidence": [
+    {
+     "evidence_type": "departure_heading",
+     "source_name": "Next Spaceflight",
+     "source_url": "https://nextspaceflight.com/launches/details/8362/",
+     "fetched_at": "2026-10-14T12:17:55Z",
+     "departure_direction": "southeast",
+     "departure_sector_deg": {
+      "end_deg": 180.0,
+      "start_deg": 90.0
+     },
+     "message_id": null,
+     "hazard_bearing_sector_deg": null,
+     "hazard_distance_km": null
+    }
+   ],
+   "sources": [
+    {
+     "source": "navcen-solar",
+     "state": "not_found",
+     "detail": "No SOLAR launch hazard notice names this mission.",
+     "checked_at": "2026-10-14T13:02:08Z"
+    },
+    {
+     "source": "nextspaceflight",
+     "state": "found",
+     "detail": "Published general departure direction found.",
+     "checked_at": "2026-10-14T13:02:08Z"
+    }
+   ]
+  }
+ },
+ "session": {
+  "status": 204,
+  "csrf_source": "header"
+ },
+ "coverage": {
+  "missions": 205,
+  "with_route_information": 4,
+  "with_timed_path": 0,
+  "by_state": {
+   "found": 4,
+   "stale": 0,
+   "ambiguous": 0,
+   "unavailable": 0,
+   "blocked": 0,
+   "queued": 0,
+   "pending": 0,
+   "not_found": 201
+  },
+  "by_evidence_type": {
+   "departure_heading": 4,
+   "hazard_corridor": 1
+  },
+  "by_vehicle_family": {
+   "Atlas V": {
+    "missions": 6,
+    "with_route_information": 0
+   },
+   "Falcon 9": {
+    "missions": 82,
+    "with_route_information": 3
+   },
+   "Falcon Heavy": {
+    "missions": 12,
+    "with_route_information": 0
+   },
+   "New Glenn": {
+    "missions": 30,
+    "with_route_information": 0
+   },
+   "Nova": {
+    "missions": 1,
+    "with_route_information": 0
+   },
+   "Space Launch System": {
+    "missions": 5,
+    "with_route_information": 0
+   },
+   "Starship": {
+    "missions": 3,
+    "with_route_information": 0
+   },
+   "Terran R": {
+    "missions": 4,
+    "with_route_information": 0
+   },
+   "Unknown vehicle": {
+    "missions": 2,
+    "with_route_information": 0
+   },
+   "Vulcan": {
+    "missions": 60,
+    "with_route_information": 1
+   }
+  },
+  "by_time_precision": {
+   "date": {
+    "missions": 3,
+    "with_route_information": 1
+   },
+   "exact": {
+    "missions": 2,
+    "with_route_information": 2
+   },
+   "unknown": {
+    "missions": 200,
+    "with_route_information": 1
+   }
+  },
+  "note": "Route information means a mission-specific published heading, hazard area or path. Headings and hazard areas are not timed trajectories; missing coverage is not a negative visibility result.",
+  "computed_at": "2026-10-14T13:07:27Z",
+  "scope": "Cached Cape Canaveral/Kennedy schedule"
+ },
+ "privacy_delete_status": 204,
+ "completed_at": "2026-10-14T13:07:27.728482+00:00"
+}
