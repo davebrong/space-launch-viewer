@@ -7,7 +7,7 @@ departure heading or hazard area is never a timed, altitude-bearing path.
 
 from __future__ import annotations
 
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 
 from sqlalchemy import select
 
@@ -17,6 +17,13 @@ from services.api import db
 KEY = "flight-plan:launch:"
 CONFLICT_NOTE = " The reported departure heading points away from the published hazard areas, so no viewing estimate uses it."
 STALE_AFTER = timedelta(hours=24)
+# Hazard notices and route reports appear days before launch, so a mission dated
+# further out (or undated) is not expected to have published route information yet.
+NOTICE_WINDOW = timedelta(days=7)
+NOT_YET_NOTE = (
+    "Route sources usually publish a few days before launch. This mission is not dated within the next "
+    "7 days, so no route information is expected yet; sources are rechecked as the date firms up."
+)
 # Ordered by precedence when combining source states into one mission state.
 STATES = ("found", "stale", "ambiguous", "unavailable", "blocked", "queued", "pending", "not_found")
 NOTES = {
@@ -93,8 +100,29 @@ def identity(record: dict | None) -> str | None:
     return digest({"state": record["state"], "evidence": evidence, "conflict": record.get("conflict")})
 
 
+def publication_expected(launch: dict, at: datetime) -> bool:
+    """Whether the launch is dated inside the window in which route sources usually publish."""
+    precision = launch["time_precision"]
+    if precision == "date":
+        try:
+            return date.fromisoformat(launch.get("date_label") or "") <= (at + NOTICE_WINDOW).date()
+        except ValueError:
+            return False
+    start = (launch.get("window") or {}).get("start") if precision == "window" else None
+    start = start or (launch.get("net") if precision in ("exact", "window") else None)
+    return bool(start) and utc(start) <= at + NOTICE_WINDOW
+
+
 def current(record: dict | None, launch: dict, at: datetime) -> dict:
     """Validate a cached record against the current mission identity and age."""
+    result = _current(record, launch, at)
+    result["publication_expected"] = publication_expected(launch, at)
+    if result["state"] == "not_found" and not result["publication_expected"]:
+        result["note"] = NOT_YET_NOTE
+    return result
+
+
+def _current(record: dict | None, launch: dict, at: datetime) -> dict:
     if not record or record.get("mission_fingerprint") != fingerprint(launch) or "evidence" not in record:
         return empty_record(launch, at)
     result = dict(record)
@@ -134,7 +162,7 @@ def family(launch: dict) -> str:
 
 
 def coverage(launches: list[dict], records: dict[str, dict]) -> dict:
-    """Honest denominators: every catalog mission, regardless of date precision or vehicle."""
+    """Honest denominators: every catalog mission, plus those inside the publication window."""
     by_state = {s: 0 for s in STATES}
     by_evidence: dict[str, int] = {}
     by_family: dict[str, dict] = {}
@@ -149,13 +177,20 @@ def coverage(launches: list[dict], records: dict[str, dict]) -> dict:
             row = table.setdefault(name, {"missions": 0, "with_route_information": 0})
             row["missions"] += 1
             row["with_route_information"] += bool(kinds)
+    due = [records[launch["id"]] for launch in launches if records[launch["id"]]["publication_expected"]]
     return {
         "missions": len(launches),
         "with_route_information": sum(bool(r["evidence"]) for r in records.values()),
         "with_timed_path": sum(r["trajectory_available"] for r in records.values()),
+        "notice_window": {
+            "days": NOTICE_WINDOW.days,
+            "missions": len(due),
+            "with_route_information": sum(bool(r["evidence"]) for r in due),
+            "with_timed_path": sum(r["trajectory_available"] for r in due),
+        },
         "by_state": by_state,
         "by_evidence_type": by_evidence,
         "by_vehicle_family": dict(sorted(by_family.items())),
         "by_time_precision": dict(sorted(by_precision.items())),
-        "note": "Route information means a mission-specific published heading, hazard area or path. Headings and hazard areas are not timed trajectories; missing coverage is not a negative visibility result.",
+        "note": "Route information means a mission-specific published heading, hazard area or path. Sources usually publish only a few days before launch, so coverage is measured against missions dated within the next 7 days (or already launched); undated missions are not expected to have routes yet. Headings and hazard areas are not timed trajectories; missing coverage is not a negative visibility result.",
     }

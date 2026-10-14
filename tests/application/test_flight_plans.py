@@ -16,7 +16,7 @@ from packages.visibility.planning import calculate_plan, usable_heading
 from services.api import db
 from services.api.adapters import navcen
 from services.api.adapters.flight_plans import mission_key, parse_heading, parse_index, sector
-from services.api.flight_plans import KEY, coverage, fingerprint, read_many
+from services.api.flight_plans import KEY, coverage, fingerprint, publication_expected, read_many
 from services.api.main import CONTRACT
 from services.api.opportunities import summarize
 from services.worker.flight_plans import refresh_flight_plans
@@ -212,6 +212,11 @@ def test_discovery_covers_every_vehicle_and_date_precision_and_records_missing_s
         assert totals["missions"] == 5 and totals["with_route_information"] == 2 and totals["with_timed_path"] == 0
         assert totals["by_vehicle_family"]["Vulcan"] == {"missions": 1, "with_route_information": 1}
         assert totals["by_time_precision"]["unknown"] == {"missions": 1, "with_route_information": 1}
+        # Coverage is judged against missions dated inside the publication window, not undated ones.
+        assert totals["notice_window"] == {"days": 7, "missions": 3, "with_route_information": 1, "with_timed_path": 0}
+        undated, soon = found[missions[2]["id"]], found[missions[4]["id"]]
+        assert not undated["publication_expected"] and "is expected yet" in undated["note"]
+        assert soon["publication_expected"] and "does not establish" in soon["note"]
         # Cached results are not refetched before their next check.
         before = len(upstream.calls)
         assert run(upstream, missions, s.AT + timedelta(minutes=5))["checked"] == 0
@@ -435,10 +440,28 @@ def test_list_summaries_keep_missing_coverage_distinct_and_clear_sky_first():
         for state in ("pending", "not_found", "unavailable", "blocked", "ambiguous")
     }
     assert labels["pending"] == "Route check pending" and labels["not_found"] == "No published route found"
+    early = summarize(mission, flight_plan={"state": "not_found", "evidence": [], "publication_expected": False})
+    assert early["label"] == "Route not published yet" and not early["viewable"]
     assert len(set(labels.values()) | {below["label"], row["label"]}) == 6
     schema = CONTRACT["components"]["schemas"]["ViewingOpportunity"]
     for item in (row, below, summarize(mission, flight_plan={"state": "not_found", "evidence": []})):
         jsonschema.Draft202012Validator(schema).validate(item)
+
+
+def test_routes_are_expected_only_inside_the_publication_window():
+    at = s.AT
+    cases = [
+        ({"time_precision": "exact", "net": stamp(at + timedelta(days=6))}, True),
+        ({"time_precision": "exact", "net": stamp(at + timedelta(days=8))}, False),
+        ({"time_precision": "exact", "net": stamp(at - timedelta(days=30))}, True),
+        ({"time_precision": "window", "net": stamp(at + timedelta(days=9)), "window": {"start": stamp(at + timedelta(days=6)), "end": stamp(at + timedelta(days=9))}}, True),
+        ({"time_precision": "date", "date_label": (at + timedelta(days=7)).date().isoformat()}, True),
+        ({"time_precision": "date", "date_label": (at + timedelta(days=8)).date().isoformat()}, False),
+        ({"time_precision": "date", "date_label": "NET 2027"}, False),
+        ({"time_precision": "unknown", "net": None}, False),
+    ]
+    for changes, expected in cases:
+        assert publication_expected(launch("Falcon 9 Block 5 | Window Case", **changes), at) is expected, changes
 
 
 # API contracts -----------------------------------------------------------------

@@ -43,6 +43,10 @@ This supersedes `WIP.txt` (the 2026-10-13 checkpoint). **The core problem is onl
 - **By family:** Falcon 9 3/82; Vulcan 1/60; Falcon Heavy 0/12; New Glenn 0/30; Atlas V 0/6; Space Launch System 0/5; Starship 0/3; Terran R 0/4; Nova 0/1; unknown vehicle 0/2.
 - **By date precision:** 200 missions have unknown dates (1 with route information). Next Spaceflight's upcoming index lists only about 18 launches worldwide. SOLAR notices appear only days before launch.
 
+### Coverage measured against the publication window (D30, ~15:39 UTC)
+
+Both sources publish only days before launch, so the all-mission figure above mostly counts undated missions that are not expected to have routes yet. Measured against missions dated within 7 days or already flown, **2 of 2** have route information (CRS-35, Bandwagon-5); 0 have a timed path. By precision: exact 2/2, date-only 1/3 (Amazon Leo LV-01 on 2026-10-29, Starliner-1 and Dragonfly are all outside the window; one already has a heading), unknown 1/200. Undated or later missions now read "Route not published yet" instead of "No published route found". Log: `evidence/build/logs/flight-plan-notice-window-2026-10-14.txt`.
+
 ## Real examples (`offline-validation-2026-10-14.json`, `live-validation-2026-10-14.json`)
 
 | Mission | Sources | ZIP md-zip (Maryland, MD area) | ZIP fl-zip (Florida) |

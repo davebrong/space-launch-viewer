@@ -1278,12 +1278,21 @@ export interface components {
             trajectory_available: boolean;
             /** @description True when a reported heading points away from every published hazard area; no estimate uses the heading. */
             conflict: boolean;
+            /** @description Whether the launch is dated within the 7-day window in which route sources usually publish (or has already launched). When false, not_found means the route is not published yet. */
+            publication_expected?: boolean;
             note: string;
         };
         FlightPlanCoverage: {
             missions: number;
             with_route_information: number;
             with_timed_path: number;
+            /** @description Missions dated within the next N days or already launched: the denominator against which route coverage is expected. */
+            notice_window: {
+                days: number;
+                missions: number;
+                with_route_information: number;
+                with_timed_path: number;
+            };
             by_state: {
                 [key: string]: number;
             };

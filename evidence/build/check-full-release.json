@@ -1,6 +1,6 @@
 [
   {
-    "run_at": "2026-10-14T13:02:35.168593+00:00",
+    "run_at": "2026-10-14T15:47:11.409003+00:00",
     "command": [
       "<repo>\\.venv\\Scripts\\python.exe",
       "<repo>\\tests\\acceptance\\run.py",
@@ -9,8 +9,8 @@
     ],
     "exit_code": 1,
     "status": "failed",
-    "artifact_path": "evidence/build/logs/full-release-all-2026-10-14T130235_168593_0000.txt",
+    "artifact_path": "evidence/build/logs/full-release-all-2026-10-14T154711_409003_0000.txt",
     "sha256": "0f6e1114e75e9bf9533d21d265f9d60c1b08670020e1384cee2785d81ff2eef8",
-    "software_sha256": "6685181209ca07e980fcf244f402cc57ae51c870b480bc966f885d78f05cfa75"
+    "software_sha256": "b2d5f5ea5684456ea47d56db4c99e07527dbe78e8dd8df2d4a7c32ff143efc77"
   }
 ]

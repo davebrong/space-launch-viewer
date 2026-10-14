@@ -1,0 +1,338 @@
+
+Running 14 tests using 1 worker
+
+  ✘   1 [desktop] › tests\browser\completed-review.spec.ts:5:5 › ZIP md-zip can review the completed CRS-35 launch-day plan from its published heading (192ms)
+  ✓   2 [desktop] › tests\browser\completed-review.spec.ts:72:5 › unknown provider placeholders never create exact date groups (12.9s)
+  ✘   3 [desktop] › tests\browser\history.spec.ts:4:5 › past launches browse real provider records independently of viewing estimates (168ms)
+  ✘   4 [desktop] › tests\browser\journeys.spec.ts:5:5 › live location, schedule, uncertainty, reminders, privacy and keyboard journeys (189ms)
+  ✘   5 [desktop] › tests\browser\journeys.spec.ts:51:5 › observer clock is independent of browser timezone and preserves DST fold (208ms)
+  ✓   6 [desktop] › tests\browser\states.spec.ts:11:5 › synthetic edge cases through actual API, database and UI (49.5s)
+  ✘   7 [desktop] › tests\browser\viewable.spec.ts:7:5 › viewable defaults to published-heading ZIP plans; all labels missing route coverage and hides secondary features (174ms)
+  ✘   8 [mobile] › tests\browser\completed-review.spec.ts:5:5 › ZIP md-zip can review the completed CRS-35 launch-day plan from its published heading (197ms)
+  ✓   9 [mobile] › tests\browser\completed-review.spec.ts:72:5 › unknown provider placeholders never create exact date groups (12.3s)
+  ✘  10 [mobile] › tests\browser\history.spec.ts:4:5 › past launches browse real provider records independently of viewing estimates (158ms)
+  ✘  11 [mobile] › tests\browser\journeys.spec.ts:5:5 › live location, schedule, uncertainty, reminders, privacy and keyboard journeys (198ms)
+  ✘  12 [mobile] › tests\browser\journeys.spec.ts:51:5 › observer clock is independent of browser timezone and preserves DST fold (190ms)
+  ✓  13 [mobile] › tests\browser\states.spec.ts:11:5 › synthetic edge cases through actual API, database and UI (58.8s)
+  ✘  14 [mobile] › tests\browser\viewable.spec.ts:7:5 › viewable defaults to published-heading ZIP plans; all labels missing route coverage and hides secondary features (146ms)
+
+
+  1) [desktop] › tests\browser\completed-review.spec.ts:5:5 › ZIP md-zip can review the completed CRS-35 launch-day plan from its published heading 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3007/
+    Call log:
+      - navigating to "http://127.0.0.1:3007/", waiting until "load"
+
+
+      4 |
+      5 | test('ZIP md-zip can review the completed CRS-35 launch-day plan from its published heading',async({page},info)=>{
+    > 6 |   await page.goto('/');
+        |              ^
+      7 |   await page.getByLabel('US ZIP code').fill('md-zip');
+      8 |   await page.getByRole('button',{name:'Find location'}).click();
+      9 |   await page.getByRole('button',{name:'Confirm this location'}).click();
+        at <repo>\tests\browser\completed-review.spec.ts:6:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\completed-review-ZIP-md-zip-d94f4--from-its-published-heading-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\completed-review-ZIP-md-zip-d94f4--from-its-published-heading-desktop\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\completed-review-ZIP-md-zip-d94f4--from-its-published-heading-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\completed-review-ZIP-md-zip-d94f4--from-its-published-heading-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests\browser\history.spec.ts:4:5 › past launches browse real provider records independently of viewing estimates 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3007/
+    Call log:
+      - navigating to "http://127.0.0.1:3007/", waiting until "load"
+
+
+      4 | test('past launches browse real provider records independently of viewing estimates',async({page},info)=>{
+      5 |   test.setTimeout(120000);
+    > 6 |   await page.goto('/');
+        |              ^
+      7 |   await page.getByLabel('US ZIP code').fill('fl-zip');
+      8 |   await page.getByRole('button',{name:'Find location'}).click();
+      9 |   await page.getByRole('button',{name:'Confirm this location'}).click();
+        at <repo>\tests\browser\history.spec.ts:6:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\history-past-launches-brow-23a29-dently-of-viewing-estimates-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\history-past-launches-brow-23a29-dently-of-viewing-estimates-desktop\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\history-past-launches-brow-23a29-dently-of-viewing-estimates-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\history-past-launches-brow-23a29-dently-of-viewing-estimates-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [desktop] › tests\browser\journeys.spec.ts:5:5 › live location, schedule, uncertainty, reminders, privacy and keyboard journeys 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3007/
+    Call log:
+      - navigating to "http://127.0.0.1:3007/", waiting until "load"
+
+
+      4 |
+      5 | test('live location, schedule, uncertainty, reminders, privacy and keyboard journeys',async({page},info)=>{
+    > 6 |   await page.goto('/');
+        |              ^
+      7 |   await expect(page.getByRole('button',{name:'Find location'})).toBeEnabled();
+      8 |   await page.getByLabel('US ZIP code').fill('fixture-zip');
+      9 |   await page.getByRole('button',{name:'Find location'}).click();
+        at <repo>\tests\browser\journeys.spec.ts:6:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\journeys-live-location-sch-ada74-ivacy-and-keyboard-journeys-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\journeys-live-location-sch-ada74-ivacy-and-keyboard-journeys-desktop\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\journeys-live-location-sch-ada74-ivacy-and-keyboard-journeys-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\journeys-live-location-sch-ada74-ivacy-and-keyboard-journeys-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [desktop] › tests\browser\journeys.spec.ts:51:5 › observer clock is independent of browser timezone and preserves DST fold 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3007/
+    Call log:
+      - navigating to "http://127.0.0.1:3007/", waiting until "load"
+
+
+      50 |
+      51 | test('observer clock is independent of browser timezone and preserves DST fold',async({page})=>{
+    > 52 |   await page.goto('/');
+         |              ^
+      53 |   const times=await page.evaluate(()=>['2026-10-14T00:30:00Z','2026-11-01T05:30:00Z','2026-11-01T06:30:00Z'].map(value=>new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(new Date(value))));
+      54 |   expect(times[0]).toContain('Oct 13');expect(times[0]).toContain('8:30');expect(times[1]).toContain('EDT');expect(times[2]).toContain('EST');
+      55 |   await page.keyboard.press('Tab');await expect(page.getByRole('link',{name:'Skip to content'})).toBeFocused();
+        at <repo>\tests\browser\journeys.spec.ts:52:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\journeys-observer-clock-is-83cba-zone-and-preserves-DST-fold-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\journeys-observer-clock-is-83cba-zone-and-preserves-DST-fold-desktop\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\journeys-observer-clock-is-83cba-zone-and-preserves-DST-fold-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\journeys-observer-clock-is-83cba-zone-and-preserves-DST-fold-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [desktop] › tests\browser\viewable.spec.ts:7:5 › viewable defaults to published-heading ZIP plans; all labels missing route coverage and hides secondary features 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3007/
+    Call log:
+      - navigating to "http://127.0.0.1:3007/", waiting until "load"
+
+
+       6 | // and NAVCEN hazard areas; missions without route information are labeled, never guessed.
+       7 | test('viewable defaults to published-heading ZIP plans; all labels missing route coverage and hides secondary features',async({page},info)=>{
+    >  8 |   await page.goto('/');
+         |              ^
+       9 |   await page.getByLabel('US ZIP code').fill('md-zip');
+      10 |   await page.getByRole('button',{name:'Find location'}).click();
+      11 |   await page.getByRole('button',{name:'Confirm this location'}).click();
+        at <repo>\tests\browser\viewable.spec.ts:8:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\viewable-viewable-defaults-87d87-nd-hides-secondary-features-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\viewable-viewable-defaults-87d87-nd-hides-secondary-features-desktop\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\viewable-viewable-defaults-87d87-nd-hides-secondary-features-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\viewable-viewable-defaults-87d87-nd-hides-secondary-features-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [mobile] › tests\browser\completed-review.spec.ts:5:5 › ZIP md-zip can review the completed CRS-35 launch-day plan from its published heading 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3007/
+    Call log:
+      - navigating to "http://127.0.0.1:3007/", waiting until "load"
+
+
+      4 |
+      5 | test('ZIP md-zip can review the completed CRS-35 launch-day plan from its published heading',async({page},info)=>{
+    > 6 |   await page.goto('/');
+        |              ^
+      7 |   await page.getByLabel('US ZIP code').fill('md-zip');
+      8 |   await page.getByRole('button',{name:'Find location'}).click();
+      9 |   await page.getByRole('button',{name:'Confirm this location'}).click();
+        at <repo>\tests\browser\completed-review.spec.ts:6:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\completed-review-ZIP-md-zip-d94f4--from-its-published-heading-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\completed-review-ZIP-md-zip-d94f4--from-its-published-heading-mobile\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\completed-review-ZIP-md-zip-d94f4--from-its-published-heading-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\completed-review-ZIP-md-zip-d94f4--from-its-published-heading-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [mobile] › tests\browser\history.spec.ts:4:5 › past launches browse real provider records independently of viewing estimates 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3007/
+    Call log:
+      - navigating to "http://127.0.0.1:3007/", waiting until "load"
+
+
+      4 | test('past launches browse real provider records independently of viewing estimates',async({page},info)=>{
+      5 |   test.setTimeout(120000);
+    > 6 |   await page.goto('/');
+        |              ^
+      7 |   await page.getByLabel('US ZIP code').fill('fl-zip');
+      8 |   await page.getByRole('button',{name:'Find location'}).click();
+      9 |   await page.getByRole('button',{name:'Confirm this location'}).click();
+        at <repo>\tests\browser\history.spec.ts:6:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\history-past-launches-brow-23a29-dently-of-viewing-estimates-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\history-past-launches-brow-23a29-dently-of-viewing-estimates-mobile\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\history-past-launches-brow-23a29-dently-of-viewing-estimates-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\history-past-launches-brow-23a29-dently-of-viewing-estimates-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [mobile] › tests\browser\journeys.spec.ts:5:5 › live location, schedule, uncertainty, reminders, privacy and keyboard journeys 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3007/
+    Call log:
+      - navigating to "http://127.0.0.1:3007/", waiting until "load"
+
+
+      4 |
+      5 | test('live location, schedule, uncertainty, reminders, privacy and keyboard journeys',async({page},info)=>{
+    > 6 |   await page.goto('/');
+        |              ^
+      7 |   await expect(page.getByRole('button',{name:'Find location'})).toBeEnabled();
+      8 |   await page.getByLabel('US ZIP code').fill('fixture-zip');
+      9 |   await page.getByRole('button',{name:'Find location'}).click();
+        at <repo>\tests\browser\journeys.spec.ts:6:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\journeys-live-location-sch-ada74-ivacy-and-keyboard-journeys-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\journeys-live-location-sch-ada74-ivacy-and-keyboard-journeys-mobile\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\journeys-live-location-sch-ada74-ivacy-and-keyboard-journeys-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\journeys-live-location-sch-ada74-ivacy-and-keyboard-journeys-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) [mobile] › tests\browser\journeys.spec.ts:51:5 › observer clock is independent of browser timezone and preserves DST fold 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3007/
+    Call log:
+      - navigating to "http://127.0.0.1:3007/", waiting until "load"
+
+
+      50 |
+      51 | test('observer clock is independent of browser timezone and preserves DST fold',async({page})=>{
+    > 52 |   await page.goto('/');
+         |              ^
+      53 |   const times=await page.evaluate(()=>['2026-10-14T00:30:00Z','2026-11-01T05:30:00Z','2026-11-01T06:30:00Z'].map(value=>new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(new Date(value))));
+      54 |   expect(times[0]).toContain('Oct 13');expect(times[0]).toContain('8:30');expect(times[1]).toContain('EDT');expect(times[2]).toContain('EST');
+      55 |   await page.keyboard.press('Tab');await expect(page.getByRole('link',{name:'Skip to content'})).toBeFocused();
+        at <repo>\tests\browser\journeys.spec.ts:52:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\journeys-observer-clock-is-83cba-zone-and-preserves-DST-fold-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\journeys-observer-clock-is-83cba-zone-and-preserves-DST-fold-mobile\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\journeys-observer-clock-is-83cba-zone-and-preserves-DST-fold-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\journeys-observer-clock-is-83cba-zone-and-preserves-DST-fold-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) [mobile] › tests\browser\viewable.spec.ts:7:5 › viewable defaults to published-heading ZIP plans; all labels missing route coverage and hides secondary features 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3007/
+    Call log:
+      - navigating to "http://127.0.0.1:3007/", waiting until "load"
+
+
+       6 | // and NAVCEN hazard areas; missions without route information are labeled, never guessed.
+       7 | test('viewable defaults to published-heading ZIP plans; all labels missing route coverage and hides secondary features',async({page},info)=>{
+    >  8 |   await page.goto('/');
+         |              ^
+       9 |   await page.getByLabel('US ZIP code').fill('md-zip');
+      10 |   await page.getByRole('button',{name:'Find location'}).click();
+      11 |   await page.getByRole('button',{name:'Confirm this location'}).click();
+        at <repo>\tests\browser\viewable.spec.ts:8:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\viewable-viewable-defaults-87d87-nd-hides-secondary-features-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\viewable-viewable-defaults-87d87-nd-hides-secondary-features-mobile\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\viewable-viewable-defaults-87d87-nd-hides-secondary-features-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\viewable-viewable-defaults-87d87-nd-hides-secondary-features-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10 failed
+    [desktop] › tests\browser\completed-review.spec.ts:5:5 › ZIP md-zip can review the completed CRS-35 launch-day plan from its published heading 
+    [desktop] › tests\browser\history.spec.ts:4:5 › past launches browse real provider records independently of viewing estimates 
+    [desktop] › tests\browser\journeys.spec.ts:5:5 › live location, schedule, uncertainty, reminders, privacy and keyboard journeys 
+    [desktop] › tests\browser\journeys.spec.ts:51:5 › observer clock is independent of browser timezone and preserves DST fold 
+    [desktop] › tests\browser\viewable.spec.ts:7:5 › viewable defaults to published-heading ZIP plans; all labels missing route coverage and hides secondary features 
+    [mobile] › tests\browser\completed-review.spec.ts:5:5 › ZIP md-zip can review the completed CRS-35 launch-day plan from its published heading 
+    [mobile] › tests\browser\history.spec.ts:4:5 › past launches browse real provider records independently of viewing estimates 
+    [mobile] › tests\browser\journeys.spec.ts:5:5 › live location, schedule, uncertainty, reminders, privacy and keyboard journeys 
+    [mobile] › tests\browser\journeys.spec.ts:51:5 › observer clock is independent of browser timezone and preserves DST fold 
+    [mobile] › tests\browser\viewable.spec.ts:7:5 › viewable defaults to published-heading ZIP plans; all labels missing route coverage and hides secondary features 
+  4 passed (2.4m)
+
+[WebServer] <repo>\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+[WebServer]   from starlette.testclient import TestClient as TestClient  # noqa
+[WebServer] INFO:     Started server process [32716]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:3091 (Press CTRL+C to quit)

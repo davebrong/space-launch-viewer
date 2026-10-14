@@ -17,6 +17,8 @@ COVERAGE_LABELS = {
     "found": "Route information without a viewing model",
     "stale": "Route information without a viewing model",
 }
+# Undated or far-off missions: route sources publish only a few days before launch.
+NOT_YET_LABEL = "Route not published yet"
 
 
 def within_viewing_horizon(launch: dict, location: dict, now: datetime) -> bool:
@@ -123,6 +125,8 @@ def summarize(
             label = "Route sources disagree"
         elif kinds == {"hazard_corridor"}:
             label = "Hazard areas only; path unresolved"
+        elif flight_plan["state"] == "not_found" and not flight_plan.get("publication_expected", True):
+            label = NOT_YET_LABEL
         else:
             label = COVERAGE_LABELS[flight_plan["state"]]
         return {**result, "label": label}

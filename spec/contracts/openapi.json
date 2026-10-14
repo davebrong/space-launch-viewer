@@ -6997,6 +6997,10 @@
             "type": "boolean",
             "description": "True when a reported heading points away from every published hazard area; no estimate uses the heading."
           },
+          "publication_expected": {
+            "type": "boolean",
+            "description": "Whether the launch is dated within the 7-day window in which route sources usually publish (or has already launched). When false, not_found means the route is not published yet."
+          },
           "note": {
             "type": "string",
             "minLength": 1
@@ -7032,6 +7036,35 @@
           "with_timed_path": {
             "type": "integer",
             "minimum": 0
+          },
+          "notice_window": {
+            "type": "object",
+            "description": "Missions dated within the next N days or already launched: the denominator against which route coverage is expected.",
+            "properties": {
+              "days": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "missions": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "with_route_information": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "with_timed_path": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "days",
+              "missions",
+              "with_route_information",
+              "with_timed_path"
+            ],
+            "additionalProperties": false
           },
           "by_state": {
             "type": "object",
@@ -7106,6 +7139,7 @@
           "missions",
           "with_route_information",
           "with_timed_path",
+          "notice_window",
           "by_state",
           "by_evidence_type",
           "by_vehicle_family",

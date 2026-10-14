@@ -75,6 +75,10 @@ export const coverageLabels:Record<string,string> = {
   pending:'Route check pending',
   not_found:'No published route found',
 };
+// Undated or far-off missions are not expected to have published routes yet.
+export function routeLabel(plan:FlightPlan, state:string=plan.state):string {
+  return state==='not_found'&&plan.publication_expected===false?'Route not published yet':coverageLabels[state]||state;
+}
 export function minutesAfterLiftoff(window:{t_start_s:number;t_end_s:number}):string {
   return `${Math.floor(window.t_start_s/60)}–${Math.ceil(window.t_end_s/60)} minutes after liftoff`;
 }

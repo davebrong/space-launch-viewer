@@ -24,8 +24,9 @@ test('viewable defaults to published-heading ZIP plans; all labels missing route
   await expect(page.getByRole('link',{name:'Privacy',exact:true})).toHaveCount(0);
   await expect(page.getByRole('link',{name:'Observations',exact:true})).toHaveCount(0);
   const coverage=page.locator('details.coverage');
-  await expect(coverage.locator('summary')).toHaveText(/^Route coverage: \d+ of \d+ missions have published route information$/);
+  await expect(coverage.locator('summary')).toHaveText(/^Route coverage: \d+ of \d+ launches due within 7 days or already flown have published route information$/);
   await coverage.locator('summary').click();
+  await expect(coverage).toContainText('later or undated missions are not expected to have routes yet');
   await expect(coverage).toContainText('departure heading:');
   await expect(coverage).toContainText('missing coverage is not a negative visibility result');
   await page.screenshot({path:`evidence/build/viewable-${info.project.name}.png`,fullPage:true});
@@ -38,7 +39,9 @@ test('viewable defaults to published-heading ZIP plans; all labels missing route
   await expect(bandwagon).toContainText('Grazes your horizon (modeled)');
   await expect(bandwagon).toHaveClass(/unavailable/);
   await expect(bandwagon.locator('.viewing-direction')).toHaveCount(0);
-  const noRoute=page.locator('a.launch-card').filter({hasText:'No published route found'}).first();
+  // Undated missions are not expected to have routes yet; in-window ones may be genuinely missing.
+  const noRouteLabel=/No published route found|Route not published yet/;
+  const noRoute=page.locator('a.launch-card').filter({hasText:noRouteLabel}).first();
   await expect(noRoute).toHaveClass(/unavailable/);
   await expect(noRoute.locator('.viewing-direction')).toHaveCount(0);
   await page.reload();
@@ -46,9 +49,9 @@ test('viewable defaults to published-heading ZIP plans; all labels missing route
   // A mission without any route information: no estimate, no guessed direction.
   await noRoute.click();
   const missing=page.locator('.notice-strip').filter({hasText:'No viewing estimate'});
-  await expect(missing).toContainText('No published route found.');
+  await expect(missing).toContainText(noRouteLabel);
   await expect(missing).toContainText('does not guess its direction');
-  await expect(page.locator('.route-panel h2')).toHaveText('No published route found');
+  await expect(page.locator('.route-panel h2')).toHaveText(noRouteLabel);
   await expect(page.locator('.route-panel .source h3')).toHaveCount(0);
   await page.locator('.route-panel').getByText('Sources checked',{exact:true}).click();
   await expect(page.locator('.route-panel')).toContainText('Next Spaceflight · ');
@@ -107,7 +110,8 @@ test('viewable defaults to published-heading ZIP plans; all labels missing route
   await starliner.click();
   await expect(page.getByText('Launch time to be announced',{exact:true})).toBeVisible();
   await expect(page.getByText(/about \d+ km away/)).toBeVisible();
-  await expect(page.locator('.route-panel h2')).toHaveText('No published route found');
+  await expect(page.locator('.route-panel h2')).toHaveText('Route not published yet');
+  await expect(page.locator('.route-panel')).toContainText('usually publish a few days before launch');
   await page.getByRole('link',{name:'All launches',exact:false}).click();
   await filter.selectOption('viewable');
   await page.getByRole('button',{name:'Change',exact:true}).click();

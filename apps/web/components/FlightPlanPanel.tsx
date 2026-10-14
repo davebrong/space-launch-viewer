@@ -1,11 +1,11 @@
-import {localTime, evidenceLabels, coverageLabels, type FlightPlan} from '../lib/client';
+import {localTime, evidenceLabels, routeLabel, type FlightPlan} from '../lib/client';
 
 const compass=(deg:number)=>['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'][Math.round((deg%360)/22.5)%16];
 
 export default function FlightPlanPanel({plan,zone,error,complete=false}:{plan:FlightPlan|null;zone:string;error?:string;complete?:boolean}) {
   return <section className="panel route-panel" aria-labelledby="route-title">
     <div className="eyebrow">MISSION ROUTE INFORMATION</div>
-    <h2 id="route-title">{plan?coverageLabels[plan.state]:error?'Route information unavailable':'Checking route sources…'}</h2>
+    <h2 id="route-title">{plan?routeLabel(plan):error?'Route information unavailable':'Checking route sources…'}</h2>
     {error&&!plan&&<p role="alert">{error}</p>}
     {plan&&<>
       <p>{plan.note}</p>
@@ -20,7 +20,7 @@ export default function FlightPlanPanel({plan,zone,error,complete=false}:{plan:F
       {plan.changes.length>0&&<details><summary>Source changes ({plan.changes.length})</summary>{plan.changes.map((c,i)=><p className="small" key={i}>{localTime(c.at,zone)}: {c.from||'none'} → {c.to||'none'}</p>)}</details>}
       <details><summary>Sources checked</summary>
         {plan.sources.length===0&&<p className="small">No source has been checked for this mission yet.</p>}
-        {plan.sources.map(s=><div className="source" key={s.source}><p><strong>{s.name}</strong> · {coverageLabels[s.state]}</p><p className="small">{s.detail}</p><p className="small muted">Checked {localTime(s.checked_at,zone)}{s.next_check_at&&!complete?` · next check ${localTime(s.next_check_at,zone)}`:''}</p></div>)}
+        {plan.sources.map(s=><div className="source" key={s.source}><p><strong>{s.name}</strong> · {routeLabel(plan,s.state)}</p><p className="small">{s.detail}</p><p className="small muted">Checked {localTime(s.checked_at,zone)}{s.next_check_at&&!complete?` · next check ${localTime(s.next_check_at,zone)}`:''}</p></div>)}
       </details>
     </>}
   </section>;

@@ -324,6 +324,10 @@
       "type": "boolean",
       "description": "True when a reported heading points away from every published hazard area; no estimate uses the heading."
     },
+    "publication_expected": {
+      "type": "boolean",
+      "description": "Whether the launch is dated within the 7-day window in which route sources usually publish (or has already launched). When false, not_found means the route is not published yet."
+    },
     "note": {
       "type": "string",
       "minLength": 1
