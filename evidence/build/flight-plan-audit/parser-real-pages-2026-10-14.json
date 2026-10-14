@@ -1,0 +1,79 @@
+{
+ "pages": [
+  {
+   "page": "nsf-detail-6917-crs35.html",
+   "mission": "Falcon 9 Block 5 | Dragon CRS-2 SpX-35",
+   "pad": "Space Launch Complex 40",
+   "direction": "northeast",
+   "sector": {
+    "start_deg": 0.0,
+    "end_deg": 90.0
+   }
+  },
+  {
+   "page": "nsf-detail-8362-bandwagon5.html",
+   "mission": "Falcon 9 Block 5 | Bandwagon 5 (Dedicated Mid-Inclination Rideshare)",
+   "pad": "Space Launch Complex 40",
+   "direction": "southeast",
+   "sector": {
+    "start_deg": 90.0,
+    "end_deg": 180.0
+   }
+  },
+  {
+   "page": "nsf-detail-7690-newglenn-bluebird7.html",
+   "mission": "New Glenn | BlueBird 7",
+   "pad": "Launch Complex 36",
+   "direction": "southeast",
+   "sector": {
+    "start_deg": 90.0,
+    "end_deg": 180.0
+   }
+  },
+  {
+   "page": "nsf-detail-7425-vulcan-amazonleo.html",
+   "mission": "Vulcan VC4S | Amazon Leo (LV-01)",
+   "pad": "Space Launch Complex 41",
+   "direction": "northeast",
+   "sector": {
+    "start_deg": 0.0,
+    "end_deg": 90.0
+   }
+  },
+  {
+   "page": "nsf-detail-7826-fh-nrol97.html",
+   "mission": "Falcon Heavy | NROL-97",
+   "pad": "Launch Complex 39A",
+   "direction": "northeast",
+   "sector": {
+    "start_deg": 0.0,
+    "end_deg": 90.0
+   }
+  },
+  {
+   "page": "nsf-detail-8227-starlink10-38.html",
+   "mission": "Falcon 9 Block 5 | Starlink Group 10-38",
+   "pad": "Space Launch Complex 40",
+   "direction": "northeast",
+   "sector": {
+    "start_deg": 0.0,
+    "end_deg": 90.0
+   }
+  },
+  {
+   "page": "nsf-detail-7076-ng25.html",
+   "mission": "Falcon 9 Block 5 | CRS NG-25",
+   "pad": "Space Launch Complex 40",
+   "direction": "northeast",
+   "sector": {
+    "start_deg": 0.0,
+    "end_deg": 90.0
+   }
+  }
+ ],
+ "negative_checks": {
+  "numeric_heading_disagrees": "INCONSISTENT_PUBLISHED_HEADING",
+  "wrong_pad": "FLIGHT_PLAN_PAD_MISMATCH",
+  "wrong_mission": "FLIGHT_PLAN_MISSION_MISMATCH"
+ }
+}

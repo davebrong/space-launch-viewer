@@ -395,7 +395,12 @@ def historical_detail(id: str, request: Request, location_id: str):
         if not record:
             fail("HISTORY_NOT_LOADED", "Open Past launches and load the page containing this launch first", 404)
         launch, raw = record
-        assessment = calculate(launch, loc, [], [], cached_weather(conn, loc), now())
+        from .flight_plans import read_flight_plan
+
+        at = now()
+        assessment = calculate(
+            launch, loc, [], [], cached_weather(conn, loc), at, flight_plan=read_flight_plan(conn, launch, at)
+        )
         result = {
             "launch": launch,
             "assessment": assessment,
@@ -409,6 +414,7 @@ def historical_detail(id: str, request: Request, location_id: str):
 @app.get("/api/v1/locations/{id}/viewing-opportunities")
 def viewing_opportunities(id: str, request: Request, limit: int = Query(50, ge=1, le=100), cursor: str | None = None):
     from .opportunities import summarize, within_viewing_horizon
+    from .flight_plans import read_many
     from packages.visibility.planning import calculate_plan
 
     with db.engine().begin() as conn:
@@ -420,19 +426,22 @@ def viewing_opportunities(id: str, request: Request, limit: int = Query(50, ge=1
         if cursor:
             query = query.where(db.launches.c.id > cursor)
         rows = conn.execute(query).mappings().all()
-        # Most inventory entries have neither a supported family nor registered evidence.
+        # Most inventory entries have no registered reviewed evidence.
         # Do not calculate astronomy or archive empty assessments for each schedule row.
         routed = set(conn.execute(select(db.routes.c.body["launch_id"].as_string())).scalars())
         weather = cached_weather(conn, location)
         at = now()
+        plans = read_many(conn, [row["body"] for row in rows[:limit]], at)
         summaries = []
         for row in rows[:limit]:
             launch = row["body"]
+            flight_plan = plans[launch["id"]]
             if launch["id"] in routed:
                 db.lock(conn, "assessment:" + launch["id"] + ":" + id)
-                summaries.append(summarize(launch, assess(conn, launch, location, own, at)))
+                summaries.append(summarize(launch, assess(conn, launch, location, own, at), flight_plan=flight_plan))
             else:
-                summaries.append(summarize(launch, plan=calculate_plan(launch, location, weather, at)))
+                plan = calculate_plan(launch, location, weather, at, flight_plan)
+                summaries.append(summarize(launch, plan=plan, flight_plan=flight_plan))
             if not within_viewing_horizon(launch, location, at):
                 summaries[-1]["viewable"] = False
         response = as_response(request, summaries)
@@ -490,18 +499,37 @@ def flight_plan(id: str, request: Request):
     from .flight_plans import read_flight_plan
     from .history import historical_launch
     from services.worker.jobs import schedule
+
     at = now()
     with db.engine().connect() as conn:
         row = conn.execute(select(db.launches.c.body).where(db.launches.c.id == id)).scalar()
         if not row:
-            archived = historical_launch(conn, id)
+            try:
+                archived = historical_launch(conn, id)
+            except ValueError:
+                archived = None
             row = archived[0] if archived else None
         if not row:
             fail("NOT_FOUND", "Launch not found", 404)
         result = read_flight_plan(conn, row, at)
     if result["state"] in ("pending", "stale"):
-        schedule("flight-plan:"+id+":"+str(int(at.timestamp())//21600), {"operation":"flight-plan","launch_id":id}, at)
+        schedule(
+            "flight-plan:" + id + ":" + str(int(at.timestamp()) // 21600),
+            {"operation": "flight-plan", "launch_id": id},
+            at,
+        )
     return as_response(request, result)
+
+
+@app.get("/api/v1/flight-plan-coverage")
+def flight_plan_coverage(request: Request):
+    from .flight_plans import coverage, read_many
+
+    at = now()
+    with db.engine().connect() as conn:
+        launches = list(conn.execute(select(db.launches.c.body)).scalars())
+        result = coverage(launches, read_many(conn, launches, at))
+    return as_response(request, {**result, "computed_at": stamp(at), "scope": "Cached Cape Canaveral/Kennedy schedule"})
 
 
 @app.get("/api/v1/profiles/{id}")

@@ -725,8 +725,10 @@
         "kind": {
           "enum": [
             "near_launch_site",
+            "published_heading_model",
             "trajectory_simulation"
-          ]
+          ],
+          "description": "trajectory_simulation is retired; it may appear only in archived assessments."
         },
         "pad_distance_m": {
           "type": "number",
@@ -736,6 +738,204 @@
           "type": "number",
           "minimum": 0,
           "maximum": 360
+        },
+        "relative_window": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "t_start_s": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "t_end_s": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "t_start_s",
+                "t_end_s"
+              ],
+              "additionalProperties": false,
+              "description": "Seconds after scheduled liftoff, including watch padding. Not an absolute time."
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "horizon_grazing": {
+          "type": "boolean"
+        },
+        "candidates": {
+          "type": "object",
+          "properties": {
+            "with_view": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "evaluated": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "required": [
+            "with_view",
+            "evaluated"
+          ],
+          "additionalProperties": false
+        },
+        "viewing_sector": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "start_deg": {
+                  "type": "number",
+                  "minimum": 0,
+                  "exclusiveMaximum": 360
+                },
+                "end_deg": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 360
+                },
+                "wraps_north": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "start_deg",
+                "end_deg",
+                "wraps_north"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Observer-relative bearings across all modeled candidates, outward-rounded to 15 degrees."
+        },
+        "max_elevation_deg": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "min_deg": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 90
+                },
+                "max_deg": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 90
+                }
+              },
+              "required": [
+                "min_deg",
+                "max_deg"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "route_basis": {
+          "type": "object",
+          "description": "The mission-specific source used. The departure direction is from the pad, not from the observer.",
+          "properties": {
+            "evidence_type": {
+              "enum": [
+                "departure_heading",
+                "published_path"
+              ]
+            },
+            "departure_direction": {
+              "type": "string"
+            },
+            "departure_sector_deg": {
+              "type": "object",
+              "properties": {
+                "start_deg": {
+                  "type": "number",
+                  "minimum": 0,
+                  "exclusiveMaximum": 360
+                },
+                "end_deg": {
+                  "type": "number",
+                  "minimum": 0,
+                  "exclusiveMaximum": 360
+                }
+              },
+              "required": [
+                "start_deg",
+                "end_deg"
+              ],
+              "additionalProperties": false,
+              "description": "Clockwise true-north compass sector from start to end."
+            },
+            "swept_sector_deg": {
+              "type": "object",
+              "properties": {
+                "start_deg": {
+                  "type": "number",
+                  "minimum": 0,
+                  "exclusiveMaximum": 360
+                },
+                "end_deg": {
+                  "type": "number",
+                  "minimum": 0,
+                  "exclusiveMaximum": 360
+                }
+              },
+              "required": [
+                "start_deg",
+                "end_deg"
+              ],
+              "additionalProperties": false,
+              "description": "Headings actually evaluated: the reported sector, narrowed to bearings toward published hazard areas when present."
+            },
+            "narrowed_by_hazard_areas": {
+              "type": "boolean"
+            },
+            "source_name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "source_url": {
+              "type": "string",
+              "minLength": 1
+            },
+            "fetched_at": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "Z$",
+              "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+            },
+            "stale": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "evidence_type",
+            "departure_direction",
+            "departure_sector_deg",
+            "swept_sector_deg",
+            "narrowed_by_hazard_areas",
+            "source_name",
+            "source_url",
+            "fetched_at",
+            "stale"
+          ],
+          "additionalProperties": false
+        },
+        "clear_sky_assumed": {
+          "const": true
         }
       },
       "additionalProperties": false,

@@ -1,0 +1,13 @@
+{
+  "CRS-35": {
+    "facts": "Falcon 9 / Cargo Dragon from SLC-40, liftoff 2026-10-13 10:33Z (6:33 a.m. EDT) per NASA blog and SpaceX JSON; booster landed LZ-40; destination ISS.",
+    "direction": "Northeast.",
+    "primary_source": "USCG NAVCEN SOLAR feature 'CRS-35', CGD-SE BNM 9079-26 (dtg 111602Z OCT 26): Launch Hazard Area polygons extend NE from the Cape (to ~30.15N 79.1W) plus a downrange area at ~31.0-32.2N 76.6-78.0W. This is an official hazard area, not a stated azimuth.",
+    "secondary": "Next Spaceflight detail 6917: 'General Trajectory Launching Northeast' (heading 45). SpaceX and NASA pages do not state direction (SpaceX JSON only flags toTheIssEnabled)."
+  },
+  "Bandwagon-5": {
+    "facts": "Falcon 9 rideshare from SLC-40, window 2026-10-19 10:30-11:30Z (SpaceX: 6:30 a.m. ET one-hour window; backup Tuesday). SpaceX: first stage to droneship 'A Shortfall of Gravitas ... in the Atlantic Ocean'. LL2: 'Dedicated Mid-Inclination Rideshare'.",
+    "direction": "Not established by a primary source at fetch time. Next Spaceflight says 'Launching Southeast' (heading 135).",
+    "primary_source": "None yet: no SOLAR/BNM feature for Bandwagon-5 in the file fetched 2026-10-14T12:00:03Z; SpaceX mission JSON gives no direction. Earlier series flights differed: Bandwagon-1 SOLAR downrange box ~30.35-32.45N 76-78W (northeast); Bandwagon-3 and -4 downrange boxes ~27.4-28.2N 76.0-77.65W (east-southeast). Re-check SOLAR before launch."
+  }
+}

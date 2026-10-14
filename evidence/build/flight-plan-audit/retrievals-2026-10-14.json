@@ -1,0 +1,562 @@
+[
+  {
+    "url": "https://msi.nga.mil/robots.txt",
+    "final_url": "https://msi.nga.mil/robots.txt",
+    "status": 404,
+    "at": "2026-10-14T11:51:51+00:00",
+    "bytes": 99,
+    "sha256": "4096f73146f740297f8ec205fdef923b3ef57ed9af268c784154eae10eb6a3e2",
+    "content_type": "application/json",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://tfr.faa.gov/robots.txt",
+    "final_url": "https://tfr.faa.gov/robots.txt",
+    "status": 404,
+    "at": "2026-10-14T11:51:52+00:00",
+    "bytes": 1125,
+    "sha256": "27ededa8c87fb48eadd2d149058e699697d65b58195df1c51d80e30a775807c4",
+    "content_type": "text/html;charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://nextspaceflight.com/robots.txt",
+    "final_url": "https://nextspaceflight.com/robots.txt",
+    "status": 404,
+    "at": "2026-10-14T11:51:53+00:00",
+    "bytes": 28798,
+    "sha256": "f50fdc5cc76a9a7b78f6bc7f1cf01025083fc21119b5d9b43b4cd5dbd6b67a69",
+    "content_type": "text/html; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://www.spacex.com/robots.txt",
+    "final_url": "https://www.spacex.com/robots.txt",
+    "status": 404,
+    "at": "2026-10-14T11:51:53+00:00",
+    "bytes": 321,
+    "sha256": "0450512452bbd542a8a85315adb51171aa6b965275c6924bb392c5fab48be6fb",
+    "content_type": "text/html",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://fdo.rocketlaunch.live/robots.txt",
+    "final_url": "https://fdo.rocketlaunch.live/robots.txt",
+    "status": 200,
+    "at": "2026-10-14T11:51:54+00:00",
+    "bytes": 462,
+    "sha256": "6be743dd06b8cc65b51278714e021ce78c4cfc17ad2cb7981f1af449aff940f2",
+    "content_type": "text/plain; charset=UTF-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://www.rocketlaunch.live/robots.txt",
+    "final_url": "https://www.rocketlaunch.live/robots.txt",
+    "status": 200,
+    "at": "2026-10-14T11:51:55+00:00",
+    "bytes": 462,
+    "sha256": "6be743dd06b8cc65b51278714e021ce78c4cfc17ad2cb7981f1af449aff940f2",
+    "content_type": "text/plain; charset=UTF-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://msi.nga.mil/api/publications/broadcast-warn?output=json&status=active",
+    "final_url": "https://msi.nga.mil/api/publications/broadcast-warn?output=json&status=active",
+    "status": 200,
+    "at": "2026-10-14T11:52:01+00:00",
+    "bytes": 206479,
+    "sha256": "ef93699cf872ec61f29f74575b522e6f477ea9d93d029794cf16a3f30fc4640f",
+    "content_type": "application/json;charset=UTF-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://tfr.faa.gov/tfr3/export/json",
+    "final_url": "https://tfr.faa.gov/tfr3/export/json",
+    "status": 200,
+    "at": "2026-10-14T11:52:02+00:00",
+    "bytes": 8301,
+    "sha256": "e8b75aa7435724975ccbff22b96316aca31d706534ccc16dcf8fd4e5c9508b71",
+    "content_type": "text/html",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://fdo.rocketlaunch.live/json/launches/next/5",
+    "final_url": "https://fdo.rocketlaunch.live/json/launches/next/5",
+    "status": 200,
+    "at": "2026-10-14T11:52:02+00:00",
+    "bytes": 6542,
+    "sha256": "96b9d5cad990be15be1fa5bf3738f7770d8a058717471dec8343ca4254dfea15",
+    "content_type": "application/json",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://msi.nga.mil/api/publications/broadcast-warn?output=json&status=all&navArea=4&msgYear=2026",
+    "final_url": "https://msi.nga.mil/api/publications/broadcast-warn?output=json&status=all&navArea=4&msgYear=2026",
+    "status": 200,
+    "at": "2026-10-14T11:52:27+00:00",
+    "bytes": 21,
+    "sha256": "96ec598b9785da4b5d90e7f458d139b27a375a1d91155f4e6efc3e680fd1150f",
+    "content_type": "application/json;charset=UTF-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://msi.nga.mil/api/publications/broadcast-warn?output=json&status=cancelled&navArea=4&msgYear=2026",
+    "final_url": "https://msi.nga.mil/api/publications/broadcast-warn?output=json&status=cancelled&navArea=4&msgYear=2026",
+    "status": 200,
+    "at": "2026-10-14T11:52:33+00:00",
+    "bytes": 21,
+    "sha256": "96ec598b9785da4b5d90e7f458d139b27a375a1d91155f4e6efc3e680fd1150f",
+    "content_type": "application/json;charset=UTF-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://msi.nga.mil/api/v3/api-docs",
+    "final_url": "https://msi.nga.mil/api/v3/api-docs",
+    "status": 404,
+    "at": "2026-10-14T11:52:52+00:00",
+    "bytes": 104,
+    "sha256": "496b49c0106d4ecb20e37633528309cdebd91a55cccb6de39edb57ff103215bf",
+    "content_type": "application/json",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://msi.nga.mil/api/publications/broadcast-warn?output=json&status=cancelled&navArea=A",
+    "final_url": "https://msi.nga.mil/api/publications/broadcast-warn?output=json&status=cancelled&navArea=A",
+    "status": 200,
+    "at": "2026-10-14T11:52:53+00:00",
+    "bytes": 41492974,
+    "sha256": "441c8e4f4928b0cae61af60685f7e92fea9177eac3c7f4db0f7b528e66e3cb90",
+    "content_type": "application/json;charset=UTF-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://msi.nga.mil/api/publications/broadcast-warn?output=json&status=cancelled&navArea=4",
+    "final_url": "https://msi.nga.mil/api/publications/broadcast-warn?output=json&status=cancelled&navArea=4",
+    "status": 200,
+    "at": "2026-10-14T11:53:12+00:00",
+    "bytes": 15892997,
+    "sha256": "7059202b616db26f2d747d2bdefeb203450a46c7cdd2210ff510019e1941a348",
+    "content_type": "application/json;charset=UTF-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://msi.nga.mil/",
+    "final_url": "https://msi.nga.mil/home",
+    "status": 200,
+    "at": "2026-10-14T11:53:41+00:00",
+    "bytes": 9445,
+    "sha256": "8c7e74ad38e2c841769f7293f13de302bf916d9bb3dd6bdbbcd1b007ddf010ff",
+    "content_type": "text/html;charset=UTF-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://tfr.faa.gov/tfrapi/exportTfrList",
+    "final_url": "https://tfr.faa.gov/tfrapi/exportTfrList",
+    "status": 200,
+    "at": "2026-10-14T11:54:05+00:00",
+    "bytes": 15651,
+    "sha256": "a174d57ff89f5b026c61d4baabe6d9d895f2aed23823d91635a32cfd8010a3fc",
+    "content_type": "application/json",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://tfr.faa.gov/download/detail_6_9083.xml",
+    "final_url": "https://tfr.faa.gov/download/detail_6_9083.xml",
+    "status": 200,
+    "at": "2026-10-14T11:54:15+00:00",
+    "bytes": 26084,
+    "sha256": "0223cde9a0dd7d053b870935ea0f02db02e8574a08816e84102bdccfd3a1cc9f",
+    "content_type": "application/xml",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://external-api.faa.gov/notamapi/v1/notams?icaoLocation=KXMR",
+    "final_url": "https://external-api.faa.gov/notamapi/v1/notams?icaoLocation=KXMR",
+    "status": 401,
+    "at": "2026-10-14T11:54:38+00:00",
+    "bytes": 49,
+    "sha256": "90b9161e0aa1e9e6623d60df116ea08c752f7fcd53d4d5e4aef821e48d04c70b",
+    "content_type": "application/json",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://nextspaceflight.com/launches/",
+    "final_url": "https://nextspaceflight.com/launches/",
+    "status": 200,
+    "at": "2026-10-14T11:54:39+00:00",
+    "bytes": 169446,
+    "sha256": "11b36dbc8665a809f4edd7ad9f7fbe7610d88910b928e820d361ecc37fdc8615",
+    "content_type": "text/html; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://nextspaceflight.com/api_access/",
+    "final_url": "https://nextspaceflight.com/api_access/",
+    "status": 200,
+    "at": "2026-10-14T11:54:40+00:00",
+    "bytes": 38568,
+    "sha256": "93ef1990e8972767667959fadc23485b6b2f5d9f71282375a6b9ec31eeb1c797",
+    "content_type": "text/html; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://nextspaceflight.com/privacy/",
+    "final_url": "https://nextspaceflight.com/privacy/",
+    "status": 200,
+    "at": "2026-10-14T11:54:54+00:00",
+    "bytes": 48215,
+    "sha256": "be2b85e6a0dc2fb4b7adf47e5a367683c353195df645e03bf5a7f6681275b116",
+    "content_type": "text/html; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://nextspaceflight.com/terms/",
+    "final_url": "https://nextspaceflight.com/terms/",
+    "status": 404,
+    "at": "2026-10-14T11:54:55+00:00",
+    "bytes": 29736,
+    "sha256": "33f51bff0475811eec7ece22690c015489060cb560527811919f09756ee2ebfb",
+    "content_type": "text/html; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://nextspaceflight.com/launches/?page=2",
+    "final_url": "https://nextspaceflight.com/launches/?page=2",
+    "status": 200,
+    "at": "2026-10-14T11:55:21+00:00",
+    "bytes": 169542,
+    "sha256": "772edabd4b799a1d8be7cf53e0da261a23ad8d85cae04e3338c74faeb9ef373a",
+    "content_type": "text/html; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://nextspaceflight.com/launches/details/6917/",
+    "final_url": "https://nextspaceflight.com/launches/details/6917/",
+    "status": 200,
+    "at": "2026-10-14T11:55:25+00:00",
+    "bytes": 88670,
+    "sha256": "77abaa9d5b9b5be381a60bfa95096df2134c1fe577fce0af08a685f14e27bdd3",
+    "content_type": "text/html; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://nextspaceflight.com/launches/details/8362/",
+    "final_url": "https://nextspaceflight.com/launches/details/8362/",
+    "status": 200,
+    "at": "2026-10-14T11:55:26+00:00",
+    "bytes": 84704,
+    "sha256": "218bfb0072e05448b7ad580b0166581e046a40bae454bd400b6461d6db77624e",
+    "content_type": "text/html; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://nextspaceflight.com/launches/details/7425/",
+    "final_url": "https://nextspaceflight.com/launches/details/7425/",
+    "status": 200,
+    "at": "2026-10-14T11:55:27+00:00",
+    "bytes": 77302,
+    "sha256": "df1cf34e3e97a1e2541c38b7b1960c75ffcd4319d6e5ee5e521770b987f8f1b6",
+    "content_type": "text/html; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://nextspaceflight.com/launches/details/7076/",
+    "final_url": "https://nextspaceflight.com/launches/details/7076/",
+    "status": 200,
+    "at": "2026-10-14T11:55:28+00:00",
+    "bytes": 76014,
+    "sha256": "80662308e04c1e03153fbb5839ec643f06a6369bf1f1129af1d4d2a827efe3e8",
+    "content_type": "text/html; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://nextspaceflight.com/launches/past/",
+    "final_url": "https://nextspaceflight.com/launches/past/",
+    "status": 404,
+    "at": "2026-10-14T11:55:51+00:00",
+    "bytes": 29781,
+    "sha256": "8c3a14e4c9aaf6c0442b81944f1ac6801602262b6734af1503d8229a65345593",
+    "content_type": "text/html; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://nextspaceflight.com/rockets/",
+    "final_url": "https://nextspaceflight.com/rockets/",
+    "status": 200,
+    "at": "2026-10-14T11:56:08+00:00",
+    "bytes": 94127,
+    "sha256": "feefd4ea5c00669c22786fdf8d6d71912d5dea4d53e2cfa53eac7fad5ef67eb4",
+    "content_type": "text/html; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://nextspaceflight.com/launches/details/7690/",
+    "final_url": "https://nextspaceflight.com/launches/details/7690/",
+    "status": 200,
+    "at": "2026-10-14T11:56:37+00:00",
+    "bytes": 89538,
+    "sha256": "c4ac0605ead9834c25a9c3a6c8438428891122c52e5a89c13c91df20ced8b38b",
+    "content_type": "text/html; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://nextspaceflight.com/launches/details/7826/",
+    "final_url": "https://nextspaceflight.com/launches/details/7826/",
+    "status": 200,
+    "at": "2026-10-14T11:56:38+00:00",
+    "bytes": 95028,
+    "sha256": "47259a86cf12724511e72311847d6297f6de4306ee7d7134bf9f4f6c828b7c00",
+    "content_type": "text/html; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://nextspaceflight.com/launches/details/8227/",
+    "final_url": "https://nextspaceflight.com/launches/details/8227/",
+    "status": 200,
+    "at": "2026-10-14T11:56:39+00:00",
+    "bytes": 88234,
+    "sha256": "9f09b77e0882a3418c8aaff040af98b07fe8f12fe31ef16117c1c6a7ae4600b7",
+    "content_type": "text/html; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://www.spacex.com/launches/",
+    "final_url": "https://www.spacex.com/launches/",
+    "status": 200,
+    "at": "2026-10-14T11:57:17+00:00",
+    "bytes": 3134,
+    "sha256": "3e6eece237e570df6e7d99c2fdc5850b144327eff70ce317feb3c5f10f643372",
+    "content_type": "text/html",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://www.spacex.com/legal/",
+    "final_url": "https://www.spacex.com/legal/",
+    "status": 200,
+    "at": "2026-10-14T11:57:18+00:00",
+    "bytes": 3134,
+    "sha256": "3e6eece237e570df6e7d99c2fdc5850b144327eff70ce317feb3c5f10f643372",
+    "content_type": "text/html",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://content.spacex.com/api/spacex-website/launches-page-tiles/upcoming",
+    "final_url": "https://content.spacex.com/api/spacex-website/launches-page-tiles/upcoming",
+    "status": 200,
+    "at": "2026-10-14T11:57:18+00:00",
+    "bytes": 20716,
+    "sha256": "bf496d1d27cf7e99e5c3da2e814feecb40a55a6b757a47bfea0c9fb75a2035e5",
+    "content_type": "application/json; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://content.spacex.com/robots.txt",
+    "final_url": "https://content.spacex.com/robots.txt",
+    "status": 200,
+    "at": "2026-10-14T11:57:24+00:00",
+    "bytes": 121,
+    "sha256": "2273da7d64f2fff204c15b38c198dd3192f6b5cc3f024573752143810c5cb535",
+    "content_type": "text/plain; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://content.spacex.com/api/spacex-website/missions/bandwagon5",
+    "final_url": "https://content.spacex.com/api/spacex-website/missions/bandwagon5",
+    "status": 200,
+    "at": "2026-10-14T11:57:34+00:00",
+    "bytes": 15629,
+    "sha256": "64d424d929927472df9fbe55c21ecb11ffa6b4c6f723915cd4da54720a084c71",
+    "content_type": "application/json; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://content.spacex.com/api/spacex-website/launches-page-tiles/past",
+    "final_url": "https://content.spacex.com/api/spacex-website/launches-page-tiles/past",
+    "status": 403,
+    "at": "2026-10-14T11:57:35+00:00",
+    "bytes": 95,
+    "sha256": "21c754ccbd1bcf46533a5c6f85ff6466805bbca30f61f3c255b38fcf90985639",
+    "content_type": "application/json; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://content.spacex.com/api/spacex-website/missions/crs35",
+    "final_url": "https://content.spacex.com/api/spacex-website/missions/crs35",
+    "status": 200,
+    "at": "2026-10-14T11:57:48+00:00",
+    "bytes": 29026,
+    "sha256": "cd6e7a08322aca6cda762c6f371f6a5eafad70258a7e98a11b1fe2da88da3c1e",
+    "content_type": "application/json; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://www.blueorigin.com/robots.txt",
+    "final_url": "https://www.blueorigin.com/robots.txt",
+    "status": 429,
+    "at": "2026-10-14T11:58:26+00:00",
+    "bytes": 34219,
+    "sha256": "2af79eadf5785e967b61d5a24ab536d7c9245b1dcfe633efd34d7bc94c6191e3",
+    "content_type": "text/html; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://www.nasa.gov/robots.txt",
+    "final_url": "https://www.nasa.gov/robots.txt",
+    "status": 200,
+    "at": "2026-10-14T11:58:27+00:00",
+    "bytes": 69,
+    "sha256": "44d72c5ad1a94bb45f25caaba917c39b39b383af3a121b59a5a7e46fbe3ccb05",
+    "content_type": "text/plain; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://www.patrick.spaceforce.mil/robots.txt",
+    "final_url": "https://www.patrick.spaceforce.mil/robots.txt",
+    "status": 200,
+    "at": "2026-10-14T11:58:27+00:00",
+    "bytes": 2243,
+    "sha256": "881f3a77a38eecde69354315cd8e0f231f0b6594b4c9d7fff3cf319458fde4fa",
+    "content_type": "text/plain",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://www.patrick.spaceforce.mil/",
+    "final_url": "https://www.patrick.spaceforce.mil/",
+    "status": 200,
+    "at": "2026-10-14T11:58:59+00:00",
+    "bytes": 145180,
+    "sha256": "d4b09bbcf312eb9cb2f01028f5f2eedeb75c85592f32fb7accbf6ea863f1cc88",
+    "content_type": "text/html; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://www.navcen.uscg.gov/robots.txt",
+    "final_url": "https://www.navcen.uscg.gov/robots.txt",
+    "status": 200,
+    "at": "2026-10-14T11:59:27+00:00",
+    "bytes": 2027,
+    "sha256": "773fb8d35bb9a39d35335ee6db8dc5c912d2aacbfb823152d9c61cd647dd902d",
+    "content_type": "text/plain",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://www.navcen.uscg.gov/chart",
+    "final_url": "https://www.navcen.uscg.gov/chart",
+    "status": 200,
+    "at": "2026-10-14T11:59:27+00:00",
+    "bytes": 72995,
+    "sha256": "b834488feee8960431489430dae8dfe2034e5e20a12f01433c3b429d87b549c9",
+    "content_type": "text/html; charset=UTF-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://www.navcen.uscg.gov/sites/default/files/tmp/test.js",
+    "final_url": "https://www.navcen.uscg.gov/sites/default/files/tmp/test.js",
+    "status": 200,
+    "at": "2026-10-14T12:00:03+00:00",
+    "bytes": 6104676,
+    "sha256": "64da1640f965778a980e92d790f7c9af82e038e503807d67dd81700a81741703",
+    "content_type": "application/javascript",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://www.navcen.uscg.gov/sites/default/files/pdf/SOLAR_Reference_Guide.pdf",
+    "final_url": "https://www.navcen.uscg.gov/sites/default/files/pdf/SOLAR_Reference_Guide.pdf",
+    "status": 200,
+    "at": "2026-10-14T12:00:44+00:00",
+    "bytes": 164048,
+    "sha256": "61598a190d0a7df3bb11c47e5430b5994cc08d9a105230155eb5485a089b99a7",
+    "content_type": "application/pdf",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://www.navcen.uscg.gov/broadcast-notice-to-mariners-search-results?district=7&sector=0&date-range=1%20month%20ago--today",
+    "final_url": "https://www.navcen.uscg.gov/broadcast-notice-to-mariners-search-results?district=7&sector=0&date-range=1%20month%20ago--today",
+    "status": 200,
+    "at": "2026-10-14T12:00:44+00:00",
+    "bytes": 57526,
+    "sha256": "879f5ae2d7a38b33c3c11eb9ed9804ddc34af1cc1f0ade473c0d66db67c76542",
+    "content_type": "text/html; charset=UTF-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://www.rocketlaunch.live/api",
+    "final_url": "https://www.rocketlaunch.live/api",
+    "status": 200,
+    "at": "2026-10-14T12:01:23+00:00",
+    "bytes": 48892,
+    "sha256": "ea3a632b2241c1a10bf9f1fab28f71f3ea88fbbaa7d37477fd05636268f3ff3b",
+    "content_type": "text/html; charset=UTF-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://ll.thespacedevs.com/robots.txt",
+    "final_url": "https://ll.thespacedevs.com/robots.txt",
+    "status": 200,
+    "at": "2026-10-14T12:01:55+00:00",
+    "bytes": 1248,
+    "sha256": "8fa3036c68bfcbd32365f6225d24333264093b7cd38d306e106b4dbdc934fd5b",
+    "content_type": "text/plain; charset=utf-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://ll.thespacedevs.com/2.3.0/launches/?search=Bandwagon-5&mode=detailed",
+    "final_url": "https://ll.thespacedevs.com/2.3.0/launches/?search=Bandwagon-5&mode=detailed",
+    "status": 200,
+    "at": "2026-10-14T12:01:56+00:00",
+    "bytes": 52,
+    "sha256": "0595424161ea863805d9b92c0e52d7aa1e3c46ec58cd8f0d6933759006a5fb74",
+    "content_type": "application/json",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://ll.thespacedevs.com/2.3.0/launches/upcoming/?search=Bandwagon&mode=detailed",
+    "final_url": "https://ll.thespacedevs.com/2.3.0/launches/upcoming/?search=Bandwagon&mode=detailed",
+    "status": 200,
+    "at": "2026-10-14T12:02:04+00:00",
+    "bytes": 131608,
+    "sha256": "a1add1a202172c2c61ce9a5a19f3acd388c4f4330972d2e49b1514b3c39e1145",
+    "content_type": "application/json",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://www.nasa.gov/event/nasas-spacex-crs-35/",
+    "final_url": "https://www.nasa.gov/event/nasas-spacex-crs-35/",
+    "status": 200,
+    "at": "2026-10-14T12:02:37+00:00",
+    "bytes": 288295,
+    "sha256": "6860ee2d72873c86a8f3ba798806d6742645af2fb6c367aae084720b2986da6d",
+    "content_type": "text/html; charset=UTF-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://www.nasa.gov/blogs/spacestation/2026/10/13/spacex-dragon-lifts-off-for-thursday-cargo-delivery/",
+    "final_url": "https://www.nasa.gov/blogs/spacestation/2026/10/13/spacex-dragon-lifts-off-for-thursday-cargo-delivery/",
+    "status": 200,
+    "at": "2026-10-14T12:02:48+00:00",
+    "bytes": 281772,
+    "sha256": "2b6456b701587910f856f43f7787070a7adeea69198ce159ed71cce43d982dfd",
+    "content_type": "text/html; charset=UTF-8",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://www.patrick.spaceforce.mil/Portals/14/3_%20X2088%20FALCON%209%20CRS-30%20CG-PA%20LHA%20%20SLIPPs%20EMail.pdf",
+    "final_url": "https://www.patrick.spaceforce.mil/Portals/14/3_%20X2088%20FALCON%209%20CRS-30%20CG-PA%20LHA%20%20SLIPPs%20EMail.pdf",
+    "status": 200,
+    "at": "2026-10-14T12:02:59+00:00",
+    "bytes": 425544,
+    "sha256": "87377d67769b5287414811484ff57df7a4c951f554d17bb46705eef6f48bfdca",
+    "content_type": "application/pdf",
+    "retained_locally_only": true
+  },
+  {
+    "url": "https://msi.nga.mil/api/publications/broadcast-warn?output=json&status=active&navArea=4",
+    "final_url": "https://msi.nga.mil/api/publications/broadcast-warn?output=json&status=active&navArea=4",
+    "status": 200,
+    "at": "2026-10-14T12:03:16+00:00",
+    "bytes": 34700,
+    "sha256": "0aff7519ebba7bd5f7069af6c21e217d3fa795078f029b0d322edaed30b37131",
+    "content_type": "application/json;charset=UTF-8",
+    "retained_locally_only": true
+  }
+]

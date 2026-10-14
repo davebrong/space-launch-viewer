@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { api, apiAll, localTime, launchTime, launchDay, type Location, type Launch, type Assessment, type Subscription, type Notice, type Evidence, type ViewingOpportunity } from '../lib/client';
+import { api, apiAll, localTime, launchTime, launchDay, minutesAfterLiftoff, coverageLabels, type Location, type Launch, type Assessment, type Subscription, type Notice, type Evidence, type ViewingOpportunity, type FlightPlan, type FlightPlanCoverage } from '../lib/client';
 import LaunchDetail, {type Weather} from './LaunchDetail';
 import PastLaunches from './PastLaunches';
 import HistoricalDetail from './HistoricalDetail';
@@ -24,6 +24,7 @@ export default function Viewer() {
   const [possible,setPossible]=useState(false), [overnight,setOvernight]=useState(false), [all,setAll]=useState(true), [recovery,setRecovery]=useState(''), [savedRecovery,setSavedRecovery]=useState('');
   const [filter,setFilter]=useState('viewable'), [adminSecret,setAdminSecret]=useState(''), [adminToken,setAdminToken]=useState(''), [sources,setSources]=useState<Source[]>([]), [adminReason,setAdminReason]=useState('');
   const [opportunities,setOpportunities]=useState<{location_id:string;rows:ViewingOpportunity[]}|null>(null);
+  const [flightPlan,setFlightPlan]=useState<FlightPlan|null>(null), [flightPlanError,setFlightPlanError]=useState(''), [coverage,setCoverage]=useState<FlightPlanCoverage|null>(null);
   const [viewingBusy,setViewingBusy]=useState(false), [viewingError,setViewingError]=useState('');
   const [reviewedStatus,setReviewedStatus]=useState(''), [reviewedRecovery,setReviewedRecovery]=useState(''), [reviewSource,setReviewSource]=useState('');
   const [outcome,setOutcome]=useState('inconclusive'), [cloudNotes,setCloudNotes]=useState(''), [notes,setNotes]=useState(''), [consent,setConsent]=useState(false), [forecastId,setForecastId]=useState('');
@@ -50,12 +51,14 @@ export default function Viewer() {
     if(!ready||historical||!(['/subscriptions','/notifications'].includes(path)||(selectedId&&location?.confirmed)))return;
     let active=true;
     setBusy(true);setError('');setMessage('');
-    if(selectedId){setAssessment(null);setEvidence([]);setWeather(null);}
+    if(selectedId){setAssessment(null);setEvidence([]);setWeather(null);setFlightPlan(null);setFlightPlanError('');}
     void (async()=>{
       try {
         if(path==='/subscriptions'){const rows=await apiAll<Subscription>('/subscriptions');if(active)setSubscriptions(rows);}
         if(path==='/notifications'){const rows=await apiAll<Notice>('/notifications');if(active)setNotices(rows);}
         if(selectedId&&location?.confirmed){
+          // Route information loads independently; its failure never hides the assessment.
+          void api<FlightPlan>('/launches/'+selectedId+'/flight-plan').then(p=>{if(active)setFlightPlan(p);}).catch(e=>{if(active)setFlightPlanError(e instanceof Error?e.message:'Route information unavailable.');});
           const [a,e,w]=await Promise.all([api<Assessment>('/assessments',{method:'POST',body:JSON.stringify({launch_id:selectedId,location_id:location.id})}),api<Evidence[]>('/launches/'+selectedId+'/evidence'),api<Weather>('/locations/'+location.id+'/weather')]);
           if(active){setAssessment(a);setEvidence(e);setWeather(w);setForecastId(a.id);localStorage.setItem('lv_forecast',a.id);}
         }
@@ -69,6 +72,7 @@ export default function Viewer() {
     if(!ready||!location?.confirmed||path!=='/launches'||filter==='past')return;
     let active=true;
     setOpportunities(null);setViewingBusy(true);setViewingError('');
+    void api<FlightPlanCoverage>('/flight-plan-coverage').then(c=>{if(active)setCoverage(c);}).catch(()=>{if(active)setCoverage(null);});
     void apiAll<ViewingOpportunity>(`/locations/${location.id}/viewing-opportunities`)
       .then(rows=>{if(active)setOpportunities({location_id:location.id,rows});})
       .catch(e=>{if(active)setViewingError(e instanceof Error?e.message:'Could not check viewing plans.');})
@@ -111,15 +115,22 @@ export default function Viewer() {
         const viewing=viewingById.get(l.id);
         return <Link href={'/launches/'+l.id} className={'launch-card'+(viewing&&!viewing.viewable?' unavailable':'')} key={l.id}>
           <div className="launch-icon" aria-hidden="true">{viewing?.viewable?'↗':'·'}</div>
-          <div className="launch-main"><div className="small muted">{l.pad_name} <span className="dot-separator">•</span> {l.vehicle_variant||'Vehicle not confirmed'}</div><h3>{l.name.split(' | ').pop()}</h3><p>{launchTime(l,zone)}</p>{viewing?.directions.length?<p className="viewing-direction">Look {viewing.directions.join(' → ')}</p>:null}</div>
+          <div className="launch-main"><div className="small muted">{l.pad_name} <span className="dot-separator">•</span> {l.vehicle_variant||'Vehicle not confirmed'}</div><h3>{l.name.split(' | ').pop()}</h3><p>{launchTime(l,zone)}</p>{viewing?.directions.length?<p className="viewing-direction">Look {viewing.directions.join(' → ')}{viewing.basis==='published_heading'?' in clear skies':''}{viewing.relative_window&&!viewing.watch_interval?` · ${minutesAfterLiftoff(viewing.relative_window)}`:''}</p>:null}{viewing?.weather_note&&<p className="small muted">{viewing.weather_note}</p>}</div>
           <div className="launch-state"><span className={'badge'+(viewing?.viewable?' viewing-badge':'')}>{viewing?.label||(viewingError?'Viewing check unavailable':'Checking viewing plan…')}</span><span className="small muted">{l.status==='scheduled'&&l.net&&Date.parse(l.net)<=currentTime&&!l.actual_liftoff?'Awaiting launch confirmation':l.status}</span><span className="small">{viewing?.viewable?'Open viewing plan →':'Launch details →'}</span></div>
         </Link>;
       })}</section>)}
-      <div className="small muted">Schedule: The Space Devs Launch Library 2</div></>}
+      {coverage&&<details className="panel coverage"><summary>Route coverage: {coverage.with_route_information} of {coverage.missions} missions have published route information</summary>
+        <p className="small">{coverage.note}</p>
+        <p className="small">Missions with a timed flight path: {coverage.with_timed_path}. {Object.entries(coverage.by_evidence_type).map(([k,v])=>`${({departure_heading:'Published departure heading',hazard_corridor:'Hazard areas',published_path:'Published path'} as Record<string,string>)[k]||k}: ${v}`).join(' · ')||'No route evidence yet.'}</p>
+        <div className="table-wrap"><table><caption>Missions by route-check state</caption><tbody>{Object.entries(coverage.by_state).filter(([,v])=>v>0).map(([k,v])=><tr key={k}><th scope="row">{coverageLabels[k]||k}</th><td>{v}</td></tr>)}</tbody></table></div>
+        <div className="table-wrap"><table><caption>By vehicle family</caption><thead><tr><th>Vehicle</th><th>Missions</th><th>With route information</th></tr></thead><tbody>{Object.entries(coverage.by_vehicle_family).map(([k,v])=><tr key={k}><td>{k}</td><td>{v.missions}</td><td>{v.with_route_information}</td></tr>)}</tbody></table></div>
+        <p className="small muted">Computed {localTime(coverage.computed_at,zone)} · {coverage.scope}</p>
+      </details>}
+      <div className="small muted">Schedule: The Space Devs Launch Library 2 · Route information: public mission sources named on each launch</div></>}
     </>}
 
     {historical&&selectedId&&location?.confirmed&&<HistoricalDetail key={selectedId+location.id} id={selectedId} location={location} onReturn={()=>setFilter('past')}/>}
-    {!historical&&selected&&location&&<LaunchDetail launch={selected} location={location} assessment={assessment} evidence={evidence} weather={weather} busy={busy||!online} error={error} onDownload={()=>void perform(download)}/>}
+    {!historical&&selected&&location&&<LaunchDetail launch={selected} location={location} assessment={assessment} evidence={evidence} weather={weather} flightPlan={flightPlan} flightPlanError={flightPlanError} busy={busy||!online} error={error} onDownload={()=>void perform(download)}/>}
     {!historical&&selectedId&&ready&&!busy&&!selected&&<section className="panel"><h1>Launch unavailable</h1><p>This mission is not in the available schedule. Return to the launch list or try again when the source is available.</p><Link href="/launches">View launches</Link></section>}
 
     {path==='/subscriptions'&&location&&<><div className="page-heading"><div><div className="eyebrow">A LITTLE PLANNING</div><h1>Your reminders</h1><p>In-app notices for supported opportunities at {location.zip?`ZIP ${location.zip}`:'your selected point'}.</p></div></div><div className="detail-grid"><section className="panel"><h2>Reminder preferences</h2><p>By default, only “Worth a look” advice qualifies. Missing or stale data cannot trigger a positive notice.</p><label className="check"><input type="checkbox" checked={possible} onChange={e=>setPossible(e.target.checked)}/> Include Possible opportunities, including approximate reconstructed flight profiles</label><label className="check"><input type="checkbox" checked={overnight} onChange={e=>setOvernight(e.target.checked)}/> Allow overnight notices (10 p.m.–7 a.m. at my viewing location)</label><p>Planning notice: 24 hours before the supported viewing start. Viewing notice: 30 minutes before. New subscriptions receive no past milestones.</p><div className="notice-strip">{overnight?'Overnight delivery is enabled by your explicit choice.':'Overnight notices appear as suppressed in history; they are never delayed until after the opportunity.'}</div><label className="check"><input type="checkbox" checked={all} onChange={e=>{setAll(e.target.checked);setPreviews(null);}}/> All supported launches</label>{!all&&<label>Choose missions<select multiple value={chosenLaunches} onChange={e=>setChosenLaunches(Array.from(e.target.selectedOptions,o=>o.value))}>{launches.map(l=><option key={l.id} value={l.id}>{l.name}</option>)}</select></label>}<button className="secondary" onClick={()=>void perform(async()=>setPreviews(await api<Preview[]>('/subscriptions/preview',{method:'POST',body:JSON.stringify(preferenceBody())})))} disabled={busy||!online}>Preview local reminder times</button> <button onClick={()=>void perform(subscribe)} disabled={busy||!online}>{editing?'Save subscription changes':all?'Save preferences for all supported launches':'Save preferences for selected launches'}</button>{previews&&<div><h3>Preview at your viewing location</h3>{previews.every(p=>p.milestones.length===0)?<p>No supported future reminder times are currently available. Missing evidence does not schedule a notice.</p>:previews.filter(p=>p.milestones.length>0).map(p=><div key={p.launch_id}><h4>{p.name}</h4>{p.milestones.map(m=><p key={m.notice_type}>{m.notice_type.replaceAll('_',' ')} · {localTime(m.due_at,zone)} · {m.suppressed?'suppressed during quiet hours':m.eligible?'eligible':'ineligible or past milestone'}</p>)}</div>)}</div>}<p className="small muted">Window-only launches support conditional planning, without a precise 30-minute notice. Email is disabled; no paid service is required.</p></section><section className="panel"><h2>Saved subscriptions</h2>{subscriptions.length===0?<p>No subscriptions yet.</p>:subscriptions.map(s=><div className="subscription-row" key={s.id}><h3>{s.enabled?'Active':'Unsubscribed'}</h3><p>{s.allow_possible?'Possible and Worth a look':'Worth a look only'} · {s.overnight_opt_in?'overnight allowed':'quiet 22:00–07:00'}</p><button className="text-button" disabled={!s.enabled||busy} onClick={()=>{setEditing(s);setPossible(s.allow_possible);setOvernight(s.overnight_opt_in);setAll(s.all_supported_launches);setChosenLaunches(s.launch_ids);const loc=savedLocations.find(l=>l.id===s.location_id);if(loc)setLocation(loc);setPreviews(null);}}>Edit preferences</button> <button className="secondary" disabled={!s.enabled||busy||!online} onClick={()=>void perform(async()=>{await api('/subscriptions/'+s.id,{method:'DELETE'});setSubscriptions(await api('/subscriptions'));setMessage('Unsubscribed. Pending notices are cancelled.');})}>Unsubscribe immediately</button></div>)}</section></div></>}

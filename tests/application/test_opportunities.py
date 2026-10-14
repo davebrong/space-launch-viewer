@@ -3,21 +3,24 @@ from unittest.mock import patch
 
 from sqlalchemy import update
 
+from packages.visibility.common import stamp
 from services.api import db
 from services.api.opportunities import summarize
 from tests.application import support as s
-from tests.application.test_planning import LAUNCH, LOCATION, AT
+from tests.application.test_planning import LAUNCH, LOCATION, AT, NORTHEAST
 from packages.visibility.planning import calculate_plan
+from services.api.flight_plans import KEY, fingerprint
 
 
 def test_summary_requires_observer_geometry_and_excludes_poor_or_stopped_plans():
     launch = {**LAUNCH, "id": "test"}
-    plan = calculate_plan(launch, LOCATION, [], AT)
+    plan = calculate_plan(launch, LOCATION, [], AT, NORTHEAST)
     assert summarize(launch, plan=plan)["viewable"]
     assert not summarize(launch)["viewable"]
     assert not summarize({**launch, "status": "hold"}, plan=plan)["viewable"]
     assert not summarize(launch, plan={**plan, "watch_interval": None})["viewable"]
-    assert not summarize(launch, plan={**plan, "cloud_cover_min_pct": 90})["viewable"]
+    cloudy = summarize(launch, plan={**plan, "cloud_cover_min_pct": 90, "cloud_cover_max_pct": 95})
+    assert cloudy["viewable"] and cloudy["weather_note"].startswith("Forecast 90–95%")
     assessment = {
         "mode": "official_guidance",
         "fresh": True,
@@ -40,12 +43,28 @@ def test_listing_is_location_specific_paginated_private_and_does_not_guess_rides
         with db.engine().begin() as conn:
             for row in (station, rideshare):
                 conn.execute(update(db.launches).where(db.launches.c.id == row["id"]).values(body=row))
+            # Only the station mission has a (synthetic) published heading record.
+            record = {
+                "schema_version": "1.0",
+                "launch_id": station["id"],
+                "state": "found",
+                "checked_at": stamp(s.AT),
+                "next_check_at": stamp(s.AT),
+                "mission_fingerprint": fingerprint(station),
+                "sources": [],
+                "changes": [],
+                "trajectory_available": False,
+                "note": "synthetic",
+                "evidence": NORTHEAST["evidence"],
+            }
+            conn.execute(db.cache.insert().values(key=KEY + station["id"], body=record, failures=0))
         url = f"/api/v1/locations/{near['id']}/viewing-opportunities"
         result = client.get(url)
         assert result.status_code == 200, result.text
         rows = {r["launch_id"]: r for r in result.json()}
-        assert rows[station["id"]]["viewable"]
-        assert rows[rideshare["id"]]["label"] == "No viewing estimate"
+        assert rows[station["id"]]["viewable"] and rows[station["id"]]["basis"] == "published_heading"
+        # No vehicle/name-based guess: without a published route the rideshare stays unresolved.
+        assert rows[rideshare["id"]]["label"] == "Route check pending" and not rows[rideshare["id"]]["viewable"]
         florida = s.location(client, "fl-zip")
         florida_url = f"/api/v1/locations/{florida['id']}/viewing-opportunities"
         nearby = {r["launch_id"]: r for r in client.get(florida_url).json()}

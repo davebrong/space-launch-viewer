@@ -3,8 +3,7 @@
     "argv": [
       "C:\\nvm4w\\nodejs\\node.exe",
       "<repo>\\node_modules\\@playwright\\test\\cli.js",
-      "test",
-      "tests/browser/history.spec.ts"
+      "test"
     ],
     "configFile": "<repo>\\playwright.config.ts",
     "rootDir": "<repo>/tests/browser",
@@ -72,7 +71,7 @@
         "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
         "timeout": 60000,
         "use": {
-          "baseURL": "http://127.0.0.1:3007",
+          "baseURL": "http://127.0.0.1:3080",
           "browserName": "chromium",
           "timezoneId": "America/Los_Angeles",
           "trace": "retain-on-failure",
@@ -102,7 +101,7 @@
         "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
         "timeout": 60000,
         "use": {
-          "baseURL": "http://127.0.0.1:3007",
+          "baseURL": "http://127.0.0.1:3080",
           "browserName": "chromium",
           "timezoneId": "America/Los_Angeles",
           "trace": "retain-on-failure",
@@ -149,6 +148,150 @@
   },
   "suites": [
     {
+      "title": "completed-review.spec.ts",
+      "file": "completed-review.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "ZIP md-zip can review the completed CRS-35 launch-day plan from its published heading",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2292,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T12:48:52.001Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aa84bc48443187455b75-22a862d01a9125962a30",
+          "file": "completed-review.spec.ts",
+          "line": 5,
+          "column": 5
+        },
+        {
+          "title": "unknown provider placeholders never create exact date groups",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11996,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T12:48:54.390Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aa84bc48443187455b75-f187213323b3bb601fa1",
+          "file": "completed-review.spec.ts",
+          "line": 72,
+          "column": 5
+        },
+        {
+          "title": "ZIP md-zip can review the completed CRS-35 launch-day plan from its published heading",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2136,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T12:50:10.988Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aa84bc48443187455b75-f67e75f6d05c7729c8ba",
+          "file": "completed-review.spec.ts",
+          "line": 5,
+          "column": 5
+        },
+        {
+          "title": "unknown provider placeholders never create exact date groups",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12146,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T12:50:13.219Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aa84bc48443187455b75-912b63765420f23bfa7a",
+          "file": "completed-review.spec.ts",
+          "line": 72,
+          "column": 5
+        }
+      ]
+    },
+    {
       "title": "history.spec.ts",
       "file": "history.spec.ts",
       "column": 0,
@@ -170,12 +313,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 10590,
+                  "duration": 4048,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-13T20:44:47.859Z",
+                  "startTime": "2026-10-14T12:49:06.398Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -204,12 +347,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 9618,
+                  "duration": 3962,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-13T20:44:59.127Z",
+                  "startTime": "2026-10-14T12:50:25.378Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -223,13 +366,309 @@
           "column": 5
         }
       ]
+    },
+    {
+      "title": "journeys.spec.ts",
+      "file": "journeys.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "live location, schedule, uncertainty, reminders, privacy and keyboard journeys",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1921,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T12:49:10.459Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aa09586c1d16412a1f00-350e4eb780417905f613",
+          "file": "journeys.spec.ts",
+          "line": 5,
+          "column": 5
+        },
+        {
+          "title": "observer clock is independent of browser timezone and preserves DST fold",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 259,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T12:49:12.389Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aa09586c1d16412a1f00-8547bdd1bb5eea50fa6e",
+          "file": "journeys.spec.ts",
+          "line": 51,
+          "column": 5
+        },
+        {
+          "title": "live location, schedule, uncertainty, reminders, privacy and keyboard journeys",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2004,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T12:50:29.355Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aa09586c1d16412a1f00-18aef36da75fc04b1ca2",
+          "file": "journeys.spec.ts",
+          "line": 5,
+          "column": 5
+        },
+        {
+          "title": "observer clock is independent of browser timezone and preserves DST fold",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 225,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T12:50:31.368Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aa09586c1d16412a1f00-7e792f71909dfd383e0e",
+          "file": "journeys.spec.ts",
+          "line": 51,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "states.spec.ts",
+      "file": "states.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "synthetic edge cases through actual API, database and UI",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 49517,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T12:49:12.662Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "be092eae759d55e55094-b03cf6b16ac54a0a0a7d",
+          "file": "states.spec.ts",
+          "line": 11,
+          "column": 5
+        },
+        {
+          "title": "synthetic edge cases through actual API, database and UI",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 61451,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T12:50:31.606Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "be092eae759d55e55094-ab941fa868f0262f4230",
+          "file": "states.spec.ts",
+          "line": 11,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "viewable.spec.ts",
+      "file": "viewable.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "viewable defaults to published-heading ZIP plans; all labels missing route coverage and hides secondary features",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8350,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T12:50:02.195Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ad9198dad842d06e93dc-1368937bf98f37674312",
+          "file": "viewable.spec.ts",
+          "line": 7,
+          "column": 5
+        },
+        {
+          "title": "viewable defaults to published-heading ZIP plans; all labels missing route coverage and hides secondary features",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7308,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T12:51:33.073Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ad9198dad842d06e93dc-9f6fc6e1f5b5ad4368b2",
+          "file": "viewable.spec.ts",
+          "line": 7,
+          "column": 5
+        }
+      ]
     }
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-13T20:44:45.405Z",
-    "duration": 25257.337,
-    "expected": 2,
+    "startTime": "2026-10-14T12:48:49.664Z",
+    "duration": 170981.84900000002,
+    "expected": 14,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

@@ -116,6 +116,26 @@ def api_contract() -> dict:
         assert c.get("/api/v1/launches?limit=0").status_code == 422
         assert c.get("/api/v1/launches/" + launch["id"] + "/evidence").status_code == 200
         seen.add(("/launches/{id}/evidence", "get"))
+        r = c.get("/api/v1/launches/" + launch["id"] + "/flight-plan")
+        assert r.status_code == 200, r.text
+        schema(r.json(), "flight-plan")
+        assert r.json()["state"] == "pending" and not r.json()["evidence"]
+        assert c.get("/api/v1/launches/missing-launch/flight-plan").status_code == 404
+        seen.add(("/launches/{id}/flight-plan", "get"))
+        r = c.get("/api/v1/flight-plan-coverage")
+        assert r.status_code == 200, r.text
+        jsonschema.Draft202012Validator(main.CONTRACT["components"]["schemas"]["FlightPlanCoverage"]).validate(r.json())
+        assert r.json()["missions"] >= 1 and r.json()["with_timed_path"] == 0
+        seen.add(("/flight-plan-coverage", "get"))
+        # Archive browsing: an unloaded page is a pending state, never a fabricated archive.
+        r = c.get("/api/v1/launch-history")
+        assert r.status_code == 200, r.text
+        jsonschema.Draft202012Validator(main.CONTRACT["components"]["schemas"]["LaunchHistoryPage"]).validate(r.json())
+        seen.add(("/launch-history", "get"))
+        r = c.get("/api/v1/launch-history/not-loaded", params={"location_id": loc["id"]})
+        assert r.status_code == 404, r.text
+        schema(r.json(), "error")
+        seen.add(("/launch-history/{id}", "get"))
         p = s.profile(launch)
         with db.engine().begin() as conn:
             conn.execute(db.profiles.insert().values(id=p["id"], revision=1, body=p, created_at=at))

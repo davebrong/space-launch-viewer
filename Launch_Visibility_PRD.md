@@ -8,6 +8,10 @@ Implementation specification and feasibility review
 
 Version 1.2 • October 13 2026
 
+### Issue #1 amendment — mission-sourced routes only (2026-10-14)
+
+The family-based simulation in the amendment below is withdrawn. Rocket, payload, destination or orbit labels never establish a departure direction. Distant viewing estimates require mission-specific published route information. Today that is a reported departure heading, checked against published hazard areas when available, combined with an explicitly assumed generic ascent envelope and the confirmed observer point. Guidance is clear-sky first; weather detail is deferred. Every catalog mission enters route discovery regardless of vehicle or date precision. Missing coverage stays visibly distinct from modeled results. Headings, hazard corridors, published paths and modeled estimates remain separate evidence types. See spec/decisions.md D29.
+
 ### Product amendment — practical planning simulations (2026-10-13)
 
 Location-first correction: Viewable covers today through 30 calendar days ahead at the confirmed observer point, including today's completed launches. Remove the redundant Upcoming filter. Nearby Cape/Kennedy early-ascent planning applies across mission families: calculate pad-relative direction and distance, use a documented conservative coverage policy (within 100 km and a WGS84 sightline to a reference point 2 km above the known pad), and label “Nearby launch estimate.” These parameters are model assumptions, not measured sighting boundaries. Watch guidance spans T−2 to T+5 minutes, or the published launch window with those buffers; it is not a predicted visible duration. Date-only nearby opportunities remain visible with time TBA and no numerical viewing interval. Do not invent a trajectory. Distant unsupported missions still require additional models or admitted mission evidence.

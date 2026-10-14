@@ -1,15 +1,20 @@
 'use client';
 import {useEffect,useState} from 'react';
 import Link from 'next/link';
-import {api,type Location,type HistoricalLaunchDetail} from '../lib/client';
+import {api,type Location,type HistoricalLaunchDetail,type FlightPlan} from '../lib/client';
 import PlanningSummary from './PlanningSummary';
+import FlightPlanPanel from './FlightPlanPanel';
 
 export default function HistoricalDetail({id,location,onReturn}:{id:string;location:Location;onReturn:()=>void}) {
   const [record,setRecord]=useState<HistoricalLaunchDetail|null>(null);
   const [error,setError]=useState(''),[revision,setRevision]=useState(0);
+  const [flightPlan,setFlightPlan]=useState<FlightPlan|null>(null),[flightPlanError,setFlightPlanError]=useState('');
   useEffect(()=>{
     const controller=new AbortController();
-    setRecord(null);setError('');
+    setRecord(null);setError('');setFlightPlan(null);setFlightPlanError('');
+    void api<FlightPlan>(`/launches/${encodeURIComponent(id)}/flight-plan`,{signal:controller.signal})
+      .then(result=>{if(!controller.signal.aborted)setFlightPlan(result);})
+      .catch(e=>{if(!controller.signal.aborted)setFlightPlanError(e instanceof Error?e.message:'Route information unavailable.');});
     void api<HistoricalLaunchDetail>(`/launch-history/${encodeURIComponent(id)}?location_id=${encodeURIComponent(location.id)}`,{signal:controller.signal})
       .then(result=>{if(!controller.signal.aborted)setRecord(result);})
       .catch(e=>{if(!controller.signal.aborted)setError(e instanceof Error?e.message:'Could not load this launch.');});
@@ -32,10 +37,11 @@ export default function HistoricalDetail({id,location,onReturn}:{id:string;locat
       <div className="notice-strip"><strong>Historical viewing estimate.</strong><span> Calculated now from the archive’s published launch time and the same planning assumptions used for upcoming launches. This does not confirm a sighting or recreate a forecast saved before launch.</span></div>
       <div className="detail-grid"><div>
         <section className="panel advice-panel"><div className="eyebrow">COULD YOU HAVE SEEN IT?</div>
-          <h2>{cloudy?'Clouds likely limited the view':potential?`Potentially visible from ${point}`:plan?'Outside this model’s viewing area':'Viewing potential unknown'}</h2>
-          {plan?<PlanningSummary assessment={record.assessment} zone={zone} historical/>:<p>{record.launch.time_precision==='unknown'?'The archive does not specify enough launch timing to calculate a viewing plan.':'This location and mission are outside the current planning models. That does not mean the launch was invisible.'}</p>}
+          <h2>{cloudy?'Clouds likely limited the view':potential?`Potentially visible from ${point}`:plan?'Not visible in this clear-sky model':'Viewing potential unknown'}</h2>
+          {plan?<PlanningSummary assessment={record.assessment} zone={zone} historical/>:<p>{record.launch.time_precision==='unknown'?'The archive does not specify enough launch timing to calculate a viewing plan.':'No published route for this mission is available to the app, and it does not guess one from the rocket or destination. That does not mean the launch was invisible.'}</p>}
           {/fail/i.test(record.source_status)&&<p>The provider records a launch failure. This scenario assumes nominal ascent; the actual viewing opportunity may have been shorter or absent.</p>}
         </section>
+        <FlightPlanPanel plan={flightPlan} zone={zone} error={flightPlanError} complete/>
         <details className="panel"><summary>Launch record & sources</summary><p><a href={record.source_url} target="_blank" rel="noreferrer">View original API record ↗</a></p>
           <p>Record updated {record.launch.source_updated_at?time(record.launch.source_updated_at):'at an unspecified time'}.</p>
           <p>Archive retrieved {time(record.launch.provenance[0].fetched_at)}.</p>
@@ -45,7 +51,7 @@ export default function HistoricalDetail({id,location,onReturn}:{id:string;locat
       </div><aside><section className="panel"><h2>Light & clouds</h2>
         {record.assessment.solar_events.map(event=><div key={event.local_date}><h3>{event.local_date}</h3><p>Sunrise: {event.sunrise?time(event.sunrise):event.rise_set_state.replaceAll('_',' ')}</p><p>Sunset: {event.sunset?time(event.sunset):event.rise_set_state.replaceAll('_',' ')}</p></div>)}
         <h3>Prelaunch cloud forecast</h3>
-        {plan&&plan.cloud_cover_min_pct!==null?<p>{Math.round(plan.cloud_cover_min_pct)}–{Math.round(plan.cloud_cover_max_pct!)}% cloud cover during the watch window.</p>:<p>No matching prelaunch cloud forecast is available. Viewing potential assumes a clear, unobstructed horizon.</p>}
+        {plan&&plan.cloud_cover_min_pct!==null?<p>{Math.round(plan.cloud_cover_min_pct)===Math.round(plan.cloud_cover_max_pct!)?`${Math.round(plan.cloud_cover_min_pct)}%`:`${Math.round(plan.cloud_cover_min_pct)}–${Math.round(plan.cloud_cover_max_pct!)}%`} cloud cover during the watch window.</p>:<p>No matching prelaunch cloud forecast is available. Viewing potential assumes a clear, unobstructed horizon.</p>}
         <p className="small muted">Current weather and later forecasts are excluded from this estimate.</p>
       </section></aside></div>
     </>}

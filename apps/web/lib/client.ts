@@ -56,3 +56,25 @@ export function launchDay(launch:Launch,zone:string):string {
 export type ViewingOpportunity = components['schemas']['ViewingOpportunity'];
 
 export type LaunchHistoryPage = components['schemas']['LaunchHistoryPage'];
+
+export type FlightPlan = components['schemas']['flight-plan'];
+export type FlightPlanCoverage = components['schemas']['FlightPlanCoverage'];
+
+export const evidenceLabels:Record<string,string> = {
+  departure_heading:'Published departure heading',
+  hazard_corridor:'Hazard area (not a flight path)',
+  published_path:'Published flight path',
+};
+export const coverageLabels:Record<string,string> = {
+  found:'Route information found',
+  stale:'Route information not recently refreshed',
+  ambiguous:'Ambiguous source match',
+  unavailable:'Route source unavailable',
+  blocked:'Source does not permit automatic checks',
+  queued:'Route check queued',
+  pending:'Route check pending',
+  not_found:'No published route found',
+};
+export function minutesAfterLiftoff(window:{t_start_s:number;t_end_s:number}):string {
+  return `${Math.floor(window.t_start_s/60)}–${Math.ceil(window.t_end_s/60)} minutes after liftoff`;
+}

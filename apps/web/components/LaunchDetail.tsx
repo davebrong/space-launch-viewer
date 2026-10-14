@@ -1,7 +1,8 @@
 import Link from 'next/link';
-import {localTime, launchTime, type Launch, type Location, type Assessment, type Evidence} from '../lib/client';
+import {localTime, launchTime, coverageLabels, type Launch, type Location, type Assessment, type Evidence, type FlightPlan} from '../lib/client';
 import SkyBand from './SkyBand';
 import PlanningSummary from './PlanningSummary';
+import FlightPlanPanel from './FlightPlanPanel';
 
 export type Weather = {intervals: {start:string; end:string; total:number|null; visibility_m:number|null; missing_flags:string[]; provenance:{fetched_at:string; issued_at:string|null}[]}[]; note:string};
 
@@ -19,10 +20,11 @@ const explanations:Record<string,string> = {
   nonactionable_awaiting_confirmation:'Waiting for launch confirmation',
 };
 const explain=(code:string)=>explanations[code]||code.replaceAll('_',' ');
+const cloudRange=(low:number,high:number)=>Math.round(low)===Math.round(high)?`${Math.round(low)}%`:`${Math.round(low)}–${Math.round(high)}%`;
 
-export default function LaunchDetail({launch,location,assessment,evidence,weather,busy,error,onDownload}:{
+export default function LaunchDetail({launch,location,assessment,evidence,weather,flightPlan,flightPlanError,busy,error,onDownload}:{
   launch:Launch; location:Location; assessment:Assessment|null; evidence:Evidence[]; weather:Weather|null;
-  busy:boolean; error:string; onDownload:()=>void;
+  flightPlan:FlightPlan|null; flightPlanError:string; busy:boolean; error:string; onDownload:()=>void;
 }) {
   const zone=location.timezone;
   const review=launch.status==='completed';
@@ -50,7 +52,7 @@ export default function LaunchDetail({launch,location,assessment,evidence,weathe
       <span className="small muted">{launch.vehicle_variant} · {launch.actual_liftoff?'Confirmed liftoff':'Published launch time'} · {location.zip?'ZIP '+location.zip:'Your confirmed point'}</span>
     </div><span className="badge">{a?.display_status==='awaiting_confirmation'?'Awaiting launch confirmation':launch.status.replaceAll('_',' ')}</span></section>
     {review&&<div className="notice-strip"><strong>{plan?'Launch-day plan':'Review this launch'}</strong><span>{plan?' This launch has happened. Here is the viewing plan based on its scheduled liftoff.':' This launch has happened. You can still review its viewing outlook.'}</span></div>}
-    {a&&missingModel&&!plan&&<div className="notice-strip"><strong>No viewing estimate</strong><span> This mission has no matching viewing model or approved path yet. It appears in All launches, but not in Viewable.</span></div>}
+    {a&&missingModel&&!plan&&<div className="notice-strip"><strong>No viewing estimate</strong><span> {flightPlan?`${coverageLabels[flightPlan.state]}. `:''}Without a published route for this mission, the app does not guess its direction from the rocket or destination. Missing route information is not a sign it cannot be seen.</span></div>}
     <div className="detail-grid"><div>
       <section className="panel advice-panel">
         {plan&&a?<PlanningSummary assessment={a} zone={zone||'UTC'}/>:<><div className="eyebrow">{review?'WHAT COULD HAVE BEEN VISIBLE':'YOUR VIEWING OUTLOOK'}</div><h2>{title}</h2></>}
@@ -72,6 +74,7 @@ export default function LaunchDetail({launch,location,assessment,evidence,weathe
         </>}
         {!a&&error&&<p>We could not load the assessment. The error above has a reload action; missing details are not a visibility result.</p>}
       </section>
+      <FlightPlanPanel plan={flightPlan} zone={zone||'UTC'} error={flightPlanError} complete={review}/>
       <details className="panel"><summary>Sources & technical details</summary>
         {plan&&<p>The viewing plan uses documented planning assumptions. The stricter mission-evidence checks below apply to verified forecasts.</p>}
         {a?.missing_flags.map(f=><p key={f}>{explain(f)}</p>)}
@@ -86,11 +89,11 @@ export default function LaunchDetail({launch,location,assessment,evidence,weathe
         {a?.solar_events.map(s=><div key={s.local_date}><h3>{s.local_date}</h3><div className="sun-row"><span>↑ Sunrise</span><strong>{s.sunrise?localTime(s.sunrise,zone):s.rise_set_state.replaceAll('_',' ')}</strong></div><div className="sun-row"><span>↓ Sunset</span><strong>{s.sunset?localTime(s.sunset,zone):s.rise_set_state.replaceAll('_',' ')}</strong></div><details><summary>Twilight transitions</summary>{s.transitions.map((t,i)=><p className="small" key={i}>{t.event.replaceAll('_',' ')} · {t.direction}<br/>{localTime(t.at,zone)}</p>)}</details></div>)}
         <hr/><h3>Cloud forecast</h3>
         {plan?<>
-          {plan.cloud_cover_min_pct===null?<p>{review?'No prelaunch cloud forecast was saved for this viewing window.':'Cloud forecast is not available for this viewing window yet.'}</p>:<p><strong>{Math.round(plan.cloud_cover_min_pct)}–{Math.round(plan.cloud_cover_max_pct!)}% cloud cover</strong> during the watch window.{plan.cloud_cover_max_pct!>=75?' Clouds may obscure the view.':''}</p>}
+          {plan.cloud_cover_min_pct===null?<p>{review?'No prelaunch cloud forecast was saved for this viewing window.':'Cloud forecast is not available for this viewing window yet.'}</p>:<p><strong>{cloudRange(plan.cloud_cover_min_pct,plan.cloud_cover_max_pct!)} cloud cover</strong> forecast during the watch window. Clear-sky guidance above does not depend on it.{plan.cloud_cover_max_pct!>=75?' Clouds may obscure the view.':''}</p>}
           <p className="small muted">NWS forecast for your viewing point.</p>
         </>:<><p className="small">Weather alone cannot establish launch visibility. Haze and cloud layers may be unavailable.</p>
         {review&&<p className="small">These are forecast values, not measured cloud conditions or a sighting record.{issuedAfter?' This forecast was issued after the launch; it does not show what was predicted beforehand.':''}</p>}
-        {!timed?<p>The launch time is too imprecise to select matching cloud intervals.</p>:!weather?.intervals.length?<p>Observer forecast unavailable. The worker will retry within source limits.</p>:<>
+        {!timed?<p>The launch time is too imprecise to select matching cloud intervals.</p>:!weather?<p role="status">Loading the forecast for your viewing point…</p>:!weather.intervals.length?<p>Observer forecast unavailable. It will be retried automatically within source limits.</p>:<>
           <div className="weather-bins">{weatherRows.map((w,i)=><div key={i}><span>{localTime(w.start,zone)}<br/><span className="small">to {localTime(w.end,zone)}</span></span><strong>{w.total===null?'Unknown':`${w.total}%`}</strong></div>)}</div>
           <p className="small muted">{weatherRows.length?'Forecast bins overlapping this launch or supported viewing interval.':'No available forecast bin covers this launch time. Historical conditions remain unavailable.'} No extrapolation beyond validity.</p>
           {weatherSources.map((p,i)=><p className="small muted" key={i}>Forecast issued {p.issued_at?localTime(p.issued_at,zone):'at an unknown time'}<br/>Retrieved {localTime(p.fetched_at,zone)}</p>)}

@@ -3309,6 +3309,85 @@
           }
         }
       }
+    },
+    "/launches/{id}/flight-plan": {
+      "get": {
+        "operationId": "getFlightPlan",
+        "summary": "Mission flight-plan evidence and per-source discovery state. Pending or stale records queue a worker check.",
+        "security": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Flight-plan record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/flight-plan"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/flight-plan-coverage": {
+      "get": {
+        "operationId": "getFlightPlanCoverage",
+        "summary": "Route-information coverage across every cached catalog mission, by state, evidence type, vehicle family and time precision.",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Coverage counts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FlightPlanCoverage"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "error.schema.json"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -4390,8 +4469,10 @@
               "kind": {
                 "enum": [
                   "near_launch_site",
+                  "published_heading_model",
                   "trajectory_simulation"
-                ]
+                ],
+                "description": "trajectory_simulation is retired; it may appear only in archived assessments."
               },
               "pad_distance_m": {
                 "type": "number",
@@ -4401,6 +4482,204 @@
                 "type": "number",
                 "minimum": 0,
                 "maximum": 360
+              },
+              "relative_window": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "t_start_s": {
+                        "type": "number",
+                        "minimum": 0
+                      },
+                      "t_end_s": {
+                        "type": "number",
+                        "minimum": 0
+                      }
+                    },
+                    "required": [
+                      "t_start_s",
+                      "t_end_s"
+                    ],
+                    "additionalProperties": false,
+                    "description": "Seconds after scheduled liftoff, including watch padding. Not an absolute time."
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "horizon_grazing": {
+                "type": "boolean"
+              },
+              "candidates": {
+                "type": "object",
+                "properties": {
+                  "with_view": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "evaluated": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "with_view",
+                  "evaluated"
+                ],
+                "additionalProperties": false
+              },
+              "viewing_sector": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "start_deg": {
+                        "type": "number",
+                        "minimum": 0,
+                        "exclusiveMaximum": 360
+                      },
+                      "end_deg": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 360
+                      },
+                      "wraps_north": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "start_deg",
+                      "end_deg",
+                      "wraps_north"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Observer-relative bearings across all modeled candidates, outward-rounded to 15 degrees."
+              },
+              "max_elevation_deg": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "min_deg": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 90
+                      },
+                      "max_deg": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 90
+                      }
+                    },
+                    "required": [
+                      "min_deg",
+                      "max_deg"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "route_basis": {
+                "type": "object",
+                "description": "The mission-specific source used. The departure direction is from the pad, not from the observer.",
+                "properties": {
+                  "evidence_type": {
+                    "enum": [
+                      "departure_heading",
+                      "published_path"
+                    ]
+                  },
+                  "departure_direction": {
+                    "type": "string"
+                  },
+                  "departure_sector_deg": {
+                    "type": "object",
+                    "properties": {
+                      "start_deg": {
+                        "type": "number",
+                        "minimum": 0,
+                        "exclusiveMaximum": 360
+                      },
+                      "end_deg": {
+                        "type": "number",
+                        "minimum": 0,
+                        "exclusiveMaximum": 360
+                      }
+                    },
+                    "required": [
+                      "start_deg",
+                      "end_deg"
+                    ],
+                    "additionalProperties": false,
+                    "description": "Clockwise true-north compass sector from start to end."
+                  },
+                  "swept_sector_deg": {
+                    "type": "object",
+                    "properties": {
+                      "start_deg": {
+                        "type": "number",
+                        "minimum": 0,
+                        "exclusiveMaximum": 360
+                      },
+                      "end_deg": {
+                        "type": "number",
+                        "minimum": 0,
+                        "exclusiveMaximum": 360
+                      }
+                    },
+                    "required": [
+                      "start_deg",
+                      "end_deg"
+                    ],
+                    "additionalProperties": false,
+                    "description": "Headings actually evaluated: the reported sector, narrowed to bearings toward published hazard areas when present."
+                  },
+                  "narrowed_by_hazard_areas": {
+                    "type": "boolean"
+                  },
+                  "source_name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "source_url": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "fetched_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "Z$",
+                    "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                  },
+                  "stale": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "evidence_type",
+                  "departure_direction",
+                  "departure_sector_deg",
+                  "swept_sector_deg",
+                  "narrowed_by_hazard_areas",
+                  "source_name",
+                  "source_url",
+                  "fetched_at",
+                  "stale"
+                ],
+                "additionalProperties": false
+              },
+              "clear_sky_assumed": {
+                "const": true
               }
             },
             "additionalProperties": false,
@@ -4769,7 +5048,8 @@
               "simulation",
               "reconstructed",
               "official_guidance",
-              "near_launch_site"
+              "near_launch_site",
+              "published_heading"
             ]
           },
           "directions": {
@@ -4806,6 +5086,58 @@
                 "type": "null"
               }
             ]
+          },
+          "relative_window": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "t_start_s": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "t_end_s": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "t_start_s",
+                  "t_end_s"
+                ],
+                "additionalProperties": false,
+                "description": "Seconds after scheduled liftoff, including watch padding. Not an absolute time."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "coverage_state": {
+            "anyOf": [
+              {
+                "enum": [
+                  "found",
+                  "stale",
+                  "ambiguous",
+                  "unavailable",
+                  "blocked",
+                  "queued",
+                  "pending",
+                  "not_found"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "weather_note": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Secondary cloud note; clear-sky viewability does not depend on it."
           }
         },
         "additionalProperties": false,
@@ -6007,8 +6339,10 @@
                   "kind": {
                     "enum": [
                       "near_launch_site",
+                      "published_heading_model",
                       "trajectory_simulation"
-                    ]
+                    ],
+                    "description": "trajectory_simulation is retired; it may appear only in archived assessments."
                   },
                   "pad_distance_m": {
                     "type": "number",
@@ -6018,6 +6352,204 @@
                     "type": "number",
                     "minimum": 0,
                     "maximum": 360
+                  },
+                  "relative_window": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "t_start_s": {
+                            "type": "number",
+                            "minimum": 0
+                          },
+                          "t_end_s": {
+                            "type": "number",
+                            "minimum": 0
+                          }
+                        },
+                        "required": [
+                          "t_start_s",
+                          "t_end_s"
+                        ],
+                        "additionalProperties": false,
+                        "description": "Seconds after scheduled liftoff, including watch padding. Not an absolute time."
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "horizon_grazing": {
+                    "type": "boolean"
+                  },
+                  "candidates": {
+                    "type": "object",
+                    "properties": {
+                      "with_view": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "evaluated": {
+                        "type": "integer",
+                        "minimum": 1
+                      }
+                    },
+                    "required": [
+                      "with_view",
+                      "evaluated"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "viewing_sector": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "start_deg": {
+                            "type": "number",
+                            "minimum": 0,
+                            "exclusiveMaximum": 360
+                          },
+                          "end_deg": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 360
+                          },
+                          "wraps_north": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "start_deg",
+                          "end_deg",
+                          "wraps_north"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Observer-relative bearings across all modeled candidates, outward-rounded to 15 degrees."
+                  },
+                  "max_elevation_deg": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "min_deg": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 90
+                          },
+                          "max_deg": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 90
+                          }
+                        },
+                        "required": [
+                          "min_deg",
+                          "max_deg"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "route_basis": {
+                    "type": "object",
+                    "description": "The mission-specific source used. The departure direction is from the pad, not from the observer.",
+                    "properties": {
+                      "evidence_type": {
+                        "enum": [
+                          "departure_heading",
+                          "published_path"
+                        ]
+                      },
+                      "departure_direction": {
+                        "type": "string"
+                      },
+                      "departure_sector_deg": {
+                        "type": "object",
+                        "properties": {
+                          "start_deg": {
+                            "type": "number",
+                            "minimum": 0,
+                            "exclusiveMaximum": 360
+                          },
+                          "end_deg": {
+                            "type": "number",
+                            "minimum": 0,
+                            "exclusiveMaximum": 360
+                          }
+                        },
+                        "required": [
+                          "start_deg",
+                          "end_deg"
+                        ],
+                        "additionalProperties": false,
+                        "description": "Clockwise true-north compass sector from start to end."
+                      },
+                      "swept_sector_deg": {
+                        "type": "object",
+                        "properties": {
+                          "start_deg": {
+                            "type": "number",
+                            "minimum": 0,
+                            "exclusiveMaximum": 360
+                          },
+                          "end_deg": {
+                            "type": "number",
+                            "minimum": 0,
+                            "exclusiveMaximum": 360
+                          }
+                        },
+                        "required": [
+                          "start_deg",
+                          "end_deg"
+                        ],
+                        "additionalProperties": false,
+                        "description": "Headings actually evaluated: the reported sector, narrowed to bearings toward published hazard areas when present."
+                      },
+                      "narrowed_by_hazard_areas": {
+                        "type": "boolean"
+                      },
+                      "source_name": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "source_url": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "fetched_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "Z$",
+                        "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                      },
+                      "stale": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "evidence_type",
+                      "departure_direction",
+                      "departure_sector_deg",
+                      "swept_sector_deg",
+                      "narrowed_by_hazard_areas",
+                      "source_name",
+                      "source_url",
+                      "fetched_at",
+                      "stale"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "clear_sky_assumed": {
+                    "const": true
                   }
                 },
                 "additionalProperties": false,
@@ -6138,6 +6670,447 @@
           "source_url",
           "time_precision_unspecified"
         ]
+      },
+      "flight-plan": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "flight-plan.schema.json",
+        "title": "Mission flight-plan evidence record",
+        "description": "Per-mission route information discovered from approved public sources. A departure heading or hazard area is not a timed path; missing coverage is not a negative visibility result.",
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "const": "1.0"
+          },
+          "launch_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "state": {
+            "enum": [
+              "found",
+              "stale",
+              "ambiguous",
+              "unavailable",
+              "blocked",
+              "queued",
+              "pending",
+              "not_found"
+            ]
+          },
+          "checked_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$",
+                "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "next_check_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$",
+                "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "mission_fingerprint": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "evidence_type": {
+                  "enum": [
+                    "departure_heading",
+                    "hazard_corridor",
+                    "published_path"
+                  ]
+                },
+                "source_name": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source_url": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source_sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "fetched_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$",
+                  "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                },
+                "parser_version": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "departure_direction": {
+                  "enum": [
+                    "north",
+                    "northeast",
+                    "east",
+                    "southeast",
+                    "south",
+                    "southwest",
+                    "west",
+                    "northwest"
+                  ]
+                },
+                "departure_sector_deg": {
+                  "type": "object",
+                  "properties": {
+                    "start_deg": {
+                      "type": "number",
+                      "minimum": 0,
+                      "exclusiveMaximum": 360
+                    },
+                    "end_deg": {
+                      "type": "number",
+                      "minimum": 0,
+                      "exclusiveMaximum": 360
+                    }
+                  },
+                  "required": [
+                    "start_deg",
+                    "end_deg"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Clockwise true-north compass sector from start to end."
+                },
+                "trajectory_available": {
+                  "type": "boolean"
+                },
+                "license_note": {
+                  "type": "string"
+                },
+                "note": {
+                  "type": "string"
+                },
+                "message_id": {
+                  "type": "string",
+                  "description": "Hazard notice identifier (hazard_corridor only)."
+                },
+                "chart_url": {
+                  "type": "string",
+                  "description": "Human-readable source page; source_url may be a data file."
+                },
+                "source_mission_name": {
+                  "type": "string"
+                },
+                "hazard_windows": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "start": {
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "Z$",
+                        "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                      },
+                      "end": {
+                        "type": "string",
+                        "format": "date-time",
+                        "pattern": "Z$",
+                        "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                      }
+                    },
+                    "required": [
+                      "start",
+                      "end"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "hazard_bearing_sector_deg": {
+                  "type": "object",
+                  "description": "Bearings from the pad to downrange hazard-area vertices, outward-rounded to 15 degrees. Not a flight path.",
+                  "properties": {
+                    "start_deg": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 360
+                    },
+                    "end_deg": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 360
+                    },
+                    "wraps_north": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "start_deg",
+                    "end_deg",
+                    "wraps_north"
+                  ],
+                  "additionalProperties": false
+                },
+                "hazard_distance_km": {
+                  "type": "object",
+                  "properties": {
+                    "min": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "max": {
+                      "type": "number",
+                      "minimum": 0
+                    }
+                  },
+                  "required": [
+                    "min",
+                    "max"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "evidence_type",
+                "source_name",
+                "source_url",
+                "source_sha256",
+                "fetched_at",
+                "parser_version",
+                "trajectory_available",
+                "note"
+              ],
+              "additionalProperties": true
+            }
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "source": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "state": {
+                  "enum": [
+                    "found",
+                    "stale",
+                    "ambiguous",
+                    "unavailable",
+                    "blocked",
+                    "queued",
+                    "pending",
+                    "not_found"
+                  ]
+                },
+                "checked_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$",
+                  "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                },
+                "next_check_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$",
+                  "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                },
+                "detail": {
+                  "type": "string"
+                },
+                "source_url": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "source",
+                "name",
+                "state",
+                "checked_at",
+                "detail"
+              ],
+              "additionalProperties": true
+            }
+          },
+          "changes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$",
+                  "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                },
+                "source_url": {
+                  "type": "string"
+                },
+                "from": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "to": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "at",
+                "source_url",
+                "from",
+                "to"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "trajectory_available": {
+            "type": "boolean"
+          },
+          "conflict": {
+            "type": "boolean",
+            "description": "True when a reported heading points away from every published hazard area; no estimate uses the heading."
+          },
+          "note": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "schema_version",
+          "launch_id",
+          "state",
+          "checked_at",
+          "next_check_at",
+          "mission_fingerprint",
+          "evidence",
+          "sources",
+          "changes",
+          "trajectory_available",
+          "conflict",
+          "note"
+        ],
+        "additionalProperties": false
+      },
+      "FlightPlanCoverage": {
+        "type": "object",
+        "properties": {
+          "missions": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "with_route_information": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "with_timed_path": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "by_state": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "by_evidence_type": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "by_vehicle_family": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "missions": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "with_route_information": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "missions",
+                "with_route_information"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "by_time_precision": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "missions": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "with_route_information": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "missions",
+                "with_route_information"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "note": {
+            "type": "string"
+          },
+          "computed_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$",
+            "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+          },
+          "scope": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "missions",
+          "with_route_information",
+          "with_timed_path",
+          "by_state",
+          "by_evidence_type",
+          "by_vehicle_family",
+          "by_time_precision",
+          "note",
+          "computed_at",
+          "scope"
+        ],
+        "additionalProperties": false
       }
     },
     "securitySchemes": {

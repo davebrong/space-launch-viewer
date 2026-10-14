@@ -14,7 +14,7 @@ test('live location, schedule, uncertainty, reminders, privacy and keyboard jour
   const cards=page.locator('.launch-card');
   if(await cards.count()){
     await cards.first().click();
-    await expect(page.locator('.advice-panel h2')).toHaveText(/^(Not enough data|Viewing estimate unavailable|Look south → southeast → east)$/);
+    await expect(page.locator('.advice-panel h2')).toHaveText(/^(Not enough data|Viewing estimate unavailable|Look south → southeast → east in clear skies)$/);
     await page.getByText('Sources & technical details',{exact:true}).click();
     await page.getByText('Source timestamps, hashes & calculation versions').click();
     await expect(page.locator('.source').first()).toBeVisible();

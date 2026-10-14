@@ -18,6 +18,8 @@ from sqlalchemy.dialects.postgresql import insert
 from services.api import db
 from services.api.config import DATA
 from services.api.adapters import ll2, nws
+from services.api.adapters import navcen
+from services.api.adapters.flight_plans import TERMS_NOTE as FLIGHT_PLAN_TERMS
 from packages.visibility.common import stamp, utc, digest
 
 LL2_URL = "https://ll.thespacedevs.com/2.3.0/launches/upcoming/?limit=100&location__ids=12,27"
@@ -27,6 +29,8 @@ def approved_url(url: str) -> bool:
     parsed = urlparse(url)
     if parsed.scheme != "https" or parsed.username or parsed.password or parsed.port not in (None, 443):
         return False
+    if parsed.hostname == "www.navcen.uscg.gov":
+        return not parsed.query and parsed.path in ("/robots.txt", "/sites/default/files/tmp/test.js")
     if parsed.hostname == "nextspaceflight.com":
         return not parsed.query and bool(re.fullmatch(r"/(?:robots\.txt|launches/|launches/details/\d+/)", parsed.path))
     if parsed.hostname in ("www.nasa.gov", "www.spacex.com") and parsed.path == "/robots.txt":
@@ -121,7 +125,13 @@ def fetch(
         return old["body"] if old else None
     headers = {
         "User-Agent": os.environ.get("LV_USER_AGENT", "launch-visibility/0.1 (local pilot)"),
-        "Accept": "application/geo+json" if provider == "nws" else "application/json",
+        "Accept": "application/geo+json"
+        if provider == "nws"
+        else "text/html,text/plain"
+        if provider == "flight-plan"
+        else "*/*"
+        if provider in ("navcen", "robots")
+        else "application/json",
     }
     error, retry_s = None, period_s
     try:
@@ -152,6 +162,9 @@ def fetch(
                     if provider == "route"
                     else {"html": content.decode("utf-8")}
                     if provider == "flight-plan"
+                    # Parsed as data and reduced to east-coast launch hazard notices; never executed.
+                    else {"notices": [n for n in navcen.parse_solar(content.decode("utf-8")) if navcen.east_coast(n)]}
+                    if provider == "navcen"
                     else {"robots_text": content.decode("utf-8")}
                     if provider == "robots"
                     else json.loads(content)
@@ -172,6 +185,10 @@ def fetch(
             "source_revision": None,
             "license": "Original reviewed route source permission; content retained for validation only"
             if provider == "route"
+            else FLIGHT_PLAN_TERMS
+            if provider == "flight-plan"
+            else navcen.TERMS_NOTE
+            if provider == "navcen"
             else "NWS US government data"
             if provider == "nws"
             else "The Space Devs LL2 attribution; no linked imagery redistributed",
@@ -429,7 +446,15 @@ def cycle(now: datetime) -> None:
     refresh_schedule(now, near)
     refresh_routes(now)
     from .flight_plans import refresh_flight_plans
-    refresh_flight_plans(now)
+
+    try:
+        # Per-mission states record source failures; an unexpected discovery error
+        # must not stop schedule or weather refreshes.
+        refresh_flight_plans(now)
+    except Exception as exc:  # noqa: BLE001
+        import logging
+
+        logging.error(json.dumps({"event": "flight_plan_discovery_failed", "error_type": type(exc).__name__}))
     period = 900 if near else 3600
     for location in points[:100]:
         p = location["point"]

@@ -1,0 +1,193 @@
+{
+ "computed_at": "2026-10-14T12:00:00+00:00",
+ "inputs": "Retrieved pages listed in evidence/build/flight-plan-audit/retrievals-2026-10-14.json; no network during this calculation",
+ "missions": [
+  {
+   "launch_id": "bf2c3027-a314-403e-a416-2bfd5d165ad1",
+   "name": "Falcon 9 Block 5 | Dragon CRS-2 SpX-35",
+   "net": "2026-10-13T10:33:44Z",
+   "time_precision": "exact",
+   "status": "completed",
+   "pad": "Space Launch Complex 40",
+   "published_departure": {
+    "source": "https://nextspaceflight.com/launches/details/6917/",
+    "direction": "northeast",
+    "sector_deg": {
+     "start_deg": 0.0,
+     "end_deg": 90.0
+    }
+   },
+   "hazard_notice": {
+    "message_id": "CGD-SE BNM 9079-26",
+    "source_mission_name": "CRS-35",
+    "hazard_bearing_sector_deg": {
+     "start_deg": 15,
+     "end_deg": 60,
+     "wraps_north": false
+    },
+    "hazard_distance_km": {
+     "min": 35,
+     "max": 552
+    },
+    "windows": [
+     {
+      "start": "2026-10-13T10:24:00Z",
+      "end": "2026-10-13T11:14:00Z"
+     },
+     {
+      "start": "2026-10-14T09:58:00Z",
+      "end": "2026-10-14T10:48:00Z"
+     },
+     {
+      "start": "2026-10-15T09:35:00Z",
+      "end": "2026-10-15T10:25:00Z"
+     }
+    ]
+   },
+   "sources_conflict": false,
+   "zips": {
+    "md-zip": {
+     "label": "Clear-sky estimate",
+     "viewable_clear_sky": true,
+     "basis": "published_heading",
+     "model": "published-heading-envelope-v1",
+     "look": [
+      "south",
+      "southeast",
+      "east",
+      "northeast"
+     ],
+     "watch_interval_utc": {
+      "start": "2026-10-13T10:33:00Z",
+      "end": "2026-10-13T10:45:00Z"
+     },
+     "relative_window_s": {
+      "t_start_s": 0,
+      "t_end_s": 660
+     },
+     "max_elevation_deg": {
+      "min_deg": 6.145041373895323,
+      "max_deg": 85.82273793646627
+     },
+     "candidates": {
+      "with_view": 15,
+      "evaluated": 15
+     },
+     "viewing_sector": {
+      "start_deg": 15,
+      "end_deg": 210,
+      "wraps_north": false
+     },
+     "horizon_grazing": false,
+     "pad_distance_m": null
+    },
+    "fl-zip": {
+     "label": "Clear-sky estimate",
+     "viewable_clear_sky": true,
+     "basis": "published_heading",
+     "model": "published-heading-envelope-v1",
+     "look": [
+      "southeast",
+      "east",
+      "northeast"
+     ],
+     "watch_interval_utc": {
+      "start": "2026-10-13T10:33:00Z",
+      "end": "2026-10-13T10:45:00Z"
+     },
+     "relative_window_s": {
+      "t_start_s": 0,
+      "t_end_s": 660
+     },
+     "max_elevation_deg": {
+      "min_deg": 23.697353240551102,
+      "max_deg": 46.446028177890675
+     },
+     "candidates": {
+      "with_view": 15,
+      "evaluated": 15
+     },
+     "viewing_sector": {
+      "start_deg": 15,
+      "end_deg": 150,
+      "wraps_north": false
+     },
+     "horizon_grazing": false,
+     "pad_distance_m": null
+    }
+   }
+  },
+  {
+   "launch_id": "3b430f81-0ff1-4d85-8a1a-cef0de326198",
+   "name": "Falcon 9 Block 5 | Bandwagon 5 (Dedicated Mid-Inclination Rideshare)",
+   "net": "2026-10-19T10:30:00Z",
+   "time_precision": "exact",
+   "status": "scheduled",
+   "pad": "Space Launch Complex 40",
+   "published_departure": {
+    "source": "https://nextspaceflight.com/launches/details/8362/",
+    "direction": "southeast",
+    "sector_deg": {
+     "start_deg": 90.0,
+     "end_deg": 180.0
+    }
+   },
+   "hazard_notice": {
+    "state": "not_found",
+    "detail": "No SOLAR launch hazard notice names this mission."
+   },
+   "sources_conflict": false,
+   "zips": {
+    "md-zip": {
+     "label": "Grazes your horizon (modeled)",
+     "viewable_clear_sky": false,
+     "basis": "published_heading",
+     "model": "published-heading-envelope-v1",
+     "look": [],
+     "watch_interval_utc": null,
+     "relative_window_s": null,
+     "max_elevation_deg": null,
+     "candidates": {
+      "with_view": 0,
+      "evaluated": 15
+     },
+     "viewing_sector": null,
+     "horizon_grazing": true,
+     "pad_distance_m": null
+    },
+    "fl-zip": {
+     "label": "Clear-sky estimate",
+     "viewable_clear_sky": true,
+     "basis": "published_heading",
+     "model": "published-heading-envelope-v1",
+     "look": [
+      "southeast"
+     ],
+     "watch_interval_utc": {
+      "start": "2026-10-19T10:30:00Z",
+      "end": "2026-10-19T10:41:00Z"
+     },
+     "relative_window_s": {
+      "t_start_s": 0,
+      "t_end_s": 660
+     },
+     "max_elevation_deg": {
+      "min_deg": 17.70542599529557,
+      "max_deg": 26.309835799282535
+     },
+     "candidates": {
+      "with_view": 15,
+      "evaluated": 15
+     },
+     "viewing_sector": {
+      "start_deg": 90,
+      "end_deg": 180,
+      "wraps_north": false
+     },
+     "horizon_grazing": false,
+     "pad_distance_m": null
+    }
+   }
+  }
+ ]
+}

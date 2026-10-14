@@ -1,6 +1,10 @@
-"""Explicit nominal scenarios for planning, separate from evidence-admitted forecasts.
+"""Clear-sky viewing estimates from mission-specific published route information.
 
-These are authored model assumptions, not recovered telemetry or published paths.
+No departure direction is inferred from vehicle family, payload, destination or
+orbit. A distant observer receives an estimate only when an admitted source names
+this mission's departure heading; the ascent height/downrange envelope remains an
+explicit generic model assumption. The departure heading is the rocket's direction
+from the pad; the observer's viewing direction is calculated separately.
 No observations, actual liftoff, or post-liftoff weather enter the scenario.
 """
 
@@ -9,17 +13,17 @@ from __future__ import annotations
 from bisect import bisect_right
 from datetime import datetime, timedelta
 from math import ceil, floor
-import re
 
 from geographiclib.geodesic import Geodesic
 
 from .common import digest, stamp, utc
-from .ensemble import envelope, evaluate_candidate
+from .ensemble import bearing_sector, envelope, evaluate_candidate
 from .nearby import calculate_nearby, MANIFEST as NEARBY_MANIFEST
 
-VERSION = "dragon-iss-nominal-v1"
-# Assumed elapsed seconds, WGS84 altitude meters, geodesic downrange meters.
-# A coarse nine-minute ascent, intentionally not a flight-dynamics simulation.
+VERSION = "published-heading-envelope-v1"
+COMPASS_8 = ("north", "northeast", "east", "southeast", "south", "southwest", "west", "northwest")
+# A generic two-stage ascent to a roughly 200 km parking orbit: elapsed seconds,
+# WGS84 altitude meters, geodesic downrange meters. Not a vehicle or mission profile.
 KNOTS = (
     (0, 0, 0),
     (60, 10000, 4000),
@@ -32,141 +36,236 @@ KNOTS = (
     (480, 215000, 1700000),
     (540, 215000, 2160000),
 )
-HEADINGS_DEG = (40, 45, 50)
 ALTITUDE_SCALES = (0.85, 1.0, 1.15)
+HEADING_STEPS = 5  # Evenly across the published sector, including both edges.
+SAMPLE_STEP_S = 5
+# Practical clear-sky threshold, not a measured detection limit: lower geometry is
+# reported as horizon-grazing instead of a viewing opportunity.
+MIN_USEFUL_ELEVATION_DEG = 3.0
 MANIFEST = {
     "version": VERSION,
     "knots_s_altitude_m_downrange_m": KNOTS,
-    "initial_bearings_deg": HEADINGS_DEG,
     "altitude_scales": ALTITUDE_SCALES,
+    "heading_sweep": "five evenly spaced headings across the published sector, including both edges",
     "watch_padding_s": 120,
+    "min_useful_elevation_deg": MIN_USEFUL_ELEVATION_DEG,
     "assumptions": [
-        "Assume a northeast, non-dogleg Falcon 9 / Dragon ascent toward the ISS.",
-        "Try initial headings of 40, 45 and 50 degrees and nominal heights varied by 15%.",
-        "Interpolate an authored altitude/downrange profile through nine minutes after scheduled liftoff.",
-        "Treat ascent engines as luminous from T+3 to T+9 minutes; omit later plume drift and booster return.",
-        "Use WGS84 horizon geometry; add two minutes either side as a practical watch buffer.",
-        "This is a planning simulation, not a mission-specific predicted trajectory or detection guarantee.",
+        "The departure direction comes from a published mission-specific source, named below. It is only a general compass direction, so five headings across its whole sector are evaluated.",
+        "When published launch hazard areas exist for the mission, only headings that also point toward them are evaluated. Hazard areas are safety zones, not the flight path, so the whole overlap is still evaluated.",
+        "Height and distance flown are a generic nine-minute ascent to about 200 km, varied by 15%. This is not this rocket's actual profile; real vehicles and missions differ.",
+        "The path is assumed to follow a straight geodesic from the pad in that direction. Doglegs, booster return and later plume drift are not modeled.",
+        "Engines are assumed visible while above your horizon during the first nine minutes. Stage-separation gaps are ignored.",
+        "Clear skies and an unobstructed horizon are assumed. Clouds, haze, trees and buildings can block the view.",
+        "Paths that never rise 3 degrees above your horizon are reported as horizon-grazing, not as a viewing opportunity. Sunlit twilight plumes can sometimes be seen farther away; they are not modeled.",
+        "This is a clear-sky planning estimate, not a measured trajectory or a promise that the launch will be seen.",
     ],
     "references": [
         {
-            "title": "NASA: typical Dragon launch sequence (Crew-1)",
-            "url": "https://www.nasa.gov/wp-content/uploads/2021/05/crew-1_timeline_nov15.pdf",
-            "supports": "An example of roughly nine minutes to second-stage cutoff; not the modeled height or route.",
-        },
-        {
-            "title": "NASA: CRS-35 destination and launch site",
-            "url": "https://science.nasa.gov/missions/station/nasas-spacex-crs-35-mission-to-launch-health-research/",
-            "supports": "Prelaunch mission family context only; model coordinates are assumptions.",
+            "title": "SpaceX Falcon user guide: sample ascent timelines",
+            "url": "https://www.spacex.com/assets/media/falcon-users-guide-2025-05-09.pdf",
+            "supports": "Example ascent duration context only; it states that individual mission profiles differ. Model heights are assumptions.",
         },
     ],
 }
 MODEL_SHA256 = digest({"trajectory": MANIFEST, "nearby": NEARBY_MANIFEST})
 
 
-def supported(launch: dict) -> bool:
-    pad = launch["pad_point"]
-    station = "international space station" in (launch.get("mission_class") or "").lower()
-    dragon = bool(re.search(r"dragon.*(?:crs|crew-\d)", launch["name"], re.I))
-    return (
-        (launch.get("vehicle_variant") or "").startswith("Falcon 9")
-        and (station or dragon)
-        and 28 <= pad["latitude_deg"] <= 29
-        and -81 <= pad["longitude_deg"] <= -80
-        and launch["time_precision"] == "exact"
-        and bool(launch["net"])
-        and not launch["disabled"]
-        and launch["status"] not in ("hold", "scrubbed", "cancelled")
-    )
+def compass_name(bearing_deg: float) -> str:
+    return COMPASS_8[floor((bearing_deg % 360 + 22.5) / 45) % 8]
 
 
-def calculate_plan(launch: dict, location: dict, weather: list[dict], now: datetime) -> dict | None:
-    nearby = calculate_nearby(launch, location, weather, now)
-    if nearby:
-        return nearby
-    if not supported(launch):
+def usable_heading(flight_plan: dict | None) -> dict | None:
+    """Return admitted heading evidence; stale headings stay usable but labeled."""
+    if not flight_plan or flight_plan.get("state") not in ("found", "stale") or flight_plan.get("conflict"):
         return None
-    at = utc(launch["net"])
-    pad = launch["pad_point"]
-    candidates = []
-    for heading in HEADINGS_DEG:
-        for scale in ALTITUDE_SCALES:
-            samples = []
-            for t in range(180, 541, 5):
-                j = min(bisect_right([k[0] for k in KNOTS], t) - 1, len(KNOTS) - 2)
-                a, b = KNOTS[j : j + 2]
-                weight = (t - a[0]) / (b[0] - a[0])
-                altitude_m = (a[1] + weight * (b[1] - a[1])) * scale
-                downrange_m = a[2] + weight * (b[2] - a[2])
-                pos = Geodesic.WGS84.Direct(pad["latitude_deg"], pad["longitude_deg"], heading, downrange_m)
-                samples.append(
-                    {
-                        "t_s": t,
-                        "stage": 2,
-                        "latitude_deg": pos["lat2"],
-                        "longitude_deg": pos["lon2"],
-                        "altitude_m": altitude_m,
-                        "active_engine": True,
-                        "active_plume": False,
-                        "segment_id": "nominal-ascent",
-                    }
-                )
-            candidate = evaluate_candidate(samples, location["point"], at, solar=False)
-            candidate["id"] = f"{VERSION}:{heading}:{scale}"
-            candidates.append(candidate)
-    windows = envelope(candidates, at)
-    watch = None
-    directions = []
-    if windows:
-        start_s = max(0, floor((min(w["t_start_s"] for w in windows) - 120) / 60) * 60)
-        end_s = ceil((max(w["t_end_s"] for w in windows) + 120) / 60) * 60
-        # Minute rounding happens after applying the schedule, including its seconds.
-        start = (at + timedelta(seconds=start_s)).replace(second=0, microsecond=0)
-        end = at + timedelta(seconds=end_s)
-        if end.second or end.microsecond:
-            end = end.replace(second=0, microsecond=0) + timedelta(minutes=1)
-        watch = {"start": stamp(start), "end": stamp(end)}
-        nominal = candidates[4]["samples"]
-        visible = [s for s in nominal if s["eligible"] and s["azimuth_deg"] is not None]
-        if not visible:
-            visible = [
-                s for c in candidates for s in c["samples"] if s["eligible"] and s["azimuth_deg"] is not None
-            ]
-        for sample in visible:
-            direction = (
-                "north",
-                "northeast",
-                "east",
-                "southeast",
-                "south",
-                "southwest",
-                "west",
-                "northwest",
-            )[floor((sample["azimuth_deg"] + 22.5) / 45) % 8]
-            if not directions or directions[-1] != direction:
-                directions.append(direction)
-    cutoff = min(at, now)
-    forecast_rows = [
+    headings = [e for e in flight_plan.get("evidence", []) if e.get("evidence_type") == "departure_heading"]
+    if len(headings) != 1 or not headings[0].get("departure_sector_deg"):
+        return None
+    return headings[0]
+
+
+def hazard_sectors(flight_plan: dict | None) -> list[dict]:
+    return [
+        e["hazard_bearing_sector_deg"]
+        for e in (flight_plan or {}).get("evidence", [])
+        if e.get("evidence_type") == "hazard_corridor" and e.get("hazard_bearing_sector_deg")
+    ]
+
+
+def within(bearing_deg: float, sector: dict) -> bool:
+    if sector["end_deg"] - sector["start_deg"] >= 360:
+        return True
+    start, end, b = sector["start_deg"] % 360, sector["end_deg"] % 360, bearing_deg % 360
+    return start <= b <= end if start <= end else b >= start or b <= end
+
+
+def swept_sector(heading: dict, hazards: list[dict]) -> tuple[float, float, bool]:
+    """Start and span of headings to evaluate.
+
+    Published hazard areas narrow the reported quadrant to the bearings that also
+    point toward a hazard area. The hazard areas never define a centerline: the
+    whole overlap is still swept.
+    """
+    start = heading["start_deg"]
+    span = (heading["end_deg"] - start) % 360 or 360.0
+    if not hazards:
+        return start, span, False
+    inside = [d for d in range(int(span) + 1) if any(within(start + d, h) for h in hazards)]
+    if not inside:
+        return start, span, False
+    return (start + inside[0]) % 360, float(inside[-1] - inside[0]), True
+
+
+def _samples(pad: dict, heading_deg: float, scale: float) -> list[dict]:
+    times = [k[0] for k in KNOTS]
+    rows = []
+    line = Geodesic.WGS84.DirectLine(pad["latitude_deg"], pad["longitude_deg"], heading_deg, KNOTS[-1][2])
+    for t in range(SAMPLE_STEP_S, KNOTS[-1][0] + 1, SAMPLE_STEP_S):
+        j = min(bisect_right(times, t) - 1, len(KNOTS) - 2)
+        a, b = KNOTS[j : j + 2]
+        weight = (t - a[0]) / (b[0] - a[0])
+        position = line.Position(a[2] + weight * (b[2] - a[2]))
+        rows.append(
+            {
+                "t_s": t,
+                "stage": 1,
+                "latitude_deg": position["lat2"],
+                "longitude_deg": position["lon2"],
+                "altitude_m": (a[1] + weight * (b[1] - a[1])) * scale,
+                "active_engine": True,
+                "active_plume": False,
+                "segment_id": "modeled-ascent",
+            }
+        )
+    return rows
+
+
+def _watch_reference(launch: dict) -> tuple[datetime | None, datetime | None]:
+    if launch["time_precision"] == "exact" and launch.get("net"):
+        at = utc(launch["net"])
+        return at, at
+    if launch["time_precision"] == "window" and launch.get("window"):
+        return utc(launch["window"]["start"]), utc(launch["window"]["end"])
+    return None, None
+
+
+def _weather_summary(weather: list[dict], watch: dict | None, cutoff: datetime) -> list[float]:
+    rows = [
         r
         for r in weather
         if watch
         and utc(r["start"]) < utc(watch["end"])
         and utc(r["end"]) > utc(watch["start"])
-        and r["provenance"]
+        and r.get("provenance")
+        and "provider_refresh_failed" not in r.get("missing_flags", [])
         and all(
             p.get("issued_at") and utc(p["issued_at"]) <= cutoff and utc(p["fetched_at"]) <= cutoff
             for p in r["provenance"]
         )
     ]
-    totals = [r["total"] for r in forecast_rows if r["total"] is not None]
+    return [r["total"] for r in rows if r["total"] is not None]
+
+
+def calculate_heading_plan(
+    launch: dict,
+    location: dict,
+    weather: list[dict],
+    now: datetime,
+    evidence: dict,
+    hazards: list[dict] | None = None,
+) -> dict | None:
+    if launch["disabled"] or launch["status"] in ("hold", "scrubbed", "cancelled"):
+        return None
+    pad = launch["pad_point"]
+    sector = evidence["departure_sector_deg"]
+    first, span, narrowed = swept_sector(sector, hazards or [])
+    headings = tuple(round((first + span * i / (HEADING_STEPS - 1)) % 360, 3) for i in range(HEADING_STEPS))
+    observer = location["point"]
+    candidates = []
+    for heading in headings:
+        for scale in ALTITUDE_SCALES:
+            # Geometry only; clear-sky planning does not depend on lighting or clouds.
+            candidate = evaluate_candidate(_samples(pad, heading, scale), observer, now, solar=False)
+            candidate["id"] = f"{VERSION}:{heading:g}:{scale:g}"
+            candidates.append(candidate)
+    for candidate in candidates:
+        candidate["windows"] = [
+            w for w in candidate["windows"] if w["max_elevation_deg"] >= MIN_USEFUL_ELEVATION_DEG
+        ]
+    found = [w for c in candidates for w in c["windows"]]
+    grazing = not found and any(
+        s["eligible"] and s["elevation_deg"] > 0 for c in candidates for s in c["samples"]
+    )
+    relative = None
+    directions: list[str] = []
+    sector_seen = None
+    elevations = None
+    if found:
+        relative = {
+            "t_start_s": max(0, floor((min(w["t_start_s"] for w in found) - MANIFEST["watch_padding_s"]) / 60) * 60),
+            "t_end_s": ceil((max(w["t_end_s"] for w in found) + MANIFEST["watch_padding_s"]) / 60) * 60,
+        }
+        def shown(candidate: dict) -> list[dict]:
+            spans = [(w["t_start_s"], w["t_end_s"]) for w in candidate["windows"]]
+            return [
+                s
+                for s in candidate["samples"]
+                if s["eligible"] and s["azimuth_deg"] is not None and any(a <= s["t_s"] <= b for a, b in spans)
+            ]
+
+        # Lead with the central heading/height; otherwise the first candidate with a view.
+        nominal = candidates[len(candidates) // 2]
+        visible = shown(nominal) or next(shown(c) for c in candidates if c["windows"])
+        for sample in visible:
+            name = compass_name(sample["azimuth_deg"])
+            if not directions or directions[-1] != name:
+                directions.append(name)
+        sector_seen = bearing_sector([b for w in found for b in w["bearings"]])
+        elevations = {
+            "min_deg": min(w["max_elevation_deg"] for w in found),
+            "max_deg": max(w["max_elevation_deg"] for w in found),
+        }
+    agreement = {"with_view": sum(bool(c["windows"]) for c in candidates), "evaluated": len(candidates)}
+    start, end = _watch_reference(launch)
+    watch, windows = None, []
+    if relative and start and end:
+        watch_start = (start + timedelta(seconds=relative["t_start_s"])).replace(second=0, microsecond=0)
+        watch_end = end + timedelta(seconds=relative["t_end_s"])
+        if watch_end.second or watch_end.microsecond:
+            watch_end = watch_end.replace(second=0, microsecond=0) + timedelta(minutes=1)
+        watch = {"start": stamp(watch_start), "end": stamp(watch_end)}
+        if launch["time_precision"] == "exact":
+            # One row per modeled heading (its three heights merged), so different
+            # headings are never blended into one misleading compass span.
+            for i in range(0, len(candidates), len(ALTITUDE_SCALES)):
+                windows += envelope(candidates[i : i + len(ALTITUDE_SCALES)], start)
+    totals = _weather_summary(weather, watch, min(start, now) if start else now)
     return {
+        "kind": "published_heading_model",
         "model_version": VERSION,
         "model_sha256": MODEL_SHA256,
-        "label": "Simulated viewing plan",
-        "launch_time": stamp(at),
+        "label": "Clear-sky estimate from published heading",
+        "launch_time": stamp(start) if start and launch["time_precision"] == "exact" else None,
         "watch_interval": watch,
+        "relative_window": relative,
+        "horizon_grazing": grazing,
+        "candidates": agreement,
         "directions": list(dict.fromkeys(directions)),
+        "viewing_sector": sector_seen,
+        "max_elevation_deg": elevations,
         "windows": windows,
+        "route_basis": {
+            "evidence_type": evidence["evidence_type"],
+            "departure_direction": evidence["departure_direction"],
+            "departure_sector_deg": sector,
+            "swept_sector_deg": {"start_deg": first, "end_deg": (first + span) % 360 if span < 360 else first},
+            "narrowed_by_hazard_areas": narrowed,
+            "source_name": evidence["source_name"],
+            "source_url": evidence["source_url"],
+            "fetched_at": evidence["fetched_at"],
+            "stale": evidence.get("stale", False),
+        },
+        "clear_sky_assumed": True,
         "cloud_cover_min_pct": min(totals) if totals else None,
         "cloud_cover_max_pct": max(totals) if totals else None,
         "weather_basis": "archived_prelaunch" if totals else "unavailable",
@@ -175,3 +274,16 @@ def calculate_plan(launch: dict, location: dict, weather: list[dict], now: datet
         "uses_actual_liftoff": False,
         "uses_sightings": False,
     }
+
+
+def calculate_plan(
+    launch: dict, location: dict, weather: list[dict], now: datetime, flight_plan: dict | None = None
+) -> dict | None:
+    """Published mission heading first, then pad-relative nearby guidance, else nothing."""
+    evidence = usable_heading(flight_plan)
+    if evidence:
+        evidence = {**evidence, "stale": (flight_plan or {}).get("state") == "stale"}
+        plan = calculate_heading_plan(launch, location, weather, now, evidence, hazard_sectors(flight_plan))
+        if plan:
+            return plan
+    return calculate_nearby(launch, location, weather, now)

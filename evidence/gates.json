@@ -7,8 +7,8 @@
   {
     "id": "G-SOFTWARE",
     "status": "blocked",
-    "reason": "Core automatic per-mission route discovery and profile integration is incomplete, in addition to off-host recovery. Passing component tests do not satisfy the ZIP visibility product.",
-    "evidence": "evidence/build/source-audit.json",
+    "reason": "Per-mission route discovery is implemented for every catalog mission (Next Spaceflight reported headings, NAVCEN SOLAR hazard corridors) and the family-based Dragon simulation is removed (issue #1). Coverage remains partial: on 2026-10-14, 4 of 205 cached Cape/Kennedy missions had route information and none had a timed path. No free source of timed upcoming trajectories was found. Off-host recovery is still unverified. Component tests do not satisfy the ZIP visibility product.",
+    "evidence": "evidence/build/flight-plan-audit/STATUS.md",
     "attempted_at": "2026-10-13T19:29:00.473988+00:00",
     "external_attempts": [
       {
@@ -20,6 +20,69 @@
         "affected_gate": "G-SOFTWARE",
         "evidence": "evidence/build/history.json",
         "status": "resolved_by_historical_last_page"
+      },
+      {
+        "url": "https://issc.space/api/launches",
+        "error": "HTTP_403",
+        "attempted_at": "2026-10-13T19:17:31.459449+00:00",
+        "affected_gate": "G-SOFTWARE",
+        "evidence": "evidence/build/source-audit.json",
+        "status": "blocked_no_bypass",
+        "resolution": "Not retried aggressively; no bypass. Reconstructed exports remain unavailable."
+      },
+      {
+        "url": "https://www.ulalaunch.com/terms-and-conditions",
+        "error": "TERMS_PROHIBIT_AUTOMATED_COLLECTION",
+        "attempted_at": "2026-10-13T21:13:33.371979+00:00",
+        "affected_gate": "G-SOFTWARE",
+        "evidence": "evidence/build/flight-plan-audit/retrievals.json",
+        "status": "blocked_terms",
+        "resolution": "Section 1.6 requires prior written consent; no ULA collector exists. Vulcan/Atlas missions rely on other sources."
+      },
+      {
+        "url": "https://nextspaceflight.com/terms/",
+        "error": "HTTP_404_NO_PUBLISHED_TERMS",
+        "attempted_at": "2026-10-14T11:54:00+00:00",
+        "affected_gate": "G-SOFTWARE",
+        "evidence": "evidence/build/flight-plan-audit/source-verdicts-2026-10-14.json",
+        "status": "permission_unverified",
+        "resolution": "robots.txt and terms both 404; API access has no ETA. Only the reported compass word, URL, hash and retrieval time are used, budgeted at 12 requests/hour. Written permission would remove this risk."
+      },
+      {
+        "url": "https://www.blueorigin.com/robots.txt",
+        "error": "HTTP_429_BOT_CHECKPOINT",
+        "attempted_at": "2026-10-14T11:58:00+00:00",
+        "affected_gate": "G-SOFTWARE",
+        "evidence": "evidence/build/flight-plan-audit/source-verdicts-2026-10-14.json",
+        "status": "blocked_no_bypass",
+        "resolution": "Not retried. New Glenn missions rely on other sources."
+      },
+      {
+        "url": "https://api.faa.gov/s/",
+        "error": "HTTP_401_REQUIRES_REGISTERED_KEY",
+        "attempted_at": "2026-10-14T11:54:00+00:00",
+        "affected_gate": "G-SOFTWARE",
+        "evidence": "evidence/build/flight-plan-audit/source-verdicts-2026-10-14.json",
+        "status": "not_registered",
+        "resolution": "FAA NOTAM API needs a free registered client ID; not registered without the operator. Public TFR list showed no space-operations TFR to validate."
+      },
+      {
+        "url": "https://msi.nga.mil/api/publications/broadcast-warn",
+        "error": "STALE_SOURCE_LAST_MESSAGE_2024-05-10",
+        "attempted_at": "2026-10-14T11:52:00+00:00",
+        "affected_gate": "G-SOFTWARE",
+        "evidence": "evidence/build/flight-plan-audit/source-verdicts-2026-10-14.json",
+        "status": "unusable_stale",
+        "resolution": "HTTP 200 but no current warnings and no mission names; not integrated."
+      },
+      {
+        "url": "https://www.navcen.uscg.gov/sites/default/files/tmp/test.js",
+        "error": "UNSTABLE_PATH_PARTIAL_COVERAGE",
+        "attempted_at": "2026-10-14T12:00:03+00:00",
+        "affected_gate": "G-SOFTWARE",
+        "evidence": "evidence/build/flight-plan-audit/STATUS.md",
+        "status": "integrated_with_limits",
+        "resolution": "Integrated as hazard corridors only. The data path is a tmp file and the chart states it may not show all missions; notices appear only days before launch."
       }
     ]
   },

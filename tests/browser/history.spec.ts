@@ -49,7 +49,8 @@ test('past launches browse real provider records independently of viewing estima
   await expect(records).toHaveCount(100,{timeout:70000});
   await filter.selectOption('viewable');
   await expect(page.getByRole('heading',{name:'Past launches',exact:true})).toHaveCount(0);
-  await expect(page.locator('a.launch-card')).toHaveCount(3);
+  // Bandwagon-5 and Amazon Leo LV-01 (published headings) on 2026-10-14; CRS-35 has left the 30-day horizon.
+  await expect(page.locator('a.launch-card')).toHaveCount(2);
   await page.goto('/privacy');
   page.once('dialog',d=>d.accept());
   await page.getByRole('button',{name:'Delete my data'}).click();

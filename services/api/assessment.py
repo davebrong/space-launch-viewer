@@ -16,6 +16,7 @@ from packages.visibility.weather import select as weather_select, fresh as weath
 from packages.visibility.planning import calculate_plan, MODEL_SHA256
 from .adapters.routes import admit_route, compatible
 from .adapters.nws import normalize as nws_normalize
+from .flight_plans import identity, read_flight_plan
 from . import db
 
 
@@ -76,6 +77,7 @@ def calculate(
     now: datetime,
     evaluate_windows: bool = True,
     source_available: bool = True,
+    flight_plan: dict | None = None,
 ) -> dict:
     if not location["confirmed"] or not location["timezone"]:
         raise ValueError("UNCONFIRMED_LOCATION")
@@ -287,13 +289,18 @@ def calculate(
             model["sha256"],
         }
     )
-    planning = calculate_plan(launch, location, weather_rows, now) if mode in ("unavailable", "route_screening") else None
+    planning = (
+        calculate_plan(launch, location, weather_rows, now, flight_plan)
+        if mode in ("unavailable", "route_screening")
+        else None
+    )
     key = digest(
         {
             "inputs": input_hashes,
             "rules": RULESET,
             "planning_model": MODEL_SHA256,
             "planning_scenario": planning,
+            "flight_plan": identity(flight_plan),
             "advice": decision,
             "status": status,
             "fresh": schedule_fresh(launch, now) and source_available and weather_is_fresh,
@@ -382,6 +389,7 @@ def calculate(
                 now,
                 False,
                 source_available,
+                flight_plan,
             )
             alternative_intervals.extend(alternative["supported_intervals"])
             return {
@@ -447,6 +455,7 @@ def assess(conn, launch: dict, location: dict, owner_id: str, now: datetime) -> 
         checked_routes.append(route)
     route_rows = checked_routes
     weather_rows = cached_weather(conn, location)
+    flight_plan = read_flight_plan(conn, launch, now)
     source_available = not conn.scalar(select(db.cache.c.error).where(db.cache.c.key == "ll2"))
     # Runtime freshness and schedule status enter cache lookup; immutable archives are never overwritten.
     freshness = {
@@ -467,7 +476,7 @@ def assess(conn, launch: dict, location: dict, owner_id: str, now: datetime) -> 
         "assessment:"
         + owner_id
         + ":"
-        + digest([launch, location, route_rows, profiles, weather_rows, freshness, MODEL_SHA256])
+        + digest([launch, location, route_rows, profiles, weather_rows, freshness, MODEL_SHA256, identity(flight_plan)])
     )
     cached = conn.execute(select(db.cache).where(db.cache.c.key == lookup)).mappings().first()
     if cached and cached["next_at"] and cached["next_at"] > now:
@@ -477,7 +486,14 @@ def assess(conn, launch: dict, location: dict, owner_id: str, now: datetime) -> 
         if result:
             return result
     result = calculate(
-        launch, location, route_rows, profiles, weather_rows, now, source_available=source_available
+        launch,
+        location,
+        route_rows,
+        profiles,
+        weather_rows,
+        now,
+        source_available=source_available,
+        flight_plan=flight_plan,
     )
     conn.execute(
         insert(db.assessments)

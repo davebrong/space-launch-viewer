@@ -1,0 +1,343 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "flight-plan.schema.json",
+  "title": "Mission flight-plan evidence record",
+  "description": "Per-mission route information discovered from approved public sources. A departure heading or hazard area is not a timed path; missing coverage is not a negative visibility result.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "launch_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state": {
+      "enum": [
+        "found",
+        "stale",
+        "ambiguous",
+        "unavailable",
+        "blocked",
+        "queued",
+        "pending",
+        "not_found"
+      ]
+    },
+    "checked_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$",
+          "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "next_check_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$",
+          "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "mission_fingerprint": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "evidence_type": {
+            "enum": [
+              "departure_heading",
+              "hazard_corridor",
+              "published_path"
+            ]
+          },
+          "source_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_url": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "fetched_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$",
+            "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+          },
+          "parser_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "departure_direction": {
+            "enum": [
+              "north",
+              "northeast",
+              "east",
+              "southeast",
+              "south",
+              "southwest",
+              "west",
+              "northwest"
+            ]
+          },
+          "departure_sector_deg": {
+            "type": "object",
+            "properties": {
+              "start_deg": {
+                "type": "number",
+                "minimum": 0,
+                "exclusiveMaximum": 360
+              },
+              "end_deg": {
+                "type": "number",
+                "minimum": 0,
+                "exclusiveMaximum": 360
+              }
+            },
+            "required": [
+              "start_deg",
+              "end_deg"
+            ],
+            "additionalProperties": false,
+            "description": "Clockwise true-north compass sector from start to end."
+          },
+          "trajectory_available": {
+            "type": "boolean"
+          },
+          "license_note": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "message_id": {
+            "type": "string",
+            "description": "Hazard notice identifier (hazard_corridor only)."
+          },
+          "chart_url": {
+            "type": "string",
+            "description": "Human-readable source page; source_url may be a data file."
+          },
+          "source_mission_name": {
+            "type": "string"
+          },
+          "hazard_windows": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "start": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$",
+                  "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                },
+                "end": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$",
+                  "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+                }
+              },
+              "required": [
+                "start",
+                "end"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "hazard_bearing_sector_deg": {
+            "type": "object",
+            "description": "Bearings from the pad to downrange hazard-area vertices, outward-rounded to 15 degrees. Not a flight path.",
+            "properties": {
+              "start_deg": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 360
+              },
+              "end_deg": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 360
+              },
+              "wraps_north": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "start_deg",
+              "end_deg",
+              "wraps_north"
+            ],
+            "additionalProperties": false
+          },
+          "hazard_distance_km": {
+            "type": "object",
+            "properties": {
+              "min": {
+                "type": "number",
+                "minimum": 0
+              },
+              "max": {
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "min",
+              "max"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "evidence_type",
+          "source_name",
+          "source_url",
+          "source_sha256",
+          "fetched_at",
+          "parser_version",
+          "trajectory_available",
+          "note"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "state": {
+            "enum": [
+              "found",
+              "stale",
+              "ambiguous",
+              "unavailable",
+              "blocked",
+              "queued",
+              "pending",
+              "not_found"
+            ]
+          },
+          "checked_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$",
+            "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+          },
+          "next_check_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$",
+            "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+          },
+          "detail": {
+            "type": "string"
+          },
+          "source_url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "source",
+          "name",
+          "state",
+          "checked_at",
+          "detail"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$",
+            "description": "RFC3339 UTC only, terminal Z; no local timestamps."
+          },
+          "source_url": {
+            "type": "string"
+          },
+          "from": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "to": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "at",
+          "source_url",
+          "from",
+          "to"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "trajectory_available": {
+      "type": "boolean"
+    },
+    "conflict": {
+      "type": "boolean",
+      "description": "True when a reported heading points away from every published hazard area; no estimate uses the heading."
+    },
+    "note": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "launch_id",
+    "state",
+    "checked_at",
+    "next_check_at",
+    "mission_fingerprint",
+    "evidence",
+    "sources",
+    "changes",
+    "trajectory_available",
+    "conflict",
+    "note"
+  ],
+  "additionalProperties": false
+}

@@ -80,9 +80,14 @@ def tick(at: datetime) -> None:
                         from .flight_plans import refresh_flight_plans
                         from services.api.history import historical_launch
                         with db.engine().connect() as conn:
-                            launch = conn.execute(select(db.launches.c.body).where(db.launches.c.id == job["body"]["launch_id"])).scalar()
+                            launch = conn.execute(
+                                select(db.launches.c.body).where(db.launches.c.id == job["body"]["launch_id"])
+                            ).scalar()
                             if not launch:
-                                archive = historical_launch(conn, job["body"]["launch_id"])
+                                try:
+                                    archive = historical_launch(conn, job["body"]["launch_id"])
+                                except ValueError:
+                                    archive = None
                                 launch = archive[0] if archive else None
                         if launch:
                             refresh_flight_plans(at, launches=[launch])

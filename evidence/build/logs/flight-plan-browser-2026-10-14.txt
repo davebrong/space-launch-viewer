@@ -1,0 +1,39 @@
+Command (PowerShell, repo root <repo>): $env:LV_BROWSER_URL='http://127.0.0.1:3080'; npx playwright test
+Final run finished: 2026-10-14T12:41:41Z against the 12:31Z redeploy (hazard-narrowed headings, revised copy).
+Earlier runs today: run 1 14 passed against the pre-redeploy build; run 2 3 failed / 11 passed (overlapped the redeploy: viewable desktop could not load the page, states desktop advice panel missing, completed-review mobile saw the new 'south -> southeast -> east -> northeast' directions); run 3 2 failed / 12 passed (completed-review asserted a stale evidence-note sentence; assertion updated). Full output of the final run follows.
+
+node.exe : [WebServer] <repo>\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+At line:1 char:1
++ & "C:\nvm4w\nodejs/node.exe" "C:\nvm4w\nodejs/node_modules/npm/bin/np ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([WebServer] N:\...ttpx2` instead.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[WebServer]   from starlette.testclient import TestClient as TestClient  # noqa
+[WebServer] INFO:     Started server process [35056]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:3091 (Press CTRL+C to quit)
+
+Running 14 tests using 1 worker
+
+(node:29208) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop] › tests\browser\completed-review.spec.ts:5:5 › ZIP md-zip can review the completed CRS-35 launch-day plan from its published heading (2.2s)
+  ✓   2 [desktop] › tests\browser\completed-review.spec.ts:72:5 › unknown provider placeholders never create exact date groups (11.5s)
+  ✓   3 [desktop] › tests\browser\history.spec.ts:4:5 › past launches browse real provider records independently of viewing estimates (4.0s)
+  ✓   4 [desktop] › tests\browser\journeys.spec.ts:5:5 › live location, schedule, uncertainty, reminders, privacy and keyboard journeys (1.9s)
+  ✓   5 [desktop] › tests\browser\journeys.spec.ts:51:5 › observer clock is independent of browser timezone and preserves DST fold (249ms)
+  ✓   6 [desktop] › tests\browser\states.spec.ts:11:5 › synthetic edge cases through actual API, database and UI (48.8s)
+  ✓   7 [desktop] › tests\browser\viewable.spec.ts:7:5 › viewable defaults to published-heading ZIP plans; all labels missing route coverage and hides secondary features (7.6s)
+(node:25952) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   8 [mobile] › tests\browser\completed-review.spec.ts:5:5 › ZIP md-zip can review the completed CRS-35 launch-day plan from its published heading (1.9s)
+  ✓   9 [mobile] › tests\browser\completed-review.spec.ts:72:5 › unknown provider placeholders never create exact date groups (12.2s)
+  ✓  10 [mobile] › tests\browser\history.spec.ts:4:5 › past launches browse real provider records independently of viewing estimates (4.1s)
+  ✓  11 [mobile] › tests\browser\journeys.spec.ts:5:5 › live location, schedule, uncertainty, reminders, privacy and keyboard journeys (1.9s)
+  ✓  12 [mobile] › tests\browser\journeys.spec.ts:51:5 › observer clock is independent of browser timezone and preserves DST fold (242ms)
+  ✓  13 [mobile] › tests\browser\states.spec.ts:11:5 › synthetic edge cases through actual API, database and UI (57.9s)
+  ✓  14 [mobile] › tests\browser\viewable.spec.ts:7:5 › viewable defaults to published-heading ZIP plans; all labels missing route coverage and hides secondary features (7.9s)
+
+  14 passed (2.8m)

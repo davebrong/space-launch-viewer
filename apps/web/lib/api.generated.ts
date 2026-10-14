@@ -390,6 +390,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/launches/{id}/flight-plan": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Mission flight-plan evidence and per-source discovery state. Pending or stale records queue a worker check. */
+        get: operations["getFlightPlan"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/flight-plan-coverage": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Route-information coverage across every cached catalog mission, by state, evidence type, vehicle family and time precision. */
+        get: operations["getFlightPlanCoverage"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -658,10 +692,59 @@ export interface components {
                 uses_actual_liftoff: false;
                 /** @constant */
                 uses_sightings: false;
-                /** @enum {unknown} */
-                kind?: "near_launch_site" | "trajectory_simulation";
+                /**
+                 * @description trajectory_simulation is retired; it may appear only in archived assessments.
+                 * @enum {unknown}
+                 */
+                kind?: "near_launch_site" | "published_heading_model" | "trajectory_simulation";
                 pad_distance_m?: number;
                 pad_bearing_deg?: number;
+                relative_window?: {
+                    t_start_s: number;
+                    t_end_s: number;
+                } | null;
+                horizon_grazing?: boolean;
+                candidates?: {
+                    with_view: number;
+                    evaluated: number;
+                };
+                /** @description Observer-relative bearings across all modeled candidates, outward-rounded to 15 degrees. */
+                viewing_sector?: {
+                    start_deg: number;
+                    end_deg: number;
+                    wraps_north: boolean;
+                } | null;
+                max_elevation_deg?: {
+                    min_deg: number;
+                    max_deg: number;
+                } | null;
+                /** @description The mission-specific source used. The departure direction is from the pad, not from the observer. */
+                route_basis?: {
+                    /** @enum {unknown} */
+                    evidence_type: "departure_heading" | "published_path";
+                    departure_direction: string;
+                    /** @description Clockwise true-north compass sector from start to end. */
+                    departure_sector_deg: {
+                        start_deg: number;
+                        end_deg: number;
+                    };
+                    /** @description Headings actually evaluated: the reported sector, narrowed to bearings toward published hazard areas when present. */
+                    swept_sector_deg: {
+                        start_deg: number;
+                        end_deg: number;
+                    };
+                    narrowed_by_hazard_areas: boolean;
+                    source_name: string;
+                    source_url: string;
+                    /**
+                     * Format: date-time
+                     * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                     */
+                    fetched_at: string;
+                    stale: boolean;
+                };
+                /** @constant */
+                clear_sky_assumed?: true;
             } | null;
         } & (unknown & unknown);
         subscription: components["schemas"]["subscription.schema"];
@@ -724,7 +807,7 @@ export interface components {
             viewable: boolean;
             label: string;
             /** @enum {unknown} */
-            basis: "unavailable" | "simulation" | "reconstructed" | "official_guidance" | "near_launch_site";
+            basis: "unavailable" | "simulation" | "reconstructed" | "official_guidance" | "near_launch_site" | "published_heading";
             directions: string[];
             watch_interval: {
                 /**
@@ -738,6 +821,13 @@ export interface components {
                  */
                 end: string;
             } | null;
+            relative_window?: {
+                t_start_s: number;
+                t_end_s: number;
+            } | null;
+            coverage_state?: ("found" | "stale" | "ambiguous" | "unavailable" | "blocked" | "queued" | "pending" | "not_found") | null;
+            /** @description Secondary cloud note; clear-sky viewability does not depend on it. */
+            weather_note?: string | null;
         };
         LaunchHistoryPage: {
             rows: {
@@ -1028,16 +1118,195 @@ export interface components {
                     uses_actual_liftoff: false;
                     /** @constant */
                     uses_sightings: false;
-                    /** @enum {unknown} */
-                    kind?: "near_launch_site" | "trajectory_simulation";
+                    /**
+                     * @description trajectory_simulation is retired; it may appear only in archived assessments.
+                     * @enum {unknown}
+                     */
+                    kind?: "near_launch_site" | "published_heading_model" | "trajectory_simulation";
                     pad_distance_m?: number;
                     pad_bearing_deg?: number;
+                    relative_window?: {
+                        t_start_s: number;
+                        t_end_s: number;
+                    } | null;
+                    horizon_grazing?: boolean;
+                    candidates?: {
+                        with_view: number;
+                        evaluated: number;
+                    };
+                    /** @description Observer-relative bearings across all modeled candidates, outward-rounded to 15 degrees. */
+                    viewing_sector?: {
+                        start_deg: number;
+                        end_deg: number;
+                        wraps_north: boolean;
+                    } | null;
+                    max_elevation_deg?: {
+                        min_deg: number;
+                        max_deg: number;
+                    } | null;
+                    /** @description The mission-specific source used. The departure direction is from the pad, not from the observer. */
+                    route_basis?: {
+                        /** @enum {unknown} */
+                        evidence_type: "departure_heading" | "published_path";
+                        departure_direction: string;
+                        /** @description Clockwise true-north compass sector from start to end. */
+                        departure_sector_deg: {
+                            start_deg: number;
+                            end_deg: number;
+                        };
+                        /** @description Headings actually evaluated: the reported sector, narrowed to bearings toward published hazard areas when present. */
+                        swept_sector_deg: {
+                            start_deg: number;
+                            end_deg: number;
+                        };
+                        narrowed_by_hazard_areas: boolean;
+                        source_name: string;
+                        source_url: string;
+                        /**
+                         * Format: date-time
+                         * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                         */
+                        fetched_at: string;
+                        stale: boolean;
+                    };
+                    /** @constant */
+                    clear_sky_assumed?: true;
                 } | null;
             } & (unknown & unknown);
             source_status: string;
             /** Format: uri */
             source_url: string;
             time_precision_unspecified: boolean;
+        };
+        /**
+         * Mission flight-plan evidence record
+         * @description Per-mission route information discovered from approved public sources. A departure heading or hazard area is not a timed path; missing coverage is not a negative visibility result.
+         */
+        "flight-plan": {
+            /** @constant */
+            schema_version: "1.0";
+            launch_id: string;
+            /** @enum {unknown} */
+            state: "found" | "stale" | "ambiguous" | "unavailable" | "blocked" | "queued" | "pending" | "not_found";
+            checked_at: string | null;
+            next_check_at: string | null;
+            mission_fingerprint: string;
+            evidence: ({
+                /** @enum {unknown} */
+                evidence_type: "departure_heading" | "hazard_corridor" | "published_path";
+                source_name: string;
+                source_url: string;
+                source_sha256: string;
+                /**
+                 * Format: date-time
+                 * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                 */
+                fetched_at: string;
+                parser_version: string;
+                /** @enum {unknown} */
+                departure_direction?: "north" | "northeast" | "east" | "southeast" | "south" | "southwest" | "west" | "northwest";
+                /** @description Clockwise true-north compass sector from start to end. */
+                departure_sector_deg?: {
+                    start_deg: number;
+                    end_deg: number;
+                };
+                trajectory_available: boolean;
+                license_note?: string;
+                note: string;
+                /** @description Hazard notice identifier (hazard_corridor only). */
+                message_id?: string;
+                /** @description Human-readable source page; source_url may be a data file. */
+                chart_url?: string;
+                source_mission_name?: string;
+                hazard_windows?: {
+                    /**
+                     * Format: date-time
+                     * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                     */
+                    start: string;
+                    /**
+                     * Format: date-time
+                     * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                     */
+                    end: string;
+                }[];
+                /** @description Bearings from the pad to downrange hazard-area vertices, outward-rounded to 15 degrees. Not a flight path. */
+                hazard_bearing_sector_deg?: {
+                    start_deg: number;
+                    end_deg: number;
+                    wraps_north: boolean;
+                };
+                hazard_distance_km?: {
+                    min: number;
+                    max: number;
+                };
+            } & {
+                [key: string]: unknown;
+            })[];
+            sources: ({
+                source: string;
+                name: string;
+                /** @enum {unknown} */
+                state: "found" | "stale" | "ambiguous" | "unavailable" | "blocked" | "queued" | "pending" | "not_found";
+                /**
+                 * Format: date-time
+                 * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                 */
+                checked_at: string;
+                /**
+                 * Format: date-time
+                 * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                 */
+                next_check_at?: string;
+                detail: string;
+                source_url?: string;
+            } & {
+                [key: string]: unknown;
+            })[];
+            changes: {
+                /**
+                 * Format: date-time
+                 * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                 */
+                at: string;
+                source_url: string;
+                from: string | null;
+                to: string | null;
+            }[];
+            trajectory_available: boolean;
+            /** @description True when a reported heading points away from every published hazard area; no estimate uses the heading. */
+            conflict: boolean;
+            note: string;
+        };
+        FlightPlanCoverage: {
+            missions: number;
+            with_route_information: number;
+            with_timed_path: number;
+            by_state: {
+                [key: string]: number;
+            };
+            by_evidence_type: {
+                [key: string]: number;
+            };
+            by_vehicle_family: {
+                [key: string]: {
+                    missions: number;
+                    with_route_information: number;
+                };
+            };
+            by_time_precision: {
+                [key: string]: {
+                    missions: number;
+                    with_route_information: number;
+                };
+            };
+            note: string;
+            /**
+             * Format: date-time
+             * @description RFC3339 UTC only, terminal Z; no local timestamps.
+             */
+            computed_at: string;
+            scope: string;
         };
         /** error */
         "error.schema": {
@@ -1046,7 +1315,7 @@ export interface components {
             id: string;
             revision: number;
             /** @enum {unknown} */
-            code: "INVALID_INPUT" | "UNCONFIRMED_LOCATION" | "UNSUPPORTED_LOCATION" | "UNSUPPORTED_TIME" | "NOT_FOUND" | "REVISION_CONFLICT" | "CONSENT_REQUIRED" | "LIMIT_REACHED" | "UPSTREAM_UNAVAILABLE" | "RATE_LIMITED" | "UNAUTHORIZED" | "FORBIDDEN" | "INTERNAL";
+            code: "INVALID_INPUT" | "UNCONFIRMED_LOCATION" | "UNSUPPORTED_LOCATION" | "UNSUPPORTED_TIME" | "NOT_FOUND" | "REVISION_CONFLICT" | "CONSENT_REQUIRED" | "LIMIT_REACHED" | "UPSTREAM_UNAVAILABLE" | "RATE_LIMITED" | "UNAUTHORIZED" | "FORBIDDEN" | "INTERNAL" | "HISTORY_NOT_LOADED" | "HISTORY_UNSUPPORTED" | "INVALID_HISTORY_CURSOR";
             message: string;
             request_id: string;
             retryable: boolean;
@@ -1354,10 +1623,59 @@ export interface components {
                 uses_actual_liftoff: false;
                 /** @constant */
                 uses_sightings: false;
-                /** @enum {unknown} */
-                kind?: "near_launch_site" | "trajectory_simulation";
+                /**
+                 * @description trajectory_simulation is retired; it may appear only in archived assessments.
+                 * @enum {unknown}
+                 */
+                kind?: "near_launch_site" | "published_heading_model" | "trajectory_simulation";
                 pad_distance_m?: number;
                 pad_bearing_deg?: number;
+                relative_window?: {
+                    t_start_s: number;
+                    t_end_s: number;
+                } | null;
+                horizon_grazing?: boolean;
+                candidates?: {
+                    with_view: number;
+                    evaluated: number;
+                };
+                /** @description Observer-relative bearings across all modeled candidates, outward-rounded to 15 degrees. */
+                viewing_sector?: {
+                    start_deg: number;
+                    end_deg: number;
+                    wraps_north: boolean;
+                } | null;
+                max_elevation_deg?: {
+                    min_deg: number;
+                    max_deg: number;
+                } | null;
+                /** @description The mission-specific source used. The departure direction is from the pad, not from the observer. */
+                route_basis?: {
+                    /** @enum {unknown} */
+                    evidence_type: "departure_heading" | "published_path";
+                    departure_direction: string;
+                    /** @description Clockwise true-north compass sector from start to end. */
+                    departure_sector_deg: {
+                        start_deg: number;
+                        end_deg: number;
+                    };
+                    /** @description Headings actually evaluated: the reported sector, narrowed to bearings toward published hazard areas when present. */
+                    swept_sector_deg: {
+                        start_deg: number;
+                        end_deg: number;
+                    };
+                    narrowed_by_hazard_areas: boolean;
+                    source_name: string;
+                    source_url: string;
+                    /**
+                     * Format: date-time
+                     * @description RFC3339 UTC only, terminal Z; no local timestamps.
+                     */
+                    fetched_at: string;
+                    stale: boolean;
+                };
+                /** @constant */
+                clear_sky_assumed?: true;
             } | null;
         } & (unknown & unknown);
         /** route-evidence */
@@ -4197,6 +4515,75 @@ export interface operations {
             };
             /** @description Unconfirmed location or unsupported pad */
             422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["error.schema"];
+                };
+            };
+        };
+    };
+    getFlightPlan: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Flight-plan record */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["flight-plan"];
+                };
+            };
+            /** @description Not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["error.schema"];
+                };
+            };
+            /** @description Service unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["error.schema"];
+                };
+            };
+        };
+    };
+    getFlightPlanCoverage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Coverage counts */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FlightPlanCoverage"];
+                };
+            };
+            /** @description Service unavailable */
+            503: {
                 headers: {
                     [name: string]: unknown;
                 };

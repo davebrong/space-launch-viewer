@@ -26,7 +26,10 @@
         "RATE_LIMITED",
         "UNAUTHORIZED",
         "FORBIDDEN",
-        "INTERNAL"
+        "INTERNAL",
+        "HISTORY_NOT_LOADED",
+        "HISTORY_UNSUPPORTED",
+        "INVALID_HISTORY_CURSOR"
       ]
     },
     "message": {

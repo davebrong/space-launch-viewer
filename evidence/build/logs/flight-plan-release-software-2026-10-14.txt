@@ -1,0 +1,4 @@
+PASSED: G-SPEC
+FAILED: none
+BLOCKED: G-SOFTWARE, G-REAL, G-UPCOMING, G-GUIDANCE, G-BACKUP
+EMPIRICAL G-PILOT: separate; run --stage pilot. Software pass never proves sightings.

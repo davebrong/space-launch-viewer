@@ -83,7 +83,9 @@ def test_nearby_weather_never_uses_later_or_stale_forecasts():
         "provenance": [{"issued_at": stamp(AT), "fetched_at": stamp(AT)}],
     }
     plan = calculate_plan(BANDWAGON, FLORIDA, [row], AT)
-    assert not summarize(BANDWAGON, plan=plan)["viewable"]
+    # Clear-sky guidance leads; the cloud forecast is a secondary note, not a gate.
+    cloudy = summarize(BANDWAGON, plan=plan)
+    assert cloudy["viewable"] and "90" in cloudy["weather_note"]
     for changed in (
         {"missing_flags": ["provider_refresh_failed"]},
         {
