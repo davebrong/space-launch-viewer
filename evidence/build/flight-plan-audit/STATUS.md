@@ -70,6 +70,12 @@ The Bandwagon-5 heading is a single secondary source. Earlier Bandwagon flights 
 | ISSC | HTTP 403 (2026-10-13); not retried. |
 | ULA | Terms §1.6 prohibit automated collection. Not fetched. |
 
+Recheck on 2026-10-15 (`source-verdicts-2026-10-15.json`):
+
+- The FAA ATCSCC operations plan names upcoming launches with UTC windows (for example, Bandwagon-5 on 10/19 at 1030Z–1213Z), but it gives no heading or area. It adds no route coverage.
+- The FAA TFR list showed no Cape space-operations TFR four days before Bandwagon-5.
+- Live coverage was unchanged: 4 of 207 missions, notice window 2 of 2, 0 timed paths. Bandwagon-5 still has no SOLAR notice.
+
 Raw bodies stay in the git-ignored `.runtime/flight-plan-audit/` and are not redistributed.
 
 ## Remaining gaps (not claimed as fixed)

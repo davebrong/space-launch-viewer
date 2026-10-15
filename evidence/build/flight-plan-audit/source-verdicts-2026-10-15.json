@@ -1,0 +1,59 @@
+[
+  {
+    "id": "nextspaceflight_trajectory_map",
+    "name": "Next Spaceflight 'General Trajectory' map on mission pages",
+    "verdict": "no_route_info",
+    "robots": "Unchanged from 2026-10-14 (robots.txt 404).",
+    "terms_or_licence": "Unchanged: no terms page or licence.",
+    "data_format": "The page's own client bundle renders a MapLibre map (style demotiles.maplibre.org, raster tiles server.arcgisonline.com World_Imagery) centred on the pad, with a pad marker and an arrow at the pad rotated to the launch object's integer 'heading' field. Clicking the compass zooms in and rotates the map to that heading. No GeoJSON, polyline or trajectory request is made for the card; the only GeoJSON layer in the bundle is the pad-cluster map on /locations.",
+    "route_information": "Same quadrant heading already ingested (Bandwagon-5: heading 135, 'Southeast'). The map is a basemap plus a direction arrow, not a path.",
+    "notes": "The launch payload also carries 'simulation': 'mis_1i0itrv5e' and a 'timeline' id, which the website does not use. The mobile app advertises 'Live Flight Simulation'; its data source is unverified (no public link to Flight Club or another provider was found). Flight Club is excluded by project rules. Ask Next Spaceflight about the simulation source before pursuing it.",
+    "fetches": [
+      {
+        "url": "https://nextspaceflight.com/launches/details/8362/",
+        "status": 200,
+        "fetched_utc": "2026-10-15T17:20:00+00:00",
+        "bytes": 84704,
+        "sha256": "21ab8e49587d24e6a81bc057b5831db8f2700f0deb983051e777280dadb45262"
+      }
+    ]
+  },
+  {
+    "id": "faa_atcscc_ops_plan",
+    "name": "FAA ATCSCC Current Operations Plan advisory (fly.faa.gov/adv/adv_spt)",
+    "verdict": "no_route_info",
+    "robots": "robots.txt redirects (302) to /fly/; no robots rules published.",
+    "terms_or_licence": "US Government work (17 U.S.C. 105). Page self-refreshes every 300 s; poll no faster.",
+    "data_format": "HTML page with a PRE block. Section 'PLANNED LAUNCH/REENTRY:' lists '<OPERATOR> <MISSION>, <SITE>' then 'PRIMARY:' and 'BACKUP:' date and UTC window lines.",
+    "route_information": null,
+    "notes": "Lists Bandwagon-5 (Cape Canaveral SFS) primary 10/19/26 1030Z-1213Z, backup 10/20/26. Mission-named, keyless, primary-government, published at least 4 days ahead, but it gives schedule windows only: no heading, hazard area or path. It adds nothing to route coverage; LL2 already supplies the schedule. Not integrated.",
+    "fetches": [
+      {
+        "url": "https://www.fly.faa.gov/adv/adv_spt",
+        "status": 200,
+        "fetched_utc": "2026-10-15T17:13:00+00:00",
+        "bytes": 5089,
+        "sha256": "50d9ef020c16df9af19aff3020e8af6c3bc22abf0dd8a60b94cbc04032a876e6"
+      }
+    ]
+  },
+  {
+    "id": "faa_tfr_recheck",
+    "name": "FAA TFR list recheck before Bandwagon-5 (tfr.faa.gov)",
+    "verdict": "no_route_info",
+    "robots": "Unchanged from 2026-10-14 (robots.txt 404).",
+    "terms_or_licence": "US Government work (17 U.S.C. 105).",
+    "data_format": "JSON list at https://tfr.faa.gov/tfrapi/exportTfrList; 73 entries.",
+    "route_information": null,
+    "notes": "Four days before Bandwagon-5, the list has two SPACE OPERATIONS TFRs (Alaska and Montana) and none at Cape Canaveral/Kennedy. Cape launch TFRs, when posted, are near-pad airspace closures that barely narrow the departure direction (the same reason near-pad SOLAR closures are ignored). Not integrated; the 2026-10-14 verdict stands.",
+    "fetches": [
+      {
+        "url": "https://tfr.faa.gov/tfrapi/exportTfrList",
+        "status": 200,
+        "fetched_utc": "2026-10-15T17:12:30+00:00",
+        "bytes": 15274,
+        "sha256": "b3c7981c640cf038a8b5573e9bd884460e7a6fe2aeec4230feed55e5ce1a714e"
+      }
+    ]
+  }
+]
