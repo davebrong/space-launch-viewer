@@ -59,7 +59,7 @@
       "exit_code": 0,
       "status": "passed",
       "artifact_path": "evidence/build/logs/nearby-browser-states-2026-10-13T194847_159302_0000.txt",
-      "sha256": "4e9235b338e9a6b23681fd8dc500c713f60fe93d0b3c47a5b42a8799009ef7e0",
+      "sha256": "0a5d597100980de086408e5f8ba6eb0342e5f3ba167400104f46a98e01138837",
       "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
     },
     {
@@ -72,7 +72,7 @@
       "exit_code": 1,
       "status": "failed",
       "artifact_path": "evidence/build/logs/nearby-browser-2026-10-13T194432_705766_0000.txt",
-      "sha256": "aaba9cd933e49ea4ef09c21059c9a4bbe89f8e35c4448878b182be582e1b3b01",
+      "sha256": "52398fcaaf8c879682a37a6bcb30db5fecc406ca4ac0d6792eb99ef1f12bd60f",
       "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
     },
     {
@@ -192,7 +192,7 @@
       "exit_code": 0,
       "status": "passed",
       "artifact_path": "evidence/build/logs/nearby-unit-2026-10-13T194635_936365_0000.txt",
-      "sha256": "955fb38f833264839deb31a29cb7bc372620fb330cfd5e7f6d029136bed4322a",
+      "sha256": "f28c59e3dd6e4c01adc08b9e4bb182487614771528a5dd5c076c39929c22c2f0",
       "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
     }
   ],

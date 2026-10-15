@@ -22,7 +22,7 @@
       "exit_code": 0,
       "status": "passed",
       "artifact_path": "evidence/build/logs/viewable-unit-2026-10-13T191009_121429_0000.txt",
-      "sha256": "de9ff198f5b575aa965713ddfb3cedb7bb3347a75c186c01c7333db224f0b011",
+      "sha256": "f579d40ccde1ba994e71a500d43470058542ee8981667f76554b5c271cd0ddfe",
       "software_sha256": "07a4c0032e61094e59e6fdd952e908d935bf610e1674b8daf734ade128367d05"
     },
     {
@@ -139,7 +139,7 @@
       "exit_code": 0,
       "status": "passed",
       "artifact_path": "evidence/build/logs/viewable-browser-2026-10-13T191225_559761_0000.txt",
-      "sha256": "5a4a72d8e4a3082fa55d4cfab11b270bb19e6508b7c0acc81d879903a2607095",
+      "sha256": "939a7533abbad41c2a7c97f515080149110a1b3c5b288a6e24d50a4481fbb83b",
       "software_sha256": "521c686105f7f7ad87c9268364e6ee02183e348c1614ab5be3e32ea44722f283"
     }
   ],

@@ -12,6 +12,6 @@
   "exit_code": 0,
   "status": "passed",
   "artifact_path": "evidence/build/logs/nearby-unit-2026-10-13T194635_936365_0000.txt",
-  "sha256": "955fb38f833264839deb31a29cb7bc372620fb330cfd5e7f6d029136bed4322a",
+  "sha256": "f28c59e3dd6e4c01adc08b9e4bb182487614771528a5dd5c076c39929c22c2f0",
   "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
 }

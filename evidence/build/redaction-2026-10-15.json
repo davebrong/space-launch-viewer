@@ -1,0 +1,163 @@
+{
+  "redacted_at": "2026-10-15",
+  "reason": "Removed local absolute paths (drive, workspace and Windows user profile) from committed evidence; rewritten throughout git history. Command outputs are otherwise unchanged.",
+  "replacements": {
+    "<repo>": "absolute path of the repository checkout",
+    "<workspace>": "absolute path of the parent workspace directory",
+    "<home>": "Windows user profile directory"
+  },
+  "updated_digest_records": [
+    "evidence/build/check-browser-guidance.json",
+    "evidence/build/check-full-release.json",
+    "evidence/build/history-detail.json",
+    "evidence/build/history.json",
+    "evidence/build/logs/application-unit-final.json",
+    "evidence/build/logs/browser-admin-observation-final.json",
+    "evidence/build/logs/browser-guidance-R007.json",
+    "evidence/build/logs/browser-guidance-browser-journeys.json",
+    "evidence/build/logs/full-release-all.json",
+    "evidence/build/logs/history-browser-final-authorized.json",
+    "evidence/build/logs/history-browser-recheck.json",
+    "evidence/build/logs/history-browser.json",
+    "evidence/build/logs/history-detail-browser-final.json",
+    "evidence/build/logs/history-detail-browser.json",
+    "evidence/build/logs/history-detail-spec.json",
+    "evidence/build/logs/history-detail-unit-final.json",
+    "evidence/build/logs/history-detail-unit-recheck.json",
+    "evidence/build/logs/history-detail-unit.json",
+    "evidence/build/logs/history-unit.json",
+    "evidence/build/logs/history-web-year-build.json",
+    "evidence/build/logs/nearby-browser-states.json",
+    "evidence/build/logs/nearby-browser.json",
+    "evidence/build/logs/nearby-unit.json",
+    "evidence/build/logs/offhost-backup-failure-detail.json",
+    "evidence/build/logs/planning-browser.json",
+    "evidence/build/logs/planning-unit.json",
+    "evidence/build/logs/qa-md-zip-browser.json",
+    "evidence/build/logs/qa-md-zip-unit.json",
+    "evidence/build/logs/source-unit.json",
+    "evidence/build/logs/viewable-browser.json",
+    "evidence/build/logs/viewable-unit.json",
+    "evidence/build/nearby.json",
+    "evidence/build/planning.json",
+    "evidence/build/qa-md-zip.json",
+    "evidence/build/source-audit.json",
+    "evidence/build/viewable.json",
+    "evidence/releases/G-BACKUP.json",
+    "evidence/releases/G-SOFTWARE.json"
+  ],
+  "artifacts": {
+    "evidence/build/logs/application-unit-final-2026-10-13T155103_254552_0000.txt": {
+      "sha256_before_redaction": "a5ea9df5de71c639efeeb1b047f5af93b83e72ecb7e7000991dd55eb7cda90bd",
+      "sha256_after_redaction": "6076f2a70b324b533888846fce38dd79964aa6cb50358efde9bf122c95038be9"
+    },
+    "evidence/build/logs/browser-admin-observation-final-2026-10-13T160001_805595_0000.txt": {
+      "sha256_before_redaction": "00bf01492fc359224fef7f12118ae8833d686f711bf6f2154e220a4215677834",
+      "sha256_after_redaction": "76004c447473d59cc39e9e847af43f546c0279301b221b7b772a8511fa4d3616"
+    },
+    "evidence/build/logs/browser-guidance-R007-2026-10-13T155713_365838_0000.txt": {
+      "sha256_before_redaction": "437780163bbdf3fbaae6028f028c966ed1b18d209aef0e080a1c769b45a7fd2f",
+      "sha256_after_redaction": "62d33a46461483dab2350979b0f0498105a7f90f5c95f950242c6ebf21530abf"
+    },
+    "evidence/build/logs/browser-guidance-browser-journeys-2026-10-13T155052_972250_0000.txt": {
+      "sha256_before_redaction": "2afd47c0caeef6dc112bdab09b2df7a434c205ffb1a31912603be3d7daed7f85",
+      "sha256_after_redaction": "38f5b6a8686818cc013aa2f5e8132a85e7eb855a841a2a77737ffbe23e67e912"
+    },
+    "evidence/build/logs/full-release-all-2026-10-13T160307_777954_0000.txt": {
+      "sha256_before_redaction": "0f6e1114e75e9bf9533d21d265f9d60c1b08670020e1384cee2785d81ff2eef8",
+      "sha256_after_redaction": "e3066945ee2a8651550204a486bfc6422f26e411dcd53c4e36dcda3d7746f710"
+    },
+    "evidence/build/logs/full-release-all-2026-10-14T154711_409003_0000.txt": {
+      "sha256_before_redaction": "0f6e1114e75e9bf9533d21d265f9d60c1b08670020e1384cee2785d81ff2eef8",
+      "sha256_after_redaction": "e3066945ee2a8651550204a486bfc6422f26e411dcd53c4e36dcda3d7746f710"
+    },
+    "evidence/build/logs/history-browser-2026-10-13T202446_585550_0000.txt": {
+      "sha256_before_redaction": "eb4cada6135fed6f16b2e89316f1cf3ee20596ffa218377b4b1ec06d51059556",
+      "sha256_after_redaction": "40680abd242beb10e1b6f484c62d0013e633840786528ac4a591db6219f9b4c2"
+    },
+    "evidence/build/logs/history-browser-final-authorized-2026-10-13T203102_868823_0000.txt": {
+      "sha256_before_redaction": "b5c9ece27d056f3a90d3550a2b03ab432e63736e897e32cfc1960a3c12091705",
+      "sha256_after_redaction": "69cebc287d40dd83608d7ae207d6c72212e37938fc1b6d15d047c51139fb65aa"
+    },
+    "evidence/build/logs/history-browser-recheck-2026-10-13T202605_790401_0000.txt": {
+      "sha256_before_redaction": "62c79bfbcb5274c1bd84df4d38c3859c7153851baad38cf16e92dbb84885b9eb",
+      "sha256_after_redaction": "f9ed80a4d87cd792ae83f38fc413237bbda8d2bb3c232350c8cedd72fcb84342"
+    },
+    "evidence/build/logs/history-detail-browser-2026-10-13T204312_938976_0000.txt": {
+      "sha256_before_redaction": "0da2d9edcd2fdc61130ad932437779a4f192b51630590a4edc7a4d7b1291183d",
+      "sha256_after_redaction": "9c8f729ea914a62053e909c6ac049c328a20675d1fa552c05eddda40fc27fdb7"
+    },
+    "evidence/build/logs/history-detail-browser-final-2026-10-13T204444_397234_0000.txt": {
+      "sha256_before_redaction": "97cee89c65f7488913a941f55efaa84e61408b2d498e1da475864f2ae0466538",
+      "sha256_after_redaction": "e759c9e189890d9d3a588e30c187877c661c27eea1b20a9820d0fa487da3ada1"
+    },
+    "evidence/build/logs/history-detail-spec-2026-10-13T204222_863091_0000.txt": {
+      "sha256_before_redaction": "2b5f1605770b5fb102f5e152cfd413a3f0547fed2597d0a4a814446cfc8d68b1",
+      "sha256_after_redaction": "268b0bef54a3bf9fdbce991cbd016a5fc959e15c469d2b3e40418937f78533d3"
+    },
+    "evidence/build/logs/history-detail-unit-2026-10-13T204138_004638_0000.txt": {
+      "sha256_before_redaction": "9f2e37874224a250ad837e96c81a649c846a8f6370f49ab583c11c8ca792b2de",
+      "sha256_after_redaction": "15c0568f94e61d5638cc05ef3160bb1562e48e2205b9b4ad3b550212add7baf5"
+    },
+    "evidence/build/logs/history-detail-unit-final-2026-10-13T204308_812496_0000.txt": {
+      "sha256_before_redaction": "f2b1170acbe6a307e6859eecc023da43cbf5ad331dfe78b439e9dad75a7bb0ac",
+      "sha256_after_redaction": "9b3eba97966aefe3f91fea1ff966ebc7bf2d32579cf5851879c9621295b8c1ff"
+    },
+    "evidence/build/logs/history-detail-unit-recheck-2026-10-13T204208_358165_0000.txt": {
+      "sha256_before_redaction": "2d5e9df28d4981b25850e54b4535d193f360c0d038c05470bda160eb2892d052",
+      "sha256_after_redaction": "03fd3b4cd27b70acef3f3c4e9a8d0b787c511c534be4d1e11ad13376d4e439f1"
+    },
+    "evidence/build/logs/history-unit-2026-10-13T202317_006635_0000.txt": {
+      "sha256_before_redaction": "d5e1467073c256c51939a3033203b113e0793b8091e215fd1f48e11b3e0f50e0",
+      "sha256_after_redaction": "459452e7561ebe7c8f0ae58e5a9cef7bba1d114d8fd8046cb155a9fae227a6fe"
+    },
+    "evidence/build/logs/history-web-year-build-2026-10-13T203052_209451_0000.txt": {
+      "sha256_before_redaction": "0d965ccd676f8a42f5b2a28bc2961ab1bdd7b60b60dcbb6d720f481c59cf9b9f",
+      "sha256_after_redaction": "db2e59ed2682ea902f9673121d6e53a0a888150663df877a00716de8e30f98e3"
+    },
+    "evidence/build/logs/nearby-browser-2026-10-13T194432_705766_0000.txt": {
+      "sha256_before_redaction": "aaba9cd933e49ea4ef09c21059c9a4bbe89f8e35c4448878b182be582e1b3b01",
+      "sha256_after_redaction": "52398fcaaf8c879682a37a6bcb30db5fecc406ca4ac0d6792eb99ef1f12bd60f"
+    },
+    "evidence/build/logs/nearby-browser-states-2026-10-13T194847_159302_0000.txt": {
+      "sha256_before_redaction": "4e9235b338e9a6b23681fd8dc500c713f60fe93d0b3c47a5b42a8799009ef7e0",
+      "sha256_after_redaction": "0a5d597100980de086408e5f8ba6eb0342e5f3ba167400104f46a98e01138837"
+    },
+    "evidence/build/logs/nearby-unit-2026-10-13T194635_936365_0000.txt": {
+      "sha256_before_redaction": "955fb38f833264839deb31a29cb7bc372620fb330cfd5e7f6d029136bed4322a",
+      "sha256_after_redaction": "f28c59e3dd6e4c01adc08b9e4bb182487614771528a5dd5c076c39929c22c2f0"
+    },
+    "evidence/build/logs/offhost-backup-failure-detail-2026-10-13T161019_175905_0000.txt": {
+      "sha256_before_redaction": "482416da856342a4fef36d76c737a627c6287a10401bace225de3bbbaafd85de",
+      "sha256_after_redaction": "be800ccf85d2feee83892ccedf384e84ad5b623a05d21bf229a8ca764734e019"
+    },
+    "evidence/build/logs/planning-browser-2026-10-13T170432_373400_0000.txt": {
+      "sha256_before_redaction": "8242fe4b3c2d24421fe5b76417a4444d7e5f156c76d23468d09cabb7257dca36",
+      "sha256_after_redaction": "626dd11d9bc7f4b0589e91df00d3069942bea0c614ad73da55fae70f3ac6b0d1"
+    },
+    "evidence/build/logs/planning-unit-2026-10-13T170239_406623_0000.txt": {
+      "sha256_before_redaction": "34fc35ae27790e5a6f05bb666ec3884a8327f607dbf9df77dfedae7b15801bf7",
+      "sha256_after_redaction": "4dc06fa085e9d5d6080ce8fd0985dc5b485e0a9b7f336609cd1be365baa432ef"
+    },
+    "evidence/build/logs/qa-md-zip-browser-2026-10-13T163303_033663_0000.txt": {
+      "sha256_before_redaction": "e8b44413f7874f2b11528f48d5a52940fe6030aa5b11541ede7f6d5dcc21b88e",
+      "sha256_after_redaction": "7d8b94816184cb2fcccbd629bba2fa10e206c321c173ccffc0aac93fd1bc0f94"
+    },
+    "evidence/build/logs/qa-md-zip-unit-2026-10-13T162627_742019_0000.txt": {
+      "sha256_before_redaction": "b0e1d8ad28e9298fe5503eb3f4091e49c260a588659d9233c957f116abf21fee",
+      "sha256_after_redaction": "f744d08f65737f3c33368d52bf2b9a81ed42767ab11a4336654d4501db971424"
+    },
+    "evidence/build/logs/source-unit-2026-10-13T192922_607425_0000.txt": {
+      "sha256_before_redaction": "183ac6e2837c1de568cb37b38d7cabb4d3a43ec6147c4704cd4e1c4e21c81da7",
+      "sha256_after_redaction": "2f89a220cca3df56a16d8c03390a3bdfa4c3a89f308e884e27fddac4b90cf730"
+    },
+    "evidence/build/logs/viewable-browser-2026-10-13T191225_559761_0000.txt": {
+      "sha256_before_redaction": "5a4a72d8e4a3082fa55d4cfab11b270bb19e6508b7c0acc81d879903a2607095",
+      "sha256_after_redaction": "939a7533abbad41c2a7c97f515080149110a1b3c5b288a6e24d50a4481fbb83b"
+    },
+    "evidence/build/logs/viewable-unit-2026-10-13T191009_121429_0000.txt": {
+      "sha256_before_redaction": "de9ff198f5b575aa965713ddfb3cedb7bb3347a75c186c01c7333db224f0b011",
+      "sha256_after_redaction": "f579d40ccde1ba994e71a500d43470058542ee8981667f76554b5c271cd0ddfe"
+    }
+  }
+}

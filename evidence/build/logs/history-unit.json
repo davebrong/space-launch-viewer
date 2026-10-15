@@ -12,6 +12,6 @@
   "exit_code": 0,
   "status": "passed",
   "artifact_path": "evidence/build/logs/history-unit-2026-10-13T202317_006635_0000.txt",
-  "sha256": "d5e1467073c256c51939a3033203b113e0793b8091e215fd1f48e11b3e0f50e0",
+  "sha256": "459452e7561ebe7c8f0ae58e5a9cef7bba1d114d8fd8046cb155a9fae227a6fe",
   "software_sha256": "ed860bed1d73981d199cb242053949297750b044c6faee75cb4f60608e9f1b53"
 }

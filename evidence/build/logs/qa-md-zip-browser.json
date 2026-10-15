@@ -8,6 +8,6 @@
   "exit_code": 0,
   "status": "passed",
   "artifact_path": "evidence/build/logs/qa-md-zip-browser-2026-10-13T163303_033663_0000.txt",
-  "sha256": "e8b44413f7874f2b11528f48d5a52940fe6030aa5b11541ede7f6d5dcc21b88e",
+  "sha256": "7d8b94816184cb2fcccbd629bba2fa10e206c321c173ccffc0aac93fd1bc0f94",
   "software_sha256": "d102aa300f2328a0c9d3cb0e163b509fbfad02a711af61b4d4db81edd6e82d50"
 }

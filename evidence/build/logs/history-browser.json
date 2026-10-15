@@ -11,6 +11,6 @@
   "exit_code": 1,
   "status": "failed",
   "artifact_path": "evidence/build/logs/history-browser-2026-10-13T202446_585550_0000.txt",
-  "sha256": "eb4cada6135fed6f16b2e89316f1cf3ee20596ffa218377b4b1ec06d51059556",
+  "sha256": "40680abd242beb10e1b6f484c62d0013e633840786528ac4a591db6219f9b4c2",
   "software_sha256": "03c7b211b359485b99c40b77c20572a9852dfbc01709d3e7e7d4f44887dd6179"
 }

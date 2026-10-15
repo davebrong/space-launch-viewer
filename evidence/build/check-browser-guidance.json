@@ -10,7 +10,7 @@
     "exit_code": 1,
     "status": "failed",
     "artifact_path": "evidence/build/logs/browser-guidance-browser-journeys-2026-10-13T155052_972250_0000.txt",
-    "sha256": "2afd47c0caeef6dc112bdab09b2df7a434c205ffb1a31912603be3d7daed7f85",
+    "sha256": "38f5b6a8686818cc013aa2f5e8132a85e7eb855a841a2a77737ffbe23e67e912",
     "software_sha256": "201a4f9e7394dec8307bf7ef6d5f8e02f5bf87acb44c44fe1f1b4b71456f1672"
   },
   {
@@ -24,7 +24,7 @@
     "exit_code": 1,
     "status": "failed",
     "artifact_path": "evidence/build/logs/browser-guidance-R007-2026-10-13T155713_365838_0000.txt",
-    "sha256": "437780163bbdf3fbaae6028f028c966ed1b18d209aef0e080a1c769b45a7fd2f",
+    "sha256": "62d33a46461483dab2350979b0f0498105a7f90f5c95f950242c6ebf21530abf",
     "software_sha256": "201a4f9e7394dec8307bf7ef6d5f8e02f5bf87acb44c44fe1f1b4b71456f1672"
   },
   {

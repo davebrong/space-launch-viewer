@@ -10,6 +10,6 @@
   "exit_code": 0,
   "status": "passed",
   "artifact_path": "evidence/build/logs/history-detail-browser-final-2026-10-13T204444_397234_0000.txt",
-  "sha256": "97cee89c65f7488913a941f55efaa84e61408b2d498e1da475864f2ae0466538",
+  "sha256": "e759c9e189890d9d3a588e30c187877c661c27eea1b20a9820d0fa487da3ada1",
   "software_sha256": "666d030a91ec604b2a7fac5f3e486f52763a35cc7504850ef41cb428cf380aeb"
 }

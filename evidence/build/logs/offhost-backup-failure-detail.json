@@ -8,6 +8,6 @@
   "exit_code": 1,
   "status": "failed",
   "artifact_path": "evidence/build/logs/offhost-backup-failure-detail-2026-10-13T161019_175905_0000.txt",
-  "sha256": "482416da856342a4fef36d76c737a627c6287a10401bace225de3bbbaafd85de",
+  "sha256": "be800ccf85d2feee83892ccedf384e84ad5b623a05d21bf229a8ca764734e019",
   "software_sha256": "201a4f9e7394dec8307bf7ef6d5f8e02f5bf87acb44c44fe1f1b4b71456f1672"
 }
