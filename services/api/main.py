@@ -18,7 +18,7 @@ from sqlalchemy import select, update, delete, func, text
 from sqlalchemy.exc import SQLAlchemyError
 
 from . import db
-from .config import ROOT, ORIGIN
+from .config import ROOT, ORIGINS
 from .adapters.census import resolve_zip, timezone_at
 from .assessment import assess, cached_weather
 from packages.visibility.common import digest, utc, stamp, point
@@ -84,7 +84,7 @@ async def validation_error(request: Request, exc):
 @app.middleware("http")
 async def security_headers(request: Request, call_next):
     request.state.request_id = str(uuid4())
-    if request.method not in ("GET", "HEAD", "OPTIONS") and request.headers.get("origin") != ORIGIN:
+    if request.method not in ("GET", "HEAD", "OPTIONS") and request.headers.get("origin") not in ORIGINS:
         response = error_response(request, 403, "FORBIDDEN", "Same-origin request required")
     elif int(request.headers.get("content-length", "0")) > (
         1000000 if request.url.path == "/api/v1/admin/registry" else 65536

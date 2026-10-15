@@ -135,3 +135,14 @@ def test_privacy_removes_raw_point_snapshot():
         with db.engine().connect() as conn:
             assert conn.scalar(select(func.count()).select_from(db.snapshots)) == 0
         assert not Path(path).exists()
+
+
+def test_mutations_accept_each_configured_origin(monkeypatch):
+    from services.api import main
+
+    tunnel = "http://localhost:13080"
+    monkeypatch.setattr(main, "ORIGINS", (s.ORIGIN, tunnel))
+    with s.isolated_database():
+        c = s.client()
+        assert c.post("/api/v1/session", headers={"Origin": tunnel}).status_code == 204
+        assert c.post("/api/v1/session", headers={"Origin": "https://evil.example"}).status_code == 403

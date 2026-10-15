@@ -1,0 +1,25 @@
+{
+	admin off
+}
+
+# nosniff/Referrer-Policy come from the API middleware and next.config headers (no duplicates).
+(app) {
+	handle /api/v1/* {
+		reverse_proxy api:8000
+	}
+	handle {
+		reverse_proxy web:3000
+	}
+}
+
+# Public hostname: automatic Let's Encrypt certificate (HTTP-01/TLS-ALPN-01 on 80/443).
+# Certificates persist in the bind-mounted /data so restarts do not reissue.
+{$LV_SITE_ADDRESS} {
+	header Strict-Transport-Security "max-age=31536000"
+	import app
+}
+
+# Operator listener: host port 127.0.0.1:3080, reachable only through an SSH port forward.
+http://:8080 {
+	import app
+}

@@ -29,6 +29,36 @@ HTTPS listener/certificate configuration, set the exact HTTPS `COMPOSE_APP_ORIGI
 `COOKIE_SECURE=true`. Do not expose the local HTTP listener publicly. No host,
 domain, certificate service subscription or cloud storage is provisioned here.
 
+## Google Cloud free tier (single e2-micro)
+
+`ops/gcp/` runs the unchanged Compose stack on one free-tier e2-micro VM (us-central1, 30 GB
+standard disk, 2 GB swap). Products: Compute Engine
+e2-micro and Artifact Registry (<0.5 GB; cleanup keeps two releases). The
+free e2-micro allowance is per billing account, not per project. The external IPv4 address
+(`lv-ip`, static so DNS survives stop/start) may carry Google's in-use IP charge (~$3.65/month);
+the free-tier documentation does not say it is included, so check the billing report.
+Run from Git Bash with an authenticated project owner. Put `LV_GCP_PROJECT`, `LV_GCP_ACCOUNT`
+and `LV_PUBLIC_ORIGIN` in the gitignored `.runtime/gcp/config.local.sh` (see `ops/gcp/config.sh`):
+
+- `ops/gcp/provision.sh` — once: APIs, `lv-net` VPC, firewall (80/443 public; SSH only from
+  the operator's public IP; nothing else), VM service account (Artifact Registry reader),
+  repository, VM, static IP, and the
+  private `.runtime/gcp/vm.env` plus `.runtime/gcp/admin-secret.txt`. Billing must be linked.
+- `ops/gcp/deploy.sh` — build both images locally, push, copy Compose files, `Caddyfile` and
+  `vm.env`, then `docker compose up --wait` on the VM. `.runtime/gcp/vm.env` is the source of truth.
+- `ops/gcp/tunnel.sh` — operator access at `http://localhost:13080` (an allowed origin) via an
+  SSH port forward to the VM's loopback-only listener on 3080.
+- `ops/gcp/allow-my-ip.sh` — re-point the SSH rule (`lv-allow-admin`) at your current public IP
+  when it changes; it uses the Compute API, so it works while SSH is locked out.
+
+Caddy (`ops/gcp/Caddyfile`) obtains a Let's Encrypt certificate for `LV_SITE_ADDRESS`; the DNS
+A record must point at the static IP. Certificates persist in `/opt/launch-visibility/caddy-data`.
+To enable the Cloudflare proxy later, use SSL mode Full (strict); renewals keep working through
+HTTP-01 on port 80. `APP_ORIGIN`/`COMPOSE_APP_ORIGIN` accept a comma-separated list of exact
+origins; the first is the public one. Free-tier egress is 1 GB/month.
+On the VM: `cd /opt/launch-visibility` then `sudo docker compose ps|logs`. No off-host backup
+destination is configured; disk snapshots are not free.
+
 ## Verification commands
 
 Use `uv run --frozen` to select the locked Python environment.

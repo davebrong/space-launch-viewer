@@ -1,0 +1,24 @@
+# Google Cloud free-tier overlay for compose.yaml on one e2-micro VM (1 GB RAM + swap).
+# Images are prebuilt by ops/gcp/deploy.sh and pulled from Artifact Registry; the worker reuses
+# the API image. Caddy terminates TLS for LV_SITE_ADDRESS with a Let's Encrypt certificate on
+# 80/443 (works with Cloudflare DNS-only or proxied "Full (strict)"). Host port 3080 is a plain
+# HTTP operator listener bound to the VM's loopback; reach it through an SSH port forward.
+services:
+  postgres:
+    command: ["postgres", "-c", "shared_buffers=64MB", "-c", "max_connections=60", "-c", "effective_cache_size=256MB"]
+  api:
+    image: ${LV_IMAGE_REPO:?Set LV_IMAGE_REPO}/api:${LV_IMAGE_TAG:?Set LV_IMAGE_TAG}
+    build: !reset null
+  worker:
+    image: ${LV_IMAGE_REPO:?Set LV_IMAGE_REPO}/api:${LV_IMAGE_TAG:?Set LV_IMAGE_TAG}
+    build: !reset null
+  web:
+    image: ${LV_IMAGE_REPO:?Set LV_IMAGE_REPO}/web:${LV_IMAGE_TAG:?Set LV_IMAGE_TAG}
+    build: !reset null
+  proxy:
+    # The image grants Caddy cap_net_bind_service, so it binds 80/443 as uid 1000.
+    environment:
+      LV_SITE_ADDRESS: ${LV_SITE_ADDRESS:?Set LV_SITE_ADDRESS}
+    ports: !override ["80:80", "443:443", "443:443/udp", "127.0.0.1:3080:8080"]
+    volumes: !override ["./Caddyfile.gcp:/etc/caddy/Caddyfile:ro", "./caddy-data:/data"]
+    tmpfs: !override [/config]

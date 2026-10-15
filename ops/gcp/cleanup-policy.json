@@ -1,0 +1,12 @@
+[
+  {
+    "name": "keep-two-releases",
+    "action": {"type": "Keep"},
+    "mostRecentVersions": {"keepCount": 2}
+  },
+  {
+    "name": "delete-superseded",
+    "action": {"type": "Delete"},
+    "condition": {"tagState": "any", "olderThan": "1d"}
+  }
+]
