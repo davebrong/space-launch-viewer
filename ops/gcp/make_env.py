@@ -28,7 +28,7 @@ def main() -> None:
         "ADMIN_SECRET_HASH=" + hashlib.sha256(admin.encode()).hexdigest(),
         f"LV_USER_AGENT=launch-visibility/0.1 (+{public})",
         "LV_IMAGE_REPO=" + repo,
-        # Caddy obtains the certificate for this hostname; DNS must point at the VM's static IP.
+        # Caddy obtains the certificate for this hostname; DNS must point at the VM's current IP.
         "LV_SITE_ADDRESS=" + public.split("://", 1)[-1],
     ]
     env.write_text("\n".join(lines) + "\n")

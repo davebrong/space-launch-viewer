@@ -47,14 +47,10 @@ exists g compute instances describe "$LV_GCP_VM" --zone "$LV_GCP_ZONE" ||
     --shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring \
     --metadata enable-oslogin=TRUE --metadata-from-file startup-script="$HERE/vm-startup.sh"
 
-# Keep the DNS A record valid across VM stop/start: promote the in-use ephemeral IP to static.
-# An in-use static address is billed like an ephemeral one; an unattached one costs more.
-if ! exists g compute addresses describe lv-ip --region "$LV_GCP_REGION"; then
-  IP=$(g compute instances describe "$LV_GCP_VM" --zone "$LV_GCP_ZONE" \
-    --format 'value(networkInterfaces[0].accessConfigs[0].natIP)')
-  g compute addresses create lv-ip --region "$LV_GCP_REGION" --addresses "$IP"
-fi
-g compute addresses describe lv-ip --region "$LV_GCP_REGION" --format 'value(address)' |
+# Ephemeral IP: no reservation to bill when the VM is stopped, but a stop/start changes it,
+# so update the DNS A record afterwards.
+g compute instances describe "$LV_GCP_VM" --zone "$LV_GCP_ZONE" \
+  --format 'value(networkInterfaces[0].accessConfigs[0].natIP)' |
   sed 's/^/Public IPv4 for the DNS A record: /'
 
 [ -f "$LV_STATE/vm.env" ] || python "$HERE/make_env.py" "$LV_STATE" "$LV_IMAGES" "$LV_PUBLIC_ORIGIN"
