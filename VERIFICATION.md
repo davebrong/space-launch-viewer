@@ -24,7 +24,7 @@ Created2026-10-13. Original `Launch_Visibility_PRD.md` preserved. This workspace
 
 ## Decisions and actual dependencies
 
-Use Next.js/FastAPI/Python worker/PostgreSQL/Skyfield and local assets, existing hardware Compose, in-app notices and ICS. Mandatory data/API subscriptions$0, no paid fallback. Hazard corridor does not authorize timed geometry. Reconstructed advice capped at Possible. NOTAM-Mapper parser copying excluded due MIT-root/GPL-file conflict. Censusfixture-zip is39.0,-77.0; no assumed home. All source issue/fetch/valid times remain distinct.
+Use Next.js/FastAPI/Python worker/PostgreSQL/Skyfield and local assets, existing hardware Compose, in-app notices and ICS. Mandatory data/API subscriptions$0, no paid fallback. Hazard corridor does not authorize timed geometry. Reconstructed advice capped at Possible. NOTAM-Mapper parser copying excluded due MIT-root/GPL-file conflict. Census21201 is39.294961,-76.622341; no assumed home. All source issue/fetch/valid times remain distinct.
 
 Public route/profile metadata and future observations are actual evidence dependencies; payment is not. T01/T08 must provision pinned free runtime packages, timezone and DE421 assets; T18 needs an existing host and off-host backup destination for operational readiness. No new host/domain/email service is required; optional email stays disabled. Source availability may change and no arbitrary map parser is promised.
 

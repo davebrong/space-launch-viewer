@@ -1,6 +1,6 @@
 # Application implementation checklist
 
-2026-10-13 location QA: nearby Cape/Kennedy planning now uses the confirmed point and pad across mission families, including date-only opportunities with time TBA. Viewable is today through 30 days; Upcoming was removed. Live ZIP fl-zip and md-zip results differ. This does not complete distant mission coverage. [Verification](evidence/build/nearby.json).
+2026-10-13 location QA: nearby Cape/Kennedy planning now uses the confirmed point and pad across mission families, including date-only opportunities with time TBA. Viewable is today through 30 days; Upcoming was removed. Live results for a near-Cape ZIP and a Maryland ZIP differ. This does not complete distant mission coverage. [Verification](evidence/build/nearby.json).
 
 Coverage audit: the core ZIP visibility integration is incomplete. T05 supplies a registry, not automatic mission-source discovery or qualified production profiles. T04’s first-page bug is fixed and all 205 currently returned Cape/Kennedy records are ingested. See [source audit](evidence/build/source-audit.json).
 
@@ -12,7 +12,7 @@ All T01–T21 milestones were pursued. The PRD v1.2 remains authoritative. The e
 
 The full acceptance command executes all named suites in the plans; aliases share those suite results. Exact executed commands, stdout/stderr, exit codes and hashes are under `evidence/build/logs/`. External failures are not passes.
 
-QA follow-up for ZIP md-zip and the same-day SpX-35 launch: completed-launch reviews, supported geometry retention, unknown-date grouping, loading/error/navigation states, forecast timestamps, retrospective observation classification and shared weather-cache ownership were corrected. [QA evidence](evidence/build/qa-md-zip.json) supplements the T12/T13/T14/T15/T21 baseline below; data, off-host recovery and prospective pilot gates remain blocked.
+QA follow-up for the Maryland QA ZIP and the same-day SpX-35 launch: completed-launch reviews, supported geometry retention, unknown-date grouping, loading/error/navigation states, forecast timestamps, retrospective observation classification and shared weather-cache ownership were corrected. [QA evidence](evidence/build/qa-md-zip.json) supplements the T12/T13/T14/T15/T21 baseline below; data, off-host recovery and prospective pilot gates remain blocked.
 
 | Task | Status | Delivered work | Verification |
 |---|---|---|---|

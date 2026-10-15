@@ -50,7 +50,7 @@ def client() -> TestClient:
     return c
 
 
-def location(c, zip="fixture-zip") -> dict:
+def location(c, zip="21201") -> dict:
     r = c.post(
         "/api/v1/locations/resolve",
         json={"zip": zip, "latitude_deg": None, "longitude_deg": None, "altitude_m": None},

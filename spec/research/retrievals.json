@@ -21,12 +21,12 @@
   },
   {
     "id": "nws-point",
-    "url": "https://api.weather.gov/points/39.0,-77.0",
-    "retrieved_at": "2026-10-13T13:42:59.564269Z",
+    "url": "https://api.weather.gov/points/39.295,-76.6223",
+    "retrieved_at": "2026-10-15T12:43:00.107168Z",
     "status": 200,
     "path": "tests/fixtures/raw/nws-point.json",
-    "sha256": "28a90464383317a3014c7a99080c62f36f7049ee70439333ee2394b17242f97e",
-    "bytes": 3918,
+    "sha256": "8a406b5665060787b2d2a1f523e8e1aa8c05320204fd6c1eb71628e8c3289c4d",
+    "bytes": 3919,
     "content_type": "application/geo+json"
   },
   {
@@ -359,12 +359,12 @@
   },
   {
     "id": "nws-grid.json",
-    "url": "https://api.weather.gov/gridpoints/LWX/0,0",
-    "retrieved_at": "2026-10-13T13:43:54.431238Z",
+    "url": "https://api.weather.gov/gridpoints/LWX/109,91",
+    "retrieved_at": "2026-10-15T12:43:00.569539Z",
     "status": 200,
     "path": "tests/fixtures/raw/nws-grid.json",
-    "sha256": "4f12e93e29d21702cdf1482a1eca8a64c3160e3121782dec38ec0c3f000c2d45",
-    "bytes": 220901
+    "sha256": "fa8cefa3df77c75e0e7bc5c77af921afde4afaf5b82eb48184489875a6bcc16c",
+    "bytes": 218727
   },
   {
     "id": "ll2-schema.yml",
@@ -394,12 +394,12 @@
     "bytes": 952026
   },
   {
-    "id": "usno-maryland.json",
-    "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-10-13&coords=39.0,-77.0&tz=-4&dst=false",
-    "retrieved_at": "2026-10-13T13:57:22.317420Z",
+    "id": "usno-baltimore.json",
+    "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-10-13&coords=39.294961,-76.622341&tz=-4&dst=false",
+    "retrieved_at": "2026-10-15T12:43:01.013628Z",
     "status": 200,
-    "path": "tests/fixtures/raw/usno-maryland.json",
-    "sha256": "24824cc2c612dea4e9265feafd093d1d061abc33f69a24ffc7d16e172654da60",
+    "path": "tests/fixtures/raw/usno-baltimore.json",
+    "sha256": "519b43c9da8440c6d96645e1cf215eba2be0070b32fc532074272a134559f0c7",
     "bytes": 1272
   },
   {

@@ -153,10 +153,10 @@
       "schema_version": "1.0",
       "id": "synthetic-location",
       "revision": 1,
-      "zip": "fixture-zip",
+      "zip": "21201",
       "point": {
-        "latitude_deg": 39.0,
-        "longitude_deg": -77.0,
+        "latitude_deg": 39.294961,
+        "longitude_deg": -76.622341,
         "altitude_m": 0,
         "frame": "WGS84_GEODETIC",
         "altitude_datum": "WGS84_ELLIPSOID"
@@ -328,10 +328,10 @@
       "schema_version": "1.0",
       "id": "synthetic-location",
       "revision": 1,
-      "zip": fixture-zip,
+      "zip": 21201,
       "point": {
-        "latitude_deg": 39.0,
-        "longitude_deg": -77.0,
+        "latitude_deg": 39.294961,
+        "longitude_deg": -76.622341,
         "altitude_m": 0,
         "frame": "WGS84_GEODETIC",
         "altitude_datum": "WGS84_ELLIPSOID"
@@ -353,10 +353,10 @@
       "schema_version": "1.0",
       "id": "synthetic-location",
       "revision": 1,
-      "zip": "fixture-zip",
+      "zip": "21201",
       "point": {
-        "latitude_deg": 39.0,
-        "longitude_deg": -77.0,
+        "latitude_deg": 39.294961,
+        "longitude_deg": -76.622341,
         "altitude_m": 0,
         "frame": "WGS84_GEODETIC",
         "altitude_datum": "WGS84_ELLIPSOID"

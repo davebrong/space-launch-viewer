@@ -54,7 +54,7 @@
     "prerequisites": [
       "T01"
     ],
-    "acceptance": "Within three-day investigation parse pinned index/series/events/licenses; choose supported Cape historical mission and independently supported route. Document variant/stage/datum/emission compatibility, separate held-out mission from template creation; calculate Maryland and near-pad windows with independent geometry <=0.1deg. Publish uncertainty and data gate result. Synthetic positive/archived telemetry alone cannot pass.",
+    "acceptance": "Within three-day investigation parse pinned index/series/events/licenses; choose supported Cape historical mission and independently supported route. Document variant/stage/datum/emission compatibility, separate held-out mission from template creation; calculate Baltimore and near-pad windows with independent geometry <=0.1deg. Publish uncertainty and data gate result. Synthetic positive/archived telemetry alone cannot pass.",
     "commands": [
       "python tests/acceptance/run.py --suite R019",
       "python -m implementation.gates historical-cape"
@@ -86,7 +86,7 @@
     "prerequisites": [
       "T02"
     ],
-    "acceptance": "After historical demonstration (or explicit blocked historical gate), fetch one upcoming Cape launch within free budgets; exact route/profile association or honest unsupported report. Overlay NWS atfixture-zip and record uncertain source coverage. Record approach viability; continue T04-T21 even when route gate blocks release. No schedule-only completion.",
+    "acceptance": "After historical demonstration (or explicit blocked historical gate), fetch one upcoming Cape launch within free budgets; exact route/profile association or honest unsupported report. Overlay NWS at21201 and record uncertain source coverage. Record approach viability; continue T04-T21 even when route gate blocks release. No schedule-only completion.",
     "commands": [
       "python tests/acceptance/live.py",
       "python -m implementation.gates upcoming-cape"

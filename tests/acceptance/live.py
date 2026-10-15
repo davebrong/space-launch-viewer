@@ -23,7 +23,7 @@ def main():
     if len(hist)>=12: results.append({'id':'LL2','status':'blocked','reason':'Local12/hour request budget exhausted'})
     else:
         hist.append(now); ledger.write_text(json.dumps(hist)); fetch('LL2','https://ll.thespacedevs.com/2.3.0/launches/upcoming/?limit=1',['count','results'])
-    point=fetch('NWS-point','https://api.weather.gov/points/39.0,-77.0',['properties'])
+    point=fetch('NWS-point','https://api.weather.gov/points/39.295,-76.6223',['properties'])
     if point:
         url=point['properties'].get('forecastGridData','')
         if url.startswith('https://api.weather.gov/gridpoints/'):

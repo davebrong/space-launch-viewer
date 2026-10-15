@@ -109,7 +109,7 @@ Original `Launch_Visibility_PRD.md` preserved and excluded below. Local `.venv`,
 - `tests/fixtures/raw/timezonefinder--timezonefinder--timezonefinder.py`
 - `tests/fixtures/raw/timezonefinder-meta.json`
 - `tests/fixtures/raw/timezonefinder-tree.json`
-- `tests/fixtures/raw/usno-maryland.json`
+- `tests/fixtures/raw/usno-baltimore.json`
 - `tests/fixtures/v1/cases.json`
 - `tests/fixtures/v1/real-cape-gate.json`
 - `tests/fixtures/v1/reference-manifest.json`

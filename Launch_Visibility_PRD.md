@@ -43,7 +43,7 @@ No full rocket flight simulator or paid trajectory feed is required. The basic q
 | --- | --- |
 | Product | A forecast of possible launch-viewing opportunities by ZIP, with explicit evidence quality. Cape/Kennedy to Maryland remains the main test case. |
 | Initial coverage | List Cape/Kennedy launches. Produce viewing estimates only when the public evidence supports them. Include mission-specific official viewing guidance from Wallops when available. Do not replace the Cape use case with Wallops-only coverage. |
-| Location | US ZIP representative point confirmed by the user, optional GPS/manual coordinates. Maryland fixture-zip is a test fixture, not an assumed home. Up to 100 active locations. |
+| Location | US ZIP representative point confirmed by the user, optional GPS/manual coordinates. Baltimore 21201 is a test fixture, not an assumed home. Up to 100 active locations. |
 | Route and ascent | Combine free historical ascent profiles with current mission-specific public route evidence. Evaluate several plausible tracks; label all reconstructed tracks approximate. Official viewing guidance has its own evidence path. |
 | Weather | NWS public API only for the required baseline. No Open-Meteo entitlement or paid cloud-layer service is required. |
 | Advice | Worth a look, Possible, Unlikely, Not enough data. Historical-profile reconstructions are capped at Possible in the initial beta. No percentage probability. |
@@ -94,7 +94,7 @@ Within an initial three-day technical investigation:
 
 - Download and parse the free telemetry index, representative analysed series, event data and licenses.
 - Identify compatible profiles and independent current route evidence for one Cape mission. Record which values are observed, derived or assumed.
-- Run the observer geometry for Maryland and a location near the pad. Compare with an independent geometry implementation.
+- Run the observer geometry for Baltimore and a location near the pad. Compare with an independent geometry implementation.
 - Hold back a historical mission's profile to test generalization; do not validate a template against the same data used to construct it. Separate profile agreement from real sighting validation.
 - Produce a supported approximate result or a concrete failure report. Do not purchase access or declare a schedule-only app to be the completed launch-visibility product.
 

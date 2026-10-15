@@ -4,7 +4,7 @@ import AxeBuilder from '@axe-core/playwright';
 test('past launches browse real provider records independently of viewing estimates',async({page},info)=>{
   test.setTimeout(120000);
   await page.goto('/');
-  await page.getByLabel('US ZIP code').fill('fl-zip');
+  await page.getByLabel('US ZIP code').fill('32801');
   await page.getByRole('button',{name:'Find location'}).click();
   await page.getByRole('button',{name:'Confirm this location'}).click();
   const filter=page.getByRole('combobox',{name:'Show'});
@@ -22,14 +22,14 @@ test('past launches browse real provider records independently of viewing estima
   const historic=records.filter({hasText:'NROL-97'}).first();
   await historic.getByRole('link',{name:'Could I have seen it?'}).click();
   await expect(page.getByRole('heading',{name:'NROL-97',exact:true})).toBeVisible();
-  await expect(page.getByRole('heading',{name:'Potentially visible from ZIP fl-zip'})).toBeVisible();
+  await expect(page.getByRole('heading',{name:'Potentially visible from ZIP 32801'})).toBeVisible();
   await expect(page.getByRole('heading',{name:/Look south/})).toBeVisible();
   await expect(page.getByText('No matching prelaunch cloud forecast is available.',{exact:false})).toBeVisible();
   await expect(page.getByText('Oct 1, 2026',{exact:false}).first()).toBeVisible();
   // Direct entry must return to the archive even if the saved filter was Viewable.
   await page.evaluate(()=>localStorage.setItem('lv_filter_v2','viewable'));
   await page.reload();
-  await expect(page.getByRole('heading',{name:'Potentially visible from ZIP fl-zip'})).toBeVisible();
+  await expect(page.getByRole('heading',{name:'Potentially visible from ZIP 32801'})).toBeVisible();
   const detailAxe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();
   expect(detailAxe.violations.filter(v=>['critical','serious'].includes(v.impact||''))).toEqual([]);
   await page.screenshot({path:`evidence/build/history-detail-${info.project.name}.png`,fullPage:false});

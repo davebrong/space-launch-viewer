@@ -13,13 +13,13 @@ from services.worker.ingestion import approved_url
 
 def test_independent_ecef():
     reference = Transformer.from_crs(4979, 4978, always_xy=True)
-    for lat, lon, alt in [(39.0, -77.0, 0), (28.5, -80.5, 200000), (90, 0, 10), (-30, 150, 55000)]:
+    for lat, lon, alt in [(39.294961, -76.622341, 0), (28.5, -80.5, 200000), (90, 0, 10), (-30, 150, 55000)]:
         assert ecef(lat, lon, alt) == pytest.approx(reference.transform(lon, lat, alt), abs=1e-5)
 
 
 def test_zenith_and_occultation():
     assert geometry([0, 0, 0], [0, 0, 1000])["azimuth_deg"] is None
-    assert geometry([39.4, -77.3, 0], [28.5, -80.5, 0])["occulted"]
+    assert geometry([39.3, -76.6, 0], [28.5, -80.5, 0])["occulted"]
 
 
 def test_weather_gap_narrowing():

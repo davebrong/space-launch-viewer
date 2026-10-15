@@ -55,7 +55,7 @@ def api_contract() -> dict:
         no_csrf = c.post(
             "/api/v1/locations/resolve",
             headers={"X-CSRF-Token": ""},
-            json={"zip": "fixture-zip", "latitude_deg": None, "longitude_deg": None, "altitude_m": None},
+            json={"zip": "21201", "latitude_deg": None, "longitude_deg": None, "altitude_m": None},
         )
         assert no_csrf.status_code == 403
         schema(no_csrf.json(), "error")
@@ -269,8 +269,8 @@ def launch_windows() -> dict:
     return {
         "endpoint_coverage": results[0]["t0"] == stamp(at) and results[-1]["t0"] == stamp(end),
         "max_transition_uncertainty_s": 60 if max(gaps) <= 60 else max(gaps),
-        "recomputed_solar_weather": solar_at(at, 39.4, -77.3)
-        != solar_at(at + timedelta(seconds=600), 39.4, -77.3),
+        "recomputed_solar_weather": solar_at(at, 39.3, -76.6)
+        != solar_at(at + timedelta(seconds=600), 39.3, -76.6),
         "old_guidance_reused": old_reused,
     }
 

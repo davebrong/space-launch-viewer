@@ -33,7 +33,7 @@ def main():
                         return rows
 
             launches = {r["id"]: r for r in all_rows("/launches")}
-            for zip_code in ("fl-zip", "md-zip"):
+            for zip_code in ("32801", "21201"):
                 response = client.post(
                     "/locations/resolve",
                     json={"zip": zip_code, "latitude_deg": None, "longitude_deg": None, "altitude_m": None},
@@ -55,8 +55,8 @@ def main():
                     for r in rows
                     if r["viewable"]
                 ]
-            nearby_ids = {r["launch_id"] for r in results["fl-zip"]}
-            distant_ids = {r["launch_id"] for r in results["md-zip"]}
+            nearby_ids = {r["launch_id"] for r in results["32801"]}
+            distant_ids = {r["launch_id"] for r in results["21201"]}
             bandwagon = "3b430f81-0ff1-4d85-8a1a-cef0de326198"
             assert bandwagon in nearby_ids and bandwagon not in distant_ids
         finally:

@@ -1,17 +1,17 @@
 [
   {
-    "id": "zip-fixture-zip",
+    "id": "zip-21201",
     "version": 1,
     "kind": "real_reference",
     "operation": "resolve_zip",
     "input": {
-      "zip": "fixture-zip",
+      "zip": "21201",
       "gazetteer": "tests/fixtures/raw/census.zip"
     },
     "expected": {
-      "zip": "fixture-zip",
-      "latitude_deg": 39.0,
-      "longitude_deg": -77.0,
+      "zip": "21201",
+      "latitude_deg": 39.294961,
+      "longitude_deg": -76.622341,
       "confirmed": false
     },
     "requirements": [
@@ -97,8 +97,8 @@
       "old_confirmed": true,
       "old_revision": 1,
       "new_point": [
-        39.5,
-        -77.4
+        39.3,
+        -76.7
       ]
     },
     "expected": {
@@ -284,8 +284,8 @@
     "operation": "geometry",
     "input": {
       "observer_lat_lon_alt_m": [
-        39.0,
-        -77.0,
+        39.294961,
+        -76.622341,
         0
       ],
       "target_lat_lon_alt_m": [
@@ -295,9 +295,9 @@
       ]
     },
     "expected": {
-      "azimuth_deg": 195.05253761167478,
-      "elevation_deg": -5.581974730388814,
-      "range_m": 1237090.3301558548
+      "azimuth_deg": 198.39567264403505,
+      "elevation_deg": -5.589525125741493,
+      "range_m": 1238900.0297777015
     },
     "requirements": [
       "R006",
@@ -307,7 +307,7 @@
     "stories": [
       "US-07"
     ],
-    "oracle": "Independent PROJ topocentric pipeline via pyproj 3.7.2; WGS84. Synthetic target; no claimed flown route.",
+    "oracle": "Independent PROJ topocentric pipeline via pyproj 3.8.0; WGS84. Synthetic target; no claimed flown route.",
     "tolerance": {
       "azimuth_deg": 0.1,
       "elevation_deg": 0.1,
@@ -321,8 +321,8 @@
     "operation": "geometry",
     "input": {
       "observer_lat_lon_alt_m": [
-        39.0,
-        -77.0,
+        39.294961,
+        -76.622341,
         0
       ],
       "target_lat_lon_alt_m": [
@@ -332,9 +332,9 @@
       ]
     },
     "expected": {
-      "azimuth_deg": 170.08663211297622,
-      "elevation_deg": 11.914130295911493,
-      "range_m": 762559.7196710557
+      "azimuth_deg": 175.23012500510006,
+      "elevation_deg": 12.52295893148025,
+      "range_m": 738898.1492220978
     },
     "requirements": [
       "R006",
@@ -344,7 +344,7 @@
     "stories": [
       "US-07"
     ],
-    "oracle": "Independent PROJ topocentric pipeline via pyproj 3.7.2; WGS84. Synthetic target; no claimed flown route.",
+    "oracle": "Independent PROJ topocentric pipeline via pyproj 3.8.0; WGS84. Synthetic target; no claimed flown route.",
     "tolerance": {
       "azimuth_deg": 0.1,
       "elevation_deg": 0.1,
@@ -381,7 +381,7 @@
     "stories": [
       "US-07"
     ],
-    "oracle": "Independent PROJ topocentric pipeline via pyproj 3.7.2; WGS84. Synthetic target; no claimed flown route.",
+    "oracle": "Independent PROJ topocentric pipeline via pyproj 3.8.0; WGS84. Synthetic target; no claimed flown route.",
     "tolerance": {
       "azimuth_deg": 0.1,
       "elevation_deg": 0.1,
@@ -418,7 +418,7 @@
     "stories": [
       "US-07"
     ],
-    "oracle": "Independent PROJ topocentric pipeline via pyproj 3.7.2; WGS84. Synthetic target; no claimed flown route.",
+    "oracle": "Independent PROJ topocentric pipeline via pyproj 3.8.0; WGS84. Synthetic target; no claimed flown route.",
     "tolerance": {
       "azimuth_deg": 0.1,
       "elevation_deg": 0.1,
@@ -426,21 +426,21 @@
     }
   },
   {
-    "id": "sunrise-maryland",
+    "id": "sunrise-baltimore",
     "version": 1,
     "kind": "real_reference",
     "operation": "solar_events",
     "input": {
-      "latitude_deg": 39.0,
-      "longitude_deg": -77.0,
+      "latitude_deg": 39.294961,
+      "longitude_deg": -76.622341,
       "altitude_m": 0,
       "local_date": "2026-10-13",
       "timezone": "America/New_York",
       "sunrise_center_deg": -0.833
     },
     "expected": {
-      "sunrise": "2026-10-13T11:17:00Z",
-      "sunset": "2026-10-13T22:33:00Z"
+      "sunrise": "2026-10-13T11:14:00Z",
+      "sunset": "2026-10-13T22:30:00Z"
     },
     "requirements": [
       "R008",
@@ -604,7 +604,7 @@
     "stories": [
       "US-05"
     ],
-    "oracle": "PRD synthetic arithmetic example; 07:10 is NOT a real Maryland sunrise."
+    "oracle": "PRD synthetic arithmetic example; 07:10 is NOT a real Baltimore sunrise."
   },
   {
     "id": "shadow-night",

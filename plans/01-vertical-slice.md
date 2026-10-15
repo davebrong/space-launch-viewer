@@ -23,7 +23,7 @@ make lint
 - Requirements: R002, R004, R005, R006, R018, R019.
 - Affected files/components: `data/registry/`, `data/profiles/`, `packages/visibility/`, `tests/fixtures/real-cape/`.
 - Prerequisites: T01.
-- Acceptance criteria: Within three-day investigation parse pinned index/series/events/licenses; choose supported Cape historical mission and independently supported route. Document variant/stage/datum/emission compatibility, separate held-out mission from template creation; calculate Maryland and near-pad windows with independent geometry <=0.1deg. Publish uncertainty and data gate result. Synthetic positive/archived telemetry alone cannot pass.
+- Acceptance criteria: Within three-day investigation parse pinned index/series/events/licenses; choose supported Cape historical mission and independently supported route. Document variant/stage/datum/emission compatibility, separate held-out mission from template creation; calculate Baltimore and near-pad windows with independent geometry <=0.1deg. Publish uncertainty and data gate result. Synthetic positive/archived telemetry alone cannot pass.
 - Verification commands:
 
 ```sh
@@ -38,7 +38,7 @@ python -m implementation.gates historical-cape
 - Requirements: R003, R004, R009, R011, R019.
 - Affected files/components: `services/api/adapters/`, `data/registry/`, `evidence/upcoming-attempt.json`.
 - Prerequisites: T02.
-- Acceptance criteria: After historical demonstration (or explicit blocked historical gate), fetch one upcoming Cape launch within free budgets; exact route/profile association or honest unsupported report. Overlay NWS atfixture-zip and record uncertain source coverage. Record approach viability; continue T04-T21 even when route gate blocks release. No schedule-only completion.
+- Acceptance criteria: After historical demonstration (or explicit blocked historical gate), fetch one upcoming Cape launch within free budgets; exact route/profile association or honest unsupported report. Overlay NWS at21201 and record uncertain source coverage. Record approach viability; continue T04-T21 even when route gate blocks release. No schedule-only completion.
 - Verification commands:
 
 ```sh

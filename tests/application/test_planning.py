@@ -19,7 +19,7 @@ LAUNCH = {
     "status": "scheduled",
     "disabled": False,
 }
-LOCATION = {"point": point(39.0, -77.0)}
+LOCATION = {"point": point(39.294961, -76.622341)}  # ZIP 21201 (Baltimore)
 
 
 def published(direction: str) -> dict:

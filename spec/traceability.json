@@ -49,7 +49,7 @@
       "T13"
     ],
     "fixtures": [
-      "zip-fixture-zip",
+      "zip-21201",
       "zip-00601",
       "zip-missing",
       "zip-numeric",
@@ -70,7 +70,7 @@
     "implementation_verification": {
       "report": "evidence/build/acceptance-final.json",
       "passing_cases": [
-        "zip-fixture-zip",
+        "zip-21201",
         "zip-00601",
         "zip-missing",
         "zip-numeric",
@@ -412,7 +412,7 @@
       "dst-spring-after",
       "dst-nonexistent",
       "dst-ambiguous",
-      "sunrise-maryland",
+      "sunrise-baltimore",
       "polar-no-rise",
       "twilight--18",
       "twilight--12",
@@ -455,7 +455,7 @@
         "dst-spring-after",
         "dst-nonexistent",
         "dst-ambiguous",
-        "sunrise-maryland",
+        "sunrise-baltimore",
         "polar-no-rise",
         "twilight--18",
         "twilight--12",
@@ -1100,7 +1100,7 @@
       "cape-md-high",
       "near-pad",
       "equator-east",
-      "sunrise-maryland",
+      "sunrise-baltimore",
       "reproducibility",
       "mission-disable",
       "orbcomm-archive"
@@ -1124,7 +1124,7 @@
         "cape-md-high",
         "near-pad",
         "equator-east",
-        "sunrise-maryland",
+        "sunrise-baltimore",
         "reproducibility",
         "mission-disable",
         "orbcomm-archive",
@@ -1372,7 +1372,7 @@
       "T13"
     ],
     "fixtures": [
-      "zip-fixture-zip",
+      "zip-21201",
       "zip-00601",
       "zip-missing",
       "zip-numeric",
@@ -1390,7 +1390,7 @@
     "implementation_verification": {
       "report": "evidence/build/acceptance-final.json",
       "passing_cases": [
-        "zip-fixture-zip",
+        "zip-21201",
         "zip-00601",
         "zip-missing",
         "zip-numeric",
@@ -1508,7 +1508,7 @@
       "T13"
     ],
     "fixtures": [
-      "sunrise-maryland",
+      "sunrise-baltimore",
       "polar-no-rise",
       "twilight--18",
       "twilight--12",
@@ -1528,7 +1528,7 @@
     "implementation_verification": {
       "report": "evidence/build/acceptance-final.json",
       "passing_cases": [
-        "sunrise-maryland",
+        "sunrise-baltimore",
         "polar-no-rise",
         "twilight--18",
         "twilight--12",

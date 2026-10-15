@@ -14,7 +14,7 @@
       "zip"
     ],
     "cases": [
-      "zip-fixture-zip",
+      "zip-21201",
       "zip-00601",
       "zip-missing",
       "zip-numeric"
@@ -100,7 +100,7 @@
       "sunset"
     ],
     "cases": [
-      "sunrise-maryland",
+      "sunrise-baltimore",
       "polar-no-rise"
     ]
   },

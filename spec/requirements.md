@@ -4,7 +4,7 @@ Authority: ../Launch_Visibility_PRD.md v1.2. All IDs are stable; never renumber.
 | ID | Scope | Requirement |
 |---|---|---|
 | R001 | required | **Cost and scope.** Mandatory API/data spend is $0; preserve Cape/Kennedy-to-Maryland use case, existing hardware and free local deployment; no purchases, paid fallback or automatic upgrade. |
-| R002 | required | **Location.** US ZIP representative point confirmation; optional GPS/manual fallback, coordinates, local IANA timezone; preserve leading zero; up to 100 active locations; fixture-zip is a fixture only. |
+| R002 | required | **Location.** US ZIP representative point confirmation; optional GPS/manual fallback, coordinates, local IANA timezone; preserve leading zero; up to 100 active locations; 21201 is a fixture only. |
 | R003 | required | **Schedule.** LL2 production v2.3.0; normalize identifiers, pad, variant, precision, window, status and timestamps; exact/window/date/unknown remain distinct; no fabricated liftoff. |
 | R004 | required | **Evidence.** Exact mission/pad/attempt association; typed evidence and versioned route registry; deterministic approved parsers; hazard-only screening has no timed/elevation forecast; unknown branches/doglegs fail closed. |
 | R005 | required | **Profiles and reuse.** Inspect and reuse suitable open source; pin historical snapshots, licenses, hashes and metadata including variant/class/recovery/stage/datum/downrange/time origin and powered intervals. Incompatible/unknown metadata cannot enter production. |

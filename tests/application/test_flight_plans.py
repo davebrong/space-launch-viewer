@@ -27,8 +27,8 @@ INDEX = (FIXTURES / "index.html").read_text(encoding="utf-8")
 TEMPLATE = (FIXTURES / "detail-template.html").read_text(encoding="utf-8")
 SOLAR = (FIXTURES / "solar.js").read_text(encoding="utf-8")
 CAPE = "Cape Canaveral SFS, Florida, USA"
-MARYLAND = {"point": point(39.4, -77.2), "timezone": "America/New_York"}  # ZIP md-zip area
-FLORIDA = {"point": point(29.0, -81.0), "timezone": "America/New_York"}  # ZIP fl-zip area
+DISTANT = {"point": point(39.952983, -75.165474), "timezone": "America/New_York"}  # ZIP 19102 (Philadelphia)
+ORLANDO = {"point": point(28.541769, -81.374357), "timezone": "America/New_York"}  # ZIP 32801 (Orlando)
 
 
 def page(mission: str, pad: str = "SLC-40", direction: str | None = "Southeast", site: str = CAPE) -> str:
@@ -283,7 +283,7 @@ def test_changed_plan_is_recorded_and_changes_the_estimate():
         second = records([mission], later)[mission["id"]]
         assert second["evidence"][0]["departure_direction"] == "northeast"
         assert second["changes"][-1]["from"] == "southeast" and second["changes"][-1]["to"] == "northeast"
-        assert calculate_plan(mission, MARYLAND, [], s.AT, first) != calculate_plan(mission, MARYLAND, [], s.AT, second)
+        assert calculate_plan(mission, DISTANT, [], s.AT, first) != calculate_plan(mission, DISTANT, [], s.AT, second)
 
 
 def test_transient_failure_keeps_stale_heading_but_invalid_change_drops_it():
@@ -298,7 +298,7 @@ def test_transient_failure_keeps_stale_heading_but_invalid_change_drops_it():
         run(upstream, [mission], later)
         stale = records([mission], later)[mission["id"]]
         assert stale["state"] == "stale" and stale["evidence"][0]["departure_direction"] == "southeast"
-        assert usable_heading(stale) and calculate_plan(mission, MARYLAND, [], later, stale)["route_basis"]["stale"]
+        assert usable_heading(stale) and calculate_plan(mission, DISTANT, [], later, stale)["route_basis"]["stale"]
         upstream.robots = (404, "")
         upstream.pages[detail(9001)] = (200, page("Fixture Rideshare-5", direction="Retrograde"))
         with db.engine().begin() as conn:
@@ -370,33 +370,33 @@ def test_no_family_based_fallback_can_produce_viewing_advice():
     ):
         mission = launch(name, vehicle_variant=vehicle, mission_class="International Space Station")
         for record in (None, {"state": "not_found", "evidence": []}, {"state": "pending", "evidence": []}):
-            assert calculate_plan(mission, MARYLAND, [], s.AT, record) is None
+            assert calculate_plan(mission, DISTANT, [], s.AT, record) is None
         hazard = {"state": "found", "evidence": [{"evidence_type": "hazard_corridor"}]}
-        assert calculate_plan(mission, MARYLAND, [], s.AT, hazard) is None
+        assert calculate_plan(mission, DISTANT, [], s.AT, hazard) is None
 
 
 def test_same_heading_gives_same_answer_regardless_of_vehicle_or_destination():
     record = heading_record("northeast")
     dragon = launch("Falcon 9 Block 5 | Dragon CRS-2 SpX-35", mission_class="International Space Station")
     vulcan = {**dragon, "name": "Vulcan VC4S | USSF-9999", "vehicle_variant": "Vulcan VC4S", "mission_class": "GTO"}
-    assert calculate_plan(dragon, MARYLAND, [], s.AT, record) == calculate_plan(vulcan, MARYLAND, [], s.AT, record)
+    assert calculate_plan(dragon, DISTANT, [], s.AT, record) == calculate_plan(vulcan, DISTANT, [], s.AT, record)
 
 
 def test_observer_direction_is_computed_separately_from_departure_direction():
     mission = launch("Falcon 9 Block 5 | Fixture Rideshare-5")
-    northeast = calculate_plan(mission, MARYLAND, [], s.AT, heading_record("northeast"))
+    northeast = calculate_plan(mission, DISTANT, [], s.AT, heading_record("northeast"))
     assert northeast["route_basis"]["departure_direction"] == "northeast"
-    # From Maryland the rocket rises in the south and moves east, not "northeast".
+    # From the mid-Atlantic the rocket rises in the south and moves east, not "northeast".
     assert northeast["directions"][0] == "south" and northeast["directions"] != ["northeast"]
     assert northeast["watch_interval"] and northeast["windows"]
-    southeast_md = calculate_plan(mission, MARYLAND, [], s.AT, heading_record("southeast"))
-    assert southeast_md["watch_interval"] is None and southeast_md["directions"] == []
-    assert southeast_md["horizon_grazing"] is True
-    southeast_florida = calculate_plan(mission, FLORIDA, [], s.AT, heading_record("southeast"))
-    assert southeast_florida["directions"] == ["southeast"] and southeast_florida["watch_interval"]
-    northeast_florida = calculate_plan(mission, FLORIDA, [], s.AT, heading_record("northeast"))
-    assert northeast_florida["directions"][0] == "southeast"
-    for plan in (northeast, southeast_md, southeast_florida):
+    southeast_far = calculate_plan(mission, DISTANT, [], s.AT, heading_record("southeast"))
+    assert southeast_far["watch_interval"] is None and southeast_far["directions"] == []
+    assert southeast_far["horizon_grazing"] is True
+    southeast_orlando = calculate_plan(mission, ORLANDO, [], s.AT, heading_record("southeast"))
+    assert southeast_orlando["directions"] == ["east", "southeast"] and southeast_orlando["watch_interval"]
+    northeast_orlando = calculate_plan(mission, ORLANDO, [], s.AT, heading_record("northeast"))
+    assert northeast_orlando["directions"][0] == "east"
+    for plan in (northeast, southeast_far, southeast_orlando):
         assert plan["kind"] == "published_heading_model" and plan["clear_sky_assumed"]
         json.dumps(plan, allow_nan=False)
 
@@ -404,7 +404,7 @@ def test_observer_direction_is_computed_separately_from_departure_direction():
 def test_heading_plans_never_invent_an_absolute_time():
     record = heading_record("northeast")
     for changes in ({"time_precision": "date", "date_label": "2026-10-20"}, {"time_precision": "unknown", "net": None}):
-        plan = calculate_plan(launch("Falcon 9 Block 5 | Fixture Rideshare-5", **changes), MARYLAND, [], s.AT, record)
+        plan = calculate_plan(launch("Falcon 9 Block 5 | Fixture Rideshare-5", **changes), DISTANT, [], s.AT, record)
         assert plan["watch_interval"] is None and plan["launch_time"] is None and plan["windows"] == []
         assert plan["relative_window"]["t_end_s"] > plan["relative_window"]["t_start_s"]
         assert plan["directions"]
@@ -413,7 +413,7 @@ def test_heading_plans_never_invent_an_absolute_time():
         time_precision="window",
         window={"start": stamp(s.AT), "end": stamp(s.AT + timedelta(hours=2))},
     )
-    plan = calculate_plan(window, MARYLAND, [], s.AT, record)
+    plan = calculate_plan(window, DISTANT, [], s.AT, record)
     assert plan["watch_interval"]["start"] <= stamp(s.AT + timedelta(minutes=1))
     assert plan["watch_interval"]["end"] >= stamp(s.AT + timedelta(hours=2, minutes=9))
     assert plan["windows"] == []
@@ -429,11 +429,11 @@ def test_list_summaries_keep_missing_coverage_distinct_and_clear_sky_first():
             "provenance": [{"issued_at": stamp(s.AT), "fetched_at": stamp(s.AT)}],
         }
     ]
-    plan = calculate_plan(mission, MARYLAND, cloudy, s.AT, heading_record("northeast"))
+    plan = calculate_plan(mission, DISTANT, cloudy, s.AT, heading_record("northeast"))
     row = summarize(mission, plan=plan, flight_plan=heading_record("northeast"))
     assert row["viewable"] and row["basis"] == "published_heading" and row["label"] == "Clear-sky estimate"
     assert "95" in row["weather_note"]
-    below = summarize(mission, plan=calculate_plan(mission, MARYLAND, [], s.AT, heading_record("southeast")))
+    below = summarize(mission, plan=calculate_plan(mission, DISTANT, [], s.AT, heading_record("southeast")))
     assert not below["viewable"] and below["label"].startswith("Grazes your horizon")
     labels = {
         state: summarize(mission, flight_plan={"state": state, "evidence": []})["label"]
@@ -470,7 +470,7 @@ def test_routes_are_expected_only_inside_the_publication_window():
 def test_flight_plan_endpoints_assessment_and_viewable_list():
     with s.isolated_database():
         c = s.client()
-        loc = s.location(c, "fixture-zip")
+        loc = s.location(c, "21201")
         doc = s.launch()
         other = s.launch()
         r = c.get(f"/api/v1/launches/{doc['id']}/flight-plan")
@@ -580,7 +580,7 @@ def test_hazard_only_and_conflicting_sources_give_no_distant_estimate():
     agreed = found[rideshare["id"]]
     assert {e["evidence_type"] for e in agreed["evidence"]} == {"departure_heading", "hazard_corridor"}
     assert not agreed["conflict"] and usable_heading(agreed)
-    narrowed = calculate_plan(rideshare, FLORIDA, [], s.AT, agreed)
+    narrowed = calculate_plan(rideshare, ORLANDO, [], s.AT, agreed)
     assert narrowed["kind"] == "published_heading_model"
     # Hazard bearings narrow the swept headings but never become a single centerline.
     basis = narrowed["route_basis"]
@@ -590,12 +590,12 @@ def test_hazard_only_and_conflicting_sources_give_no_distant_estimate():
         assert len({cid.split(":")[1] for cid in window["candidate_ids"]}) == 1
     disagree = found[conflict["id"]]
     assert disagree["conflict"] and usable_heading(disagree) is None
-    assert calculate_plan(conflict, MARYLAND, [], s.AT, disagree) is None
+    assert calculate_plan(conflict, DISTANT, [], s.AT, disagree) is None
     assert summarize(conflict, flight_plan=disagree)["label"] == "Route sources disagree"
     hazard = found[hazard_only["id"]]
     # The index lists USSF-9999 but its page is missing (404), so only the hazard remains.
     assert [e["evidence_type"] for e in hazard["evidence"]] == ["hazard_corridor"]
-    assert calculate_plan(hazard_only, MARYLAND, [], s.AT, hazard) is None
+    assert calculate_plan(hazard_only, DISTANT, [], s.AT, hazard) is None
     assert summarize(hazard_only, flight_plan=hazard)["label"] == "Hazard areas only; path unresolved"
     schema = CONTRACT["components"]["schemas"]["flight-plan"]
     for record in found.values():
@@ -641,7 +641,7 @@ def test_one_fresh_source_never_hides_another_sources_stale_evidence():
     heading = next(e for e in record["evidence"] if e["evidence_type"] == "departure_heading")
     hazard = next(e for e in record["evidence"] if e["evidence_type"] == "hazard_corridor")
     assert heading["stale"] and not hazard["stale"] and record["state"] == "stale"
-    assert calculate_plan(mission, FLORIDA, [], later, record)["route_basis"]["stale"]
+    assert calculate_plan(mission, ORLANDO, [], later, record)["route_basis"]["stale"]
 
 
 def test_evidence_retrieved_long_ago_is_stale_even_if_recently_rechecked():
@@ -654,7 +654,7 @@ def test_evidence_retrieved_long_ago_is_stale_even_if_recently_rechecked():
     )
     aged = current(record, mission, s.AT + timedelta(days=3))
     assert aged["state"] == "stale" and aged["evidence"][0]["stale"]
-    assert calculate_plan(mission, MARYLAND, [], s.AT, aged)["route_basis"]["stale"]
+    assert calculate_plan(mission, DISTANT, [], s.AT, aged)["route_basis"]["stale"]
 
 
 def test_changed_solar_format_withdraws_hazard_evidence():

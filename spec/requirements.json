@@ -9,7 +9,7 @@
     "id": "R002",
     "scope": "required",
     "title": "Location",
-    "requirement": "US ZIP representative point confirmation; optional GPS/manual fallback, coordinates, local IANA timezone; preserve leading zero; up to 100 active locations; fixture-zip is a fixture only."
+    "requirement": "US ZIP representative point confirmation; optional GPS/manual fallback, coordinates, local IANA timezone; preserve leading zero; up to 100 active locations; 21201 is a fixture only."
   },
   {
     "id": "R003",

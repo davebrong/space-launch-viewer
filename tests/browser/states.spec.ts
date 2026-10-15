@@ -12,7 +12,7 @@ test('synthetic edge cases through actual API, database and UI',async({page},inf
   test.setTimeout(180000);
   page.setDefaultTimeout(15000);
   await page.goto('/');
-  await page.getByLabel('US ZIP code').fill('fixture-zip');
+  await page.getByLabel('US ZIP code').fill('21201');
   await page.getByRole('button',{name:'Find location'}).click();
   await page.getByRole('button',{name:'Confirm this location'}).click();
   await expect(page.getByRole('heading',{name:'Launches & your sky'})).toBeVisible();

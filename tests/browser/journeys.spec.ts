@@ -5,9 +5,9 @@ import fs from 'node:fs';
 test('live location, schedule, uncertainty, reminders, privacy and keyboard journeys',async({page},info)=>{
   await page.goto('/');
   await expect(page.getByRole('button',{name:'Find location'})).toBeEnabled();
-  await page.getByLabel('US ZIP code').fill('fixture-zip');
+  await page.getByLabel('US ZIP code').fill('21201');
   await page.getByRole('button',{name:'Find location'}).click();
-  await expect(page.getByText('39.0, -77.0',{exact:false})).toBeVisible();
+  await expect(page.getByText('39.294961, -76.622341',{exact:false})).toBeVisible();
   await page.getByRole('button',{name:'Confirm this location'}).click();
   await expect(page.getByRole('heading',{name:'Launches & your sky'})).toBeVisible();
   await page.screenshot({path:`evidence/build/${info.project.name}-launches.png`,fullPage:true});
@@ -40,7 +40,7 @@ test('live location, schedule, uncertainty, reminders, privacy and keyboard jour
   await page.getByLabel('US ZIP code').fill('00000');await page.getByRole('button',{name:'Find location'}).click();
   await expect(page.getByRole('alert').filter({hasText:'No Census representative point'})).toContainText('No Census representative point');
   await page.getByRole('button',{name:'Enter coordinates'}).click();
-  await page.getByLabel('Latitude',{exact:true}).fill('39.4');await page.getByLabel('Longitude',{exact:true}).fill('-77.3');
+  await page.getByLabel('Latitude',{exact:true}).fill('39.3');await page.getByLabel('Longitude',{exact:true}).fill('-76.6');
   await page.getByRole('button',{name:'Review point'}).click();await page.getByRole('button',{name:'Confirm this location'}).click();
   await expect(page.getByRole('heading',{name:'Launches & your sky'})).toBeVisible();
   await page.goto('/privacy');

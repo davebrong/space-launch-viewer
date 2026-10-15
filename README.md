@@ -15,7 +15,7 @@ when and where in the sky to look, as SVG sky bands. No map service, no paid API
 
 Latest QA note (2026-10-13): nearby Cape/Kennedy planning uses the confirmed point and
 pad across mission families, including date-only opportunities with time TBA. "Viewable"
-covers today through 30 days. Live ZIP fl-zip and md-zip results differ. Distant mission
+covers today through 30 days. Live results for a near-Cape ZIP and a Maryland ZIP differ. Distant mission
 coverage is not complete. [Verification](evidence/build/nearby.json).
 
 ## What it does — and doesn't

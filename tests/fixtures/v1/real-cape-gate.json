@@ -6,7 +6,7 @@
   "inputs_available": {
     "historical_archive": "tests/fixtures/raw/Telemetry-Data--Orbcomm OG2--JSON--analysed.json",
     "events": "tests/fixtures/raw/Telemetry-Data--Orbcomm OG2--JSON--events.json",
-    "observer_zip": "fixture-zip",
+    "observer_zip": "21201",
     "observer_reference": "tests/fixtures/raw/census.zip"
   },
   "missing_inputs": [

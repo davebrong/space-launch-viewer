@@ -35,7 +35,7 @@ def test_summary_requires_observer_geometry_and_excludes_poor_or_stopped_plans()
 def test_listing_is_location_specific_paginated_private_and_does_not_guess_rideshare():
     with s.isolated_database(), patch("services.api.main.now", return_value=s.AT):
         client, stranger = s.client(), s.client()
-        near = s.location(client, "md-zip")
+        near = s.location(client, "21201")
         launch = s.launch()
         station = {**launch, "name": LAUNCH["name"], "vehicle_variant": "Falcon 9 Block 5"}
         other = s.launch()
@@ -65,16 +65,16 @@ def test_listing_is_location_specific_paginated_private_and_does_not_guess_rides
         assert rows[station["id"]]["viewable"] and rows[station["id"]]["basis"] == "published_heading"
         # No vehicle/name-based guess: without a published route the rideshare stays unresolved.
         assert rows[rideshare["id"]]["label"] == "Route check pending" and not rows[rideshare["id"]]["viewable"]
-        florida = s.location(client, "fl-zip")
-        florida_url = f"/api/v1/locations/{florida['id']}/viewing-opportunities"
-        nearby = {r["launch_id"]: r for r in client.get(florida_url).json()}
+        orlando = s.location(client, "32801")
+        orlando_url = f"/api/v1/locations/{orlando['id']}/viewing-opportunities"
+        nearby = {r["launch_id"]: r for r in client.get(orlando_url).json()}
         assert nearby[rideshare["id"]]["viewable"]
         assert nearby[rideshare["id"]]["basis"] == "near_launch_site"
         details = client.post(
-            "/api/v1/assessments", json={"launch_id": rideshare["id"], "location_id": florida["id"]}
+            "/api/v1/assessments", json={"launch_id": rideshare["id"], "location_id": orlando["id"]}
         )
         assert details.status_code == 200, details.text
-        assert details.json()["planning_scenario"]["directions"] == ["southeast"]
+        assert details.json()["planning_scenario"]["directions"] == ["east"]
         # Cached results for the other observer must not acquire the nearby plan.
         again = {r["launch_id"]: r for r in client.get(url).json()}
         assert not again[rideshare["id"]]["viewable"]

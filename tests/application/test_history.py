@@ -116,8 +116,8 @@ def test_historical_detail_uses_owned_zip_shared_model_and_never_creates_future_
     ):
         refresh_page("", 0, s.AT, client=source)
         client = s.client()
-        near = s.location(client, "fl-zip")
-        far = s.location(client, "md-zip")
+        near = s.location(client, "32801")
+        far = s.location(client, "21201")
         path = "/api/v1/launch-history/" + raw["id"]
         result = client.get(path, params={"location_id": near["id"]})
         assert result.status_code == 200, result.text

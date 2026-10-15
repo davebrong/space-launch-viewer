@@ -3,7 +3,7 @@ root=pathlib.Path('.')
 urls={
 'll2':'https://ll.thespacedevs.com/2.3.0/launches/upcoming/?limit=1',
 'll2-throttle':'https://ll.thespacedevs.com/2.3.0/api-throttle/',
-'nws-point':'https://api.weather.gov/points/39.0,-77.0',
+'nws-point':'https://api.weather.gov/points/39.295,-76.6223',
 'nws-openapi':'https://api.weather.gov/openapi.json',
 }
 for repo in ['shahar603/Telemetry-Data','shahar603/Launch-Dashboard-API','shahar603/SpaceXtract','ravi4ram/NOTAM-Mapper','skyfielders/python-skyfield','jannikmi/timezonefinder']:

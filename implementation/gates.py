@@ -87,7 +87,7 @@ def main() -> int:
         )
         if result:
             ingest_launches(result, now)
-        weather = weather_for({"latitude_deg": 39.0, "longitude_deg": -77.0}, now)
+        weather = weather_for({"latitude_deg": 39.294961, "longitude_deg": -76.622341}, now)
         report = {
             "run_at": stamp(now),
             "status": "blocked",

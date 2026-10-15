@@ -12,7 +12,7 @@ from tests.application import support as s
 def test_retrospective_report_keeps_real_viewing_time_and_excludes_pilot():
     with s.isolated_database(), patch("services.api.main.now", return_value=s.AT):
         c = s.client()
-        loc = s.location(c, "md-zip")
+        loc = s.location(c, "21201")
         launch = s.launch()
         launch.update(net=stamp(s.AT - timedelta(hours=1)), status="completed")
         with db.engine().begin() as conn:
@@ -85,7 +85,7 @@ def test_prospective_forecast_stays_eligible_for_pilot():
 def test_deletion_preserves_weather_lookup_shared_by_another_owner():
     with s.isolated_database():
         first, second = s.client(), s.client()
-        a, b = s.location(first, "md-zip"), s.location(second, "md-zip")
+        a, b = s.location(first, "21201"), s.location(second, "21201")
         p = a["point"]
         key = f"point:{p['latitude_deg']:.4f},{p['longitude_deg']:.4f}"
         with db.engine().begin() as conn:

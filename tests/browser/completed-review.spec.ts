@@ -2,9 +2,9 @@ import {test,expect} from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import fs from 'node:fs';
 
-test('ZIP md-zip can review the completed CRS-35 launch-day plan from its published heading',async({page},info)=>{
+test('A distant ZIP can review the completed CRS-35 launch-day plan from its published heading',async({page},info)=>{
   await page.goto('/');
-  await page.getByLabel('US ZIP code').fill('md-zip');
+  await page.getByLabel('US ZIP code').fill('19102');
   await page.getByRole('button',{name:'Find location'}).click();
   await page.getByRole('button',{name:'Confirm this location'}).click();
   const path='/launches/bf2c3027-a314-403e-a416-2bfd5d165ad1';
@@ -76,7 +76,7 @@ test('ZIP md-zip can review the completed CRS-35 launch-day plan from its publis
 
 test('unknown provider placeholders never create exact date groups',async({page})=>{
   await page.goto('http://127.0.0.1:3091/');
-  await page.getByLabel('US ZIP code').fill('md-zip');
+  await page.getByLabel('US ZIP code').fill('19102');
   await page.getByRole('button',{name:'Find location'}).click();
   await page.getByRole('button',{name:'Confirm this location'}).click();
   await expect(page.getByRole('heading',{name:'Launches & your sky'})).toBeVisible();
