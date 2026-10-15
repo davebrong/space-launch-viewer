@@ -1,0 +1,208 @@
+{
+ "note": "Liftoff assumed at each notice's first hazard window start; pad SLC-40. Planning scenario only.",
+ "examples": [
+  {
+   "mission": "Starlink g6-110",
+   "message_id": "CGD-SE BNM 9015-26",
+   "assumed_liftoff_utc": "2026-02-24T20:56:00Z",
+   "areas": 2,
+   "any_area_sector_deg": {
+    "start_deg": 90,
+    "end_deg": 135,
+    "wraps_north": false
+   },
+   "common_sector_deg": {
+    "start_deg": 105,
+    "end_deg": 135
+   },
+   "zips": {
+    "21201": {
+     "label": "Clear-sky estimate from published hazard areas",
+     "departure_direction": "southeast",
+     "look": [],
+     "horizon_grazing": true,
+     "candidates": {
+      "with_view": 0,
+      "evaluated": 15
+     },
+     "peak_elevation_deg": null,
+     "relative_window_s": null
+    },
+    "32801": {
+     "label": "Clear-sky estimate from published hazard areas",
+     "departure_direction": "southeast",
+     "look": [
+      "east",
+      "southeast"
+     ],
+     "horizon_grazing": false,
+     "candidates": {
+      "with_view": 15,
+      "evaluated": 15
+     },
+     "peak_elevation_deg": [
+      18.3,
+      25.9
+     ],
+     "relative_window_s": {
+      "t_start_s": 0,
+      "t_end_s": 600
+     }
+    }
+   }
+  },
+  {
+   "mission": "NROL-97",
+   "message_id": "CGD-SE BNM 9078-26",
+   "assumed_liftoff_utc": "2026-10-02T03:43:00Z",
+   "areas": 3,
+   "any_area_sector_deg": {
+    "start_deg": 15,
+    "end_deg": 60,
+    "wraps_north": false
+   },
+   "common_sector_deg": {
+    "start_deg": 30,
+    "end_deg": 45
+   },
+   "zips": {
+    "21201": {
+     "label": "Clear-sky estimate from published hazard areas",
+     "departure_direction": "northeast",
+     "look": [
+      "south",
+      "southeast",
+      "east",
+      "northeast"
+     ],
+     "horizon_grazing": false,
+     "candidates": {
+      "with_view": 15,
+      "evaluated": 15
+     },
+     "peak_elevation_deg": [
+      12.7,
+      36.0
+     ],
+     "relative_window_s": {
+      "t_start_s": 60,
+      "t_end_s": 660
+     }
+    },
+    "32801": {
+     "label": "Clear-sky estimate from published hazard areas",
+     "departure_direction": "northeast",
+     "look": [
+      "east",
+      "northeast"
+     ],
+     "horizon_grazing": false,
+     "candidates": {
+      "with_view": 15,
+      "evaluated": 15
+     },
+     "peak_elevation_deg": [
+      19.4,
+      27.1
+     ],
+     "relative_window_s": {
+      "t_start_s": 0,
+      "t_end_s": 660
+     }
+    }
+   }
+  },
+  {
+   "mission": "GPS III-9",
+   "message_id": "CGD-SE BNM 9007-26",
+   "assumed_liftoff_utc": "2026-01-26T04:38:00Z",
+   "areas": 2,
+   "any_area_sector_deg": {
+    "start_deg": 30,
+    "end_deg": 60,
+    "wraps_north": false
+   },
+   "common_sector_deg": {
+    "start_deg": 30,
+    "end_deg": 60
+   },
+   "zips": {
+    "21201": {
+     "label": "Clear-sky estimate from published hazard areas",
+     "departure_direction": "northeast",
+     "look": [
+      "south",
+      "southeast",
+      "east"
+     ],
+     "horizon_grazing": false,
+     "candidates": {
+      "with_view": 15,
+      "evaluated": 15
+     },
+     "peak_elevation_deg": [
+      6.6,
+      36.0
+     ],
+     "relative_window_s": {
+      "t_start_s": 60,
+      "t_end_s": 660
+     }
+    },
+    "32801": {
+     "label": "Clear-sky estimate from published hazard areas",
+     "departure_direction": "northeast",
+     "look": [
+      "east",
+      "northeast"
+     ],
+     "horizon_grazing": false,
+     "candidates": {
+      "with_view": 15,
+      "evaluated": 15
+     },
+     "peak_elevation_deg": [
+      18.7,
+      27.1
+     ],
+     "relative_window_s": {
+      "t_start_s": 0,
+      "t_end_s": 660
+     }
+    }
+   }
+  },
+  {
+   "mission": "KA-05",
+   "message_id": "CGD-SE BNM 9033-26",
+   "assumed_liftoff_utc": "2026-04-04T05:45:00Z",
+   "areas": 5,
+   "any_area_sector_deg": {
+    "start_deg": 240,
+    "end_deg": 90,
+    "wraps_north": true
+   },
+   "common_sector_deg": null,
+   "zips": {
+    "21201": null,
+    "32801": null
+   }
+  },
+  {
+   "mission": "NEW GLENN BLUEBIRD 7",
+   "message_id": "CGD-SE BNM 9038-26",
+   "assumed_liftoff_utc": "2026-04-17T10:45:00Z",
+   "areas": 4,
+   "any_area_sector_deg": {
+    "start_deg": 300,
+    "end_deg": 135,
+    "wraps_north": true
+   },
+   "common_sector_deg": null,
+   "zips": {
+    "21201": null,
+    "32801": null
+   }
+  }
+ ]
+}

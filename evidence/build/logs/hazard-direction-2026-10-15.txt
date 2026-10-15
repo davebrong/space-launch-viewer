@@ -1,0 +1,43 @@
+Hazard-area directions (issue #2, decision D31) — verification, 2026-10-15
+Commands run from <repo> on Windows; outputs abbreviated to their result lines.
+
+1. Application tests
+   .venv python -m pytest tests/application -q
+   First run after the change: 1 failed / 28 passed (-x): summarize() was called without the plan in the new hazard-only assertion; test corrected.
+   Later run: 2 failed / 63 passed: (a) new evidence-order test fixture lacked hazard_bearing_sector_deg, fixed; (b) test_committed_files_hold_no_local_absolute_paths caught evidence/build/playwright.json rewritten by a Playwright run with local paths; that file was restored to the committed copy.
+   Final: 65 passed, 29 warnings (StarletteDeprecationWarning, NumPy dtype DeprecationWarning).
+
+2. Lint and types
+   .venv python -m ruff check packages services implementation tests/application tools/dev.py -> All checks passed!
+   npm run lint (tsc --noEmit) -> passed
+   npm run types (openapi-typescript 7.13.0) -> regenerated apps/web/lib/api.generated.ts
+
+3. Specification
+   .venv python tools/check_spec.py -> Specification: 9 passed, 0 failed
+
+4. Deployment
+   docker compose up -d --build --wait api worker web -> api, worker, web Healthy (redeployed three times: feature, copy fix, evidence-order fix)
+   Route records with evidence were marked due (next_check_at in the past) so the worker recomputed them with parser navcen-solar-hazard-v2.
+
+5. Browser (LV_BROWSER_URL=http://127.0.0.1:3080; npx playwright test)
+   Run 1: 6 failed / 8 passed.
+     - completed-review (desktop, mobile): CRS-35 directions now "south → southeast → east" (narrowed 30°–60°), expected the old 15°–60° text. Expected.
+     - history (desktop, mobile): NROL-97 (hazard notice only, no heading) now shows "Look east → northeast in clear skies" from 32801; the test expected "Look south". Expected new behavior.
+     - viewable (desktop, mobile): Vulcan "1–11 minutes" vs expected "0–11". Pre-existing: the HEAD build computes the same 60–660 s window for ZIP 19102 (checked with a detached HEAD worktree); the expectation predates the test-location change.
+   Run 2 (desktop only): same 3 failures.
+   Run 3: 2 failed / 12 passed: CRS-35 watch start 6:34 (was 6:33 with the wider sweep).
+   Run 4 (completed-review only): 2 failed: route panel "Route information not recently refreshed" (SOLAR HTTP 403 since 13:03Z, see gates.json); assertion now accepts found or stale.
+   Run 5: 2 failed / 12 passed: evidence order flipped (hazard before heading) after a recheck with a prior record. Fixed in services/api/flight_plans.py (stable order) with a regression test.
+   Run 6 (started 2026-10-15T18:29:17Z): 14 passed (4.0m).
+   Generated screenshots and playwright.json were not kept (screenshots were never committed; playwright.json would contain local paths).
+
+6. Real-data checks
+   evidence/build/flight-plan-audit/hazard-consistency-2026-10-15.json: 331 East Coast SOLAR notices; 302 have a common bearing range (235 × 30°, 53 × 15°, 5 × 45°, 8 × 60°, 1 × 75°), 29 do not.
+   evidence/build/flight-plan-audit/hazard-only-examples-2026-10-15.json: Starlink g6-110 (105°–135°), NROL-97 (30°–45°), GPS III-9 (30°–60°) give hazard-only plans; KA-05 and New Glenn BlueBird 7 (areas not lined up) give none.
+   evidence/build/flight-plan-audit/live-validation-hazard-2026-10-15.json: deployed stack, ZIPs 21201 and 32801.
+     CRS-35 from 21201: swept 30°–60° (was 15°–60°); look south → southeast → east; 15 of 15 paths; peak 6.6°–36.0°.
+     CRS-35 from 32801: look east → northeast; 15 of 15; peak 18.7°–27.1°.
+     Bandwagon-5: no SOLAR notice yet; unchanged 90°–180° quadrant.
+
+7. External source state
+   NAVCEN SOLAR returned HTTP 403 to the worker's 13:03Z refresh (robots.txt allows the path). Not retried before the 24-hour blocked backoff; no bypass. Recorded in evidence/gates.json.

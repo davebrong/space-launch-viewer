@@ -16,7 +16,7 @@ from packages.visibility.planning import calculate_plan, usable_heading
 from services.api import db
 from services.api.adapters import navcen
 from services.api.adapters.flight_plans import mission_key, parse_heading, parse_index, sector
-from services.api.flight_plans import KEY, coverage, fingerprint, publication_expected, read_many
+from services.api.flight_plans import KEY, combine, coverage, current, fingerprint, publication_expected, read_many
 from services.api.main import CONTRACT
 from services.api.opportunities import summarize
 from services.worker.flight_plans import refresh_flight_plans
@@ -562,7 +562,7 @@ def test_solar_association_is_exact_dated_and_never_a_path():
         assert not navcen.mission_keys(ll2) & navcen.mission_keys(solar_name), (ll2, solar_name)
 
 
-def test_hazard_only_and_conflicting_sources_give_no_distant_estimate():
+def test_conflicting_sources_give_no_estimate_and_lined_up_hazards_give_one():
     rideshare = launch("Falcon 9 Block 5 | Fixture Rideshare-5", net="2026-10-19T11:45:00Z")
     conflict = launch("Falcon 9 Block 5 | Conflict Demo-1", net="2026-10-19T11:45:00Z")
     hazard_only = launch("Vulcan VC4S | USSF-9999", "Space Launch Complex 41", net="2026-11-02T02:00:00Z")
@@ -595,11 +595,72 @@ def test_hazard_only_and_conflicting_sources_give_no_distant_estimate():
     hazard = found[hazard_only["id"]]
     # The index lists USSF-9999 but its page is missing (404), so only the hazard remains.
     assert [e["evidence_type"] for e in hazard["evidence"]] == ["hazard_corridor"]
-    assert calculate_plan(hazard_only, DISTANT, [], s.AT, hazard) is None
-    assert summarize(hazard_only, flight_plan=hazard)["label"] == "Hazard areas only; path unresolved"
+    # One downrange area: the bearing range toward it is the direction, swept whole.
+    consistent = hazard["evidence"][0]["hazard_consistent_sector_deg"]
+    assert consistent and 0 < (consistent["end_deg"] - consistent["start_deg"]) % 360 <= 90
+    plan = calculate_plan(hazard_only, DISTANT, [], s.AT, hazard)
+    basis = plan["route_basis"]
+    assert plan["kind"] == "published_heading_model" and plan["label"] == "Clear-sky estimate from published hazard areas"
+    assert basis["evidence_type"] == "hazard_corridor" and basis["departure_sector_deg"] == consistent
+    assert basis["swept_sector_deg"] == consistent and not basis["narrowed_by_hazard_areas"]
+    assert basis["source_url"] == navcen.CHART_URL and basis["departure_direction"] == "northeast"
+    assert "Hazard areas are safety zones" in " ".join(plan["assumptions"])
+    assert summarize(hazard_only, plan=plan, flight_plan=hazard)["label"].startswith("Clear-sky estimate from hazard areas")
+    # Areas that do not line up along one direction give no estimate.
+    scattered = {**hazard, "evidence": [{**hazard["evidence"][0], "hazard_consistent_sector_deg": None}]}
+    assert calculate_plan(hazard_only, DISTANT, [], s.AT, scattered) is None
+    assert summarize(hazard_only, flight_plan=scattered)["label"] == "Hazard areas only; direction unresolved"
     schema = CONTRACT["components"]["schemas"]["flight-plan"]
     for record in found.values():
         jsonschema.Draft202012Validator(schema, format_checker=jsonschema.FormatChecker()).validate(record)
+
+
+def test_hazard_areas_narrow_to_bearings_toward_every_area_never_a_centerline():
+    def area(start: float, end: float) -> dict:
+        return {"start_deg": start, "end_deg": end, "wraps_north": end < start}
+
+    # Near-shore area spans wide bearings, the far area narrow ones: the common range wins.
+    assert navcen.consistent_sector([area(15, 60), area(30, 60)]) == {"start_deg": 30, "end_deg": 60}
+    assert navcen.consistent_sector([area(345, 30), area(0, 45)]) == {"start_deg": 0, "end_deg": 30}
+    # Alternate/recovery areas in different directions, edge-only overlap, or one broad
+    # area are not a departure direction.
+    assert navcen.consistent_sector([area(30, 60), area(90, 120)]) is None
+    assert navcen.consistent_sector([area(30, 60), area(60, 90)]) is None
+    assert navcen.consistent_sector([area(15, 135)]) is None
+    assert navcen.consistent_sector([]) is None
+    # A published quadrant is narrowed by the common range when it overlaps, otherwise
+    # by any area, and is never reduced to a single heading.
+    mission = launch("Falcon 9 Block 5 | Fixture Rideshare-5", net=stamp(s.AT + timedelta(days=4)))
+    record = heading_record("northeast")
+    hazard = {
+        "evidence_type": "hazard_corridor",
+        "source_name": navcen.SOURCE_NAME,
+        "source_url": navcen.SOLAR_URL,
+        "chart_url": navcen.CHART_URL,
+        "fetched_at": stamp(s.AT),
+        "hazard_bearing_sector_deg": area(15, 60),
+        "hazard_consistent_sector_deg": {"start_deg": 30, "end_deg": 60},
+    }
+    tight = calculate_plan(mission, DISTANT, [], s.AT, {**record, "evidence": record["evidence"] + [hazard]})
+    assert tight["route_basis"]["swept_sector_deg"] == {"start_deg": 30, "end_deg": 60}
+    loose = calculate_plan(
+        mission, DISTANT, [], s.AT,
+        {**record, "evidence": record["evidence"] + [{**hazard, "hazard_consistent_sector_deg": None}]},
+    )
+    assert loose["route_basis"]["swept_sector_deg"] == {"start_deg": 15, "end_deg": 60}
+    assert tight["candidates"]["evaluated"] == 15  # Five headings across the range, three heights each.
+
+
+def test_evidence_order_does_not_depend_on_which_source_was_rechecked_first():
+    mission = launch("Falcon 9 Block 5 | Fixture Rideshare-5")
+    heading = {"name": "Next Spaceflight", "state": "found", "evidence": heading_record("southeast")["evidence"]}
+    hazard = {"name": navcen.SOURCE_NAME, "state": "stale", "evidence": [
+        {"evidence_type": "hazard_corridor", "fetched_at": stamp(s.AT), "hazard_bearing_sector_deg": {"start_deg": 120, "end_deg": 150, "wraps_north": False}}
+    ]}
+    for sources in ({"nextspaceflight": heading, "navcen-solar": hazard}, {"navcen-solar": hazard, "nextspaceflight": heading}):
+        record = combine(mission, s.AT, sources)
+        assert [e["evidence_type"] for e in record["evidence"]] == ["departure_heading", "hazard_corridor"]
+        assert [e["evidence_type"] for e in current(record, mission, s.AT)["evidence"]] == ["departure_heading", "hazard_corridor"]
 
 
 def test_solar_robots_and_http_failures_are_explicit():

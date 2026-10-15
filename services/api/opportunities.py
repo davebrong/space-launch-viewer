@@ -96,11 +96,14 @@ def summarize(
             label = "Grazes your horizon (modeled)" if plan["horizon_grazing"] else "Below your horizon (modeled)"
             return {**common, "label": label}
         timed = bool(plan["watch_interval"])
+        label = "Clear-sky estimate"
+        if (plan.get("route_basis") or {}).get("evidence_type") == "hazard_corridor":
+            label += " from hazard areas"
         return {
             **common,
             # Clear-sky geometry; an undated launch cannot be placed on the viewing calendar.
             "viewable": timed or launch["time_precision"] == "date",
-            "label": "Clear-sky estimate" if timed else "Clear-sky estimate · time TBA",
+            "label": label if timed else label + " · time TBA",
             "directions": plan["directions"],
             "watch_interval": plan["watch_interval"],
             "relative_window": plan["relative_window"],
@@ -124,7 +127,8 @@ def summarize(
         if flight_plan.get("conflict"):
             label = "Route sources disagree"
         elif kinds == {"hazard_corridor"}:
-            label = "Hazard areas only; path unresolved"
+            # Hazard areas that do not line up along one direction give no estimate.
+            label = "Hazard areas only; direction unresolved"
         elif flight_plan["state"] == "not_found" and not flight_plan.get("publication_expected", True):
             label = NOT_YET_LABEL
         else:

@@ -721,7 +721,7 @@ export interface components {
                 /** @description The mission-specific source used. The departure direction is from the pad, not from the observer. */
                 route_basis?: {
                     /** @enum {unknown} */
-                    evidence_type: "departure_heading" | "published_path";
+                    evidence_type: "departure_heading" | "hazard_corridor" | "published_path";
                     departure_direction: string;
                     /** @description Clockwise true-north compass sector from start to end. */
                     departure_sector_deg: {
@@ -1147,7 +1147,7 @@ export interface components {
                     /** @description The mission-specific source used. The departure direction is from the pad, not from the observer. */
                     route_basis?: {
                         /** @enum {unknown} */
-                        evidence_type: "departure_heading" | "published_path";
+                        evidence_type: "departure_heading" | "hazard_corridor" | "published_path";
                         departure_direction: string;
                         /** @description Clockwise true-north compass sector from start to end. */
                         departure_sector_deg: {
@@ -1232,6 +1232,11 @@ export interface components {
                      */
                     end: string;
                 }[];
+                /** @description Bearings from the pad that point toward every downrange hazard area at once (15-90 degrees), or null when the areas do not line up. A sector, never a centerline or flight path. */
+                hazard_consistent_sector_deg?: {
+                    start_deg: number;
+                    end_deg: number;
+                } | null;
                 /** @description Bearings from the pad to downrange hazard-area vertices, outward-rounded to 15 degrees. Not a flight path. */
                 hazard_bearing_sector_deg?: {
                     start_deg: number;
@@ -1662,8 +1667,11 @@ export interface components {
                 } | null;
                 /** @description The mission-specific source used. The departure direction is from the pad, not from the observer. */
                 route_basis?: {
-                    /** @enum {unknown} */
-                    evidence_type: "departure_heading" | "published_path";
+                    /**
+                     * @description hazard_corridor: no source states the direction; departure_sector_deg is the bearing range toward every published downrange hazard area at once. Not a flight path.
+                     * @enum {unknown}
+                     */
+                    evidence_type: "departure_heading" | "hazard_corridor" | "published_path";
                     departure_direction: string;
                     /** @description Clockwise true-north compass sector from start to end. */
                     departure_sector_deg: {

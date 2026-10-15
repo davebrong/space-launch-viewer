@@ -17,7 +17,7 @@ from geographiclib.geodesic import Geodesic
 
 from packages.visibility.ensemble import bearing_sector
 
-VERSION = "navcen-solar-hazard-v1"
+VERSION = "navcen-solar-hazard-v2"
 SOURCE_NAME = "US Coast Guard NAVCEN SOLAR"
 SOLAR_URL = "https://www.navcen.uscg.gov/sites/default/files/tmp/test.js"
 CHART_URL = "https://www.navcen.uscg.gov/chart"
@@ -27,6 +27,11 @@ MONTHS = {m: i + 1 for i, m in enumerate(("JAN", "FEB", "MAR", "APR", "MAY", "JU
 WINDOW = re.compile(r"(\d{2})/(\d{2})(\d{2}) ([A-Z]{3}) (\d{2}) to (\d{2})/(\d{2})(\d{2}) ([A-Z]{3}) (\d{2})")
 # Near-pad closure areas are not downrange hazard areas; ignore vertices this close.
 MIN_DOWNRANGE_M = 30000
+# Narrowest common bearing range accepted across hazard areas. Areas whose shared
+# range is narrower (or empty) do not line up along one departure direction.
+MIN_CONSISTENT_DEG = 15
+# A wider common range is not a usable departure direction (one broad area).
+MAX_CONSISTENT_DEG = 90
 # Explicit name normalization only. Vehicle/agency prefixes are dropped because SOLAR
 # and the schedule provider place them inconsistently; this never implies a direction.
 PREFIXES = (
@@ -188,6 +193,33 @@ def associate(notices: list[dict], launch: dict) -> tuple[str, dict | None, str]
     return "found", newest[0], "Published launch hazard notice " + newest[0]["msg_id"] + " names this mission." + note
 
 
+def _degrees(sector: dict) -> set[int]:
+    if sector["end_deg"] - sector["start_deg"] >= 360:
+        return set(range(360))
+    start, end = int(sector["start_deg"]) % 360, int(sector["end_deg"]) % 360
+    return {d % 360 for d in range(start, start + (end - start) % 360 + 1)}
+
+
+def consistent_sector(sectors: list[dict]) -> dict | None:
+    """Bearings that point toward every downrange hazard area at once.
+
+    A straight ascent passes over each of its downrange areas, so its heading lies in
+    the intersection of the areas' bearing sectors. The intersection stays a sector
+    (at least 15 degrees, from outward rounding), never a centerline. Areas that share
+    no common bearing (alternate, recovery or dogleg areas), or a common range wider
+    than 90 degrees, yield None.
+    """
+    if not sectors:
+        return None
+    common = set.intersection(*map(_degrees, sectors))
+    if not MIN_CONSISTENT_DEG <= len(common) - 1 <= MAX_CONSISTENT_DEG:
+        return None
+    sector = bearing_sector(list(common))
+    if sector is None:
+        return None
+    return {"start_deg": sector["start_deg"], "end_deg": sector["end_deg"] % 360}
+
+
 def hazard_evidence(notice: dict, launch: dict) -> dict:
     pad = launch["pad_point"]
     bearings, distances, areas = [], [], []
@@ -206,6 +238,7 @@ def hazard_evidence(notice: dict, launch: dict) -> dict:
                     "vertices": len(ring),
                     "nearest_km": round(min(ring_distances) / 1000),
                     "farthest_km": round(max(ring_distances) / 1000),
+                    "bearing_sector_deg": bearing_sector(ring_bearings),
                 }
             )
     if not bearings:
@@ -219,6 +252,7 @@ def hazard_evidence(notice: dict, launch: dict) -> dict:
         "source_mission_name": notice["mission"],
         "hazard_windows": notice["windows"][:20],
         "hazard_bearing_sector_deg": sector,
+        "hazard_consistent_sector_deg": consistent_sector([a["bearing_sector_deg"] for a in areas]),
         "hazard_distance_km": {"min": round(min(distances) / 1000), "max": round(max(distances) / 1000)},
         "hazard_areas": areas,
         "trajectory_available": False,

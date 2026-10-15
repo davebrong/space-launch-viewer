@@ -76,6 +76,16 @@ Recheck on 2026-10-15 (`source-verdicts-2026-10-15.json`):
 - The FAA TFR list showed no Cape space-operations TFR four days before Bandwagon-5.
 - Live coverage was unchanged: 4 of 207 missions, notice window 2 of 2, 0 timed paths. Bandwagon-5 still has no SOLAR notice.
 
+## Hazard-area directions (2026-10-15, issue #2, decision D31)
+
+A straight ascent passes over each of its downrange hazard areas, so its departure heading lies within the bearings that point toward **every** area at once. Parser `navcen-solar-hazard-v2` now records each area's bearing range and that common range (`hazard_consistent_sector_deg`, 15°–90°, or null when the areas do not line up).
+
+- **Narrowing:** a published heading quadrant is narrowed to the common range when they overlap, otherwise to any area as before. CRS-35 went from 15°–60° to 30°–60°. From 21201 the guidance is now "look south → southeast → east" (peak 6.6°–36°), where it was "south → southeast → east → northeast".
+- **Hazard-only missions:** a mission with a SOLAR notice but no published heading now gets a clear-sky estimate from the common range, labeled "Clear-sky estimate from published hazard areas". The whole range is swept with the same generic ascent envelope; it is never a centerline or a timed path. Notices whose areas do not line up (alternate, recovery or dogleg areas) give no estimate ("Hazard areas only; direction unresolved"). Example: NROL-97 from 32801 now reads "Look east → northeast in clear skies".
+- **Real-data check:** across 331 East Coast SOLAR notices, 302 have a common range (235 are 30° wide, 53 are 15° wide) and 29 do not. The ranges match known azimuth families: ISS about 30°–60°, Starlink 105°–135°, GTO 75°–105°. See `hazard-consistency-2026-10-15.json`, `hazard-only-examples-2026-10-15.json` and `live-validation-hazard-2026-10-15.json`.
+- **Source state:** SOLAR returned HTTP 403 to the worker at 13:03Z. The 07:03Z copy is retained and labeled "not recently refreshed"; no retry before the 24-hour backoff and no bypass (`evidence/gates.json`).
+- **Verification:** 65 application tests, ruff, tsc, spec 9/9 and Playwright 14/14 passed after fixes; the run history, including failures, is in `../logs/hazard-direction-2026-10-15.txt`.
+
 Raw bodies stay in the git-ignored `.runtime/flight-plan-audit/` and are not redistributed.
 
 ## Remaining gaps (not claimed as fixed)

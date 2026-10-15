@@ -1,0 +1,4571 @@
+{
+  "generated_for": "D27 hazard-area direction (planning scenarios)",
+  "parser_version": "navcen-solar-hazard-v2",
+  "source": "https://www.navcen.uscg.gov/sites/default/files/tmp/test.js",
+  "source_retrieved_at": "2026-10-15T07:03:08Z",
+  "source_payload_sha256": "a764a8c277ea59eab050e34c1974f05633b7d5022a456708fd1531f73de86642",
+  "pad": "SLC-40 (28.5618, -80.5772); bearings from the pad",
+  "summary": {
+    "east_coast_notices": 331,
+    "with_common_range": 302,
+    "without_common_range": 29,
+    "multi_area_notices": 309,
+    "common_width_deg_counts": {
+      "15": 53,
+      "30": 235,
+      "45": 5,
+      "60": 8,
+      "75": 1
+    },
+    "no_downrange_area": 1
+  },
+  "notices": [
+    {
+      "mission": "***TEST MESSAGE ONLY1***",
+      "message_id": "CCGD7 BNM 9149-24",
+      "downrange_areas": 7,
+      "any_area_sector_deg": [
+        60,
+        135
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "***TEST MESSAGE ONLY2***",
+      "message_id": "CCGD7 BNM 9150-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "***TEST MESSAGE ONLY3***",
+      "message_id": "CCGD7 BNM 9151-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        60,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        105
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Artemis II",
+      "message_id": "CGD-SE BNM 9030-26",
+      "downrange_areas": 7,
+      "any_area_sector_deg": [
+        255,
+        120
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "ARTEMIS II SAFETY ZONE",
+      "message_id": "CGD-SE BNM 9031-26",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        45,
+        105
+      ],
+      "common_sector_deg": [
+        45,
+        105
+      ],
+      "common_width_deg": 60
+    },
+    {
+      "mission": "ATLAS V KA-01",
+      "message_id": "CCGD7 BNM 9047-25",
+      "downrange_areas": 4,
+      "any_area_sector_deg": [
+        15,
+        90
+      ],
+      "common_sector_deg": [
+        30,
+        45
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "ATLAS V KA-06",
+      "message_id": "CGD-SE BNM 9042-26",
+      "downrange_areas": 5,
+      "any_area_sector_deg": [
+        240,
+        90
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "ATLAS V KA-06",
+      "message_id": "CGD-SE BNM 9043-26",
+      "downrange_areas": 5,
+      "any_area_sector_deg": [
+        240,
+        90
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "Axiom-4",
+      "message_id": "CCGD7 BNM 9073-25",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        15,
+        75
+      ],
+      "common_sector_deg": [
+        15,
+        75
+      ],
+      "common_width_deg": 60
+    },
+    {
+      "mission": "Axiom-4",
+      "message_id": "CCGD7 BNM 9076-25",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        15,
+        75
+      ],
+      "common_sector_deg": [
+        15,
+        75
+      ],
+      "common_width_deg": 60
+    },
+    {
+      "mission": "Axiom-4",
+      "message_id": "CCGD7 BNM 9077-25",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        15,
+        75
+      ],
+      "common_sector_deg": [
+        15,
+        75
+      ],
+      "common_width_deg": 60
+    },
+    {
+      "mission": "Axiom-4",
+      "message_id": "CCGD7 BNM 9080-25",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        15,
+        75
+      ],
+      "common_sector_deg": [
+        15,
+        75
+      ],
+      "common_width_deg": 60
+    },
+    {
+      "mission": "Axiom-4",
+      "message_id": "CCGD7 BNM 9081-25",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        15,
+        75
+      ],
+      "common_sector_deg": [
+        15,
+        75
+      ],
+      "common_width_deg": 60
+    },
+    {
+      "mission": "Axiom-4",
+      "message_id": "CCGD7 BNM 9084-25",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        15,
+        75
+      ],
+      "common_sector_deg": [
+        15,
+        75
+      ],
+      "common_width_deg": 60
+    },
+    {
+      "mission": "Bandwagon-3",
+      "message_id": "CCGD7 BNM 9050-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        90,
+        120
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Bandwagon-3",
+      "message_id": "CCGD7 BNM 9051-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        90,
+        120
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Bandwagon-4",
+      "message_id": "CGD-SE BNM 9133-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        90,
+        120
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Bluebird 2-1",
+      "message_id": "CGD-SE BNM 9069-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Bluebird 2-2",
+      "message_id": "CGD-SE BNM 9057-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Commercial GTO 1",
+      "message_id": "CCGD7 BNM 9090-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        75,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        105
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Crew 10",
+      "message_id": "CCGD7 BNM 9036-25",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        75
+      ],
+      "common_width_deg": 45
+    },
+    {
+      "mission": "Crew-10",
+      "message_id": "CCGD7 BNM 9038-25",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        75
+      ],
+      "common_width_deg": 45
+    },
+    {
+      "mission": "CRS-32",
+      "message_id": "CCGD7 BNM 9049-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        45
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "CRS-33",
+      "message_id": "CCGD7 BNM 9104-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "CRS-34",
+      "message_id": "CGD-SE BNM 9045-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "CRS-34",
+      "message_id": "CGD-SE BNM 9046-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "CRS-34",
+      "message_id": "CGD-SE BNM 9047-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "CRS-35",
+      "message_id": "CGD-SE BNM 9079-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Cygnus NG-23",
+      "message_id": "CCGD7 BNM 9113-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Cygnus NG-24",
+      "message_id": "CGD-SE BNM 9034-26",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Cygnus NG-24",
+      "message_id": "CGD-SE BNM 9035-26",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Cygnus NG-24",
+      "message_id": "CGD-SE BNM 9036-26",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Eastern Range OP 0925",
+      "message_id": "CCGD7 BNM 9115-25",
+      "downrange_areas": 5,
+      "any_area_sector_deg": [
+        75,
+        105
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "Eastern Range OP 1326",
+      "message_id": "CGD-SE BNM 9024-26",
+      "downrange_areas": 6,
+      "any_area_sector_deg": [
+        75,
+        135
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "Eastern Range OP 1326",
+      "message_id": "CGD-SE BNM 9025-26",
+      "downrange_areas": 6,
+      "any_area_sector_deg": [
+        75,
+        135
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "Eastern Range OP X2326 Falcon 9 STARLINK 10-4",
+      "message_id": "CCGD7 BNM 9088-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Eastern Range OP X2361 Falcon 9 Crew-9",
+      "message_id": "CCGD7 BNM 9117-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        45
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "Eastern Range OP X2546 Falcon 9 KOREASAT-6A",
+      "message_id": "CCGD7 BNM 9137-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        75,
+        120
+      ],
+      "common_sector_deg": [
+        75,
+        105
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Eastern Range OP X2679 Falcon 9 Starlink 12-6",
+      "message_id": "CCGD7 BNM 9165-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Echostar 25",
+      "message_id": "CGD-SE BNM 9019-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        60,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        90
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "Falcon 9 Starlink g12-13",
+      "message_id": "CCGD7 BNM 9021-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Fram2",
+      "message_id": "CCGD7 BNM 9044-25",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        150,
+        180
+      ],
+      "common_sector_deg": [
+        150,
+        180
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Globalstar 2-R Launch 1",
+      "message_id": "CGD-SE BNM 9071-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Globalstar 2-R Launch 2",
+      "message_id": "CGD-SE BNM 9048-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        105,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "GPS III-7",
+      "message_id": "CCGD7 BNM 9070-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "GPS III-8",
+      "message_id": "CGD-SE BNM 9040-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "GPS III-9",
+      "message_id": "CGD-SE BNM 9007-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "IMAP",
+      "message_id": "CCGD7 BNM 9117-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        75,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        105
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Intuitive Machines-2",
+      "message_id": "CCGD7 BNM 9024-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        60,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        105
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Intuitive Machines-2",
+      "message_id": "CCGD7 BNM 9026-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        60,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        105
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "KA-01",
+      "message_id": "CCGD7 BNM 9057-25",
+      "downrange_areas": 5,
+      "any_area_sector_deg": [
+        240,
+        90
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "KA-02",
+      "message_id": "CCGD7 BNM 9078-25",
+      "downrange_areas": 4,
+      "any_area_sector_deg": [
+        15,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        45
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "KA-02",
+      "message_id": "CCGD7 BNM 9083-25",
+      "downrange_areas": 5,
+      "any_area_sector_deg": [
+        240,
+        60
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "KA-03",
+      "message_id": "CCGD7 BNM 9118-25",
+      "downrange_areas": 5,
+      "any_area_sector_deg": [
+        240,
+        60
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "KA-04",
+      "message_id": "CGD-SE BNM 9155-25",
+      "downrange_areas": 5,
+      "any_area_sector_deg": [
+        240,
+        90
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "KA-05",
+      "message_id": "CGD-SE BNM 9028-26",
+      "downrange_areas": 5,
+      "any_area_sector_deg": [
+        240,
+        90
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "KA-05",
+      "message_id": "CGD-SE BNM 9033-26",
+      "downrange_areas": 5,
+      "any_area_sector_deg": [
+        240,
+        90
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "KA-07",
+      "message_id": "CGD-SE BNM 9053-26",
+      "downrange_areas": 5,
+      "any_area_sector_deg": [
+        240,
+        90
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "KA-08",
+      "message_id": "CGD-SE BNM 9060-26",
+      "downrange_areas": 5,
+      "any_area_sector_deg": [
+        240,
+        60
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "KF-1",
+      "message_id": "CCGD7 BNM 9091-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "KF-2",
+      "message_id": "CCGD7 BNM 9098-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "KF-3",
+      "message_id": "CCGD-SE BNM 9124-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "KF-3",
+      "message_id": "CCGD-SE BNM 9126-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "KF-3",
+      "message_id": "CCGD7 BNM 9122-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "mPOWER-D",
+      "message_id": "CCGD7 BNM 9092-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        75,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        90
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "mPOWER-F",
+      "message_id": "CGD-SE BNM 9075-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        75,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        90
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "MTGS1",
+      "message_id": "CCGD7 BNM 9088-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        60,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        105
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "NASA Crew-11",
+      "message_id": "CCGD7 BNM 9096-25",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        15,
+        90
+      ],
+      "common_sector_deg": [
+        15,
+        90
+      ],
+      "common_width_deg": 75
+    },
+    {
+      "mission": "NASA Crew-12",
+      "message_id": "CGD-SE BNM 9011-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        45
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "NASA Crew-13",
+      "message_id": "CGD-SE BNM 9077-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        45
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "NEW GLENN BLUEBIRD 7",
+      "message_id": "CGD-SE BNM 9038-26",
+      "downrange_areas": 4,
+      "any_area_sector_deg": [
+        300,
+        135
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "NEW GLENN BLUEBIRD 7",
+      "message_id": "CGD-SE BNM 9039-26",
+      "downrange_areas": 4,
+      "any_area_sector_deg": [
+        300,
+        135
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "New Glenn Escapade",
+      "message_id": "CGD-SE BNM 9137-25",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        75,
+        120
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "NEW GLENN ESCAPADE",
+      "message_id": "CGD-SE BNM 9139-25",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        75,
+        120
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "NEW GLENN ESCAPADE",
+      "message_id": "CGD-SE BNM 9142-25",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        75,
+        120
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "Northrop MRV/MEP",
+      "message_id": "CGD-SE BNM 9067-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        75,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        90
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "NROL-69",
+      "message_id": "CCGD7 BNM 9042-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        45,
+        60
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "NROL-77",
+      "message_id": "CGD-SE BNM 9151-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "NROL-95",
+      "message_id": "CGD-SE BNM 9068-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "NROL-97",
+      "message_id": "CGD-SE BNM 9078-26",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        15,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        45
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP 0425",
+      "message_id": "CCGD7 BNM 9054-25",
+      "downrange_areas": 7,
+      "any_area_sector_deg": [
+        60,
+        120
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "OP 0425",
+      "message_id": "CCGD7 BNM 9055-25",
+      "downrange_areas": 7,
+      "any_area_sector_deg": [
+        60,
+        120
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "OP 0724",
+      "message_id": "CCGD7 BNM 9089-24",
+      "downrange_areas": 7,
+      "any_area_sector_deg": [
+        60,
+        135
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "OP 1224",
+      "message_id": "CCGD7 BNM 9152-24",
+      "downrange_areas": 7,
+      "any_area_sector_deg": [
+        60,
+        135
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "OP 1224",
+      "message_id": "CCGD7 BNM 9155-24",
+      "downrange_areas": 7,
+      "any_area_sector_deg": [
+        60,
+        135
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "OP A0995 ATLAS V USSF-51",
+      "message_id": "CCGD7 BNM 9092-24",
+      "downrange_areas": 4,
+      "any_area_sector_deg": [
+        75,
+        135
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP A1042 VULCAN CERT-2",
+      "message_id": "CCGD7 BNM 9119-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        60,
+        105
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP A1042 VULCAN CERT-2",
+      "message_id": "CCGD7 BNM 9120-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        60,
+        105
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP A6280 Atlas V CFT",
+      "message_id": "CCGD7 BNM 9059-24",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP A6280 Atlas V CFT",
+      "message_id": "CCGD7 BNM 9062-24",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP A6280 Atlas V CFT",
+      "message_id": "CCGD7 BNM 9068-24",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP A6280 Atlas V CFT",
+      "message_id": "CCGD7 BNM 9070-24",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP N0116 NG BLUE RING PATHFINDER",
+      "message_id": "CCGD7 BNM 9003-25",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        75,
+        120
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP N0116 NG BLUE RING PATHFINDER",
+      "message_id": "CCGD7 BNM 9010-25",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        75,
+        120
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP X1729 FALCON HEAVY USSF-52",
+      "message_id": "CCGD7 BNM 9001-23",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        30,
+        90
+      ],
+      "common_sector_deg": [
+        30,
+        45
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP X1908 FALCON 9 STARLINK 6-24",
+      "message_id": "CCGD7 BNM 9000-23",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        75,
+        120
+      ],
+      "common_sector_deg": [
+        75,
+        120
+      ],
+      "common_width_deg": 45
+    },
+    {
+      "mission": "OP X2008 FALCON 9 STARLINK 6-34",
+      "message_id": "CCGD7 BNM 9002-23",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2019 Falcon Heavy EUROPA CLIPPER",
+      "message_id": "CCGD7 BNM 9123-24",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        90,
+        120
+      ],
+      "common_sector_deg": [
+        90,
+        120
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2179 Falcon 9 Starlink 6-48",
+      "message_id": "CCGD7 BNM 9046-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2183 Falcon 9 Starlink 6-49",
+      "message_id": "CCGD7 BNM 9048-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2196 Falcon 9 STARLINK 6-52",
+      "message_id": "CCGD7 BNM 9050-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2203 Falcon 9 STARLINK 6-53",
+      "message_id": "CCGD7 BNM 9051-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2216 Falcon 9 STARLINK 6-55",
+      "message_id": "CCGD7 BNM 9056-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2225 Falcon 9 STARLINK 6-56",
+      "message_id": "CCGD7 BNM 9060-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2238 Falcon 9 STARLINK 6-58",
+      "message_id": "CCGD7 BNM 9061-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2242 Falcon 9 STARLINK 6-59",
+      "message_id": "CCGD7 BNM 9063-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        105,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        120
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP X2247 Falcon 9 POLARIS DAWN",
+      "message_id": "CCGD7 BNM 9104-24",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2247 Falcon 9 POLARIS DAWN",
+      "message_id": "CCGD7 BNM 9107-24",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2247 Falcon 9 POLARIS DAWN",
+      "message_id": "CCGD7 BNM 9108-24",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2247 Falcon 9 POLARIS DAWN",
+      "message_id": "CCGD7 BNM 9109-24",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2254 Falcon 9 STARLINK 6-63",
+      "message_id": "CCGD7 BNM 9064-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2259 Falcon 9 STARLINK 6-62",
+      "message_id": "CCGD7 BNM 9065-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2267 Falcon 9 STARLINK 6-60",
+      "message_id": "CCGD7 BNM 9066-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2279 Falcon 9 STARLINK 8-5",
+      "message_id": "CCGD7 BNM 9069-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2284 Falcon 9 SES 24",
+      "message_id": "CCGD7 BNM 9074-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        75,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        105
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2286 Falcon 9 STARLINK 10-1",
+      "message_id": "CCGD7 BNM 9072-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2294 Falcon 9 STARLINK 10-2",
+      "message_id": "CCGD7 BNM 9075-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2303 Falcon 9 STARLINK 10-3",
+      "message_id": "CCGD7 BNM 9078-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2309 Falcon 9 Starlink 8-9",
+      "message_id": "CCGD7 BNM 9080-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2319 Falcon 9 TURKSAT-6A",
+      "message_id": "CCGD7 BNM 9081-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        75,
+        105
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP X2326 Falcon 9 STARLINK 10-4",
+      "message_id": "CCGD7 BNM 9082-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2326 Falcon 9 STARLINK 10-4",
+      "message_id": "CCGD7 BNM 9084-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2326 Falcon 9 STARLINK 10-4",
+      "message_id": "CCGD7 BNM 9085-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2326 Falcon 9 STARLINK 10-4",
+      "message_id": "CCGD7 BNM 9087-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2326 Falcon 9 STARLINK 10-4",
+      "message_id": "CCGD7 BNM 9090-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2334 Falcon 9 STARLINK 10-5",
+      "message_id": "CCGD7 BNM 9086-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2334 Falcon 9 STARLINK 10-5",
+      "message_id": "CCGD7 BNM 9101-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2339 Falcon 9 STARLINK 10-9",
+      "message_id": "CCGD7 BNM 9083-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2339 Falcon 9 STARLINK 10-9",
+      "message_id": "CCGD7 BNM 9091-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2340 Falcon 9 STARLINK 10-6",
+      "message_id": "CCGD7 BNM 9093-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2349 CYNGUS NG-21",
+      "message_id": "CCGD7 BNM 9095-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2352 Falcon 9 STARLINK 6-77",
+      "message_id": "CCGD7 BNM 9132-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2361 Falcon 9 Crew-9",
+      "message_id": "CCGD7 BNM 9116-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        45
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP X2364 Falcon 9 STARLINK 8-3",
+      "message_id": "CCGD7 BNM 9096-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2365 Falcon 9 HERA",
+      "message_id": "CCGD7 BNM 9121-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        120
+      ],
+      "common_sector_deg": [
+        90,
+        120
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2376 Falcon 9 STARLINK 10-7",
+      "message_id": "CCGD7 BNM 9097-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2379 Falcon 9 DIGITAL GLOBE 2",
+      "message_id": "CCGD7 BNM 9099-24",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        45,
+        60
+      ],
+      "common_sector_deg": [
+        45,
+        60
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP X2400 Falcon 9 STARLINK 8-6",
+      "message_id": "CCGD7 BNM 9102-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2415 Falcon 9 STARLINK 8-10",
+      "message_id": "CCGD7 BNM 9105-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2423 Falcon 9 GALILEO L13",
+      "message_id": "CCGD7 BNM 9114-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        45
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP X2444 Falcon 9 STARLINK 8-11",
+      "message_id": "CCGD7 BNM 9106-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2461 Falcon 9 BLUEBIRD-1",
+      "message_id": "CCGD7 BNM 9110-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2461 Falcon 9 BLUEBIRD-1",
+      "message_id": "CCGD7 BNM 9111-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2484 Falcon 9 STARLINK 10-10",
+      "message_id": "CCGD7 BNM 9118-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2484 Falcon 9 STARLINK 10-10",
+      "message_id": "CCGD7 BNM 9124-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2492 Falcon 9 STARLINK 6-61",
+      "message_id": "CCGD7 BNM 9128-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2502 Falcon 9 Starlink 8-19",
+      "message_id": "CCGD7 BNM 9126-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2517 Falcon 9 STARLINK 10-13",
+      "message_id": "CCGD7 BNM 9131-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2545 Falcon 9 STARLINK 6-69",
+      "message_id": "CCGD7 BNM 9135-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2546 Falcon 9 KOREASAT-6A",
+      "message_id": "CCGD7 BNM 9136-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        75,
+        120
+      ],
+      "common_sector_deg": [
+        75,
+        105
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2562 Falcon 9 STARLINK 6-68",
+      "message_id": "CCGD7 BNM 9138-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2567 FALCON 9 STARLINK 6-66",
+      "message_id": "CCGD7 BNM 9142-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2582 FALCON 9 RRT-1",
+      "message_id": "CCGD7 BNM 9154-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2584 Falcon 9 GSAT-20",
+      "message_id": "CCGD7 BNM 9139-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        60,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        105
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2602 Falcon 9 STARLINK 12-1",
+      "message_id": "CCGD7 BNM 9143-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2612 Falcon 9 STARLINK 6-65",
+      "message_id": "CCGD7 BNM 9145-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2621 FALCON 9 STARLINK 6-70",
+      "message_id": "CCGD7 BNM 9146-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2636 Falcon 9 STARLINK 12-5",
+      "message_id": "CCGD7 BNM 9148-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2642 FALCON 9 ASTRANIS",
+      "message_id": "CCGD7 BNM 9159-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        75,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        105
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2642 FALCON 9 ASTRANIS",
+      "message_id": "CCGD7 BNM 9162-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        75,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        105
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2642 FALCON 9 ASTRANIS",
+      "message_id": "CCGD7 BNM 9164-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        75,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        105
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2651 FALCON 9 THURAYA-4",
+      "message_id": "CCGD7 BNM 9166-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        60,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        105
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2677 FALCON 9 STARLINK 12-2",
+      "message_id": "CCGD7 BNM 9163-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2678 Falcon 9 Starlink 12-3",
+      "message_id": "CCGD7 BNM 9014-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2681 Falcon 9 Starlink 12-7",
+      "message_id": "CCGD7 BNM 9012-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2707 Falcon 9 Starlink 12-4",
+      "message_id": "CCGD7 BNM 9007-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2708 Falcon 9 STARLINK 12-11",
+      "message_id": "CCGD7 BNM 9002-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2714 Falcon 9 STARLINK 6-71",
+      "message_id": "CCGD7 BNM 9001-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2718 Falcon 9 FIREFLY BLUE GHOST",
+      "message_id": "CCGD7 BNM 9009-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        120
+      ],
+      "common_sector_deg": [
+        105,
+        120
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP X2719 Falcon 9 STARLINK 12-12",
+      "message_id": "CCGD7 BNM 9005-25",
+      "downrange_areas": 4,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2735 Falcon 9 Starlink 13-1",
+      "message_id": "CCGD7 BNM 9011-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2743 Falcon 9 SPAINSAT NG I",
+      "message_id": "CCGD7 BNM 9013-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        75,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        105
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2765 Falcon 9 DIGITAL GLOBE 3",
+      "message_id": "CCGD7 BNM 9015-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        45,
+        90
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "OP X2777 Falcon 9 Starlink 12-9",
+      "message_id": "CCGD7 BNM 9016-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2778 Falcon 9 Starlink 12-18",
+      "message_id": "CCGD7 BNM 9017-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2790 Falcon 9 Starlink 12-8",
+      "message_id": "CCGD7 BNM 9018-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        105,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP X2803 Falcon 9 Starlink 12-14",
+      "message_id": "CCGD7 BNM 9020-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP# D0166 DELTA IV HEAVY NROL-70",
+      "message_id": "CCGD7 BNM 9047-24",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        75,
+        105
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP# N0116 BLUE RING PATHFINDER",
+      "message_id": "CCGD7 BNM 9004-25",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        75,
+        120
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP# N0116 BLUE RING PATHFINDER",
+      "message_id": "CCGD7 BNM 9006-25",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        75,
+        120
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP# X2018 Falcon 9 HEAVY GOES-U",
+      "message_id": "CCGD7 BNM 9077-24",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        75,
+        120
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP# X2018 Falcon 9 HEAVY GOES-U",
+      "message_id": "CCGD7 BNM 9079-24",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        75,
+        120
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP# X2141 Falcon 9 (2017)",
+      "message_id": "CCGD7 BNM 9052-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        45
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP# X2151 Falcon 9 BANDWAGON-1",
+      "message_id": "CCGD7 BNM 9045-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        90
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP# X2179 FALCON 9 STARLINK 6-48",
+      "message_id": "CCGD7 BNM 9044-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP# X2190 FALCON 9 STARLINK 6-51",
+      "message_id": "CCGD7 BNM 9049-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP# X2225 FALCON 9 STARLINK 6-56",
+      "message_id": "CCGD7 BNM 9058-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP# X2225 FALCON 9 STARLINK 6-57",
+      "message_id": "CCGD7 BNM 9057-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP# X2247 Falcon 9 POLARIS DAWN",
+      "message_id": "CCGD7 BNM 9103-24",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP# X2272 FALCON 9 STARLINK 6-64",
+      "message_id": "CCGD7 BNM 9067-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP# X2279 Falcon 9 STARLINK 8-5",
+      "message_id": "CCGD7 BNM 9071-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP# X2294 FALCON 9 STARLINK 10-2",
+      "message_id": "CCGD7 BNM 9073-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP# X2309 Falcon 9 STARLINK 8-9",
+      "message_id": "CCGD7 BNM 9076-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP# X2349 Falcon 9 CYNGUS NG-21",
+      "message_id": "CCGD7 BNM 9094-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP# X2379 Falcon 9 DIGITAL GLOBE 2",
+      "message_id": "CCGD7 BNM 9098-24",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        45,
+        60
+      ],
+      "common_sector_deg": [
+        45,
+        60
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP# X2429 FALCON 9 STARLINK 10-12",
+      "message_id": "CCGD7 BNM 9019-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        105,
+        150
+      ],
+      "common_sector_deg": [
+        120,
+        135
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP# X2477 Falcon 9 CRS-31",
+      "message_id": "CCGD7 BNM 9133-24",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        75
+      ],
+      "common_width_deg": 45
+    },
+    {
+      "mission": "OP# X2477 Falcon 9 CRS-31",
+      "message_id": "CCGD7 BNM 9134-24",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        75
+      ],
+      "common_width_deg": 45
+    },
+    {
+      "mission": "OP# X2515 Falcon 9 STARLINK 10-8",
+      "message_id": "CCGD7 BNM 9130-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP# X2547 FALCON 9 OPTUS-X",
+      "message_id": "CCGD7 BNM 9141-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        75,
+        105
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "OP# X2625 FALCON 9 MPOWER-E",
+      "message_id": "CCGD7 BNM 9158-24",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        60,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        105
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "OP1224",
+      "message_id": "CCGD7 BNM 9153-24",
+      "downrange_areas": 7,
+      "any_area_sector_deg": [
+        60,
+        135
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "POLARIS DAWN",
+      "message_id": "CCGD7 BNM 9112-24",
+      "downrange_areas": 8,
+      "any_area_sector_deg": [
+        210,
+        75
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "POLARIS DAWN",
+      "message_id": "CCGD7 BNM 9113-24",
+      "downrange_areas": 7,
+      "any_area_sector_deg": [
+        210,
+        75
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "PSN N5",
+      "message_id": "CCGD7 BNM 9112-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        75,
+        120
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "Roman Space Telescope (WFIRST)",
+      "message_id": "CGD-SE BNM 9074-26",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        45,
+        90
+      ],
+      "common_sector_deg": [
+        60,
+        75
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "SiriusXM 10",
+      "message_id": "CCGD7 BNM 9072-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        75,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        105
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "SpaceX Dragon Crew-8",
+      "message_id": "CCGD7 BNM 9125-24",
+      "downrange_areas": 8,
+      "any_area_sector_deg": [
+        210,
+        75
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "SpaceX Dragon Crew-8",
+      "message_id": "CCGD7 BNM 9129-24",
+      "downrange_areas": 8,
+      "any_area_sector_deg": [
+        210,
+        75
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "SpaceX Dragon Crew-8 Reentry",
+      "message_id": "CCGD7 BNM 9127-24",
+      "downrange_areas": 8,
+      "any_area_sector_deg": [
+        210,
+        75
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "SpaceX Dragon CRS-31",
+      "message_id": "CCGD7 BNM 9156-24",
+      "downrange_areas": 8,
+      "any_area_sector_deg": [
+        210,
+        75
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "SpaceX Dragon CRS-31",
+      "message_id": "CCGD7 BNM 9157-24",
+      "downrange_areas": 8,
+      "any_area_sector_deg": [
+        210,
+        75
+      ],
+      "common_sector_deg": null,
+      "common_width_deg": null
+    },
+    {
+      "mission": "SpainSat NG II",
+      "message_id": "CCGD-SE BNM 9130-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        60,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        105
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starfall Demo",
+      "message_id": "CGD-SE BNM 9058-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        105,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-11",
+      "message_id": "CCGD7 BNM 9101-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-11",
+      "message_id": "CCGD7 BNM 9107-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-14",
+      "message_id": "CCGD7 BNM 9109-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-15",
+      "message_id": "CCGD7 BNM 9119-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-16",
+      "message_id": "CCGD7 BNM 9085-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-17",
+      "message_id": "CCGD-SE BNM 9129-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-18",
+      "message_id": "CCGD7 BNM 9079-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-19",
+      "message_id": "CGD-SE BNM 9070-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-20",
+      "message_id": "CCGD7 BNM 9099-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-21",
+      "message_id": "CCGD-SE BNM 9131-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-22",
+      "message_id": "CCGD7 BNM 9111-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-23",
+      "message_id": "CCGD7 BNM 9082-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-24",
+      "message_id": "CGD-SE BNM 9037-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-25",
+      "message_id": "CCGD7 BNM 9087-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-26",
+      "message_id": "CCGD7 BNM 9093-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-26",
+      "message_id": "CCGD7 BNM 9094-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-27",
+      "message_id": "CCGD7 BNM 9116-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-28",
+      "message_id": "CCGD7 BNM 9089-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-29",
+      "message_id": "CCGD7 BNM 9095-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-30",
+      "message_id": "CCGD7 BNM 9097-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-31",
+      "message_id": "CGD-SE BNM 9050-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-32",
+      "message_id": "CCGD7 BNM 9067-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        15,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-33",
+      "message_id": "CGD-SE BNM 9022-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-34",
+      "message_id": "CCGD7 BNM 9086-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-35",
+      "message_id": "CGD-SE BNM 9055-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-36",
+      "message_id": "CGD-SE BNM 9013-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        105,
+        150
+      ],
+      "common_sector_deg": [
+        120,
+        135
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "Starlink g10-37",
+      "message_id": "CGD-SE BNM 9132-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-38",
+      "message_id": "CGD-SE BNM 9044-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-39",
+      "message_id": "CGD-SE BNM 9072-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-40",
+      "message_id": "CGD-SE BNM 9018-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-41",
+      "message_id": "CGD-SE BNM 9017-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-42",
+      "message_id": "CGD-SE BNM 9062-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-42",
+      "message_id": "CGD-SE BNM 9063-26",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        45
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "Starlink g10-43",
+      "message_id": "CGD-SE BNM 9054-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-44",
+      "message_id": "CGD-SE BNM 9026-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-44",
+      "message_id": "CGD-SE BNM 9027-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-45",
+      "message_id": "CGD-SE BNM 9064-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-46",
+      "message_id": "CGD-SE BNM 9021-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-47",
+      "message_id": "CGD-SE BNM 9051-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-48",
+      "message_id": "CGD-SE BNM 9020-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-49",
+      "message_id": "CGD-SE BNM 9073-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-50",
+      "message_id": "CGD-SE BNM 9061-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-51",
+      "message_id": "CGD-SE BNM 9136-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-52",
+      "message_id": "CCGD-SE BNM 9125-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-52",
+      "message_id": "CCGD-SE BNM 9128-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-53",
+      "message_id": "CGD-SE BNM 9052-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-54",
+      "message_id": "CGD-SE BNM 9056-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        60
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-56",
+      "message_id": "CCGD7 BNM 9108-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-57",
+      "message_id": "CCGD7 BNM 9110-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-58",
+      "message_id": "CGD-SE BNM 9029-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-58",
+      "message_id": "CGD-SE BNM 9032-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-59",
+      "message_id": "CCGD7 BNM 9120-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-59",
+      "message_id": "CCGD7 BNM 9121-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-59",
+      "message_id": "CCGD7 BNM 9123-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-61",
+      "message_id": "CCGD7 BNM 9114-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g10-62",
+      "message_id": "CGD-SE BNM 9023-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        75
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g12-10",
+      "message_id": "CCGD7 BNM 9058-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g12-15",
+      "message_id": "CCGD7 BNM 9065-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g12-16",
+      "message_id": "CCGD7 BNM 9035-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g12-16",
+      "message_id": "CCGD7 BNM 9037-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g12-17",
+      "message_id": "CCGD7 BNM 9046-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        120
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "Starlink g12-19",
+      "message_id": "CCGD7 BNM 9071-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g12-20",
+      "message_id": "CCGD7 BNM 9025-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g12-20",
+      "message_id": "CCGD7 BNM 9028-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g12-21",
+      "message_id": "CCGD7 BNM 9030-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g12-21",
+      "message_id": "CCGD7 BNM 9033-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g12-21",
+      "message_id": "CCGD7 BNM 9034-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g12-22",
+      "message_id": "CCGD7 BNM 9066-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g12-23",
+      "message_id": "CCGD7 BNM 9056-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g12-24",
+      "message_id": "CCGD7 BNM 9074-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g12-25",
+      "message_id": "CCGD7 BNM 9039-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g12-26",
+      "message_id": "CCGD7 BNM 9075-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-100",
+      "message_id": "CGD-SE BNM 9006-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-101",
+      "message_id": "CGD-SE BNM 9008-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-103",
+      "message_id": "CGD-SE BNM 9009-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-103",
+      "message_id": "CGD-SE BNM 9012-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-104",
+      "message_id": "CGD-SE BNM 9014-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        105,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        120
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "Starlink g6-108",
+      "message_id": "CGD-SE BNM 9016-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        105,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        120
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "Starlink g6-110",
+      "message_id": "CGD-SE BNM 9015-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-67",
+      "message_id": "CCGD7 BNM 9064-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-72",
+      "message_id": "CCGD7 BNM 9045-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        105,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        120
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "Starlink g6-73",
+      "message_id": "CCGD7 BNM 9048-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        105,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        120
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "Starlink g6-74",
+      "message_id": "CCGD7 BNM 9052-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-74",
+      "message_id": "CCGD7 BNM 9053-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-75",
+      "message_id": "CCGD7 BNM 9059-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-78",
+      "message_id": "CGD-SE BNM 9145-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-78",
+      "message_id": "CGD-SE BNM 9146-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-79",
+      "message_id": "CGD-SE BNM 9147-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-80",
+      "message_id": "CCGD7 BNM 9043-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-81",
+      "message_id": "CGD-SE BNM 9134-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-82",
+      "message_id": "CGD-SE BNM 9153-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-83",
+      "message_id": "CCGD7 BNM 9063-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        105,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        120
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "Starlink g6-84",
+      "message_id": "CCGD7 BNM 9060-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-85",
+      "message_id": "CGD-SE BNM 9143-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-86",
+      "message_id": "CGD-SE BNM 9148-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-87",
+      "message_id": "CGD-SE BNM 9138-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-88",
+      "message_id": "CGD-SE BNM 9001-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-88",
+      "message_id": "CGD-SE BNM 9156-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-89",
+      "message_id": "CGD-SE BNM 9140-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-90",
+      "message_id": "CGD-SE BNM 9152-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-91",
+      "message_id": "CCGD7 BNM 9062-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-92",
+      "message_id": "CGD-SE BNM 9150-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        105,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        120
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "Starlink g6-93",
+      "message_id": "CCGD7 BNM 9061-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-94",
+      "message_id": "CGD-SE BNM 9144-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-95",
+      "message_id": "CGD-SE BNM 9149-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-96",
+      "message_id": "CGD-SE BNM 9002-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-97",
+      "message_id": "CGD-SE BNM 9003-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-98",
+      "message_id": "CGD-SE BNM 9004-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Starlink g6-99",
+      "message_id": "CGD-SE BNM 9154-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        90,
+        135
+      ],
+      "common_sector_deg": [
+        105,
+        135
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "SXM-11",
+      "message_id": "CGD-SE BNM 9059-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        75,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        105
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "USSF-36",
+      "message_id": "CCGD7 BNM 9102-25",
+      "downrange_areas": 1,
+      "any_area_sector_deg": [
+        30,
+        90
+      ],
+      "common_sector_deg": [
+        30,
+        90
+      ],
+      "common_width_deg": 60
+    },
+    {
+      "mission": "USSF-36",
+      "message_id": "CCGD7 BNM 9103-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        30,
+        90
+      ],
+      "common_sector_deg": [
+        30,
+        60
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "Viasat 3F3",
+      "message_id": "CGD-SE BNM 9041-26",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        75,
+        105
+      ],
+      "common_sector_deg": [
+        75,
+        105
+      ],
+      "common_width_deg": 30
+    },
+    {
+      "mission": "VIASAT-3",
+      "message_id": "CGD-SE BNM 9135-25",
+      "downrange_areas": 4,
+      "any_area_sector_deg": [
+        60,
+        135
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "VIASAT-3",
+      "message_id": "CGD-SE BNM 9141-25",
+      "downrange_areas": 4,
+      "any_area_sector_deg": [
+        60,
+        135
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "VULCAN USSF-106",
+      "message_id": "CCGD7 BNM 9100-25",
+      "downrange_areas": 2,
+      "any_area_sector_deg": [
+        60,
+        105
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    },
+    {
+      "mission": "VULCAN USSF-87",
+      "message_id": "CGD-SE BNM 9010-26",
+      "downrange_areas": 3,
+      "any_area_sector_deg": [
+        45,
+        105
+      ],
+      "common_sector_deg": [
+        90,
+        105
+      ],
+      "common_width_deg": 15
+    }
+  ]
+}

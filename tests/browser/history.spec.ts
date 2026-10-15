@@ -23,7 +23,10 @@ test('past launches browse real provider records independently of viewing estima
   await historic.getByRole('link',{name:'Could I have seen it?'}).click();
   await expect(page.getByRole('heading',{name:'NROL-97',exact:true})).toBeVisible();
   await expect(page.getByRole('heading',{name:'Potentially visible from ZIP 32801'})).toBeVisible();
-  await expect(page.getByRole('heading',{name:/Look south/})).toBeVisible();
+  // NROL-97 has no published heading; its lined-up NAVCEN hazard areas (30°–45° from the pad) give the direction.
+  await expect(page.getByRole('heading',{name:'Look east → northeast in clear skies'})).toBeVisible();
+  await expect(page.locator('.route-basis')).toContainText('launch hazard areas lie northeast of the pad');
+  await expect(page.locator('.route-panel')).toContainText('Bearings 30°–45° (NNE–NE) point toward every downrange area at once');
   await expect(page.getByText('No matching prelaunch cloud forecast is available.',{exact:false})).toBeVisible();
   await expect(page.getByText('Oct 1, 2026',{exact:false}).first()).toBeVisible();
   // Direct entry must return to the archive even if the saved filter was Viewable.

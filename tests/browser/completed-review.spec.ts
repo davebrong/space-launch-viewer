@@ -23,9 +23,9 @@ test('A distant ZIP can review the completed CRS-35 launch-day plan from its pub
   await expect(page.locator('.advice-panel .eyebrow')).toHaveText('LAUNCH-DAY VIEWING PLAN');
   await expect(page.getByText('Review this launch',{exact:true})).toHaveCount(0);
   const observer=page.locator('.advice-panel h2');
-  // Headings are swept over the published northeast quadrant narrowed to the NAVCEN hazard bearings (15°–60°).
-  await expect(observer).toHaveText('Look south → southeast → east → northeast in clear skies');
-  await expect(page.locator('.plan-time')).toContainText('6:33');
+  // Headings are swept over the published northeast quadrant narrowed to the bearings toward every NAVCEN hazard area at once (30°–60°).
+  await expect(observer).toHaveText('Look south → southeast → east in clear skies');
+  await expect(page.locator('.plan-time')).toContainText('6:34');
   await expect(page.locator('.plan-time')).toContainText('6:45');
   await expect(page.locator('.plan-time')).toContainText('EDT');
   await expect(page.getByText('Clear-sky estimate',{exact:true})).toBeVisible();
@@ -35,14 +35,16 @@ test('A distant ZIP can review the completed CRS-35 launch-day plan from its pub
   await expect(departure).toContainText('FROM THE PAD');
   await expect(departure.locator('strong')).toHaveText('northeast');
   await expect(departure).toContainText('The rocket departs northeast, as published by Next Spaceflight');
-  await expect(departure).toContainText('From your location you would look south → southeast → east → northeast, calculated from your position.');
+  await expect(departure).toContainText('From your location you would look south → southeast → east, calculated from your position.');
   await expect(departure).not.toContainText('would also look');
   const route=page.locator('.route-panel');
   await expect(route.locator('.eyebrow')).toHaveText('MISSION ROUTE INFORMATION');
-  await expect(route.locator('h2')).toHaveText('Route information found');
+  // Live data: NAVCEN SOLAR may be temporarily refused (HTTP 403); the retained notice is then labeled stale.
+  await expect(route.locator('h2')).toHaveText(/^Route information (found|not recently refreshed)$/);
   await expect(route.locator('.source h3')).toHaveText(['Published departure heading: northeast from the pad','Hazard area (not a flight path)']);
   await expect(route).toContainText('Your viewing direction is calculated separately from your location.');
   await expect(route).toContainText('Published hazard areas lie toward compass bearings 15°–60° (NNE–ENE) from the pad, 35–552 km away (notice CGD-SE BNM 9079-26). Altitude and timed visibility are unresolved.');
+  await expect(route).toContainText('Bearings 30°–60° (NNE–ENE) point toward every downrange area at once, so a straight ascent would depart within that range.');
   await expect(route).toContainText('not the flight path');
   await expect(route.getByRole('link',{name:'Next Spaceflight ↗'})).toHaveAttribute('href','https://nextspaceflight.com/launches/details/6917/');
   await expect(route.getByRole('link',{name:'US Coast Guard NAVCEN SOLAR ↗'})).toHaveAttribute('href','https://www.navcen.uscg.gov/chart');

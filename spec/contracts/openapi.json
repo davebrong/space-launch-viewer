@@ -4596,6 +4596,7 @@
                   "evidence_type": {
                     "enum": [
                       "departure_heading",
+                      "hazard_corridor",
                       "published_path"
                     ]
                   },
@@ -6466,6 +6467,7 @@
                       "evidence_type": {
                         "enum": [
                           "departure_heading",
+                          "hazard_corridor",
                           "published_path"
                         ]
                       },
@@ -6842,6 +6844,34 @@
                     ],
                     "additionalProperties": false
                   }
+                },
+                "hazard_consistent_sector_deg": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "start_deg": {
+                          "type": "number",
+                          "minimum": 0,
+                          "exclusiveMaximum": 360
+                        },
+                        "end_deg": {
+                          "type": "number",
+                          "minimum": 0,
+                          "exclusiveMaximum": 360
+                        }
+                      },
+                      "required": [
+                        "start_deg",
+                        "end_deg"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Bearings from the pad that point toward every downrange hazard area at once (15-90 degrees), or null when the areas do not line up. A sector, never a centerline or flight path."
                 },
                 "hazard_bearing_sector_deg": {
                   "type": "object",

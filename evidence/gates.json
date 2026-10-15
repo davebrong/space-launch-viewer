@@ -83,6 +83,15 @@
         "evidence": "evidence/build/flight-plan-audit/STATUS.md",
         "status": "integrated_with_limits",
         "resolution": "Integrated as hazard corridors only. The data path is a tmp file and the chart states it may not show all missions; notices appear only days before launch."
+      },
+      {
+        "url": "https://www.navcen.uscg.gov/sites/default/files/tmp/test.js",
+        "error": "HTTP_403",
+        "attempted_at": "2026-10-15T13:03:29+00:00",
+        "affected_gate": "G-SOFTWARE",
+        "evidence": "evidence/build/flight-plan-audit/STATUS.md",
+        "status": "blocked_no_bypass",
+        "resolution": "The worker's scheduled refresh was refused; robots.txt still allows the path. Not retried until the 24-hour blocked backoff (2026-10-16T13:03Z); no bypass. The 07:03Z copy is retained and labeled 'not recently refreshed'. Hazard-area directions (D31) depend on this source."
       }
     ]
   },

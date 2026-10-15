@@ -17,6 +17,7 @@ from services.api import db
 KEY = "flight-plan:launch:"
 CONFLICT_NOTE = " The reported departure heading points away from the published hazard areas, so no viewing estimate uses it."
 STALE_AFTER = timedelta(hours=24)
+EVIDENCE_ORDER = ("published_path", "departure_heading", "hazard_corridor")
 # Hazard notices and route reports appear days before launch, so a mission dated
 # further out (or undated) is not expected to have published route information yet.
 NOTICE_WINDOW = timedelta(days=7)
@@ -61,11 +62,17 @@ def conflict(evidence: list[dict]) -> bool:
     return bool(headings and hazards) and not any(overlaps(h, z) for h in headings for z in hazards)
 
 
+def ordered(evidence: list[dict]) -> list[dict]:
+    """Stable display order, independent of which source was rechecked first."""
+    rank = {kind: i for i, kind in enumerate(EVIDENCE_ORDER)}
+    return sorted(evidence, key=lambda e: rank.get(e["evidence_type"], len(rank)))
+
+
 def combine(launch: dict, at: datetime, sources: dict, changes: list | None = None) -> dict:
     """Build one mission record from independent per-source results."""
     # Each evidence item carries its own source's staleness, so a fresh result from
     # one source never relabels another source's retained evidence as current.
-    evidence = [{**e, "stale": s["state"] == "stale"} for s in sources.values() for e in s.get("evidence", [])]
+    evidence = ordered([{**e, "stale": s["state"] == "stale"} for s in sources.values() for e in s.get("evidence", [])])
     states = {s["state"] for s in sources.values()} or {"pending"}
     state = next(s for s in STATES if s in states)
     if evidence:
@@ -127,9 +134,9 @@ def _current(record: dict | None, launch: dict, at: datetime) -> dict:
         return empty_record(launch, at)
     result = dict(record)
     # Age comes from each item's retrieval time, not from when the record was rechecked.
-    evidence = [
-        {**e, "stale": bool(e.get("stale")) or utc(e["fetched_at"]) < at - STALE_AFTER} for e in result["evidence"]
-    ]
+    evidence = ordered(
+        [{**e, "stale": bool(e.get("stale")) or utc(e["fetched_at"]) < at - STALE_AFTER} for e in result["evidence"]]
+    )
     result["evidence"] = evidence
     if evidence and any(e["stale"] for e in evidence) and result["state"] == "found":
         result.update(state="stale", note=NOTES["stale"] + (CONFLICT_NOTE if result.get("conflict") else ""))

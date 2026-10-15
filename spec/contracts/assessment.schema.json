@@ -852,8 +852,10 @@
             "evidence_type": {
               "enum": [
                 "departure_heading",
+                "hazard_corridor",
                 "published_path"
-              ]
+              ],
+              "description": "hazard_corridor: no source states the direction; departure_sector_deg is the bearing range toward every published downrange hazard area at once. Not a flight path."
             },
             "departure_direction": {
               "type": "string"

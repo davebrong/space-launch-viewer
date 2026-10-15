@@ -1,0 +1,161 @@
+{
+ "run_at": "2026-10-15T18:33:41+00:00",
+ "zips": {
+  "21201": {
+   "Dragon CRS-35": {
+    "list_label": null,
+    "plan_label": "Clear-sky estimate from published heading",
+    "model_version": "published-heading-envelope-v2",
+    "directions": [
+     "south",
+     "southeast",
+     "east"
+    ],
+    "watch_interval": {
+     "end": "2026-10-13T10:45:00Z",
+     "start": "2026-10-13T10:34:00Z"
+    },
+    "max_elevation_deg": {
+     "max_deg": 35.996991042763355,
+     "min_deg": 6.575689284785673
+    },
+    "candidates": {
+     "evaluated": 15,
+     "with_view": 15
+    },
+    "horizon_grazing": false,
+    "route_basis": {
+     "evidence_type": "departure_heading",
+     "departure_direction": "northeast",
+     "departure_sector_deg": {
+      "end_deg": 90.0,
+      "start_deg": 0.0
+     },
+     "swept_sector_deg": {
+      "end_deg": 60.0,
+      "start_deg": 30.0
+     },
+     "narrowed_by_hazard_areas": true,
+     "source_name": "Next Spaceflight"
+    }
+   },
+   "Bandwagon-5": {
+    "list_label": "Clear-sky estimate",
+    "plan_label": "Clear-sky estimate from published heading",
+    "model_version": "published-heading-envelope-v2",
+    "directions": [
+     "south",
+     "southeast"
+    ],
+    "watch_interval": {
+     "end": "2026-10-19T10:40:00Z",
+     "start": "2026-10-19T10:31:00Z"
+    },
+    "max_elevation_deg": {
+     "max_deg": 3.1671639843945902,
+     "min_deg": 3.1671639843945902
+    },
+    "candidates": {
+     "evaluated": 15,
+     "with_view": 1
+    },
+    "horizon_grazing": false,
+    "route_basis": {
+     "evidence_type": "departure_heading",
+     "departure_direction": "southeast",
+     "departure_sector_deg": {
+      "end_deg": 180.0,
+      "start_deg": 90.0
+     },
+     "swept_sector_deg": {
+      "end_deg": 180.0,
+      "start_deg": 90.0
+     },
+     "narrowed_by_hazard_areas": false,
+     "source_name": "Next Spaceflight"
+    }
+   }
+  },
+  "32801": {
+   "Dragon CRS-35": {
+    "list_label": null,
+    "plan_label": "Clear-sky estimate from published heading",
+    "model_version": "published-heading-envelope-v2",
+    "directions": [
+     "east",
+     "northeast"
+    ],
+    "watch_interval": {
+     "end": "2026-10-13T10:45:00Z",
+     "start": "2026-10-13T10:33:00Z"
+    },
+    "max_elevation_deg": {
+     "max_deg": 27.072547325717085,
+     "min_deg": 18.669088617568043
+    },
+    "candidates": {
+     "evaluated": 15,
+     "with_view": 15
+    },
+    "horizon_grazing": false,
+    "route_basis": {
+     "evidence_type": "departure_heading",
+     "departure_direction": "northeast",
+     "departure_sector_deg": {
+      "end_deg": 90.0,
+      "start_deg": 0.0
+     },
+     "swept_sector_deg": {
+      "end_deg": 60.0,
+      "start_deg": 30.0
+     },
+     "narrowed_by_hazard_areas": true,
+     "source_name": "Next Spaceflight"
+    }
+   },
+   "Bandwagon-5": {
+    "list_label": "Clear-sky estimate",
+    "plan_label": "Clear-sky estimate from published heading",
+    "model_version": "published-heading-envelope-v2",
+    "directions": [
+     "east",
+     "southeast"
+    ],
+    "watch_interval": {
+     "end": "2026-10-19T10:41:00Z",
+     "start": "2026-10-19T10:30:00Z"
+    },
+    "max_elevation_deg": {
+     "max_deg": 32.31617868897641,
+     "min_deg": 18.119181548530147
+    },
+    "candidates": {
+     "evaluated": 15,
+     "with_view": 15
+    },
+    "horizon_grazing": false,
+    "route_basis": {
+     "evidence_type": "departure_heading",
+     "departure_direction": "southeast",
+     "departure_sector_deg": {
+      "end_deg": 180.0,
+      "start_deg": 90.0
+     },
+     "swept_sector_deg": {
+      "end_deg": 180.0,
+      "start_deg": 90.0
+     },
+     "narrowed_by_hazard_areas": false,
+     "source_name": "Next Spaceflight"
+    }
+   }
+  }
+ },
+ "coverage_notice_window": {
+  "days": 7,
+  "missions": 2,
+  "with_route_information": 2,
+  "with_timed_path": 0
+ },
+ "privacy_delete_status": 204
+}

@@ -17,7 +17,7 @@ test('viewable defaults to published-heading ZIP plans; all labels missing route
   const starliner=page.locator('a.launch-card[href="/launches/07e945c1-2ec6-4d29-a500-1afbe920440f"]');
   // Vulcan has a published heading but only a date: the list shows a liftoff-relative window.
   await expect(vulcan).toContainText('Clear-sky estimate · time TBA');
-  await expect(vulcan.locator('.viewing-direction')).toHaveText('Look south → southeast → east in clear skies · 0–11 minutes after liftoff');
+  await expect(vulcan.locator('.viewing-direction')).toHaveText('Look south → southeast → east in clear skies · 1–11 minutes after liftoff');
   // CRS-35 launched yesterday (outside today..+30 days); Bandwagon-5 only grazes the Philadelphia horizon.
   await expect(dragon).toHaveCount(0);
   await expect(bandwagon).toHaveCount(0);
@@ -118,7 +118,7 @@ test('viewable defaults to published-heading ZIP plans; all labels missing route
   await page.getByLabel('US ZIP code').fill('19102');
   await page.getByRole('button',{name:'Find location'}).click();
   await page.getByRole('button',{name:'Confirm this location'}).click();
-  await expect(vulcan.locator('.viewing-direction')).toHaveText('Look south → southeast → east in clear skies · 0–11 minutes after liftoff');
+  await expect(vulcan.locator('.viewing-direction')).toHaveText('Look south → southeast → east in clear skies · 1–11 minutes after liftoff');
   await expect(bandwagon).toHaveCount(0);
   await expect(dragon).toHaveCount(0);
   await page.getByRole('button',{name:'Change',exact:true}).click();
