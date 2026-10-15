@@ -159,5 +159,70 @@
       "sha256_before_redaction": "de9ff198f5b575aa965713ddfb3cedb7bb3347a75c186c01c7333db224f0b011",
       "sha256_after_redaction": "f579d40ccde1ba994e71a500d43470058542ee8981667f76554b5c271cd0ddfe"
     }
+  },
+  "location_redaction": {
+    "reason": "Removed the ZIP codes, coordinates and place names of locations the app was tested from, and app screenshots that displayed them; rewritten throughout git history. Results were computed for the original points; only their labels and coordinates are redacted.",
+    "replacements": {
+      "fixture-zip, md-zip, fl-zip": "original test ZIP codes (also in renamed evidence file names)",
+      "Maryland, Florida": "original test place names",
+      "whole-degree coordinates and LWX/0,0": "original test coordinates and NWS grid cell"
+    },
+    "removed_artifacts": "31 app screenshots under evidence/build/*.png",
+    "updated_digest_records": [
+      "evidence/build/history-detail.json",
+      "evidence/build/logs/gate-upcoming-cape.json",
+      "evidence/build/logs/history-detail-unit-recheck.json",
+      "evidence/build/logs/history-detail-unit.json",
+      "evidence/build/logs/nearby-browser.json",
+      "evidence/build/logs/nearby-live.json",
+      "evidence/build/logs/planning-browser.json",
+      "evidence/build/logs/qa-md-zip-browser.json",
+      "evidence/build/logs/qa-md-zip-weather-cache.json",
+      "evidence/build/logs/viewable-browser.json",
+      "evidence/build/nearby.json",
+      "evidence/build/planning.json",
+      "evidence/build/qa-md-zip.json",
+      "evidence/build/viewable.json",
+      "evidence/releases/G-SOFTWARE.json",
+      "evidence/releases/G-UPCOMING.json"
+    ],
+    "artifacts": {
+      "evidence/build/logs/gate-upcoming-cape-2026-10-13T154903_758386_0000.txt": {
+        "sha256_before_redaction": "6b0e9c3c3f4174c27552072f61f66d75499fc047d41a93b99ba4b9d69bc25cd6",
+        "sha256_after_redaction": "bc92ee0f3707f69d0e965fd420e3ca1d870c60466380897665a577b6f63af2b5"
+      },
+      "evidence/build/logs/history-detail-unit-2026-10-13T204138_004638_0000.txt": {
+        "sha256_before_redaction": "15c0568f94e61d5638cc05ef3160bb1562e48e2205b9b4ad3b550212add7baf5",
+        "sha256_after_redaction": "31f031a78d866991bee757ca39d8219d81134b0d60b0603071484406ae411020"
+      },
+      "evidence/build/logs/history-detail-unit-recheck-2026-10-13T204208_358165_0000.txt": {
+        "sha256_before_redaction": "03fd3b4cd27b70acef3f3c4e9a8d0b787c511c534be4d1e11ad13376d4e439f1",
+        "sha256_after_redaction": "69213f855b3359a9a02f9077da5979bb138b58d7e3180f3d0fa89bcfeaa39b1d"
+      },
+      "evidence/build/logs/nearby-browser-2026-10-13T194432_705766_0000.txt": {
+        "sha256_before_redaction": "52398fcaaf8c879682a37a6bcb30db5fecc406ca4ac0d6792eb99ef1f12bd60f",
+        "sha256_after_redaction": "a054d47d6570e643f5fcfe6e2bb3e250dc82b62b1456ad4657acf08983754cbf"
+      },
+      "evidence/build/logs/nearby-live-2026-10-13T194957_953163_0000.txt": {
+        "sha256_before_redaction": "2df381c6c2f8a239860c5735e4be184215e8913e2fbc9dbb798d1ae2404f8162",
+        "sha256_after_redaction": "cba8459920d9dcab90d3a7787547a74faa5c2b327077172a00bbf7fb816d18b6"
+      },
+      "evidence/build/logs/planning-browser-2026-10-13T170432_373400_0000.txt": {
+        "sha256_before_redaction": "626dd11d9bc7f4b0589e91df00d3069942bea0c614ad73da55fae70f3ac6b0d1",
+        "sha256_after_redaction": "32023aad19d96ac091f770a58e491200e3a7f5b0c5d2f087713e2f756cfe40ab"
+      },
+      "evidence/build/logs/qa-md-zip-browser-2026-10-13T163303_033663_0000.txt": {
+        "sha256_before_redaction": "7d8b94816184cb2fcccbd629bba2fa10e206c321c173ccffc0aac93fd1bc0f94",
+        "sha256_after_redaction": "7326f93a778ac923da8f7f1d0ab685ddee85a47cc2aa488c26bc2a185d688296"
+      },
+      "evidence/build/logs/qa-md-zip-weather-cache-2026-10-13T163439_301551_0000.txt": {
+        "sha256_before_redaction": "b430db90a49e8a89a0407a1719ad8ae666c1a23d30213cafbebdb9cd8be0157f",
+        "sha256_after_redaction": "ccb3a3190d82f47d971ced1421d5cde50d6fa4d3a5f68a9f76c83aef26a26485"
+      },
+      "evidence/build/logs/viewable-browser-2026-10-13T191225_559761_0000.txt": {
+        "sha256_before_redaction": "939a7533abbad41c2a7c97f515080149110a1b3c5b288a6e24d50a4481fbb83b",
+        "sha256_after_redaction": "36ac28976f6715a83bc92846ca39ba4c2b749d3ca6cdfba317fe62435222e48e"
+      }
+    }
   }
 }

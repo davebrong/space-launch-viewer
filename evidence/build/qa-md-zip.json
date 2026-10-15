@@ -37,7 +37,7 @@
       "exit_code": 0,
       "status": "passed",
       "artifact_path": "evidence/build/logs/qa-md-zip-browser-2026-10-13T163303_033663_0000.txt",
-      "sha256": "7d8b94816184cb2fcccbd629bba2fa10e206c321c173ccffc0aac93fd1bc0f94",
+      "sha256": "7326f93a778ac923da8f7f1d0ab685ddee85a47cc2aa488c26bc2a185d688296",
       "software_sha256": "d102aa300f2328a0c9d3cb0e163b509fbfad02a711af61b4d4db81edd6e82d50"
     },
     {
@@ -168,7 +168,7 @@
       "exit_code": 0,
       "status": "passed",
       "artifact_path": "evidence/build/logs/qa-md-zip-weather-cache-2026-10-13T163439_301551_0000.txt",
-      "sha256": "b430db90a49e8a89a0407a1719ad8ae666c1a23d30213cafbebdb9cd8be0157f",
+      "sha256": "ccb3a3190d82f47d971ced1421d5cde50d6fa4d3a5f68a9f76c83aef26a26485",
       "software_sha256": "d102aa300f2328a0c9d3cb0e163b509fbfad02a711af61b4d4db81edd6e82d50"
     }
   ],

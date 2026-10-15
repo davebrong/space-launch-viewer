@@ -12,6 +12,6 @@
   "exit_code": 1,
   "status": "failed",
   "artifact_path": "evidence/build/logs/history-detail-unit-2026-10-13T204138_004638_0000.txt",
-  "sha256": "15c0568f94e61d5638cc05ef3160bb1562e48e2205b9b4ad3b550212add7baf5",
+  "sha256": "31f031a78d866991bee757ca39d8219d81134b0d60b0603071484406ae411020",
   "software_sha256": "6e12c0d9dfac105febfacb79041411b75cebd3783732055abb250eb862515fe5"
 }

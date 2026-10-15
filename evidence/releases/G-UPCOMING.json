@@ -12,7 +12,7 @@
       "exit_code": 2,
       "status": "blocked",
       "artifact_path": "evidence/build/logs/gate-upcoming-cape-2026-10-13T154903_758386_0000.txt",
-      "sha256": "6b0e9c3c3f4174c27552072f61f66d75499fc047d41a93b99ba4b9d69bc25cd6",
+      "sha256": "bc92ee0f3707f69d0e965fd420e3ca1d870c60466380897665a577b6f63af2b5",
       "software_sha256": "d515cc89651f95a830e384f6c8fdcf81c16a1b5c06c31e4e0f1d987298905d22"
     }
   ],

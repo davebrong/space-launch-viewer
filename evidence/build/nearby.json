@@ -72,7 +72,7 @@
       "exit_code": 1,
       "status": "failed",
       "artifact_path": "evidence/build/logs/nearby-browser-2026-10-13T194432_705766_0000.txt",
-      "sha256": "52398fcaaf8c879682a37a6bcb30db5fecc406ca4ac0d6792eb99ef1f12bd60f",
+      "sha256": "a054d47d6570e643f5fcfe6e2bb3e250dc82b62b1456ad4657acf08983754cbf",
       "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
     },
     {
@@ -130,7 +130,7 @@
       "exit_code": 0,
       "status": "passed",
       "artifact_path": "evidence/build/logs/nearby-live-2026-10-13T194957_953163_0000.txt",
-      "sha256": "2df381c6c2f8a239860c5735e4be184215e8913e2fbc9dbb798d1ae2404f8162",
+      "sha256": "cba8459920d9dcab90d3a7787547a74faa5c2b327077172a00bbf7fb816d18b6",
       "software_sha256": "bf95d70cde1b5c87689c7481796f299cbcc9839ed5636dd1cbb040205342028a"
     },
     {
